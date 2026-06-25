@@ -56,3 +56,8 @@ export type Wood = Prisma.WoodModel
  * 
  */
 export type Contact = Prisma.ContactModel
+/**
+ * Model Location
+ * 
+ */
+export type Location = Prisma.LocationModel

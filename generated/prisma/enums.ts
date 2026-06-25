@@ -17,3 +17,13 @@ export const ContactType = {
 } as const
 
 export type ContactType = (typeof ContactType)[keyof typeof ContactType]
+
+
+export const LocationType = {
+  WAREHOUSE: 'WAREHOUSE',
+  PORT: 'PORT',
+  MILL: 'MILL',
+  OTHERS: 'OTHERS'
+} as const
+
+export type LocationType = (typeof LocationType)[keyof typeof LocationType]

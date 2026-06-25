@@ -45,9 +45,28 @@ model Contact {
   @@map("contacts")
 }
 
+model Location {
+  id      Int          @id @default(autoincrement())
+  name    String       @db.VarChar(255)
+  address String?      @db.Text
+  type    LocationType
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("locations")
+}
+
 enum ContactType {
   CUSTOMER
   SUPPLIER
   TRUCKER
+  OTHERS
+}
+
+enum LocationType {
+  WAREHOUSE
+  PORT
+  MILL
   OTHERS
 }
