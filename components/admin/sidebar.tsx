@@ -68,7 +68,7 @@ export function AdminSidebar() {
     {
       name: "Contacts",
       icon: <UsersIcon className="mr-1" />,
-      href: "#",
+      href: "/admin/contacts",
       group: "Master",
     },
     {

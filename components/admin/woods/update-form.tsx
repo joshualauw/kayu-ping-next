@@ -11,6 +11,7 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { updateWoodAction } from "@/lib/actions/woods/update-wood";
 import { createWoodSchema, type CreateWoodSchema } from "@/lib/schemas/woods/create-wood";
+import { ArrowLeft } from "lucide-react";
 
 interface WoodUpdateFormProps {
   wood: {
@@ -81,12 +82,13 @@ export default function WoodUpdateForm({ wood }: WoodUpdateFormProps) {
               )}
             />
 
-            <div className="flex justify-start gap-2">
-              <Button type="submit" form={formId} disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? "Submitting..." : "Save"}
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="secondary" onClick={() => router.push("/admin/contacts")} className="flex items-center gap-2">
+                <ArrowLeft className="size-4" />
+                Back to List
               </Button>
-              <Button type="button" variant="secondary" onClick={() => router.push("/admin/woods")} disabled={form.formState.isSubmitting}>
-                Cancel
+              <Button type="submit" form={formId} disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? "Submitting..." : "Create"}
               </Button>
             </div>
           </FieldGroup>

@@ -1,7 +1,9 @@
+import { ContactType } from "@/generated/prisma/enums";
 import { prisma } from "@/lib/db/prisma";
 import bcrypt from "bcryptjs";
 
 async function main() {
+  // Seed users
   await prisma.users.upsert({
     where: { email: "admin@mail.com" },
     update: {},
@@ -12,6 +14,7 @@ async function main() {
     },
   });
 
+  // Seed woods
   await prisma.wood.upsert({
     where: { code: "BKR" },
     update: {},
@@ -34,6 +37,44 @@ async function main() {
     create: {
       name: "Kruing",
       code: "KR",
+    },
+  });
+
+  // Seed contacts
+  await prisma.contact.upsert({
+    where: { email: "supplier@mail.com" },
+    update: {},
+    create: {
+      name: "Supplier",
+      email: "supplier@mail.com",
+      phoneNumber: "08123456787",
+      address: "Supplier Address",
+      notes: "Supplier Notes",
+      type: ContactType.SUPPLIER,
+    },
+  });
+  await prisma.contact.upsert({
+    where: { email: "customer@mail.com" },
+    update: {},
+    create: {
+      name: "Customer",
+      email: "customer@mail.com",
+      phoneNumber: "08123456789",
+      address: "Customer Address",
+      notes: "Customer Notes",
+      type: ContactType.CUSTOMER,
+    },
+  });
+  await prisma.contact.upsert({
+    where: { email: "trucker@mail.com" },
+    update: {},
+    create: {
+      name: "Trucker",
+      email: "trucker@mail.com",
+      phoneNumber: "0828123456788",
+      address: "Trucker Address",
+      notes: "Trucker Notes",
+      type: ContactType.TRUCKER,
     },
   });
 

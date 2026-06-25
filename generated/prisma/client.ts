@@ -51,3 +51,8 @@ export type Users = Prisma.UsersModel
  * 
  */
 export type Wood = Prisma.WoodModel
+/**
+ * Model Contact
+ * 
+ */
+export type Contact = Prisma.ContactModel
