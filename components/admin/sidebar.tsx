@@ -62,7 +62,7 @@ export function AdminSidebar() {
     {
       name: "Locations",
       icon: <MapPinIcon className="mr-1" />,
-      href: "#",
+      href: "/admin/locations",
       group: "Master",
     },
     {
