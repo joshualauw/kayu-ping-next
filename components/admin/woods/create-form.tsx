@@ -73,7 +73,7 @@ export default function WoodCreateForm() {
             />
 
             <div className="flex justify-end gap-2">
-              <Button type="button" variant="secondary" onClick={() => router.push("/admin/contacts")} className="flex items-center gap-2">
+              <Button type="button" variant="secondary" onClick={() => router.push("/admin/woods")} className="flex items-center gap-2">
                 <ArrowLeft className="size-4" />
                 Back to List
               </Button>

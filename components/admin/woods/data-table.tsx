@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ColumnDef, PaginationState, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Loader2, Pencil, Search, Trash2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Info, Loader2, Pencil, Search, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -107,6 +107,11 @@ export default function WoodsDataTable() {
         header: "Actions",
         cell: ({ row }) => (
           <div className="flex items-center gap-1">
+            <Button asChild variant="ghost" size="icon-sm" aria-label={`View ${row.original.name}`}>
+              <Link href={`/admin/woods/${row.original.id}`}>
+                <Info className="size-4" aria-hidden="true" />
+              </Link>
+            </Button>
             <Button asChild variant="ghost" size="icon-sm" aria-label={`Edit ${row.original.name}`}>
               <Link href={`/admin/woods/${row.original.id}/edit`}>
                 <Pencil className="size-4" aria-hidden="true" />

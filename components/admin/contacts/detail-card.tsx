@@ -3,10 +3,8 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Pencil } from "lucide-react";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { ContactType } from "@/generated/prisma/enums";
 import { formatDate } from "@/lib/utils";
 
