@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateLocationSchema } from "@/lib/schemas/locations/create-location";
 
 export type LocationListItem = Omit<Location, "address">;
+export type LocationForSelect = Pick<Location, "id" | "name">;
 
 class LocationService {
   async getAllLocations(params: TableQuery): Promise<TableResponse<LocationListItem>> {
@@ -35,6 +36,15 @@ class LocationService {
     ]);
 
     return { items, count };
+  }
+
+  async getLocationsForSelect(): Promise<LocationForSelect[]> {
+    return prisma.location.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
   }
 
   async getLocationById(id: number): Promise<Location | null> {

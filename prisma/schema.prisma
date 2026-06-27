@@ -92,11 +92,11 @@ model WoodVariant {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  wood        Wood             @relation(fields: [woodId], references: [id])
-  material    Material         @relation(fields: [materialId], references: [id])
+  wood        Wood            @relation(fields: [woodId], references: [id])
+  material    Material        @relation(fields: [materialId], references: [id])
   inventories Inventory[]
   mutations   StockMutation[]
-  details     PurchaseDetail[]
+  items       PurchaseItem[]
 
   @@map("wood_variants")
 }
@@ -143,20 +143,21 @@ model Purchase {
   contactId     Int           @map("contact_id")
   locationId    Int           @map("location_id")
   notes         String?       @db.Text()
+  totalVolume   Float
   totalPrice    Float
   paymentStatus PaymentStatus
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  contact  Contact          @relation(fields: [contactId], references: [id])
-  location Location         @relation(fields: [locationId], references: [id])
-  details  PurchaseDetail[]
+  contact  Contact        @relation(fields: [contactId], references: [id])
+  location Location       @relation(fields: [locationId], references: [id])
+  items    PurchaseItem[]
 
   @@map("purchases")
 }
 
-model PurchaseDetail {
+model PurchaseItem {
   id            Int   @id @default(autoincrement())
   purchaseId    Int   @map("purchase_id")
   woodVariantId Int   @map("wood_variant_id")
@@ -169,7 +170,7 @@ model PurchaseDetail {
   purchase Purchase    @relation(fields: [purchaseId], references: [id])
   variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
 
-  @@map("purchase_details")
+  @@map("purchase_items")
 }
 
 enum ContactType {

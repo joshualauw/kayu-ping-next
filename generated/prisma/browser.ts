@@ -63,7 +63,7 @@ export type StockMutation = Prisma.StockMutationModel
  */
 export type Purchase = Prisma.PurchaseModel
 /**
- * Model PurchaseDetail
+ * Model PurchaseItem
  * 
  */
-export type PurchaseDetail = Prisma.PurchaseDetailModel
+export type PurchaseItem = Prisma.PurchaseItemModel

@@ -52,13 +52,13 @@ export function AdminSidebar() {
     {
       name: "Inventory",
       icon: <Package className="mr-1" />,
-      href: "#",
+      href: "/admin/inventories",
       group: "Overview",
     },
     {
       name: "Stock Mutations",
       icon: <Repeat className="mr-1" />,
-      href: "#",
+      href: "/admin/stock-mutations",
       group: "Overview",
     },
     {
@@ -88,7 +88,7 @@ export function AdminSidebar() {
     {
       name: "Purchases",
       icon: <ShoppingBag className="mr-1" />,
-      href: "#",
+      href: "/admin/purchases",
       group: "Transactions",
     },
     {

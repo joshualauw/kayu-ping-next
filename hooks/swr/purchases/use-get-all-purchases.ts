@@ -1,0 +1,18 @@
+import { fetcher } from "@/hooks/swr/fetcher";
+import { TableQuery } from "@/lib/schemas/table-query";
+import useSWR, { SWRConfiguration } from "swr";
+import type { GetAllPurchasesResponse } from "@/app/api/purchases/route";
+
+export function useGetAllPurchases(query: TableQuery, options?: SWRConfiguration<GetAllPurchasesResponse>) {
+  const params = new URLSearchParams({
+    page: String(query.page),
+    size: String(query.size),
+    search: query.search,
+  });
+
+  return useSWR<GetAllPurchasesResponse>(`/api/purchases?${params.toString()}`, fetcher, {
+    keepPreviousData: true,
+    errorRetryCount: 3,
+    ...options,
+  });
+}

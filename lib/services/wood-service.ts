@@ -3,6 +3,8 @@ import { Wood } from "@/generated/prisma/client";
 import { WoodWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 
+export type WoodForSelect = Pick<Wood, "id" | "name" | "code">;
+
 class WoodService {
   async getAllWoods(params: TableQuery): Promise<TableResponse<Wood>> {
     const { page, size, search } = params;
@@ -25,6 +27,16 @@ class WoodService {
     ]);
 
     return { items, count };
+  }
+
+  async getWoodForSelect(): Promise<WoodForSelect[]> {
+    return prisma.wood.findMany({
+      select: {
+        id: true,
+        name: true,
+        code: true,
+      },
+    });
   }
 
   async getWoodById(id: number): Promise<Wood | null> {

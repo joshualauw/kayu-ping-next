@@ -60,7 +60,7 @@ export const ModelName = {
   Inventory: 'Inventory',
   StockMutation: 'StockMutation',
   Purchase: 'Purchase',
-  PurchaseDetail: 'PurchaseDetail'
+  PurchaseItem: 'PurchaseItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -193,6 +193,7 @@ export const PurchaseScalarFieldEnum = {
   contactId: 'contactId',
   locationId: 'locationId',
   notes: 'notes',
+  totalVolume: 'totalVolume',
   totalPrice: 'totalPrice',
   paymentStatus: 'paymentStatus',
   createdAt: 'createdAt',
@@ -202,7 +203,7 @@ export const PurchaseScalarFieldEnum = {
 export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typeof PurchaseScalarFieldEnum]
 
 
-export const PurchaseDetailScalarFieldEnum = {
+export const PurchaseItemScalarFieldEnum = {
   id: 'id',
   purchaseId: 'purchaseId',
   woodVariantId: 'woodVariantId',
@@ -212,7 +213,7 @@ export const PurchaseDetailScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type PurchaseDetailScalarFieldEnum = (typeof PurchaseDetailScalarFieldEnum)[keyof typeof PurchaseDetailScalarFieldEnum]
+export type PurchaseItemScalarFieldEnum = (typeof PurchaseItemScalarFieldEnum)[keyof typeof PurchaseItemScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
 
 export type MaterialListItem = Material;
+export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement">;
 
 class MaterialService {
   async getAllMaterials(params: TableQuery): Promise<TableResponse<MaterialListItem>> {
@@ -28,6 +29,16 @@ class MaterialService {
     ]);
 
     return { items, count };
+  }
+
+  async getMaterialForSelect(): Promise<MaterialForSelect[]> {
+    return prisma.material.findMany({
+      select: {
+        id: true,
+        name: true,
+        measurement: true,
+      },
+    });
   }
 
   async getMaterialById(id: number): Promise<Material | null> {

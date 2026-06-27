@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateContactSchema } from "@/lib/schemas/contacts/create-contact";
 
 export type ContactListItem = Omit<Contact, "address" | "notes">;
+export type ContactForSelect = Pick<Contact, "id" | "name" | "type">;
 
 class ContactService {
   async getAllContacts(params: TableQuery): Promise<TableResponse<ContactListItem>> {
@@ -41,6 +42,16 @@ class ContactService {
     ]);
 
     return { items, count };
+  }
+
+  async getContactsForSelect(): Promise<ContactForSelect[]> {
+    return prisma.contact.findMany({
+      select: {
+        id: true,
+        name: true,
+        type: true,
+      },
+    });
   }
 
   async getContactById(id: number): Promise<Contact | null> {
