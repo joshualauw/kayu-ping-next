@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
 import { PurchaseDetail } from "@/lib/services/purchase-service";
-import { calculateSubtotal, calculateWoodTotalVolume } from "@/lib/helpers/wood-volume";
+import { calculateSubtotal, calculateWoodTotalVolume } from "@/lib/helpers/wood";
 
 interface PurchaseDetailCardProps {
   purchase: PurchaseDetail;

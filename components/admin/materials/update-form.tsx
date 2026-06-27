@@ -38,7 +38,6 @@ export default function MaterialUpdateForm({ material }: MaterialUpdateFormProps
     const formData = new FormData();
     formData.append("id", String(material.id));
     formData.append("name", data.name);
-    formData.append("measurement", data.measurement);
 
     const result = await updateMaterialAction(formData);
 
@@ -77,7 +76,7 @@ export default function MaterialUpdateForm({ material }: MaterialUpdateFormProps
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Measurement</FieldLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value} disabled>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select measurement type" />
                     </SelectTrigger>

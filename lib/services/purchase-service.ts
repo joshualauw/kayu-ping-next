@@ -5,7 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
 import { UpdatePurchaseSchema } from "@/lib/schemas/purchases/update-purchase";
 import dayjs from "@/lib/integrations/dayjs";
-import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/wood-volume";
+import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/wood";
 
 export type PurchaseListItem = Purchase & {
   contact: Pick<Contact, "name">;

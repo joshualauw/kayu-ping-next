@@ -3,6 +3,7 @@ import { Material } from "@/generated/prisma/client";
 import { MaterialWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
+import { UpdateMaterialSchema } from "@/lib/schemas/materials/update-material";
 
 export type MaterialListItem = Material;
 export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement">;
@@ -56,12 +57,11 @@ class MaterialService {
     });
   }
 
-  async updateMaterial(id: number, data: CreateMaterialSchema): Promise<Material> {
+  async updateMaterial(id: number, data: UpdateMaterialSchema): Promise<Material> {
     return prisma.material.update({
       where: { id },
       data: {
         name: data.name,
-        measurement: data.measurement,
       },
     });
   }

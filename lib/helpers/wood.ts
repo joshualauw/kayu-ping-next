@@ -9,6 +9,29 @@ interface WoodVolumeCalculationParams {
   measurement: Measurement;
 }
 
+interface WoodVariantLabelParams {
+  woodCode: string;
+  materialCode: string;
+  width: number | null;
+  height: number | null;
+  diameterSmall: number | null;
+  diameterLarge: number | null;
+  length: number | null;
+  measurement: Measurement;
+}
+
+export function generateWoodVariantLabel(params: WoodVariantLabelParams) {
+  const { woodCode, materialCode, width, height, diameterSmall, diameterLarge, length, measurement } = params;
+
+  if (measurement === Measurement.CUBE) {
+    return `${woodCode} - ${materialCode} (${width}/${height}x${length}cm)`;
+  }
+  if (measurement === Measurement.CYLINDER) {
+    return `${woodCode} - ${materialCode} (D${diameterSmall}/D${diameterLarge}x${length}cm)`;
+  }
+  return "-";
+}
+
 export function calculateWoodVolume(params: WoodVolumeCalculationParams): number {
   const { width, height, length, diameterSmall, diameterLarge, measurement } = params;
 

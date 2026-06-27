@@ -8,8 +8,7 @@ import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllStockMutations } from "@/hooks/swr/stock-mutations/use-get-all-stock-mutations";
 import type { StockMutationListItem } from "@/lib/services/stock-mutation-service";
 import { formatDate } from "@/lib/utils";
-import { Measurement } from "@/generated/prisma/enums";
-import { calculateWoodTotalVolume } from "@/lib/helpers/wood-volume";
+import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/wood";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -34,49 +33,25 @@ export default function StockMutationsDataTable() {
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.mutationDate)}</span>,
       },
       {
-        id: "wood",
-        header: "Wood Code",
-        cell: ({ row }) => {
-          const wood = row.original.variant.wood;
-          return (
-            <div>
-              <div>{wood.code}</div>
-              <div className="text-[10px] text-muted-foreground">{wood.name}</div>
-            </div>
-          );
-        },
-      },
-      {
-        id: "material",
-        header: "Material Code",
-        cell: ({ row }) => <span>{row.original.variant.material.name}</span>,
-      },
-      {
-        id: "dimension",
-        header: "Dimension",
+        id: "variant",
+        header: "Variant",
         cell: ({ row }) => {
           const variant = row.original.variant;
-          const material = variant.material;
           return (
-            <div>
-              {material.measurement === Measurement.CUBE && (
-                <div>
-                  W: {variant.width ?? 0} / H: {variant.height ?? 0}
-                </div>
-              )}
-              {material.measurement === Measurement.CYLINDER && (
-                <div>
-                  D.0: {variant.diameterSmall ?? 0} / D.1: {variant.diamterLarge ?? 0}
-                </div>
-              )}
+            <div className="font-medium">
+              {generateWoodVariantLabel({
+                woodCode: variant.wood.code,
+                materialCode: variant.material.name,
+                width: variant.width,
+                height: variant.height,
+                diameterSmall: variant.diameterSmall,
+                diameterLarge: variant.diamterLarge,
+                length: variant.length,
+                measurement: variant.material.measurement,
+              })}
             </div>
           );
         },
-      },
-      {
-        id: "length",
-        header: "Length (cm)",
-        cell: ({ row }) => <span>{row.original.variant.length}</span>,
       },
       {
         id: "volume",

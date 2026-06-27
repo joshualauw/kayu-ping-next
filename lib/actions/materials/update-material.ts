@@ -5,8 +5,8 @@ import materialService from "@/lib/services/material-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { createMaterialSchema } from "@/lib/schemas/materials/create-material";
 import type { ApiResponse } from "@/types/api-response";
+import { updateMaterialSchema } from "@/lib/schemas/materials/update-material";
 
 export type UpdateMaterialResponse = number | null;
 
@@ -21,9 +21,8 @@ export async function updateMaterialAction(formData: FormData): Promise<ApiRespo
       throw new Error("Invalid material id");
     }
 
-    const parsed = createMaterialSchema.parse({
+    const parsed = updateMaterialSchema.parse({
       name: formData.get("name"),
-      measurement: formData.get("measurement"),
     });
 
     const material = await materialService.updateMaterial(id, parsed);
