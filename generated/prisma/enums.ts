@@ -27,3 +27,11 @@ export const LocationType = {
 } as const
 
 export type LocationType = (typeof LocationType)[keyof typeof LocationType]
+
+
+export const Measurement = {
+  CYLINDER: 'CYLINDER',
+  CUBE: 'CUBE'
+} as const
+
+export type Measurement = (typeof Measurement)[keyof typeof Measurement]

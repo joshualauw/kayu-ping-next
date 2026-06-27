@@ -61,3 +61,8 @@ export type Contact = Prisma.ContactModel
  * 
  */
 export type Location = Prisma.LocationModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel

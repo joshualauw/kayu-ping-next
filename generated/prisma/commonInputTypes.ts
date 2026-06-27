@@ -171,6 +171,23 @@ export type EnumLocationTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumLocationTypeFilter<$PrismaModel>
 }
 
+export type EnumMeasurementFilter<$PrismaModel = never> = {
+  equals?: $Enums.Measurement | Prisma.EnumMeasurementFieldRefInput<$PrismaModel>
+  in?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMeasurementFilter<$PrismaModel> | $Enums.Measurement
+}
+
+export type EnumMeasurementWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Measurement | Prisma.EnumMeasurementFieldRefInput<$PrismaModel>
+  in?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMeasurementWithAggregatesFilter<$PrismaModel> | $Enums.Measurement
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMeasurementFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMeasurementFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -339,6 +356,23 @@ export type NestedEnumLocationTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumLocationTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumLocationTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumMeasurementFilter<$PrismaModel = never> = {
+  equals?: $Enums.Measurement | Prisma.EnumMeasurementFieldRefInput<$PrismaModel>
+  in?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMeasurementFilter<$PrismaModel> | $Enums.Measurement
+}
+
+export type NestedEnumMeasurementWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Measurement | Prisma.EnumMeasurementFieldRefInput<$PrismaModel>
+  in?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Measurement[] | Prisma.ListEnumMeasurementFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMeasurementWithAggregatesFilter<$PrismaModel> | $Enums.Measurement
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMeasurementFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMeasurementFilter<$PrismaModel>
 }
 
 

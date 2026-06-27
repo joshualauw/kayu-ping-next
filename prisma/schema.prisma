@@ -57,11 +57,24 @@ model Location {
   @@map("locations")
 }
 
+model Material {
+  id          Int         @id @default(autoincrement())
+  name        String      @db.VarChar(255)
+  measurement Measurement
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("materials")
+}
+
 enum ContactType {
   CUSTOMER
   SUPPLIER
   TRUCKER
   OTHERS
+
+  @@map("contact_types")
 }
 
 enum LocationType {
@@ -69,4 +82,13 @@ enum LocationType {
   PORT
   MILL
   OTHERS
+
+  @@map("location_types")
+}
+
+enum Measurement {
+  CYLINDER // D0 x D1 x L
+  CUBE // W x H x L
+
+  @@map("measurements")
 }

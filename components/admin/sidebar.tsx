@@ -13,17 +13,19 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import {
-  ArrowRightLeftIcon,
-  ChevronRightIcon,
-  DollarSignIcon,
-  GaugeIcon,
-  MapPinIcon,
-  PackageIcon,
-  RepeatIcon,
-  ShoppingBagIcon,
-  TreeDeciduousIcon,
-  SettingsIcon,
-  UsersIcon,
+  ChevronRight,
+  HandCoins,
+  Gauge,
+  MapPin,
+  Package,
+  Repeat,
+  ShoppingBag,
+  TreeDeciduous,
+  Settings,
+  Users,
+  Boxes,
+  SearchCheck,
+  Truck,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -43,61 +45,73 @@ export function AdminSidebar() {
   const navs: NavItem[] = [
     {
       name: "Dashboard",
-      icon: <GaugeIcon className="mr-1" />,
+      icon: <Gauge className="mr-1" />,
       href: "/admin/dashboard",
       group: "Overview",
     },
     {
       name: "Inventory",
-      icon: <PackageIcon className="mr-1" />,
+      icon: <Package className="mr-1" />,
       href: "#",
       group: "Overview",
     },
     {
       name: "Stock Mutations",
-      icon: <RepeatIcon className="mr-1" />,
+      icon: <Repeat className="mr-1" />,
       href: "#",
       group: "Overview",
     },
     {
       name: "Locations",
-      icon: <MapPinIcon className="mr-1" />,
+      icon: <MapPin className="mr-1" />,
       href: "/admin/locations",
       group: "Master",
     },
     {
       name: "Contacts",
-      icon: <UsersIcon className="mr-1" />,
+      icon: <Users className="mr-1" />,
       href: "/admin/contacts",
       group: "Master",
     },
     {
       name: "Woods",
-      icon: <TreeDeciduousIcon className="mr-1" />,
+      icon: <TreeDeciduous className="mr-1" />,
       href: "/admin/woods",
       group: "Master",
     },
     {
-      name: "Purchases",
-      icon: <ShoppingBagIcon className="mr-1" />,
-      href: "#",
-      group: "Transactions",
+      name: "Materials",
+      icon: <Boxes className="mr-1" />,
+      href: "/admin/materials",
+      group: "Master",
     },
     {
-      name: "Processing",
-      icon: <SettingsIcon className="mr-1" />,
+      name: "Purchases",
+      icon: <ShoppingBag className="mr-1" />,
       href: "#",
       group: "Transactions",
     },
     {
       name: "Movements",
-      icon: <ArrowRightLeftIcon className="mr-1" />,
+      icon: <Truck className="mr-1" />,
+      href: "#",
+      group: "Transactions",
+    },
+    {
+      name: "Processing",
+      icon: <Settings className="mr-1" />,
+      href: "#",
+      group: "Transactions",
+    },
+    {
+      name: "Inspection",
+      icon: <SearchCheck className="mr-1" />,
       href: "#",
       group: "Transactions",
     },
     {
       name: "Sales",
-      icon: <DollarSignIcon className="mr-1" />,
+      icon: <HandCoins className="mr-1" />,
       href: "#",
       group: "Transactions",
     },
@@ -138,7 +152,7 @@ export function AdminSidebar() {
                             {nav.icon}
                             {nav.name}
                             {nav.children && (
-                              <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             )}
                           </Link>
                         </SidebarMenuButton>
