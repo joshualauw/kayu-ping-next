@@ -216,6 +216,7 @@ export type MaterialWhereInput = {
   measurement?: Prisma.EnumMeasurementFilter<"Material"> | $Enums.Measurement
   createdAt?: Prisma.DateTimeFilter<"Material"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Material"> | Date | string
+  variants?: Prisma.WoodVariantListRelationFilter
 }
 
 export type MaterialOrderByWithRelationInput = {
@@ -224,6 +225,7 @@ export type MaterialOrderByWithRelationInput = {
   measurement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  variants?: Prisma.WoodVariantOrderByRelationAggregateInput
 }
 
 export type MaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +237,7 @@ export type MaterialWhereUniqueInput = Prisma.AtLeast<{
   measurement?: Prisma.EnumMeasurementFilter<"Material"> | $Enums.Measurement
   createdAt?: Prisma.DateTimeFilter<"Material"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Material"> | Date | string
+  variants?: Prisma.WoodVariantListRelationFilter
 }, "id">
 
 export type MaterialOrderByWithAggregationInput = {
@@ -266,6 +269,7 @@ export type MaterialCreateInput = {
   measurement: $Enums.Measurement
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.WoodVariantCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateInput = {
@@ -274,6 +278,7 @@ export type MaterialUncheckedCreateInput = {
   measurement: $Enums.Measurement
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.WoodVariantUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUpdateInput = {
@@ -281,6 +286,7 @@ export type MaterialUpdateInput = {
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.WoodVariantUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateInput = {
@@ -289,6 +295,7 @@ export type MaterialUncheckedUpdateInput = {
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.WoodVariantUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateManyInput = {
@@ -346,10 +353,104 @@ export type MaterialSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type MaterialScalarRelationFilter = {
+  is?: Prisma.MaterialWhereInput
+  isNot?: Prisma.MaterialWhereInput
+}
+
 export type EnumMeasurementFieldUpdateOperationsInput = {
   set?: $Enums.Measurement
 }
 
+export type MaterialCreateNestedOneWithoutVariantsInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutVariantsInput, Prisma.MaterialUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutVariantsInput
+  connect?: Prisma.MaterialWhereUniqueInput
+}
+
+export type MaterialUpdateOneRequiredWithoutVariantsNestedInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutVariantsInput, Prisma.MaterialUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutVariantsInput
+  upsert?: Prisma.MaterialUpsertWithoutVariantsInput
+  connect?: Prisma.MaterialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MaterialUpdateToOneWithWhereWithoutVariantsInput, Prisma.MaterialUpdateWithoutVariantsInput>, Prisma.MaterialUncheckedUpdateWithoutVariantsInput>
+}
+
+export type MaterialCreateWithoutVariantsInput = {
+  name: string
+  measurement: $Enums.Measurement
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MaterialUncheckedCreateWithoutVariantsInput = {
+  id?: number
+  name: string
+  measurement: $Enums.Measurement
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MaterialCreateOrConnectWithoutVariantsInput = {
+  where: Prisma.MaterialWhereUniqueInput
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutVariantsInput, Prisma.MaterialUncheckedCreateWithoutVariantsInput>
+}
+
+export type MaterialUpsertWithoutVariantsInput = {
+  update: Prisma.XOR<Prisma.MaterialUpdateWithoutVariantsInput, Prisma.MaterialUncheckedUpdateWithoutVariantsInput>
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutVariantsInput, Prisma.MaterialUncheckedCreateWithoutVariantsInput>
+  where?: Prisma.MaterialWhereInput
+}
+
+export type MaterialUpdateToOneWithWhereWithoutVariantsInput = {
+  where?: Prisma.MaterialWhereInput
+  data: Prisma.XOR<Prisma.MaterialUpdateWithoutVariantsInput, Prisma.MaterialUncheckedUpdateWithoutVariantsInput>
+}
+
+export type MaterialUpdateWithoutVariantsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MaterialUncheckedUpdateWithoutVariantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type MaterialCountOutputType
+ */
+
+export type MaterialCountOutputType = {
+  variants: number
+}
+
+export type MaterialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  variants?: boolean | MaterialCountOutputTypeCountVariantsArgs
+}
+
+/**
+ * MaterialCountOutputType without action
+ */
+export type MaterialCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MaterialCountOutputType
+   */
+  select?: Prisma.MaterialCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MaterialCountOutputType without action
+ */
+export type MaterialCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WoodVariantWhereInput
+}
 
 
 export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -358,6 +459,8 @@ export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   measurement?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  variants?: boolean | Prisma.Material$variantsArgs<ExtArgs>
+  _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["material"]>
 
 export type MaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -385,10 +488,18 @@ export type MaterialSelectScalar = {
 }
 
 export type MaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "measurement" | "createdAt" | "updatedAt", ExtArgs["result"]["material"]>
+export type MaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  variants?: boolean | Prisma.Material$variantsArgs<ExtArgs>
+  _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type MaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type MaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $MaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Material"
-  objects: {}
+  objects: {
+    variants: Prisma.$WoodVariantPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
@@ -789,6 +900,7 @@ readonly fields: MaterialFieldRefs;
  */
 export interface Prisma__MaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  variants<T extends Prisma.Material$variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -840,6 +952,10 @@ export type MaterialFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * Filter, which Material to fetch.
    */
   where: Prisma.MaterialWhereUniqueInput
@@ -858,6 +974,10 @@ export type MaterialFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * Filter, which Material to fetch.
    */
   where: Prisma.MaterialWhereUniqueInput
@@ -875,6 +995,10 @@ export type MaterialFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Material
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
   /**
    * Filter, which Material to fetch.
    */
@@ -924,6 +1048,10 @@ export type MaterialFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * Filter, which Material to fetch.
    */
   where?: Prisma.MaterialWhereInput
@@ -971,6 +1099,10 @@ export type MaterialFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Material
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
   /**
    * Filter, which Materials to fetch.
    */
@@ -1020,6 +1152,10 @@ export type MaterialCreateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * The data needed to create a Material.
    */
   data: Prisma.XOR<Prisma.MaterialCreateInput, Prisma.MaterialUncheckedCreateInput>
@@ -1067,6 +1203,10 @@ export type MaterialUpdateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Material
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
   /**
    * The data needed to update a Material.
    */
@@ -1134,6 +1274,10 @@ export type MaterialUpsertArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * The filter to search for the Material to update in case it exists.
    */
   where: Prisma.MaterialWhereUniqueInput
@@ -1160,6 +1304,10 @@ export type MaterialDeleteArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  /**
    * Filter which Material to delete.
    */
   where: Prisma.MaterialWhereUniqueInput
@@ -1180,6 +1328,30 @@ export type MaterialDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Material.variants
+ */
+export type Material$variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WoodVariant
+   */
+  select?: Prisma.WoodVariantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WoodVariant
+   */
+  omit?: Prisma.WoodVariantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodVariantInclude<ExtArgs> | null
+  where?: Prisma.WoodVariantWhereInput
+  orderBy?: Prisma.WoodVariantOrderByWithRelationInput | Prisma.WoodVariantOrderByWithRelationInput[]
+  cursor?: Prisma.WoodVariantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WoodVariantScalarFieldEnum | Prisma.WoodVariantScalarFieldEnum[]
+}
+
+/**
  * Material without action
  */
 export type MaterialDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1191,4 +1363,8 @@ export type MaterialDefaultArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Material
    */
   omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
 }

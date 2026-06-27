@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import materialService from "@/lib/services/material-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -26,15 +26,7 @@ export async function updateMaterialAction(formData: FormData): Promise<ApiRespo
       measurement: formData.get("measurement"),
     });
 
-    const { name, measurement } = parsed;
-
-    const material = await prisma.material.update({
-      where: { id },
-      data: {
-        name,
-        measurement,
-      },
-    });
+    const material = await materialService.updateMaterial(id, parsed);
 
     return successResponse(material.id, "Material updated successfully");
   } catch (error) {

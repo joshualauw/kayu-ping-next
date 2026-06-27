@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import WoodDetailCard from "@/components/admin/woods/detail-card";
-import { prisma } from "@/lib/db/prisma";
+import woodService from "@/lib/services/wood-service";
 
 interface WoodDetailPageProps {
   params: Promise<{
@@ -16,9 +16,7 @@ export default async function WoodDetailPage({ params }: WoodDetailPageProps) {
     notFound();
   }
 
-  const wood = await prisma.wood.findUnique({
-    where: { id: woodId },
-  });
+  const wood = await woodService.getWoodById(woodId);
 
   if (!wood) {
     notFound();

@@ -55,7 +55,12 @@ export const ModelName = {
   Wood: 'Wood',
   Contact: 'Contact',
   Location: 'Location',
-  Material: 'Material'
+  Material: 'Material',
+  WoodVariant: 'WoodVariant',
+  Inventory: 'Inventory',
+  StockMutation: 'StockMutation',
+  Purchase: 'Purchase',
+  PurchaseDetail: 'PurchaseDetail'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -133,6 +138,81 @@ export const MaterialScalarFieldEnum = {
 } as const
 
 export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const WoodVariantScalarFieldEnum = {
+  id: 'id',
+  woodId: 'woodId',
+  materialId: 'materialId',
+  width: 'width',
+  height: 'height',
+  diameterSmall: 'diameterSmall',
+  diamterLarge: 'diamterLarge',
+  length: 'length',
+  volume: 'volume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WoodVariantScalarFieldEnum = (typeof WoodVariantScalarFieldEnum)[keyof typeof WoodVariantScalarFieldEnum]
+
+
+export const InventoryScalarFieldEnum = {
+  id: 'id',
+  woodVariantId: 'woodVariantId',
+  locationId: 'locationId',
+  stock: 'stock',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
+
+
+export const StockMutationScalarFieldEnum = {
+  id: 'id',
+  mutationDate: 'mutationDate',
+  woodVariantId: 'woodVariantId',
+  locationId: 'locationId',
+  type: 'type',
+  quantity: 'quantity',
+  referenceType: 'referenceType',
+  referenceId: 'referenceId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StockMutationScalarFieldEnum = (typeof StockMutationScalarFieldEnum)[keyof typeof StockMutationScalarFieldEnum]
+
+
+export const PurchaseScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  purchaseDate: 'purchaseDate',
+  contactId: 'contactId',
+  locationId: 'locationId',
+  notes: 'notes',
+  totalPrice: 'totalPrice',
+  paymentStatus: 'paymentStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typeof PurchaseScalarFieldEnum]
+
+
+export const PurchaseDetailScalarFieldEnum = {
+  id: 'id',
+  purchaseId: 'purchaseId',
+  woodVariantId: 'woodVariantId',
+  pricePerCubic: 'pricePerCubic',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseDetailScalarFieldEnum = (typeof PurchaseDetailScalarFieldEnum)[keyof typeof PurchaseDetailScalarFieldEnum]
 
 
 export const SortOrder = {

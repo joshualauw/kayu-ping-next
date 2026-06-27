@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import contactService from "@/lib/services/contact-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -20,9 +20,7 @@ export async function deleteContactAction(formData: FormData): Promise<ApiRespon
       throw new Error("Invalid contact id");
     }
 
-    const contact = await prisma.contact.delete({
-      where: { id },
-    });
+    const contact = await contactService.deleteContact(id);
 
     return successResponse(contact.id, "Contact deleted successfully");
   } catch (error) {

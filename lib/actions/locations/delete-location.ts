@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import locationService from "@/lib/services/location-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -20,9 +20,7 @@ export async function deleteLocationAction(formData: FormData): Promise<ApiRespo
       throw new Error("Invalid location id");
     }
 
-    const location = await prisma.location.delete({
-      where: { id },
-    });
+    const location = await locationService.deleteLocation(id);
 
     return successResponse(location.id, "Location deleted successfully");
   } catch (error) {

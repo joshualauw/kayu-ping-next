@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import ContactUpdateForm from "@/components/admin/contacts/update-form";
-import { prisma } from "@/lib/db/prisma";
+import contactService from "@/lib/services/contact-service";
 
 interface EditContactPageProps {
   params: Promise<{
@@ -17,18 +17,7 @@ export default async function EditContactPage({ params }: EditContactPageProps) 
     notFound();
   }
 
-  const contact = await prisma.contact.findUnique({
-    where: { id: contactId },
-    select: {
-      id: true,
-      name: true,
-      phoneNumber: true,
-      email: true,
-      address: true,
-      type: true,
-      notes: true,
-    },
-  });
+  const contact = await contactService.getContactById(contactId);
 
   if (!contact) {
     notFound();

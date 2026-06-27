@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import MaterialDetailCard from "@/components/admin/materials/detail-card";
-import { prisma } from "@/lib/db/prisma";
+import materialService from "@/lib/services/material-service";
 
 interface MaterialDetailPageProps {
   params: Promise<{
@@ -16,9 +16,7 @@ export default async function MaterialDetailPage({ params }: MaterialDetailPageP
     notFound();
   }
 
-  const material = await prisma.material.findUnique({
-    where: { id: materialId },
-  });
+  const material = await materialService.getMaterialById(materialId);
 
   if (!material) {
     notFound();

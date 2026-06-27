@@ -216,6 +216,7 @@ export type WoodWhereInput = {
   code?: Prisma.StringFilter<"Wood"> | string
   createdAt?: Prisma.DateTimeFilter<"Wood"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wood"> | Date | string
+  variants?: Prisma.WoodVariantListRelationFilter
 }
 
 export type WoodOrderByWithRelationInput = {
@@ -224,6 +225,7 @@ export type WoodOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  variants?: Prisma.WoodVariantOrderByRelationAggregateInput
 }
 
 export type WoodWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +237,7 @@ export type WoodWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Wood"> | string
   createdAt?: Prisma.DateTimeFilter<"Wood"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Wood"> | Date | string
+  variants?: Prisma.WoodVariantListRelationFilter
 }, "id" | "code">
 
 export type WoodOrderByWithAggregationInput = {
@@ -266,6 +269,7 @@ export type WoodCreateInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.WoodVariantCreateNestedManyWithoutWoodInput
 }
 
 export type WoodUncheckedCreateInput = {
@@ -274,6 +278,7 @@ export type WoodUncheckedCreateInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.WoodVariantUncheckedCreateNestedManyWithoutWoodInput
 }
 
 export type WoodUpdateInput = {
@@ -281,6 +286,7 @@ export type WoodUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.WoodVariantUpdateManyWithoutWoodNestedInput
 }
 
 export type WoodUncheckedUpdateInput = {
@@ -289,6 +295,7 @@ export type WoodUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.WoodVariantUncheckedUpdateManyWithoutWoodNestedInput
 }
 
 export type WoodCreateManyInput = {
@@ -346,6 +353,100 @@ export type WoodSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type WoodScalarRelationFilter = {
+  is?: Prisma.WoodWhereInput
+  isNot?: Prisma.WoodWhereInput
+}
+
+export type WoodCreateNestedOneWithoutVariantsInput = {
+  create?: Prisma.XOR<Prisma.WoodCreateWithoutVariantsInput, Prisma.WoodUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.WoodCreateOrConnectWithoutVariantsInput
+  connect?: Prisma.WoodWhereUniqueInput
+}
+
+export type WoodUpdateOneRequiredWithoutVariantsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodCreateWithoutVariantsInput, Prisma.WoodUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.WoodCreateOrConnectWithoutVariantsInput
+  upsert?: Prisma.WoodUpsertWithoutVariantsInput
+  connect?: Prisma.WoodWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodUpdateToOneWithWhereWithoutVariantsInput, Prisma.WoodUpdateWithoutVariantsInput>, Prisma.WoodUncheckedUpdateWithoutVariantsInput>
+}
+
+export type WoodCreateWithoutVariantsInput = {
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type WoodUncheckedCreateWithoutVariantsInput = {
+  id?: number
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type WoodCreateOrConnectWithoutVariantsInput = {
+  where: Prisma.WoodWhereUniqueInput
+  create: Prisma.XOR<Prisma.WoodCreateWithoutVariantsInput, Prisma.WoodUncheckedCreateWithoutVariantsInput>
+}
+
+export type WoodUpsertWithoutVariantsInput = {
+  update: Prisma.XOR<Prisma.WoodUpdateWithoutVariantsInput, Prisma.WoodUncheckedUpdateWithoutVariantsInput>
+  create: Prisma.XOR<Prisma.WoodCreateWithoutVariantsInput, Prisma.WoodUncheckedCreateWithoutVariantsInput>
+  where?: Prisma.WoodWhereInput
+}
+
+export type WoodUpdateToOneWithWhereWithoutVariantsInput = {
+  where?: Prisma.WoodWhereInput
+  data: Prisma.XOR<Prisma.WoodUpdateWithoutVariantsInput, Prisma.WoodUncheckedUpdateWithoutVariantsInput>
+}
+
+export type WoodUpdateWithoutVariantsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type WoodUncheckedUpdateWithoutVariantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type WoodCountOutputType
+ */
+
+export type WoodCountOutputType = {
+  variants: number
+}
+
+export type WoodCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  variants?: boolean | WoodCountOutputTypeCountVariantsArgs
+}
+
+/**
+ * WoodCountOutputType without action
+ */
+export type WoodCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WoodCountOutputType
+   */
+  select?: Prisma.WoodCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * WoodCountOutputType without action
+ */
+export type WoodCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WoodVariantWhereInput
+}
 
 
 export type WoodSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -354,6 +455,8 @@ export type WoodSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  variants?: boolean | Prisma.Wood$variantsArgs<ExtArgs>
+  _count?: boolean | Prisma.WoodCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["wood"]>
 
 export type WoodSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -381,10 +484,18 @@ export type WoodSelectScalar = {
 }
 
 export type WoodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt", ExtArgs["result"]["wood"]>
+export type WoodInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  variants?: boolean | Prisma.Wood$variantsArgs<ExtArgs>
+  _count?: boolean | Prisma.WoodCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type WoodIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type WoodIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $WoodPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Wood"
-  objects: {}
+  objects: {
+    variants: Prisma.$WoodVariantPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
@@ -785,6 +896,7 @@ readonly fields: WoodFieldRefs;
  */
 export interface Prisma__WoodClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  variants<T extends Prisma.Wood$variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Wood$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -836,6 +948,10 @@ export type WoodFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * Filter, which Wood to fetch.
    */
   where: Prisma.WoodWhereUniqueInput
@@ -854,6 +970,10 @@ export type WoodFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * Filter, which Wood to fetch.
    */
   where: Prisma.WoodWhereUniqueInput
@@ -871,6 +991,10 @@ export type WoodFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Wood
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
   /**
    * Filter, which Wood to fetch.
    */
@@ -920,6 +1044,10 @@ export type WoodFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * Filter, which Wood to fetch.
    */
   where?: Prisma.WoodWhereInput
@@ -967,6 +1095,10 @@ export type WoodFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Wood
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
   /**
    * Filter, which Woods to fetch.
    */
@@ -1016,6 +1148,10 @@ export type WoodCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * The data needed to create a Wood.
    */
   data: Prisma.XOR<Prisma.WoodCreateInput, Prisma.WoodUncheckedCreateInput>
@@ -1063,6 +1199,10 @@ export type WoodUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Wood
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
   /**
    * The data needed to update a Wood.
    */
@@ -1130,6 +1270,10 @@ export type WoodUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * The filter to search for the Wood to update in case it exists.
    */
   where: Prisma.WoodWhereUniqueInput
@@ -1156,6 +1300,10 @@ export type WoodDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
+  /**
    * Filter which Wood to delete.
    */
   where: Prisma.WoodWhereUniqueInput
@@ -1176,6 +1324,30 @@ export type WoodDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Wood.variants
+ */
+export type Wood$variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WoodVariant
+   */
+  select?: Prisma.WoodVariantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WoodVariant
+   */
+  omit?: Prisma.WoodVariantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodVariantInclude<ExtArgs> | null
+  where?: Prisma.WoodVariantWhereInput
+  orderBy?: Prisma.WoodVariantOrderByWithRelationInput | Prisma.WoodVariantOrderByWithRelationInput[]
+  cursor?: Prisma.WoodVariantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WoodVariantScalarFieldEnum | Prisma.WoodVariantScalarFieldEnum[]
+}
+
+/**
  * Wood without action
  */
 export type WoodDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1187,4 +1359,8 @@ export type WoodDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Wood
    */
   omit?: Prisma.WoodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WoodInclude<ExtArgs> | null
 }

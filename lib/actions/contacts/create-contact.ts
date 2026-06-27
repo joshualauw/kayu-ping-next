@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { prisma } from "@/lib/db/prisma";
+import contactService from "@/lib/services/contact-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
@@ -25,32 +25,7 @@ export async function createContactAction(formData: FormData): Promise<ApiRespon
       notes: formData.get("notes"),
     });
 
-    const { name, phoneNumber, email, address, type, notes } = parsed;
-
-    if (phoneNumber) {
-      const phoneExist = await prisma.contact.findUnique({
-        where: { phoneNumber },
-      });
-      if (phoneExist) throw new Error("Phone number already exists");
-    }
-
-    if (email) {
-      const emailExist = await prisma.contact.findUnique({
-        where: { email },
-      });
-      if (emailExist) throw new Error("Email address already exists");
-    }
-
-    const contact = await prisma.contact.create({
-      data: {
-        name,
-        phoneNumber,
-        email,
-        address,
-        type,
-        notes,
-      },
-    });
+    const contact = await contactService.createContact(parsed);
 
     return successResponse(contact.id, "Contact created successfully");
   } catch (error) {

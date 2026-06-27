@@ -13,8 +13,8 @@ model Users {
   email    String @unique()
   password String @db.VarChar(255)
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("users")
 }
@@ -24,8 +24,10 @@ model Wood {
   name String @db.VarChar(255)
   code String @unique() @db.VarChar(255)
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  variants WoodVariant[]
 
   @@map("woods")
 }
@@ -39,8 +41,10 @@ model Contact {
   type        ContactType
   notes       String?     @db.Text
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  purchases Purchase[]
 
   @@map("contacts")
 }
@@ -51,8 +55,12 @@ model Location {
   address String?      @db.Text
   type    LocationType
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  inventories    Inventory[]
+  stockMutations StockMutation[]
+  purchases      Purchase[]
 
   @@map("locations")
 }
@@ -62,10 +70,106 @@ model Material {
   name        String      @db.VarChar(255)
   measurement Measurement
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  variants WoodVariant[]
 
   @@map("materials")
+}
+
+model WoodVariant {
+  id            Int    @id @default(autoincrement())
+  woodId        Int    @map("wood_id")
+  materialId    Int    @map("material_id")
+  width         Float?
+  height        Float?
+  diameterSmall Float? @map("diameter_small")
+  diamterLarge  Float? @map("diameter_large")
+  length        Float?
+  volume        Float
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  wood        Wood             @relation(fields: [woodId], references: [id])
+  material    Material         @relation(fields: [materialId], references: [id])
+  inventories Inventory[]
+  mutations   StockMutation[]
+  details     PurchaseDetail[]
+
+  @@map("wood_variants")
+}
+
+model Inventory {
+  id            Int @id @default(autoincrement())
+  woodVariantId Int @map("wood_variant_id")
+  locationId    Int @map("location_id")
+  stock         Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
+  location Location    @relation(fields: [locationId], references: [id])
+
+  @@map("inventories")
+}
+
+model StockMutation {
+  id            Int           @id @default(autoincrement())
+  mutationDate  DateTime      @map("mutation_date") @db.Timestamptz(6)
+  woodVariantId Int           @map("wood_variant_id")
+  locationId    Int           @map("location_id")
+  type          MutationType
+  quantity      Int
+  referenceType ReferenceType
+  referenceId   Int?
+  notes         String?       @db.Text
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
+  location Location    @relation(fields: [locationId], references: [id])
+
+  @@map("stock_mutations")
+}
+
+model Purchase {
+  id            Int           @id @default(autoincrement())
+  tid           String        @unique()
+  purchaseDate  DateTime      @map("purchase_date") @db.Timestamptz(6)
+  contactId     Int           @map("contact_id")
+  locationId    Int           @map("location_id")
+  notes         String?       @db.Text()
+  totalPrice    Float
+  paymentStatus PaymentStatus
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  contact  Contact          @relation(fields: [contactId], references: [id])
+  location Location         @relation(fields: [locationId], references: [id])
+  details  PurchaseDetail[]
+
+  @@map("purchases")
+}
+
+model PurchaseDetail {
+  id            Int   @id @default(autoincrement())
+  purchaseId    Int   @map("purchase_id")
+  woodVariantId Int   @map("wood_variant_id")
+  pricePerCubic Float @map("price_per_cubic")
+  quantity      Float
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  purchase Purchase    @relation(fields: [purchaseId], references: [id])
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
+
+  @@map("purchase_details")
 }
 
 enum ContactType {
@@ -86,9 +190,29 @@ enum LocationType {
   @@map("location_types")
 }
 
+enum PaymentStatus {
+  UNPAID
+  PAID
+
+  @@map("payment_status")
+}
+
 enum Measurement {
   CYLINDER // D0 x D1 x L
   CUBE // W x H x L
 
   @@map("measurements")
+}
+
+enum MutationType {
+  IN
+  OUT
+}
+
+enum ReferenceType {
+  PURCHASE
+  SALES
+  ADJUSTMENT
+  PROCESSING
+  MOVEMENT
 }

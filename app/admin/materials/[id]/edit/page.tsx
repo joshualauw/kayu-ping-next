@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import MaterialUpdateForm from "@/components/admin/materials/update-form";
-import { prisma } from "@/lib/db/prisma";
+import materialService from "@/lib/services/material-service";
 
 interface EditMaterialPageProps {
   params: Promise<{
@@ -16,14 +16,7 @@ export default async function EditMaterialPage({ params }: EditMaterialPageProps
     notFound();
   }
 
-  const material = await prisma.material.findUnique({
-    where: { id: materialId },
-    select: {
-      id: true,
-      name: true,
-      measurement: true,
-    },
-  });
+  const material = await materialService.getMaterialById(materialId);
 
   if (!material) {
     notFound();

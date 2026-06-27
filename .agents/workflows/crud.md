@@ -42,7 +42,23 @@ export type Create<YourModel>Schema = z.infer<typeof create<YourModel>Schema>;
 
 ---
 
-## 2. Server Actions
+## 2. Service Layer
+Create a service class to handle database queries and business logic in **`lib/services/[singular-kebab]-service.ts`**.
+
+- **File Path**: `lib/services/<your-model>-service.ts`
+- **Reference Example**: [wood-service.ts](file:///c:/Projects/kayu-ping-next/lib/services/wood-service.ts)
+- **Key Logic**:
+  - Expose helper/CRUD methods:
+    - `getAll<YourModel>s(params: TableQuery): Promise<TableResponse<YourModel>>`
+    - `get<YourModel>ById(id: number): Promise<YourModel | null>`
+    - `create<YourModel>(data: Create<YourModel>Schema): Promise<YourModel>`
+    - `update<YourModel>(id: number, data: Create<YourModel>Schema): Promise<YourModel>`
+    - `delete<YourModel>(id: number): Promise<YourModel>`
+  - Centralize uniqueness or constraint check queries (e.g. check for code/email uniqueness before insert/update and throw clear errors).
+
+---
+
+## 3. Server Actions
 Create three separate Server Actions files in **`lib/actions/[plural-kebab]/`**.
 
 - **Directory Path**: `lib/actions/<your-models>/`
@@ -50,39 +66,37 @@ Create three separate Server Actions files in **`lib/actions/[plural-kebab]/`**.
   - [lib/actions/woods/](file:///c:/Projects/kayu-ping-next/lib/actions/woods)
   - [lib/actions/contacts/](file:///c:/Projects/kayu-ping-next/lib/actions/contacts)
 
-### 2.1 Create Action
+### 3.1 Create Action
 - **File Path**: `lib/actions/<your-models>/create-<your-model>.ts`
 - **Reference Example**: [create-wood.ts](file:///c:/Projects/kayu-ping-next/lib/actions/woods/create-wood.ts)
 - **Key Logic**:
   - Authenticate the user session using `auth()` and `getAuthenticatedUser()`.
   - Validate incoming request body with `create<YourModel>Schema.parse()`.
-  - Check for duplicates/collisions (e.g. check unique code or email).
-  - Insert record using `prisma.<yourModel>.create()`.
+  - Delegate creation to `<yourModel>Service.create<YourModel>(parsed)`.
   - Return `successResponse(record.id, "Created successfully")` or catch/handle errors with `handleError` and return `errorResponse()`.
 
-### 2.2 Update Action
+### 3.2 Update Action
 - **File Path**: `lib/actions/<your-models>/update-<your-model>.ts`
 - **Reference Example**: [update-wood.ts](file:///c:/Projects/kayu-ping-next/lib/actions/woods/update-wood.ts)
 - **Key Logic**:
   - Authenticate user.
   - Parse and validate the `id` from `formData` (as a positive integer).
   - Parse input parameters with `create<YourModel>Schema.parse()`.
-  - Verify uniqueness of identifier fields (e.g., skip check for the current record ID).
-  - Save to DB using `prisma.<yourModel>.update()`.
+  - Call `<yourModel>Service.update<YourModel>(id, parsed)`.
   - Return success/error response wrapper.
 
-### 2.3 Delete Action
+### 3.3 Delete Action
 - **File Path**: `lib/actions/<your-models>/delete-<your-model>.ts`
 - **Reference Example**: [delete-wood.ts](file:///c:/Projects/kayu-ping-next/lib/actions/woods/delete-wood.ts)
 - **Key Logic**:
   - Authenticate user.
   - Parse and validate the target `id`.
-  - Perform deletion using `prisma.<yourModel>.delete()`.
+  - Call `<yourModel>Service.delete<YourModel>(id)`.
   - Return success/error response.
 
 ---
 
-## 3. GET API Route
+## 4. GET API Route
 Create the API endpoint for fetching table/list data in **`app/api/[plural-kebab]/route.ts`**.
 
 - **File Path**: `app/api/<your-models>/route.ts`
@@ -90,13 +104,12 @@ Create the API endpoint for fetching table/list data in **`app/api/[plural-kebab
 - **Key Logic**:
   - Authenticate request session.
   - Validate pagination/search params using `tableQuerySchema` (page, size, search).
-  - Construct query where filters (e.g. searching fields case-insensitively).
-  - Fetch count (`prisma.<yourModel>.count()`) and rows (`prisma.<yourModel>.findMany()`) using `skip`, `take`, and `orderBy`.
-  - Return a JSON API response: `NextResponse.json(successResponse({ <yourModels>: rows, count }, "Fetched successfully"))`.
+  - Fetch list and count using `<yourModel>Service.getAll<YourModel>s(parsed)`.
+  - Return a JSON API response: `NextResponse.json(successResponse({ <yourModels>: items, count }, "Fetched successfully"))`.
 
 ---
 
-## 4. SWR Hook
+## 5. SWR Hook
 Create the SWR hook to fetch and update client-side data in **`hooks/swr/[plural-kebab]/use-get-all-[plural-kebab].ts`**.
 
 - **File Path**: `hooks/swr/<your-models>/use-get-all-<your-models>.ts`
@@ -125,7 +138,7 @@ export function useGetAll<YourModel>s(query: TableQuery, options?: SWRConfigurat
 
 ---
 
-## 5. Components
+## 6. Components
 Create UI and layout files in **`components/admin/[plural-kebab]/`**.
 
 - **Directory Path**: `components/admin/<your-models>/`
@@ -133,7 +146,7 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
   - [components/admin/woods/](file:///c:/Projects/kayu-ping-next/components/admin/woods)
   - [components/admin/contacts/](file:///c:/Projects/kayu-ping-next/components/admin/contacts)
 
-### 5.1 Data Table Component
+### 6.1 Data Table Component
 - **File Path**: `components/admin/<your-models>/data-table.tsx`
 - **Key Logic & Reference**:
   - Manages list/filter states via `useDataTableState()`.
@@ -142,7 +155,7 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
   - Integrates the list with the shared `<DataTable>` component.
   - Reference: [data-table.tsx (woods)](file:///c:/Projects/kayu-ping-next/components/admin/woods/data-table.tsx) or [data-table.tsx (contacts)](file:///c:/Projects/kayu-ping-next/components/admin/contacts/data-table.tsx)
 
-### 5.2 Create Form Component
+### 6.2 Create Form Component
 - **File Path**: `components/admin/<your-models>/create-form.tsx`
 - **Key Logic & Reference**:
   - Leverages `react-hook-form` along with `zodResolver(create<YourModel>Schema)`.
@@ -151,14 +164,14 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
   - Uses standard layout components like `<Card>`, `<FieldGroup>`, `<Field>`, `<FieldLabel>`, `<Input>`, and `<FieldError>`.
   - Reference: [create-form.tsx (woods)](file:///c:/Projects/kayu-ping-next/components/admin/woods/create-form.tsx) or [create-form.tsx (contacts)](file:///c:/Projects/kayu-ping-next/components/admin/contacts/create-form.tsx)
 
-### 5.3 Update Form Component
+### 6.3 Update Form Component
 - **File Path**: `components/admin/<your-models>/update-form.tsx`
 - **Key Logic & Reference**:
   - Accepts the model record as props to populate `defaultValues`.
   - Passes fields and `id` inside the `FormData` to `update<YourModel>Action(formData)`.
   - Reference: [update-form.tsx (woods)](file:///c:/Projects/kayu-ping-next/components/admin/woods/update-form.tsx) or [update-form.tsx (contacts)](file:///c:/Projects/kayu-ping-next/components/admin/contacts/update-form.tsx)
 
-### 5.4 Detail Card Component
+### 6.4 Detail Card Component
 - **File Path**: `components/admin/<your-models>/detail-card.tsx`
 - **Key Logic & Reference**:
   - Displays record fields inside structured container components.
@@ -166,28 +179,28 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
 
 ---
 
-## 6. Page Routes
+## 7. Page Routes
 Create page routes in **`app/admin/[plural-kebab]/`** to present the CRUD views.
 
 - **Directory Path**: `app/admin/<your-models>/`
 - **Reference Example**: [app/admin/woods/](file:///c:/Projects/kayu-ping-next/app/admin/woods)
 
-### 6.1 List Page
+### 7.1 List Page
 - **File Path**: `app/admin/<your-models>/page.tsx`
 - **Reference**: [page.tsx (woods list)](file:///c:/Projects/kayu-ping-next/app/admin/woods/page.tsx)
 - Renders page headings, and mounts the `<YourModels>DataTable` component.
 
-### 6.2 Create Page
+### 7.2 Create Page
 - **File Path**: `app/admin/<your-models>/create/page.tsx`
 - **Reference**: [page.tsx (woods create)](file:///c:/Projects/kayu-ping-next/app/admin/woods/create/page.tsx)
 - Mounts `<YourModel>CreateForm`.
 
-### 6.3 Detail Page
+### 7.3 Detail Page
 - **File Path**: `app/admin/<your-models>/[id]/page.tsx`
 - **Reference**: [page.tsx (woods detail)](file:///c:/Projects/kayu-ping-next/app/admin/woods/[id]/page.tsx)
-- Awaits `params`, validates target ID, fetches the record using `prisma.<yourModel>.findUnique()`, handles `notFound()`, and passes the record to the `<YourModel>DetailCard` component.
+- Awaits `params`, validates target ID, fetches the record using `<yourModel>Service.get<YourModel>ById(id)`, handles `notFound()`, and passes the record to the `<YourModel>DetailCard` component.
 
-### 6.4 Edit Page
+### 7.4 Edit Page
 - **File Path**: `app/admin/<your-models>/[id]/edit/page.tsx`
 - **Reference**: [page.tsx (woods edit)](file:///c:/Projects/kayu-ping-next/app/admin/woods/[id]/edit/page.tsx)
-- Awaits `params`, validates ID, fetches record via prisma query, handles `notFound()`, and forwards the record to the `<YourModel>UpdateForm` component.
+- Awaits `params`, validates ID, fetches record via `<yourModel>Service.get<YourModel>ById(id)`, handles `notFound()`, and forwards the record to the `<YourModel>UpdateForm` component.

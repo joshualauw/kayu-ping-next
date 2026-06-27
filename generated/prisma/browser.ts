@@ -42,3 +42,28 @@ export type Location = Prisma.LocationModel
  * 
  */
 export type Material = Prisma.MaterialModel
+/**
+ * Model WoodVariant
+ * 
+ */
+export type WoodVariant = Prisma.WoodVariantModel
+/**
+ * Model Inventory
+ * 
+ */
+export type Inventory = Prisma.InventoryModel
+/**
+ * Model StockMutation
+ * 
+ */
+export type StockMutation = Prisma.StockMutationModel
+/**
+ * Model Purchase
+ * 
+ */
+export type Purchase = Prisma.PurchaseModel
+/**
+ * Model PurchaseDetail
+ * 
+ */
+export type PurchaseDetail = Prisma.PurchaseDetailModel

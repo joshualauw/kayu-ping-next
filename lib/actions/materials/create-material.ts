@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { prisma } from "@/lib/db/prisma";
+import materialService from "@/lib/services/material-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
@@ -21,14 +21,7 @@ export async function createMaterialAction(formData: FormData): Promise<ApiRespo
       measurement: formData.get("measurement"),
     });
 
-    const { name, measurement } = parsed;
-
-    const material = await prisma.material.create({
-      data: {
-        name,
-        measurement,
-      },
-    });
+    const material = await materialService.createMaterial(parsed);
 
     return successResponse(material.id, "Material created successfully");
   } catch (error) {

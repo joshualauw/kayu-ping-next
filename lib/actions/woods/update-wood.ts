@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import woodService from "@/lib/services/wood-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -26,20 +26,7 @@ export async function updateWoodAction(formData: FormData): Promise<ApiResponse<
       code: formData.get("code"),
     });
 
-    const { name, code } = parsed;
-
-    const codeExist = await prisma.wood.findFirst({
-      where: {
-        code,
-        NOT: { id },
-      },
-    });
-    if (codeExist) throw new Error("wood code already exist");
-
-    const wood = await prisma.wood.update({
-      where: { id },
-      data: { name, code },
-    });
+    const wood = await woodService.updateWood(id, parsed);
 
     return successResponse(wood.id, "Wood updated successfully");
   } catch (error) {

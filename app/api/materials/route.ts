@@ -1,15 +1,13 @@
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import materialService, { MaterialListItem } from "@/lib/services/material-service";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
 import { AuthorizationError, handleError } from "@/lib/errors";
-import { Material } from "@/generated/prisma/client";
 import { ApiResponse } from "@/types/api-response";
 import { tableQuerySchema } from "@/lib/schemas/table-query";
-import { MaterialWhereInput } from "@/generated/prisma/models";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 
-export type MaterialListItem = Material;
+export type { MaterialListItem } from "@/lib/services/material-service";
 
 export type GetAllMaterialsResponse = {
   materials: MaterialListItem[];
@@ -30,36 +28,11 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       search: searchParams.get("search"),
     });
 
-    const { page, size, search } = parsed;
+    const { items: materials, count } = await materialService.getAllMaterials(parsed);
 
-    const where: MaterialWhereInput = {};
-
-    if (search) {
-      where.OR = [
-        { name: { contains: search, mode: "insensitive" } },
-      ];
-    }
-
-    const [count, rows] = await Promise.all([
-      await prisma.material.count({ where }),
-      await prisma.material.findMany({
-        where,
-        skip: page * size,
-        take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
-      }),
-    ]);
-
-    return NextResponse.json(
-      successResponse({ materials: rows, count }, "Materials fetched successfully")
-    );
+    return NextResponse.json(successResponse({ materials, count }, "Materials fetched successfully"));
   } catch (error) {
     const response = handleError("GET /api/materials", error);
-    return NextResponse.json(
-      errorResponse(response.message || "Failed to fetch materials"),
-      { status: response.code }
-    );
+    return NextResponse.json(errorResponse(response.message || "Failed to fetch materials"), { status: response.code });
   }
 }

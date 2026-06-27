@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import WoodUpdateForm from "@/components/admin/woods/update-form";
-import { prisma } from "@/lib/db/prisma";
+import woodService from "@/lib/services/wood-service";
 
 interface EditWoodPageProps {
   params: Promise<{
@@ -17,14 +17,7 @@ export default async function EditWoodPage({ params }: EditWoodPageProps) {
     notFound();
   }
 
-  const wood = await prisma.wood.findUnique({
-    where: { id: woodId },
-    select: {
-      id: true,
-      name: true,
-      code: true,
-    },
-  });
+  const wood = await woodService.getWoodById(woodId);
 
   if (!wood) {
     notFound();

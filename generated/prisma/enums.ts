@@ -29,9 +29,36 @@ export const LocationType = {
 export type LocationType = (typeof LocationType)[keyof typeof LocationType]
 
 
+export const PaymentStatus = {
+  UNPAID: 'UNPAID',
+  PAID: 'PAID'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
 export const Measurement = {
   CYLINDER: 'CYLINDER',
   CUBE: 'CUBE'
 } as const
 
 export type Measurement = (typeof Measurement)[keyof typeof Measurement]
+
+
+export const MutationType = {
+  IN: 'IN',
+  OUT: 'OUT'
+} as const
+
+export type MutationType = (typeof MutationType)[keyof typeof MutationType]
+
+
+export const ReferenceType = {
+  PURCHASE: 'PURCHASE',
+  SALES: 'SALES',
+  ADJUSTMENT: 'ADJUSTMENT',
+  PROCESSING: 'PROCESSING',
+  MOVEMENT: 'MOVEMENT'
+} as const
+
+export type ReferenceType = (typeof ReferenceType)[keyof typeof ReferenceType]

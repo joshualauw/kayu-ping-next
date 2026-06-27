@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import locationService from "@/lib/services/location-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -27,16 +27,7 @@ export async function updateLocationAction(formData: FormData): Promise<ApiRespo
       type: formData.get("type"),
     });
 
-    const { name, address, type } = parsed;
-
-    const location = await prisma.location.update({
-      where: { id },
-      data: {
-        name,
-        address,
-        type,
-      },
-    });
+    const location = await locationService.updateLocation(id, parsed);
 
     return successResponse(location.id, "Location updated successfully");
   } catch (error) {

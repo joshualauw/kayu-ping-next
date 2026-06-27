@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import LocationDetailCard from "@/components/admin/locations/detail-card";
-import { prisma } from "@/lib/db/prisma";
+import locationService from "@/lib/services/location-service";
 
 interface LocationDetailPageProps {
   params: Promise<{
@@ -16,9 +16,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
     notFound();
   }
 
-  const location = await prisma.location.findUnique({
-    where: { id: locationId },
-  });
+  const location = await locationService.getLocationById(locationId);
 
   if (!location) {
     notFound();

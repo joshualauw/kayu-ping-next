@@ -7,3 +7,8 @@ export const tableQuerySchema = z.object({
 });
 
 export type TableQuery = z.infer<typeof tableQuerySchema>;
+
+export interface TableResponse<T> {
+  items: T[];
+  count: number;
+}

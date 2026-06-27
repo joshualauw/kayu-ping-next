@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import ContactDetailCard from "@/components/admin/contacts/detail-card";
-import { prisma } from "@/lib/db/prisma";
+import contactService from "@/lib/services/contact-service";
 
 interface ContactDetailPageProps {
   params: Promise<{
@@ -17,9 +17,7 @@ export default async function ContactDetailPage({ params }: ContactDetailPagePro
     notFound();
   }
 
-  const contact = await prisma.contact.findUnique({
-    where: { id: contactId },
-  });
+  const contact = await contactService.getContactById(contactId);
 
   if (!contact) {
     notFound();

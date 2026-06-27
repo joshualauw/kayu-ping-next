@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { prisma } from "@/lib/db/prisma";
+import woodService from "@/lib/services/wood-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
@@ -21,16 +21,7 @@ export async function createWoodAction(formData: FormData): Promise<ApiResponse<
       code: formData.get("code"),
     });
 
-    const { name, code } = parsed;
-
-    const codeExist = await prisma.wood.findUnique({
-      where: { code },
-    });
-    if (codeExist) throw new Error("wood code already exist");
-
-    const wood = await prisma.wood.create({
-      data: { name, code },
-    });
+    const wood = await woodService.createWood(parsed);
 
     return successResponse(wood.id, "Wood created successfully");
   } catch (error) {

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import LocationUpdateForm from "@/components/admin/locations/update-form";
-import { prisma } from "@/lib/db/prisma";
+import locationService from "@/lib/services/location-service";
 
 interface EditLocationPageProps {
   params: Promise<{
@@ -16,15 +16,7 @@ export default async function EditLocationPage({ params }: EditLocationPageProps
     notFound();
   }
 
-  const location = await prisma.location.findUnique({
-    where: { id: locationId },
-    select: {
-      id: true,
-      name: true,
-      address: true,
-      type: true,
-    },
-  });
+  const location = await locationService.getLocationById(locationId);
 
   if (!location) {
     notFound();

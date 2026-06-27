@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { prisma } from "@/lib/db/prisma";
+import locationService from "@/lib/services/location-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
@@ -22,15 +22,7 @@ export async function createLocationAction(formData: FormData): Promise<ApiRespo
       type: formData.get("type"),
     });
 
-    const { name, address, type } = parsed;
-
-    const location = await prisma.location.create({
-      data: {
-        name,
-        address,
-        type,
-      },
-    });
+    const location = await locationService.createLocation(parsed);
 
     return successResponse(location.id, "Location created successfully");
   } catch (error) {

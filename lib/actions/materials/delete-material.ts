@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
+import materialService from "@/lib/services/material-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
@@ -20,9 +20,7 @@ export async function deleteMaterialAction(formData: FormData): Promise<ApiRespo
       throw new Error("Invalid material id");
     }
 
-    const material = await prisma.material.delete({
-      where: { id },
-    });
+    const material = await materialService.deleteMaterial(id);
 
     return successResponse(material.id, "Material deleted successfully");
   } catch (error) {
