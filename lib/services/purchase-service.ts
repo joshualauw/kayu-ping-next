@@ -1,20 +1,20 @@
 import { prisma } from "@/lib/db/prisma";
-import { Purchase, Contact, Location, PurchaseItem, WoodVariant, Wood, Material } from "@/generated/prisma/client";
+import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, ReferenceType } from "@/generated/prisma/client";
 import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
 import { UpdatePurchaseSchema } from "@/lib/schemas/purchases/update-purchase";
 import dayjs from "@/lib/integrations/dayjs";
-import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/wood";
+import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/core";
 
 export type PurchaseListItem = Purchase & {
-  contact: Pick<Contact, "name">;
   location: Pick<Location, "name">;
+  supplier: Pick<Contact, "name">;
 };
 
 export type PurchaseDetail = Purchase & {
-  contact: Contact;
   location: Location;
+  supplier: Contact;
   items: PurchaseItemWithVariant[];
 };
 
@@ -31,11 +31,7 @@ class PurchaseService {
     const where: PurchaseWhereInput = {};
 
     if (search) {
-      where.OR = [
-        { tid: { contains: search, mode: "insensitive" } },
-        { contact: { name: { contains: search, mode: "insensitive" } } },
-        { location: { name: { contains: search, mode: "insensitive" } } },
-      ];
+      where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
     }
 
     const [count, items] = await Promise.all([
@@ -43,12 +39,12 @@ class PurchaseService {
       prisma.purchase.findMany({
         where,
         include: {
-          contact: {
+          location: {
             select: {
               name: true,
             },
           },
-          location: {
+          supplier: {
             select: {
               name: true,
             },
@@ -69,8 +65,8 @@ class PurchaseService {
     return prisma.purchase.findUnique({
       where: { id },
       include: {
-        contact: true,
         location: true,
+        supplier: true,
         items: {
           include: {
             variant: {
@@ -135,13 +131,12 @@ class PurchaseService {
       const purchase = await tx.purchase.create({
         data: {
           tid,
+          supplierId: data.supplierId,
           purchaseDate: new Date(data.purchaseDate),
-          contactId: data.contactId,
           locationId: data.locationId,
           notes: data.notes,
           totalVolume,
           totalPrice,
-          paymentStatus: data.paymentStatus,
         },
       });
 

@@ -8,8 +8,10 @@ import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllStockMutations } from "@/hooks/swr/stock-mutations/use-get-all-stock-mutations";
 import type { StockMutationListItem } from "@/lib/services/stock-mutation-service";
 import { formatDate } from "@/lib/utils";
-import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/wood";
+import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/core";
 import { Badge } from "@/components/ui/badge";
+import { getReferenceLink } from "@/lib/helpers/core";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function StockMutationsDataTable() {
@@ -77,7 +79,7 @@ export default function StockMutationsDataTable() {
         header: "Type",
         cell: ({ row }) => {
           const type = row.original.type;
-          return <Badge variant={type === "IN" ? "default" : "destructive"}>{type}</Badge>;
+          return <Badge variant={type === "IN" ? "success" : "destructive"}>{type}</Badge>;
         },
       },
       {
@@ -88,13 +90,17 @@ export default function StockMutationsDataTable() {
       {
         id: "reference",
         header: "Reference",
-        cell: ({ row }) => (
-          <Button asChild variant="ghost" size="icon-sm" className="h-6 w-6">
-            <a href={row.original.referenceLink ?? "#"} aria-label="Open reference page" target="_blank">
-              <ExternalLink className="size-3" />
-            </a>
-          </Button>
-        ),
+        cell: ({ row }) => {
+          const link = getReferenceLink(row.original.referenceType, row.original.referenceId);
+          if (!link) return <span className="text-muted-foreground">-</span>;
+          return (
+            <Button variant="ghost" size="icon-sm">
+              <a href={link} target="_blank" aria-label="Open reference page">
+                <ExternalLink className="size-3" />
+              </a>
+            </Button>
+          );
+        },
       },
     ],
     [],

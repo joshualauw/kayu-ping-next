@@ -43,56 +43,10 @@ export default function PurchaseUpdateForm({ purchase }: PurchaseUpdateFormProps
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Edit Purchase: {purchase.tid}</CardTitle>
-        <CardDescription>Update the memo/notes for this purchase. All other fields are read-only.</CardDescription>
+        <CardTitle>Edit Purchase</CardTitle>
+        <CardDescription>Update the memo/notes for this purchase.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="grid grid-cols-1 gap-6 rounded-lg border bg-muted/20 p-4 text-xs md:grid-cols-2">
-          <div className="space-y-3">
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">TID</span>
-              <p className="text-sm font-medium">{purchase.tid}</p>
-            </div>
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Purchase Date</span>
-              <p className="text-sm font-medium">{formatDate(purchase.purchaseDate)}</p>
-            </div>
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Contact</span>
-              <p className="text-sm font-medium">{purchase.contact.name}</p>
-            </div>
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
-              <p className="text-sm font-medium">{purchase.location.name}</p>
-            </div>
-          </div>
-          <div className="space-y-3">
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Volume</span>
-              <p className="text-sm font-medium">{purchase.totalVolume.toFixed(4)} m³</p>
-            </div>
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Price</span>
-              <p className="text-sm font-bold text-primary">{formatCurrency(purchase.totalPrice)}</p>
-            </div>
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Payment Status</span>
-              <div>
-                <span
-                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                    purchase.paymentStatus === "PAID"
-                      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                      : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
-                  }`}
-                >
-                  {purchase.paymentStatus}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Editable Form */}
         <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FieldGroup>
             <Controller

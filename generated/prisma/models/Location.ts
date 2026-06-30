@@ -227,6 +227,7 @@ export type LocationWhereInput = {
   inventories?: Prisma.InventoryListRelationFilter
   stockMutations?: Prisma.StockMutationListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
+  sales?: Prisma.SaleListRelationFilter
 }
 
 export type LocationOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type LocationOrderByWithRelationInput = {
   inventories?: Prisma.InventoryOrderByRelationAggregateInput
   stockMutations?: Prisma.StockMutationOrderByRelationAggregateInput
   purchases?: Prisma.PurchaseOrderByRelationAggregateInput
+  sales?: Prisma.SaleOrderByRelationAggregateInput
 }
 
 export type LocationWhereUniqueInput = Prisma.AtLeast<{
@@ -254,6 +256,7 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   inventories?: Prisma.InventoryListRelationFilter
   stockMutations?: Prisma.StockMutationListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
+  sales?: Prisma.SaleListRelationFilter
 }, "id">
 
 export type LocationOrderByWithAggregationInput = {
@@ -291,6 +294,7 @@ export type LocationCreateInput = {
   inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateInput = {
@@ -303,6 +307,7 @@ export type LocationUncheckedCreateInput = {
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUpdateInput = {
@@ -314,6 +319,7 @@ export type LocationUpdateInput = {
   inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateInput = {
@@ -326,6 +332,7 @@ export type LocationUncheckedUpdateInput = {
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateManyInput = {
@@ -440,6 +447,20 @@ export type LocationUpdateOneRequiredWithoutPurchasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutPurchasesInput, Prisma.LocationUpdateWithoutPurchasesInput>, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
 }
 
+export type LocationCreateNestedOneWithoutSalesInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneRequiredWithoutSalesNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
+  upsert?: Prisma.LocationUpsertWithoutSalesInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutSalesInput, Prisma.LocationUpdateWithoutSalesInput>, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+}
+
 export type LocationCreateWithoutInventoriesInput = {
   name: string
   address?: string | null
@@ -448,6 +469,7 @@ export type LocationCreateWithoutInventoriesInput = {
   updatedAt?: Date | string
   stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutInventoriesInput = {
@@ -459,6 +481,7 @@ export type LocationUncheckedCreateWithoutInventoriesInput = {
   updatedAt?: Date | string
   stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutInventoriesInput = {
@@ -485,6 +508,7 @@ export type LocationUpdateWithoutInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutInventoriesInput = {
@@ -496,6 +520,7 @@ export type LocationUncheckedUpdateWithoutInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateWithoutStockMutationsInput = {
@@ -506,6 +531,7 @@ export type LocationCreateWithoutStockMutationsInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutStockMutationsInput = {
@@ -517,6 +543,7 @@ export type LocationUncheckedCreateWithoutStockMutationsInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutStockMutationsInput = {
@@ -543,6 +570,7 @@ export type LocationUpdateWithoutStockMutationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutStockMutationsInput = {
@@ -554,6 +582,7 @@ export type LocationUncheckedUpdateWithoutStockMutationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateWithoutPurchasesInput = {
@@ -564,6 +593,7 @@ export type LocationCreateWithoutPurchasesInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
 }
 
 export type LocationUncheckedCreateWithoutPurchasesInput = {
@@ -575,6 +605,7 @@ export type LocationUncheckedCreateWithoutPurchasesInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
 }
 
 export type LocationCreateOrConnectWithoutPurchasesInput = {
@@ -601,6 +632,7 @@ export type LocationUpdateWithoutPurchasesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationUncheckedUpdateWithoutPurchasesInput = {
@@ -612,6 +644,69 @@ export type LocationUncheckedUpdateWithoutPurchasesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutSalesInput = {
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutSalesInput = {
+  id?: number
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutSalesInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+}
+
+export type LocationUpsertWithoutSalesInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutSalesInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+}
+
+export type LocationUpdateWithoutSalesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutSalesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 
@@ -623,12 +718,14 @@ export type LocationCountOutputType = {
   inventories: number
   stockMutations: number
   purchases: number
+  sales: number
 }
 
 export type LocationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inventories?: boolean | LocationCountOutputTypeCountInventoriesArgs
   stockMutations?: boolean | LocationCountOutputTypeCountStockMutationsArgs
   purchases?: boolean | LocationCountOutputTypeCountPurchasesArgs
+  sales?: boolean | LocationCountOutputTypeCountSalesArgs
 }
 
 /**
@@ -662,6 +759,13 @@ export type LocationCountOutputTypeCountPurchasesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.PurchaseWhereInput
 }
 
+/**
+ * LocationCountOutputType without action
+ */
+export type LocationCountOutputTypeCountSalesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SaleWhereInput
+}
+
 
 export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -673,6 +777,7 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   inventories?: boolean | Prisma.Location$inventoriesArgs<ExtArgs>
   stockMutations?: boolean | Prisma.Location$stockMutationsArgs<ExtArgs>
   purchases?: boolean | Prisma.Location$purchasesArgs<ExtArgs>
+  sales?: boolean | Prisma.Location$salesArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
 
@@ -708,6 +813,7 @@ export type LocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   inventories?: boolean | Prisma.Location$inventoriesArgs<ExtArgs>
   stockMutations?: boolean | Prisma.Location$stockMutationsArgs<ExtArgs>
   purchases?: boolean | Prisma.Location$purchasesArgs<ExtArgs>
+  sales?: boolean | Prisma.Location$salesArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LocationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -719,6 +825,7 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     inventories: Prisma.$InventoryPayload<ExtArgs>[]
     stockMutations: Prisma.$StockMutationPayload<ExtArgs>[]
     purchases: Prisma.$PurchasePayload<ExtArgs>[]
+    sales: Prisma.$SalePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1124,6 +1231,7 @@ export interface Prisma__LocationClient<T, Null = never, ExtArgs extends runtime
   inventories<T extends Prisma.Location$inventoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$inventoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stockMutations<T extends Prisma.Location$stockMutationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$stockMutationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockMutationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchases<T extends Prisma.Location$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sales<T extends Prisma.Location$salesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Location$salesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1621,6 +1729,30 @@ export type Location$purchasesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PurchaseScalarFieldEnum | Prisma.PurchaseScalarFieldEnum[]
+}
+
+/**
+ * Location.sales
+ */
+export type Location$salesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Sale
+   */
+  select?: Prisma.SaleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Sale
+   */
+  omit?: Prisma.SaleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SaleInclude<ExtArgs> | null
+  where?: Prisma.SaleWhereInput
+  orderBy?: Prisma.SaleOrderByWithRelationInput | Prisma.SaleOrderByWithRelationInput[]
+  cursor?: Prisma.SaleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SaleScalarFieldEnum | Prisma.SaleScalarFieldEnum[]
 }
 
 /**

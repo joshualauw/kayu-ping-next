@@ -20,14 +20,13 @@ const requiredPositiveNumber = (fieldName: string, isInt: boolean = false) =>
 
 export const createPurchaseSchema = z.object({
   purchaseDate: z.string().min(1, "Purchase date is required"),
-  contactId: z.coerce.number().int().positive("Contact is required"),
   locationId: z.coerce.number().int().positive("Location is required"),
+  supplierId: z.coerce.number().int().positive("Supplier is required"),
   notes: z
     .string()
     .trim()
     .transform((val) => (val === "" ? null : val))
     .nullish(),
-  paymentStatus: z.enum(["PAID", "UNPAID"], "Payment status is required"),
   items: z
     .array(
       z.object({

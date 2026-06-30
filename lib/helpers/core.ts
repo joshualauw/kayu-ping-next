@@ -1,3 +1,4 @@
+import { ReferenceType } from "@/generated/prisma/enums";
 import { Measurement } from "@/generated/prisma/enums";
 
 interface WoodVolumeCalculationParams {
@@ -18,6 +19,16 @@ interface WoodVariantLabelParams {
   diameterLarge: number | null;
   length: number | null;
   measurement: Measurement;
+}
+
+export function getReferenceLink(type: ReferenceType, id: number | null): string | null {
+  if (!id) return null;
+  if (type === ReferenceType.PURCHASE) {
+    return `/admin/purchases/${id}`;
+  } else if (type === ReferenceType.SALES) {
+    return `/admin/sales/${id}`;
+  }
+  return null;
 }
 
 export function generateWoodVariantLabel(params: WoodVariantLabelParams) {

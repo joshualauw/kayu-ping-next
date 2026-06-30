@@ -245,7 +245,7 @@ export type PurchaseItemWhereInput = {
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
-  quantity?: Prisma.FloatFilter<"PurchaseItem"> | number
+  quantity?: Prisma.IntFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   purchase?: Prisma.XOR<Prisma.PurchaseScalarRelationFilter, Prisma.PurchaseWhereInput>
@@ -272,7 +272,7 @@ export type PurchaseItemWhereUniqueInput = Prisma.AtLeast<{
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
-  quantity?: Prisma.FloatFilter<"PurchaseItem"> | number
+  quantity?: Prisma.IntFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   purchase?: Prisma.XOR<Prisma.PurchaseScalarRelationFilter, Prisma.PurchaseWhereInput>
@@ -302,7 +302,7 @@ export type PurchaseItemScalarWhereWithAggregatesInput = {
   purchaseId?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
   woodVariantId?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatWithAggregatesFilter<"PurchaseItem"> | number
-  quantity?: Prisma.FloatWithAggregatesFilter<"PurchaseItem"> | number
+  quantity?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PurchaseItem"> | Date | string
 }
@@ -328,7 +328,7 @@ export type PurchaseItemUncheckedCreateInput = {
 
 export type PurchaseItemUpdateInput = {
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
@@ -340,7 +340,7 @@ export type PurchaseItemUncheckedUpdateInput = {
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -357,7 +357,7 @@ export type PurchaseItemCreateManyInput = {
 
 export type PurchaseItemUpdateManyMutationInput = {
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -367,7 +367,7 @@ export type PurchaseItemUncheckedUpdateManyInput = {
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -563,7 +563,7 @@ export type PurchaseItemScalarWhereInput = {
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
-  quantity?: Prisma.FloatFilter<"PurchaseItem"> | number
+  quantity?: Prisma.IntFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
 }
@@ -622,7 +622,7 @@ export type PurchaseItemCreateManyVariantInput = {
 
 export type PurchaseItemUpdateWithoutVariantInput = {
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
@@ -632,7 +632,7 @@ export type PurchaseItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -641,7 +641,7 @@ export type PurchaseItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -657,7 +657,7 @@ export type PurchaseItemCreateManyPurchaseInput = {
 
 export type PurchaseItemUpdateWithoutPurchaseInput = {
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutItemsNestedInput
@@ -667,7 +667,7 @@ export type PurchaseItemUncheckedUpdateWithoutPurchaseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -676,7 +676,7 @@ export type PurchaseItemUncheckedUpdateManyWithoutPurchaseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1186,7 +1186,7 @@ export interface PurchaseItemFieldRefs {
   readonly purchaseId: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly pricePerCubic: Prisma.FieldRef<"PurchaseItem", 'Float'>
-  readonly quantity: Prisma.FieldRef<"PurchaseItem", 'Float'>
+  readonly quantity: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly createdAt: Prisma.FieldRef<"PurchaseItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PurchaseItem", 'DateTime'>
 }

@@ -10,7 +10,7 @@ import { FieldError } from "@/components/ui/field";
 import { WoodForSelect } from "@/lib/services/wood-service";
 import { MaterialForSelect } from "@/lib/services/material-service";
 import { Measurement } from "@/generated/prisma/enums";
-import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/wood";
+import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/core";
 import { formatCurrency } from "@/lib/utils";
 
 interface PurchasesCartProps {

@@ -37,9 +37,9 @@ export default function PurchasesDataTable() {
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.purchaseDate)}</span>,
       },
       {
-        id: "contact",
-        header: "Contact",
-        cell: ({ row }) => <span>{row.original.contact.name}</span>,
+        id: "supplier",
+        header: "Supplier",
+        cell: ({ row }) => <span>{row.original.supplier.name}</span>,
       },
       {
         id: "location",
@@ -50,11 +50,6 @@ export default function PurchasesDataTable() {
         accessorKey: "totalPrice",
         header: "Total Price",
         cell: ({ row }) => <span className="whitespace-nowrap">{formatCurrency(row.original.totalPrice)}</span>,
-      },
-      {
-        accessorKey: "paymentStatus",
-        header: "Payment Status",
-        cell: ({ row }) => <span className="capitalize">{row.original.paymentStatus.toLowerCase()}</span>,
       },
       {
         id: "actions",

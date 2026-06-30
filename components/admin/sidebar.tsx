@@ -89,31 +89,31 @@ export function AdminSidebar() {
       name: "Purchases",
       icon: <ShoppingBag className="mr-1" />,
       href: "/admin/purchases",
-      group: "Transactions",
+      group: "Core",
     },
     {
       name: "Movements",
       icon: <Truck className="mr-1" />,
       href: "#",
-      group: "Transactions",
+      group: "Core",
     },
     {
       name: "Processing",
       icon: <Settings className="mr-1" />,
       href: "#",
-      group: "Transactions",
+      group: "Core",
     },
     {
       name: "Inspection",
       icon: <SearchCheck className="mr-1" />,
       href: "#",
-      group: "Transactions",
+      group: "Core",
     },
     {
       name: "Sales",
       icon: <HandCoins className="mr-1" />,
-      href: "#",
-      group: "Transactions",
+      href: "/admin/sales",
+      group: "Core",
     },
   ];
 

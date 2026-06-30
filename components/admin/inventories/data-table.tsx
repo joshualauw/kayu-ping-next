@@ -7,7 +7,7 @@ import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllInventories } from "@/hooks/swr/inventories/use-get-all-inventories";
 import type { InventoryListItem } from "@/lib/services/inventory-service";
 import { formatDate } from "@/lib/utils";
-import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/wood";
+import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/core";
 
 export default function InventoriesDataTable() {
   const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();

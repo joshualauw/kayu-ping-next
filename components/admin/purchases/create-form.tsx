@@ -11,21 +11,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
-import { createPurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
-import { createPurchaseAction } from "@/lib/actions/purchases/create-purchase";
-import { ContactForSelect } from "@/lib/services/contact-service";
 import { LocationForSelect } from "@/lib/services/location-service";
 import { WoodForSelect } from "@/lib/services/wood-service";
 import { MaterialForSelect } from "@/lib/services/material-service";
+import { ContactForSelect } from "@/lib/services/contact-service";
+import { createPurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
+import { createPurchaseAction } from "@/lib/actions/purchases/create-purchase";
 import dayjs from "@/lib/integrations/dayjs";
 import PurchasesCart from "./cart";
 
 interface PurchaseCreateFormProps {
-  contacts: ContactForSelect[];
   locations: LocationForSelect[];
   woods: WoodForSelect[];
   materials: MaterialForSelect[];
+  contacts: ContactForSelect[];
 }
 
 function mapFlatIndexToNested(groups: any[], flatIndex: number) {
@@ -43,7 +42,7 @@ function mapFlatIndexToNested(groups: any[], flatIndex: number) {
   return null;
 }
 
-export default function PurchaseCreateForm({ contacts, locations, woods, materials }: PurchaseCreateFormProps) {
+export default function PurchaseCreateForm({ locations, woods, materials, contacts }: PurchaseCreateFormProps) {
   const router = useRouter();
   const formId = "purchase-create-form";
 
@@ -52,10 +51,9 @@ export default function PurchaseCreateForm({ contacts, locations, woods, materia
   const form = useForm<any>({
     defaultValues: {
       purchaseDate: dayjs().format("YYYY-MM-DDTHH:mm"),
-      contactId: "",
       locationId: "",
+      supplierId: "",
       notes: "",
-      paymentStatus: "UNPAID",
       groups: [],
     },
   });
@@ -89,10 +87,9 @@ export default function PurchaseCreateForm({ contacts, locations, woods, materia
 
     const flattenedData = {
       purchaseDate: data.purchaseDate,
-      contactId: data.contactId,
       locationId: data.locationId,
+      supplierId: data.supplierId,
       notes: data.notes || null,
-      paymentStatus: data.paymentStatus,
       items: flattenedItems,
     };
 
@@ -164,30 +161,7 @@ export default function PurchaseCreateForm({ contacts, locations, woods, materia
               )}
             />
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <Controller
-                name="contactId"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Contact</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select contact profile" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        {contacts.map((c) => (
-                          <SelectItem key={c.id} value={String(c.id)}>
-                            {c.name} ({c.type.toLowerCase()})
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-                )}
-              />
-
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <Controller
                 name="locationId"
                 control={form.control}
@@ -210,6 +184,29 @@ export default function PurchaseCreateForm({ contacts, locations, woods, materia
                   </Field>
                 )}
               />
+
+              <Controller
+                name="supplierId"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Supplier</FieldLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select supplier" />
+                      </SelectTrigger>
+                      <SelectContent position="popper">
+                        {contacts.map((c) => (
+                          <SelectItem key={c.id} value={String(c.id)}>
+                            {c.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                  </Field>
+                )}
+              />
             </div>
 
             <Controller
@@ -224,25 +221,7 @@ export default function PurchaseCreateForm({ contacts, locations, woods, materia
               )}
             />
 
-            <Controller
-              name="paymentStatus"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field
-                  data-invalid={fieldState.invalid}
-                  className="flex flex-row items-center justify-between space-y-0 rounded-lg border p-4"
-                >
-                  <div className="space-y-0.5">
-                    <FieldLabel>Payment Status</FieldLabel>
-                    <span className="block text-[12px] text-muted-foreground">Toggle if this purchase has been fully paid.</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">{field.value === "PAID" ? "PAID" : "UNPAID"}</span>
-                    <Switch checked={field.value === "PAID"} onCheckedChange={(checked) => field.onChange(checked ? "PAID" : "UNPAID")} />
-                  </div>
-                </Field>
-              )}
-            />
+
           </FieldGroup>
 
           {/* Cart Component */}

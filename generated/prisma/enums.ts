@@ -29,14 +29,6 @@ export const LocationType = {
 export type LocationType = (typeof LocationType)[keyof typeof LocationType]
 
 
-export const PaymentStatus = {
-  UNPAID: 'UNPAID',
-  PAID: 'PAID'
-} as const
-
-export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
-
-
 export const Measurement = {
   CYLINDER: 'CYLINDER',
   CUBE: 'CUBE'

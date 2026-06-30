@@ -49,6 +49,22 @@ class InventoryService {
 
     return { items, count };
   }
+
+  async getInventoryByLocation(locationId: number) {
+    return await prisma.inventory.findMany({
+      where: {
+        locationId,
+      },
+      include: {
+        variant: {
+          include: {
+            wood: true,
+            material: true,
+          },
+        },
+      },
+    });
+  }
 }
 
 export default new InventoryService();

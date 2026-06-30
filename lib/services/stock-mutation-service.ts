@@ -9,18 +9,9 @@ export type StockMutationListItem = StockMutation & {
     material: Material;
   };
   location: Location;
-  referenceLink: string | null;
 };
 
 class StockMutationService {
-  getReferenceLink(type: string, id: number | null): string | null {
-    if (!id) return null;
-    if (type === "PURCHASE") {
-      return `/admin/purchases/${id}`;
-    }
-    return null;
-  }
-
   async getAllStockMutations(params: TableQuery): Promise<TableResponse<StockMutationListItem>> {
     const { page, size, search } = params;
 
@@ -57,13 +48,7 @@ class StockMutationService {
       }),
     ]);
 
-    return {
-      items: items.map((item) => ({
-        ...item,
-        referenceLink: this.getReferenceLink(item.referenceType, item.referenceId),
-      })),
-      count,
-    };
+    return { items, count };
   }
 }
 

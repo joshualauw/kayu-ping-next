@@ -60,7 +60,9 @@ export const ModelName = {
   Inventory: 'Inventory',
   StockMutation: 'StockMutation',
   Purchase: 'Purchase',
-  PurchaseItem: 'PurchaseItem'
+  PurchaseItem: 'PurchaseItem',
+  Sale: 'Sale',
+  SaleItem: 'SaleItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -189,13 +191,12 @@ export type StockMutationScalarFieldEnum = (typeof StockMutationScalarFieldEnum)
 export const PurchaseScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
+  supplierId: 'supplierId',
   purchaseDate: 'purchaseDate',
-  contactId: 'contactId',
   locationId: 'locationId',
   notes: 'notes',
   totalVolume: 'totalVolume',
   totalPrice: 'totalPrice',
-  paymentStatus: 'paymentStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -214,6 +215,35 @@ export const PurchaseItemScalarFieldEnum = {
 } as const
 
 export type PurchaseItemScalarFieldEnum = (typeof PurchaseItemScalarFieldEnum)[keyof typeof PurchaseItemScalarFieldEnum]
+
+
+export const SaleScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  customerId: 'customerId',
+  saleDate: 'saleDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  totalVolume: 'totalVolume',
+  totalPrice: 'totalPrice',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SaleScalarFieldEnum = (typeof SaleScalarFieldEnum)[keyof typeof SaleScalarFieldEnum]
+
+
+export const SaleItemScalarFieldEnum = {
+  id: 'id',
+  saleId: 'saleId',
+  woodVariantId: 'woodVariantId',
+  pricePerCubic: 'pricePerCubic',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SaleItemScalarFieldEnum = (typeof SaleItemScalarFieldEnum)[keyof typeof SaleItemScalarFieldEnum]
 
 
 export const SortOrder = {

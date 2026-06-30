@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
 import { PurchaseDetail } from "@/lib/services/purchase-service";
-import { calculateSubtotal, calculateWoodTotalVolume } from "@/lib/helpers/wood";
+import { calculateSubtotal, calculateWoodTotalVolume } from "@/lib/helpers/core";
 
 interface PurchaseDetailCardProps {
   purchase: PurchaseDetail;
@@ -22,20 +22,9 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
     <div className="space-y-6">
       <Card className="w-full">
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>Purchase Transaction: {purchase.tid}</CardTitle>
-              <CardDescription>Header details of the purchase transaction</CardDescription>
-            </div>
-            <span
-              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                purchase.paymentStatus === "PAID"
-                  ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                  : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
-              }`}
-            >
-              {purchase.paymentStatus}
-            </span>
+          <div>
+            <CardTitle>{purchase.tid}</CardTitle>
+            <CardDescription>Detail of the purchase transaction</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -47,13 +36,18 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
               </div>
 
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Contact / Vendor</span>
-                <p className="text-sm font-medium">{purchase.contact?.name || "-"}</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Supplier</span>
+                <p className="text-sm font-medium">{purchase.supplier?.name || "-"}</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
                 <p className="text-sm font-medium">{purchase.location?.name || "-"}</p>
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Notes</span>
+                <p className="text-sm font-medium whitespace-pre-wrap">{purchase.notes || "-"}</p>
               </div>
             </div>
 
@@ -66,11 +60,6 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Price</span>
                 <p className="text-sm font-bold text-primary">{formatCurrency(purchase.totalPrice)}</p>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Notes</span>
-                <p className="text-sm font-medium whitespace-pre-wrap">{purchase.notes || "-"}</p>
               </div>
             </div>
           </div>
