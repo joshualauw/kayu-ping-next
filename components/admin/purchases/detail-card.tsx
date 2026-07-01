@@ -36,12 +36,12 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Supplier</span>
-                <p className="text-sm font-medium">{purchase.supplier?.name || "-"}</p>
+                <p className="text-sm font-medium">{purchase.supplier.name}</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
-                <p className="text-sm font-medium">{purchase.location?.name || "-"}</p>
+                <p className="text-sm font-medium">{purchase.location.name}</p>
               </div>
 
               <div className="space-y-1">

@@ -9,108 +9,69 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FieldError } from "@/components/ui/field";
 import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
-import { WoodVariantForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
+import { Measurement } from "@/generated/prisma/enums";
+import { calculateWoodVolume } from "@/lib/helpers/core";
 import { toast } from "sonner";
 
 interface ProcessingCartProps {
   control: Control<any>;
   errors?: any;
-  woodVariants: WoodVariantForSelect[];
+  woodVariants: any[];
+  materials: MaterialForSelect[];
   setError: UseFormSetError<any>;
   clearErrors: UseFormClearErrors<any>;
+  setValue: (name: string, value: any) => void;
 }
 
-export default function ProcessingCart({ control, errors, woodVariants, setError, clearErrors }: ProcessingCartProps) {
+export default function ProcessingCart({ control, errors, woodVariants, materials, setError, clearErrors, setValue }: ProcessingCartProps) {
   const locationId = useWatch({
     control,
     name: "locationId",
     defaultValue: "",
   });
 
-  // Input Items Field Array
   const {
-    fields: inputFields,
-    append: appendInput,
-    remove: removeInput,
-    replace: replaceInputs,
+    fields: groupFields,
+    append: appendGroup,
+    remove: removeGroup,
+    replace: replaceGroups,
   } = useFieldArray({
     control,
-    name: "inputItems",
+    name: "groups",
   });
 
-  // Output Items Field Array
-  const {
-    fields: outputFields,
-    append: appendOutput,
-    remove: removeOutput,
-    replace: replaceOutputs,
-  } = useFieldArray({
+  const watchedGroups = useWatch({
     control,
-    name: "outputItems",
-  });
-
-  const watchedInputItems = useWatch({
-    control,
-    name: "inputItems",
+    name: "groups",
     defaultValue: [],
   });
 
-  const watchedOutputItems = useWatch({
-    control,
-    name: "outputItems",
-    defaultValue: [],
-  });
-
-  // Watch locationId to clear items on change
   const prevLocationIdRef = useRef(locationId);
   useEffect(() => {
     if (prevLocationIdRef.current !== locationId) {
-      replaceInputs([]);
-      replaceOutputs([]);
+      replaceGroups([]);
       prevLocationIdRef.current = locationId;
     }
-  }, [locationId, replaceInputs, replaceOutputs]);
+  }, [locationId, replaceGroups]);
 
-  // Fetch location stock for input options
-  const { data: inventoryData, isLoading: isInventoryLoading } = useGetInventoryByLocation(
-    locationId ? Number(locationId) : null
-  );
+  const { data: inventoryData, isLoading: isInventoryLoading } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
 
-  // States for selectors
   const [selectedInputInvId, setSelectedInputInvId] = useState("");
-  const [selectedOutputVariantId, setSelectedOutputVariantId] = useState("");
 
-  // Input select options: exclude already added inputs
   const availableInputInventory = useMemo(() => {
     if (!inventoryData) return [];
-    return inventoryData.filter(
-      (inv) => !watchedInputItems.some((item: any) => Number(item.inventoryId) === inv.id)
-    );
-  }, [inventoryData, watchedInputItems]);
+    return inventoryData.filter((inv) => !watchedGroups.some((group: any) => group?.input?.inventoryId === inv.id));
+  }, [inventoryData, watchedGroups]);
 
-  // Collect wood species IDs from inputs to filter output variants
-  const inputWoodIds = useMemo(() => {
-    return Array.from(new Set(watchedInputItems.map((item: any) => item.variant?.woodId).filter(Boolean)));
-  }, [watchedInputItems]);
-
-  // Output select options: filter by species in inputs, and exclude already added outputs
-  const availableOutputVariants = useMemo(() => {
-    if (inputWoodIds.length === 0) return [];
-    return woodVariants.filter(
-      (v) =>
-        inputWoodIds.includes(v.woodId) &&
-        !watchedOutputItems.some((item: any) => Number(item.woodVariantId) === v.id)
-    );
-  }, [woodVariants, inputWoodIds, watchedOutputItems]);
-
-  const handleAddInputItem = () => {
+  const handleAddGroup = () => {
     if (!locationId) {
       toast.error("Please select a location first.");
       return;
     }
 
     if (!selectedInputInvId) {
-      toast.error("Please select an input item.");
+      toast.error("Please select a stock item first.");
       return;
     }
 
@@ -120,396 +81,590 @@ export default function ProcessingCart({ control, errors, woodVariants, setError
       return;
     }
 
-    appendInput({
-      inventoryId: selectedInv.id,
-      woodVariantId: selectedInv.woodVariantId,
-      quantity: 1,
-      originalStock: selectedInv.stock,
-      variant: selectedInv.variant,
+    appendGroup({
+      input: {
+        inventoryId: selectedInv.id,
+        woodVariantId: selectedInv.woodVariantId,
+        quantity: 1,
+        originalStock: selectedInv.stock,
+        variant: selectedInv.variant,
+      },
+      outputs: [
+        {
+          materialId: "",
+          width: "",
+          height: "",
+          diameterSmall: "",
+          diameterLarge: "",
+          length: "",
+          quantity: "1",
+        },
+      ],
     });
 
     setSelectedInputInvId("");
   };
 
-  const handleAddOutputItem = () => {
-    if (inputWoodIds.length === 0) {
-      toast.error("Please add at least one input item first to determine allowed wood species.");
-      return;
-    }
+  const computedGroups = useMemo(() => {
+    return (watchedGroups || []).map((group: any) => {
+      if (!group?.input) {
+        return {
+          inputVolume: 0,
+          outputVolume: 0,
+          yieldPercentage: 0,
+          isVolumeInvalid: false,
+          outputs: [],
+        };
+      }
 
-    if (!selectedOutputVariantId) {
-      toast.error("Please select an output item.");
-      return;
-    }
+      const inputQty = Number(group.input.quantity) || 0;
+      const inputSingleVolume = group.input.variant?.volume || 0;
+      const inputVolume = inputSingleVolume * inputQty;
 
-    const selectedVar = woodVariants.find((v) => v.id === Number(selectedOutputVariantId));
-    if (!selectedVar) {
-      toast.error("Selected variant not found.");
-      return;
-    }
+      let groupOutputVolume = 0;
+      const outputs = (group.outputs || []).map((item: any) => {
+        let volume = 0;
+        let totalVolume = 0;
+        let measurement: Measurement | undefined = undefined;
 
-    appendOutput({
-      woodVariantId: selectedVar.id,
-      quantity: 1,
-      variant: selectedVar,
+        if (item?.materialId) {
+          const material = materials.find((m) => m.id === Number(item.materialId));
+          measurement = material?.measurement;
+
+          if (measurement) {
+            try {
+              const length = Number(item.length);
+              const params: any = { length, measurement };
+
+              if (measurement === Measurement.CUBE) {
+                params.width = Number(item.width);
+                params.height = Number(item.height);
+              } else if (measurement === Measurement.CYLINDER) {
+                params.diameterSmall = Number(item.diameterSmall);
+                params.diameterLarge = Number(item.diameterLarge);
+              }
+
+              if (
+                (measurement === Measurement.CUBE && params.width > 0 && params.height > 0 && params.length > 0) ||
+                (measurement === Measurement.CYLINDER && params.diameterSmall > 0 && params.diameterLarge > 0 && params.length > 0)
+              ) {
+                volume = calculateWoodVolume(params);
+                totalVolume = volume * Number(item.quantity);
+              }
+            } catch (e) {
+              // Keep 0
+            }
+          }
+        }
+
+        groupOutputVolume += totalVolume;
+        return {
+          measurement,
+          volume,
+          totalVolume,
+        };
+      });
+
+      const yieldPercentage = inputVolume > 0 ? (groupOutputVolume / inputVolume) * 100 : 0;
+      const isVolumeInvalid = groupOutputVolume > inputVolume && inputVolume > 0;
+
+      return {
+        inputVolume,
+        outputVolume: groupOutputVolume,
+        yieldPercentage,
+        isVolumeInvalid,
+        outputs,
+      };
     });
+  }, [watchedGroups, materials]);
 
-    setSelectedOutputVariantId("");
-  };
+  const anyGroupInvalid = useMemo(() => {
+    return computedGroups.some((cg: any) => cg.isVolumeInvalid);
+  }, [computedGroups]);
 
-  // Calculations
-  const { totalInputVolume, totalOutputVolume, isVolumeInvalid, yieldPercentage } = useMemo(() => {
-    const inputVol = (watchedInputItems || []).reduce((acc: number, item: any) => {
-      const qty = Number(item.quantity) || 0;
-      const singleVolume = item.variant?.volume || 0;
-      return acc + singleVolume * qty;
-    }, 0);
-
-    const outputVol = (watchedOutputItems || []).reduce((acc: number, item: any) => {
-      const qty = Number(item.quantity) || 0;
-      const singleVolume = item.variant?.volume || 0;
-      return acc + singleVolume * qty;
-    }, 0);
-
-    const yieldPct = inputVol > 0 ? (outputVol / inputVol) * 100 : 0;
-    const isInvalid = outputVol > inputVol && inputVol > 0;
-
-    return {
-      totalInputVolume: inputVol,
-      totalOutputVolume: outputVol,
-      isVolumeInvalid: isInvalid,
-      yieldPercentage: yieldPct,
-    };
-  }, [watchedInputItems, watchedOutputItems]);
-
-  // Set form level errors for volume mismatch
   useEffect(() => {
-    if (isVolumeInvalid) {
-      setError("outputItems", {
+    if (anyGroupInvalid) {
+      setError("groups", {
         type: "custom",
-        message: "Total output volume cannot exceed total input volume.",
+        message: "One or more groups have output volume exceeding input volume.",
       });
     } else {
-      clearErrors("outputItems");
+      clearErrors("groups");
     }
-  }, [isVolumeInvalid, setError, clearErrors]);
+  }, [anyGroupInvalid, setError, clearErrors]);
 
   return (
     <div className="space-y-6">
-      {/* Live Volume Stats Panel */}
-      {locationId && (inputFields.length > 0 || outputFields.length > 0) && (
-        <div className={`rounded-lg border p-4 shadow-sm transition-colors duration-200 ${isVolumeInvalid ? "border-destructive bg-destructive/5" : "border-primary/20 bg-primary/5"}`}>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <div className={`rounded-full p-2 ${isVolumeInvalid ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"}`}>
-                <ArrowRightLeft className="size-5" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold tracking-tight">Processing Yield Summary</h3>
-                <p className="text-xs text-muted-foreground">Enforces input vs output species and volume limit.</p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-6 text-right">
-              <div>
-                <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Input Volume</span>
-                <span className="font-mono text-sm font-bold">{totalInputVolume.toFixed(4)} m³</span>
-              </div>
-              <div>
-                <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Output Volume</span>
-                <span className={`font-mono text-sm font-bold ${isVolumeInvalid ? "text-destructive" : "text-primary"}`}>
-                  {totalOutputVolume.toFixed(4)} m³
-                </span>
-              </div>
-              <div>
-                <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Yield</span>
-                <span className={`text-sm font-bold ${isVolumeInvalid ? "text-destructive" : "text-primary"}`}>
-                  {yieldPercentage.toFixed(1)}%
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {isVolumeInvalid && (
-            <div className="mt-3 flex items-center gap-2 rounded border border-destructive/20 bg-destructive/10 p-2 text-xs text-destructive">
-              <AlertTriangle className="size-4 shrink-0" />
-              <span><strong>Invalid Yield Alert</strong>: Total output volume exceeds input volume. Please reduce output quantities or add more input items.</span>
-            </div>
-          )}
-        </div>
-      )}
-
       {!locationId ? (
         <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
           Please select a location above to configure processing items.
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* INPUT CARDS (Source Wood) */}
-          <div className="space-y-4 rounded-lg border bg-card p-4 shadow-sm">
-            <div className="border-b pb-2">
-              <h3 className="text-sm font-semibold text-primary">1. Input Items (Source Wood)</h3>
-              <p className="text-[11px] text-muted-foreground">Add wood to be consumed by the process.</p>
+        <div className="space-y-6">
+          {/* Top Stock Selection Bar */}
+          <div className="flex flex-col gap-3 rounded-md bg-muted/20 p-3 sm:flex-row sm:items-end">
+            <div className="flex-1 space-y-1">
+              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Select Input Wood Log/Pack</span>
+              <Select onValueChange={setSelectedInputInvId} value={selectedInputInvId}>
+                <SelectTrigger className="h-9 w-full bg-background">
+                  <SelectValue placeholder="Choose a log from stock..." />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  {availableInputInventory.map((inv) => {
+                    const label =
+                      generateWoodVariantLabel({
+                        woodCode: inv.variant.wood.code,
+                        materialCode: inv.variant.material.name,
+                        width: inv.variant.width,
+                        height: inv.variant.height,
+                        diameterSmall: inv.variant.diameterSmall,
+                        diameterLarge: inv.variant.diamterLarge,
+                        length: inv.variant.length,
+                        measurement: inv.variant.material.measurement,
+                      }) + ` (stock: ${inv.stock})`;
+
+                    return (
+                      <SelectItem key={inv.id} value={String(inv.id)}>
+                        {label}
+                      </SelectItem>
+                    );
+                  })}
+                  {availableInputInventory.length === 0 && (
+                    <div className="p-2 text-center text-xs text-muted-foreground italic">No stock items available.</div>
+                  )}
+                </SelectContent>
+              </Select>
             </div>
 
-            {inputFields.length > 0 && (
-              <div className="overflow-x-auto rounded-md border">
-                <table className="w-full border-collapse text-left text-xs">
-                  <thead>
-                    <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
-                      <th className="w-8 p-2">No.</th>
-                      <th className="p-2">Variant / Available</th>
-                      <th className="w-20 p-2">Qty</th>
-                      <th className="w-28 p-2">Total Volume</th>
-                      <th className="w-12 p-2 text-right">Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y">
-                    {inputFields.map((itemField, itemIndex) => {
-                      const itemData = watchedInputItems[itemIndex];
-                      const itemError = errors?.inputItems?.[itemIndex];
-                      const woodLabel = itemData?.variant
-                        ? generateWoodVariantLabel({
-                            woodCode: itemData.variant.wood.code,
-                            materialCode: itemData.variant.material.name,
-                            width: itemData.variant.width,
-                            height: itemData.variant.height,
-                            diameterSmall: itemData.variant.diameterSmall,
-                            diameterLarge: itemData.variant.diamterLarge,
-                            length: itemData.variant.length,
-                            measurement: itemData.variant.material.measurement,
-                          })
-                        : "-";
-
-                      const singleVolume = itemData?.variant?.volume || 0;
-                      const totalVol = singleVolume * (Number((itemField as any).quantity) || 0);
-
-                      return (
-                        <tr key={itemField.id} className="hover:bg-muted/10">
-                          <td className="p-2 align-middle font-medium">{itemIndex + 1}</td>
-                          <td className="p-2 align-middle font-medium">
-                            <div className="space-y-0.5">
-                              <div>{woodLabel}</div>
-                              <div className="text-[10px] text-muted-foreground font-normal">
-                                Stock: {(itemField as any).originalStock}
-                              </div>
-                            </div>
-                          </td>
-                          <td className="p-2 align-middle">
-                            <Controller
-                              control={control}
-                              name={`inputItems.${itemIndex}.quantity`}
-                              render={({ field }) => (
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  value={field.value ?? ""}
-                                  onChange={(e) => {
-                                    const val = Number(e.target.value);
-                                    const max = (itemField as any).originalStock;
-                                    if (val > max) {
-                                      toast.error(`Quantity cannot exceed available stock (${max})`);
-                                      field.onChange(max);
-                                    } else {
-                                      field.onChange(e.target.value);
-                                    }
-                                  }}
-                                  className="h-8 w-full px-2 text-xs"
-                                  placeholder="Qty"
-                                />
-                              )}
-                            />
-                            {itemError?.quantity && <FieldError errors={[itemError.quantity]} />}
-                          </td>
-                          <td className="p-2 align-middle font-mono text-[11px] whitespace-nowrap">
-                            {totalVol.toFixed(4)} m³
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <Button
-                              type="button"
-                              variant="destructive"
-                              size="icon-xs"
-                              onClick={() => removeInput(itemIndex)}
-                              aria-label="Remove input item"
-                            >
-                              <Trash2 className="size-3.5" />
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-2 p-2 rounded bg-muted/20 sm:flex-row sm:items-center">
-              <div className="flex-1">
-                <Select onValueChange={setSelectedInputInvId} value={selectedInputInvId}>
-                  <SelectTrigger className="h-8 w-full bg-background text-xs">
-                    <SelectValue placeholder="Select stock item..." />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    {availableInputInventory.map((inv) => {
-                      const label =
-                        generateWoodVariantLabel({
-                          woodCode: inv.variant.wood.code,
-                          materialCode: inv.variant.material.name,
-                          width: inv.variant.width,
-                          height: inv.variant.height,
-                          diameterSmall: inv.variant.diameterSmall,
-                          diameterLarge: inv.variant.diamterLarge,
-                          length: inv.variant.length,
-                          measurement: inv.variant.material.measurement,
-                        }) + ` (qty: ${inv.stock})`;
-
-                      return (
-                        <SelectItem key={inv.id} value={String(inv.id)}>
-                          {label}
-                        </SelectItem>
-                      );
-                    })}
-                    {availableInputInventory.length === 0 && (
-                      <div className="p-2 text-center text-xs text-muted-foreground italic">No stock items available.</div>
-                    )}
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button type="button" size="sm" onClick={handleAddInputItem} className="h-8 text-xs gap-1">
-                <Plus className="size-3.5" />
-                Add Item
-              </Button>
-            </div>
+            <Button type="button" size="sm" onClick={handleAddGroup} className="mb-1 h-9 gap-1">
+              <Plus className="size-4" />
+              Add Group
+            </Button>
           </div>
 
-          {/* OUTPUT CARDS (Processed Wood) */}
-          <div className="space-y-4 rounded-lg border bg-card p-4 shadow-sm">
-            <div className="border-b pb-2">
-              <h3 className="text-sm font-semibold text-primary">2. Output Items (Processed Wood)</h3>
-              <p className="text-[11px] text-muted-foreground">Specify the processed wood variants produced.</p>
+          {/* Grouped Cards */}
+          {groupFields.length === 0 ? (
+            <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
+              No processing groups added. Select an input log above to create a group.
             </div>
+          ) : (
+            <div className="space-y-6">
+              {groupFields.map((groupField, groupIndex) => {
+                const groupErrors = errors?.groups?.[groupIndex];
+                const groupData = watchedGroups[groupIndex] || {};
+                const computedGroup = computedGroups[groupIndex] || {
+                  inputVolume: 0,
+                  outputVolume: 0,
+                  yieldPercentage: 0,
+                  isVolumeInvalid: false,
+                  outputs: [],
+                };
 
-            {inputWoodIds.length === 0 ? (
-              <div className="rounded border border-dashed p-6 text-center text-xs text-muted-foreground italic">
-                Add input items on the left to activate outputs.
-              </div>
-            ) : (
-              <>
-                {outputFields.length > 0 && (
-                  <div className="overflow-x-auto rounded-md border">
-                    <table className="w-full border-collapse text-left text-xs">
-                      <thead>
-                        <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
-                          <th className="w-8 p-2">No.</th>
-                          <th className="p-2">Variant</th>
-                          <th className="w-20 p-2">Qty</th>
-                          <th className="w-28 p-2">Total Volume</th>
-                          <th className="w-12 p-2 text-right">Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y">
-                        {outputFields.map((itemField, itemIndex) => {
-                          const itemData = watchedOutputItems[itemIndex];
-                          const itemError = errors?.outputItems?.[itemIndex];
-                          const woodLabel = itemData?.variant
-                            ? generateWoodVariantLabel({
-                                woodCode: itemData.variant.wood.code,
-                                materialCode: itemData.variant.material.name,
-                                width: itemData.variant.width,
-                                height: itemData.variant.height,
-                                diameterSmall: itemData.variant.diameterSmall,
-                                diameterLarge: itemData.variant.diamterLarge,
-                                length: itemData.variant.length,
-                                measurement: itemData.variant.material.measurement,
-                              })
-                            : "-";
-
-                          const singleVolume = itemData?.variant?.volume || 0;
-                          const totalVol = singleVolume * (Number((itemField as any).quantity) || 0);
-
-                          return (
-                            <tr key={itemField.id} className="hover:bg-muted/10">
-                              <td className="p-2 align-middle font-medium">{itemIndex + 1}</td>
-                              <td className="p-2 align-middle font-medium">{woodLabel}</td>
-                              <td className="p-2 align-middle">
-                                <Controller
-                                  control={control}
-                                  name={`outputItems.${itemIndex}.quantity`}
-                                  render={({ field }) => (
-                                    <Input
-                                      type="number"
-                                      {...field}
-                                      value={field.value ?? ""}
-                                      className="h-8 w-full px-2 text-xs"
-                                      placeholder="Qty"
-                                    />
-                                  )}
-                                />
-                                {itemError?.quantity && <FieldError errors={[itemError.quantity]} />}
-                              </td>
-                              <td className="p-2 align-middle font-mono text-[11px] whitespace-nowrap">
-                                {totalVol.toFixed(4)} m³
-                              </td>
-                              <td className="p-2 text-right align-middle">
-                                <Button
-                                  type="button"
-                                  variant="destructive"
-                                  size="icon-xs"
-                                  onClick={() => removeOutput(itemIndex)}
-                                  aria-label="Remove output item"
-                                >
-                                  <Trash2 className="size-3.5" />
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-
-                <div className="flex flex-col gap-2 p-2 rounded bg-muted/20 sm:flex-row sm:items-center">
-                  <div className="flex-1">
-                    <Select onValueChange={setSelectedOutputVariantId} value={selectedOutputVariantId}>
-                      <SelectTrigger className="h-8 w-full bg-background text-xs">
-                        <SelectValue placeholder="Select variant (species-filtered)..." />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        {availableOutputVariants.map((v) => {
-                          const label = generateWoodVariantLabel({
-                            woodCode: v.wood.code,
-                            materialCode: v.material.name,
-                            width: v.width,
-                            height: v.height,
-                            diameterSmall: v.diameterSmall,
-                            diameterLarge: v.diamterLarge,
-                            length: v.length,
-                            measurement: v.material.measurement,
-                          });
-
-                          return (
-                            <SelectItem key={v.id} value={String(v.id)}>
-                              {label}
-                            </SelectItem>
-                          );
-                        })}
-                        {availableOutputVariants.length === 0 && (
-                          <div className="p-2 text-center text-xs text-muted-foreground italic">No matching species variants.</div>
-                        )}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Button type="button" size="sm" onClick={handleAddOutputItem} className="h-8 text-xs gap-1">
-                    <Plus className="size-3.5" />
-                    Add Item
-                  </Button>
-                </div>
-              </>
-            )}
-          </div>
+                return (
+                  <ProcessingCartGroup
+                    key={groupField.id}
+                    control={control}
+                    groupIndex={groupIndex}
+                    materials={materials}
+                    groupErrors={groupErrors}
+                    groupData={groupData}
+                    computedGroup={computedGroup}
+                    onRemoveGroup={() => removeGroup(groupIndex)}
+                    setValue={setValue}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
+    </div>
+  );
+}
+
+interface ProcessingCartGroupProps {
+  control: Control<any>;
+  groupIndex: number;
+  materials: MaterialForSelect[];
+  groupErrors: any;
+  groupData: any;
+  computedGroup: {
+    inputVolume: number;
+    outputVolume: number;
+    yieldPercentage: number;
+    isVolumeInvalid: boolean;
+    outputs: { measurement: Measurement | undefined; volume: number; totalVolume: number }[];
+  };
+  onRemoveGroup: () => void;
+  setValue: (name: string, value: any) => void;
+}
+
+function ProcessingCartGroup({
+  control,
+  groupIndex,
+  materials,
+  groupErrors,
+  groupData,
+  computedGroup,
+  onRemoveGroup,
+  setValue,
+}: ProcessingCartGroupProps) {
+  const {
+    fields: outputFields,
+    append: appendOutput,
+    remove: removeOutput,
+  } = useFieldArray({
+    control,
+    name: `groups.${groupIndex}.outputs`,
+  });
+
+  const watchedOutputs = useWatch({
+    control,
+    name: `groups.${groupIndex}.outputs`,
+    defaultValue: [],
+  });
+
+  const handleAddOutput = () => {
+    appendOutput({
+      materialId: "",
+      width: "",
+      height: "",
+      diameterSmall: "",
+      diameterLarge: "",
+      length: "",
+      quantity: "1",
+    });
+  };
+
+  const inputItem = groupData.input || {};
+  const woodLabel = inputItem.variant
+    ? generateWoodVariantLabel({
+        woodCode: inputItem.variant.wood.code,
+        materialCode: inputItem.variant.material.name,
+        width: inputItem.variant.width,
+        height: inputItem.variant.height,
+        diameterSmall: inputItem.variant.diameterSmall,
+        diameterLarge: inputItem.variant.diamterLarge,
+        length: inputItem.variant.length,
+        measurement: inputItem.variant.material.measurement,
+      })
+    : "-";
+
+  return (
+    <div className="space-y-4 rounded-lg border bg-card p-4 shadow-sm">
+      <div className="flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-0.5">
+          <h4 className="text-sm font-semibold tracking-tight text-primary">Group #{groupIndex + 1}</h4>
+          <p className="text-xs text-muted-foreground">Wood Species: {inputItem.variant?.wood?.name || "-"}</p>
+        </div>
+        <Button type="button" variant="destructive" size="sm" onClick={onRemoveGroup} className="flex h-9 items-center gap-1">
+          <Trash2 className="size-4" />
+          Remove Group
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/20 p-3 md:grid-cols-4">
+        <div className="space-y-1">
+          <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Input Log/Pack</span>
+          <span className="block text-xs font-semibold">{woodLabel}</span>
+        </div>
+        <div className="space-y-1">
+          <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Available Stock</span>
+          <span className="block text-xs font-semibold">{inputItem.originalStock ?? 0}</span>
+        </div>
+        <div className="space-y-1">
+          <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Processing Qty</span>
+          <div className="w-24">
+            <Controller
+              control={control}
+              name={`groups.${groupIndex}.input.quantity`}
+              render={({ field }) => (
+                <Input
+                  type="number"
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    const max = inputItem.originalStock;
+                    if (val > max) {
+                      toast.error(`Quantity cannot exceed available stock (${max})`);
+                      field.onChange(max);
+                    } else {
+                      field.onChange(e.target.value);
+                    }
+                  }}
+                  className="h-8 w-full px-2 text-xs"
+                />
+              )}
+            />
+            {groupErrors?.input?.quantity && <FieldError errors={[groupErrors.input.quantity]} />}
+          </div>
+        </div>
+        <div className="space-y-1 text-right">
+          <span className="block font-mono text-[10px] font-semibold text-muted-foreground uppercase">Consumed Volume</span>
+          <span className="block font-mono text-xs font-bold text-primary">{computedGroup.inputVolume.toFixed(4)} m³</span>
+        </div>
+      </div>
+
+      <div
+        className={`rounded-lg border p-3 shadow-sm transition-colors duration-200 ${computedGroup.isVolumeInvalid ? "border-destructive bg-destructive/5" : "border-primary/20 bg-primary/5"}`}
+      >
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <div
+              className={`rounded-full p-1.5 ${computedGroup.isVolumeInvalid ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"}`}
+            >
+              <ArrowRightLeft className="size-4" />
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold">Group Yield Summary</h4>
+            </div>
+          </div>
+          <div className="flex gap-4 text-right">
+            <div>
+              <span className="block font-mono text-[9px] font-semibold text-muted-foreground uppercase">Input Vol</span>
+              <span className="font-mono text-xs font-bold">{computedGroup.inputVolume.toFixed(4)} m³</span>
+            </div>
+            <div>
+              <span className="block font-mono text-[9px] font-semibold text-muted-foreground uppercase">Output Vol</span>
+              <span className={`font-mono text-xs font-bold ${computedGroup.isVolumeInvalid ? "text-destructive" : "text-primary"}`}>
+                {computedGroup.outputVolume.toFixed(4)} m³
+              </span>
+            </div>
+            <div>
+              <span className="block text-[9px] font-semibold text-muted-foreground uppercase">Yield</span>
+              <span className={`text-xs font-bold ${computedGroup.isVolumeInvalid ? "text-destructive" : "text-primary"}`}>
+                {computedGroup.yieldPercentage.toFixed(1)}%
+              </span>
+            </div>
+          </div>
+        </div>
+        {computedGroup.isVolumeInvalid && (
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-destructive">
+            <AlertTriangle className="size-3.5 shrink-0" />
+            <span>Output volume cannot exceed input volume for this group.</span>
+          </div>
+        )}
+      </div>
+
+      <div className="space-y-4 pt-2">
+        <div className="flex items-center justify-between border-t pt-3">
+          <h5 className="text-xs font-bold tracking-wider text-muted-foreground uppercase">Output Cut Specifications</h5>
+          <Button type="button" variant="outline" size="xs" onClick={handleAddOutput} className="flex items-center gap-1 text-xs">
+            <Plus className="size-3.5" />
+            Add Output Row
+          </Button>
+        </div>
+
+        {outputFields.length === 0 ? (
+          <div className="py-6 text-center text-xs text-muted-foreground italic">
+            No outputs configured. Click &quot;Add Output Row&quot; to begin.
+          </div>
+        ) : (
+          <div className="overflow-x-auto rounded-md border">
+            <table className="w-full border-collapse text-left text-xs">
+              <thead>
+                <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
+                  <th className="w-8 p-2 text-center font-medium">No.</th>
+                  <th className="min-w-50 p-2">Material / Dimensions</th>
+                  <th className="w-24 p-2">Length (cm)</th>
+                  <th className="w-20 p-2">Qty</th>
+                  <th className="w-28 p-2 font-mono">Volume (m³)</th>
+                  <th className="w-12 p-2 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {outputFields.map((itemField, itemIndex) => {
+                  const computedItem = computedGroup.outputs[itemIndex] || { measurement: undefined, volume: 0, totalVolume: 0 };
+                  const rowErrors = groupErrors?.outputs?.[itemIndex];
+                  const itemData = watchedOutputs[itemIndex] || {};
+
+                  return (
+                    <tr key={itemField.id} className="hover:bg-muted/10">
+                      <td className="p-2 text-center align-middle font-medium">{itemIndex + 1}</td>
+
+                      <td className="p-2 align-middle">
+                        <div className="flex min-w-[200px] flex-col gap-2">
+                          <div>
+                            <Controller
+                              control={control}
+                              name={`groups.${groupIndex}.outputs.${itemIndex}.materialId`}
+                              render={({ field }) => (
+                                <Select
+                                  onValueChange={(newVal) => {
+                                    field.onChange(newVal);
+                                    setValue(`groups.${groupIndex}.outputs.${itemIndex}.width`, "");
+                                    setValue(`groups.${groupIndex}.outputs.${itemIndex}.height`, "");
+                                    setValue(`groups.${groupIndex}.outputs.${itemIndex}.diameterSmall`, "");
+                                    setValue(`groups.${groupIndex}.outputs.${itemIndex}.diameterLarge`, "");
+                                  }}
+                                  value={field.value ? String(field.value) : undefined}
+                                >
+                                  <SelectTrigger className="h-8 w-full bg-background text-xs">
+                                    <SelectValue placeholder="Select Material" />
+                                  </SelectTrigger>
+                                  <SelectContent position="popper">
+                                    {materials.map((m) => (
+                                      <SelectItem key={m.id} value={String(m.id)}>
+                                        {m.name}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              )}
+                            />
+                            {rowErrors?.materialId && <FieldError errors={[rowErrors.materialId]} />}
+                          </div>
+
+                          <div>
+                            {!itemData.materialId ? (
+                              <div className="flex h-8 items-center text-[11px] text-muted-foreground italic">Select material first</div>
+                            ) : computedItem.measurement === Measurement.CUBE ? (
+                              <div className="flex gap-2">
+                                <div className="flex-1">
+                                  <Controller
+                                    control={control}
+                                    name={`groups.${groupIndex}.outputs.${itemIndex}.width`}
+                                    render={({ field }) => (
+                                      <Input
+                                        type="number"
+                                        {...field}
+                                        value={field.value ?? ""}
+                                        placeholder="Width (cm)"
+                                        className="h-8 w-full px-2 text-xs"
+                                      />
+                                    )}
+                                  />
+                                  {rowErrors?.width && <FieldError errors={[rowErrors.width]} />}
+                                </div>
+                                <div className="flex-1">
+                                  <Controller
+                                    control={control}
+                                    name={`groups.${groupIndex}.outputs.${itemIndex}.height`}
+                                    render={({ field }) => (
+                                      <Input
+                                        type="number"
+                                        {...field}
+                                        value={field.value ?? ""}
+                                        placeholder="Height (cm)"
+                                        className="h-8 w-full px-2 text-xs"
+                                      />
+                                    )}
+                                  />
+                                  {rowErrors?.height && <FieldError errors={[rowErrors.height]} />}
+                                </div>
+                              </div>
+                            ) : computedItem.measurement === Measurement.CYLINDER ? (
+                              <div className="flex gap-2">
+                                <div className="flex-1">
+                                  <Controller
+                                    control={control}
+                                    name={`groups.${groupIndex}.outputs.${itemIndex}.diameterSmall`}
+                                    render={({ field }) => (
+                                      <Input
+                                        type="number"
+                                        {...field}
+                                        value={field.value ?? ""}
+                                        placeholder="Dia. S (cm)"
+                                        className="h-8 w-full px-2 text-xs"
+                                      />
+                                    )}
+                                  />
+                                  {rowErrors?.diameterSmall && <FieldError errors={[rowErrors.diameterSmall]} />}
+                                </div>
+                                <div className="flex-1">
+                                  <Controller
+                                    control={control}
+                                    name={`groups.${groupIndex}.outputs.${itemIndex}.diameterLarge`}
+                                    render={({ field }) => (
+                                      <Input
+                                        type="number"
+                                        {...field}
+                                        value={field.value ?? ""}
+                                        placeholder="Dia. L (cm)"
+                                        className="h-8 w-full px-2 text-xs"
+                                      />
+                                    )}
+                                  />
+                                  {rowErrors?.diameterLarge && <FieldError errors={[rowErrors.diameterLarge]} />}
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="p-2 align-middle">
+                        <Controller
+                          control={control}
+                          name={`groups.${groupIndex}.outputs.${itemIndex}.length`}
+                          render={({ field }) => (
+                            <Input
+                              type="number"
+                              {...field}
+                              value={field.value ?? ""}
+                              placeholder="Length"
+                              className="h-8 w-full px-2 text-xs"
+                            />
+                          )}
+                        />
+                        {rowErrors?.length && <FieldError errors={[rowErrors.length]} />}
+                      </td>
+
+                      <td className="p-2 align-middle">
+                        <Controller
+                          control={control}
+                          name={`groups.${groupIndex}.outputs.${itemIndex}.quantity`}
+                          render={({ field }) => (
+                            <Input
+                              type="number"
+                              {...field}
+                              value={field.value ?? ""}
+                              placeholder="Qty"
+                              className="h-8 w-full px-2 text-xs"
+                            />
+                          )}
+                        />
+                        {rowErrors?.quantity && <FieldError errors={[rowErrors.quantity]} />}
+                      </td>
+
+                      <td className="p-2 align-middle font-mono text-[11px] whitespace-nowrap">
+                        <div className="space-y-0.5">
+                          <div>Single: {computedItem.volume > 0 ? computedItem.volume.toFixed(4) : "0.0000"} m³</div>
+                          <div className="font-mono font-semibold text-muted-foreground">
+                            Total: {computedItem.totalVolume > 0 ? computedItem.totalVolume.toFixed(4) : "0.0000"} m³
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="p-2 text-right align-middle">
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon-xs"
+                          onClick={() => removeOutput(itemIndex)}
+                          aria-label="Remove output item"
+                        >
+                          <Trash2 className="size-3.5" />
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {outputFields.length > 0 && (
+          <div className="flex justify-end gap-6 border-t pt-3 text-right">
+            <div>
+              <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Outputs Volume</span>
+              <span className="block font-mono text-xs font-bold text-primary">{computedGroup.outputVolume.toFixed(4)} m³</span>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { createProcessingSchema } from "@/lib/schemas/processings/create-processing";
+import processingService from "@/lib/services/processing-service";
 
 export type CreateProcessingResponse = null;
 
@@ -16,9 +17,9 @@ export async function createProcessingAction(data: any): Promise<ApiResponse<Cre
     if (!user) throw new AuthorizationError();
 
     const parsed = createProcessingSchema.parse(data);
-    console.log("Create processing data:", JSON.stringify(parsed, null, 2));
+    await processingService.createProcessing(parsed);
 
-    return successResponse(null, "Processing logged successfully (Console only)");
+    return successResponse(null, "Processing logged successfully");
   } catch (error) {
     const response = handleError("createProcessingAction", error);
     return errorResponse(response.message || "Failed to create processing record");
