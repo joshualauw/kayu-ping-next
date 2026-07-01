@@ -131,14 +131,12 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
             <thead>
               <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
                 <th className="w-10 p-2 text-center">No.</th>
-                <th className="min-w-40 p-2">Wood</th>
-                <th className="min-w-40 p-2">Material</th>
-                <th className="min-w-45 p-2">Dimensions (cm)</th>
-                <th className="w-24 p-2">Length (cm)</th>
+                <th className="w-70 p-2">Wood / Material / Dimensions</th>
+                <th className="w-28 p-2">Length (cm)</th>
                 <th className="w-20 p-2">Qty</th>
-                <th className="w-32 p-2">Price / m³</th>
-                <th className="w-32 p-2">Volume (m³)</th>
-                <th className="w-32 p-2">Subtotal</th>
+                <th className="w-36 p-2">Price / m³</th>
+                <th className="w-36 p-2">Volume (m³)</th>
+                <th className="w-40 p-2">Subtotal</th>
                 <th className="w-16 p-2 text-right">Action</th>
               </tr>
             </thead>
@@ -150,138 +148,144 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
 
                 return (
                   <tr key={itemField.id} className="hover:bg-muted/10">
-                    <td className="p-2 text-center align-top font-medium">{itemIndex + 1}</td>
+                    <td className="p-2 text-center align-middle font-medium">{itemIndex + 1}</td>
 
-                    <td className="p-2 align-top">
-                      <Controller
-                        control={control}
-                        name={`items.${itemIndex}.woodId`}
-                        render={({ field }) => (
-                          <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
-                            <SelectTrigger className="h-8 w-full bg-background text-xs">
-                              <SelectValue placeholder="Select Wood" />
-                            </SelectTrigger>
-                            <SelectContent position="popper">
-                              {woods.map((w) => (
-                                <SelectItem key={w.id} value={String(w.id)}>
-                                  {w.name} ({w.code})
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-                      {rowErrors?.woodId && <FieldError errors={[rowErrors.woodId]} />}
-                    </td>
-
-                    <td className="p-2 align-top">
-                      <Controller
-                        control={control}
-                        name={`items.${itemIndex}.materialId`}
-                        render={({ field }) => (
-                          <Select
-                            onValueChange={(newVal) => {
-                              field.onChange(newVal);
-                              setValue(`items.${itemIndex}.width`, "");
-                              setValue(`items.${itemIndex}.height`, "");
-                              setValue(`items.${itemIndex}.diameterSmall`, "");
-                              setValue(`items.${itemIndex}.diameterLarge`, "");
-                            }}
-                            value={field.value ? String(field.value) : undefined}
-                          >
-                            <SelectTrigger className="h-8 w-full bg-background text-xs">
-                              <SelectValue placeholder="Select Material" />
-                            </SelectTrigger>
-                            <SelectContent position="popper">
-                              {materials.map((m) => (
-                                <SelectItem key={m.id} value={String(m.id)}>
-                                  {m.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-                      {rowErrors?.materialId && <FieldError errors={[rowErrors.materialId]} />}
-                    </td>
-
-                    <td className="p-2 align-top">
-                      {!itemData.materialId ? (
-                        <div className="flex h-8 items-center text-[11px] text-muted-foreground italic">Select material first</div>
-                      ) : computed.measurement === Measurement.CUBE ? (
-                        <div className="flex gap-1">
+                    <td className="p-2 align-middle">
+                      <div className="flex flex-col gap-2">
+                        <div className="flex gap-2">
                           <div className="flex-1">
                             <Controller
                               control={control}
-                              name={`items.${itemIndex}.width`}
+                              name={`items.${itemIndex}.woodId`}
                               render={({ field }) => (
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  value={field.value ?? ""}
-                                  placeholder="Width"
-                                  className="h-8 w-full px-2 text-xs"
-                                />
+                                <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
+                                  <SelectTrigger className="h-8 w-full bg-background text-xs">
+                                    <SelectValue placeholder="Select Wood" />
+                                  </SelectTrigger>
+                                  <SelectContent position="popper">
+                                    {woods.map((w) => (
+                                      <SelectItem key={w.id} value={String(w.id)}>
+                                        {w.name} ({w.code})
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
                               )}
                             />
-                            {rowErrors?.width && <FieldError errors={[rowErrors.width]} />}
+                            {rowErrors?.woodId && <FieldError errors={[rowErrors.woodId]} />}
                           </div>
+
                           <div className="flex-1">
                             <Controller
                               control={control}
-                              name={`items.${itemIndex}.height`}
+                              name={`items.${itemIndex}.materialId`}
                               render={({ field }) => (
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  value={field.value ?? ""}
-                                  placeholder="Height"
-                                  className="h-8 w-full px-2 text-xs"
-                                />
+                                <Select
+                                  onValueChange={(newVal) => {
+                                    field.onChange(newVal);
+                                    setValue(`items.${itemIndex}.width`, "");
+                                    setValue(`items.${itemIndex}.height`, "");
+                                    setValue(`items.${itemIndex}.diameterSmall`, "");
+                                    setValue(`items.${itemIndex}.diameterLarge`, "");
+                                  }}
+                                  value={field.value ? String(field.value) : undefined}
+                                >
+                                  <SelectTrigger className="h-8 w-full bg-background text-xs">
+                                    <SelectValue placeholder="Select Material" />
+                                  </SelectTrigger>
+                                  <SelectContent position="popper">
+                                    {materials.map((m) => (
+                                      <SelectItem key={m.id} value={String(m.id)}>
+                                        {m.name}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
                               )}
                             />
-                            {rowErrors?.height && <FieldError errors={[rowErrors.height]} />}
+                            {rowErrors?.materialId && <FieldError errors={[rowErrors.materialId]} />}
                           </div>
                         </div>
-                      ) : computed.measurement === Measurement.CYLINDER ? (
-                        <div className="flex gap-1">
-                          <div className="flex-1">
-                            <Controller
-                              control={control}
-                              name={`items.${itemIndex}.diameterSmall`}
-                              render={({ field }) => (
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  value={field.value ?? ""}
-                                  placeholder="Dia. S"
-                                  className="h-8 w-full px-2 text-xs"
+
+                        <div>
+                          {!itemData.materialId ? (
+                            <div className="flex h-8 items-center text-[11px] text-muted-foreground italic">Select material first</div>
+                          ) : computed.measurement === Measurement.CUBE ? (
+                            <div className="flex gap-2">
+                              <div className="flex-1">
+                                <Controller
+                                  control={control}
+                                  name={`items.${itemIndex}.width`}
+                                  render={({ field }) => (
+                                    <Input
+                                      type="number"
+                                      {...field}
+                                      value={field.value ?? ""}
+                                      placeholder="Width (cm)"
+                                      className="h-8 w-full px-2 text-xs"
+                                    />
+                                  )}
                                 />
-                              )}
-                            />
-                            {rowErrors?.diameterSmall && <FieldError errors={[rowErrors.diameterSmall]} />}
-                          </div>
-                          <div className="flex-1">
-                            <Controller
-                              control={control}
-                              name={`items.${itemIndex}.diameterLarge`}
-                              render={({ field }) => (
-                                <Input
-                                  type="number"
-                                  {...field}
-                                  value={field.value ?? ""}
-                                  placeholder="Dia. L"
-                                  className="h-8 w-full px-2 text-xs"
+                                {rowErrors?.width && <FieldError errors={[rowErrors.width]} />}
+                              </div>
+                              <div className="flex-1">
+                                <Controller
+                                  control={control}
+                                  name={`items.${itemIndex}.height`}
+                                  render={({ field }) => (
+                                    <Input
+                                      type="number"
+                                      {...field}
+                                      value={field.value ?? ""}
+                                      placeholder="Height (cm)"
+                                      className="h-8 w-full px-2 text-xs"
+                                    />
+                                  )}
                                 />
-                              )}
-                            />
-                            {rowErrors?.diameterLarge && <FieldError errors={[rowErrors.diameterLarge]} />}
-                          </div>
+                                {rowErrors?.height && <FieldError errors={[rowErrors.height]} />}
+                              </div>
+                            </div>
+                          ) : computed.measurement === Measurement.CYLINDER ? (
+                            <div className="flex gap-2">
+                              <div className="flex-1">
+                                <Controller
+                                  control={control}
+                                  name={`items.${itemIndex}.diameterSmall`}
+                                  render={({ field }) => (
+                                    <Input
+                                      type="number"
+                                      {...field}
+                                      value={field.value ?? ""}
+                                      placeholder="Dia. S (cm)"
+                                      className="h-8 w-full px-2 text-xs"
+                                    />
+                                  )}
+                                />
+                                {rowErrors?.diameterSmall && <FieldError errors={[rowErrors.diameterSmall]} />}
+                              </div>
+                              <div className="flex-1">
+                                <Controller
+                                  control={control}
+                                  name={`items.${itemIndex}.diameterLarge`}
+                                  render={({ field }) => (
+                                    <Input
+                                      type="number"
+                                      {...field}
+                                      value={field.value ?? ""}
+                                      placeholder="Dia. L (cm)"
+                                      className="h-8 w-full px-2 text-xs"
+                                    />
+                                  )}
+                                />
+                                {rowErrors?.diameterLarge && <FieldError errors={[rowErrors.diameterLarge]} />}
+                              </div>
+                            </div>
+                          ) : null}
                         </div>
-                      ) : null}
+                      </div>
                     </td>
 
-                    <td className="p-2 align-top">
+                    <td className="p-2 align-middle">
                       <Controller
                         control={control}
                         name={`items.${itemIndex}.length`}
@@ -298,7 +302,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                       {rowErrors?.length && <FieldError errors={[rowErrors.length]} />}
                     </td>
 
-                    <td className="p-2 align-top">
+                    <td className="p-2 align-middle">
                       <Controller
                         control={control}
                         name={`items.${itemIndex}.quantity`}
@@ -309,7 +313,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                       {rowErrors?.quantity && <FieldError errors={[rowErrors.quantity]} />}
                     </td>
 
-                    <td className="p-2 align-top">
+                    <td className="p-2 align-middle">
                       <Controller
                         control={control}
                         name={`items.${itemIndex}.pricePerCubic`}
@@ -326,7 +330,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                       {rowErrors?.pricePerCubic && <FieldError errors={[rowErrors.pricePerCubic]} />}
                     </td>
 
-                    <td className="p-2 align-top font-mono text-[11px] whitespace-nowrap">
+                    <td className="p-2 align-middle font-mono text-[11px] whitespace-nowrap">
                       <div className="space-y-0.5">
                         <div>Single: {computed.volume > 0 ? computed.volume.toFixed(4) : "0.0000"} m³</div>
                         <div className="font-semibold text-muted-foreground">
@@ -335,9 +339,9 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                       </div>
                     </td>
 
-                    <td className="p-2 align-top font-semibold whitespace-nowrap">{formatCurrency(computed.subtotal)}</td>
+                    <td className="p-2 align-middle font-semibold whitespace-nowrap">{formatCurrency(computed.subtotal)}</td>
 
-                    <td className="p-2 text-right align-top">
+                    <td className="p-2 text-right align-middle">
                       <Button
                         type="button"
                         variant="destructive"
