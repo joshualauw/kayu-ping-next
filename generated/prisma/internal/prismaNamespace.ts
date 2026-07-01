@@ -395,7 +395,9 @@ export const ModelName = {
   Purchase: 'Purchase',
   PurchaseItem: 'PurchaseItem',
   Sale: 'Sale',
-  SaleItem: 'SaleItem'
+  SaleItem: 'SaleItem',
+  Processing: 'Processing',
+  ProcessingItem: 'ProcessingItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem"
+    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1303,6 +1305,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Processing: {
+      payload: Prisma.$ProcessingPayload<ExtArgs>
+      fields: Prisma.ProcessingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProcessingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProcessingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        findFirst: {
+          args: Prisma.ProcessingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProcessingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        findMany: {
+          args: Prisma.ProcessingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>[]
+        }
+        create: {
+          args: Prisma.ProcessingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        createMany: {
+          args: Prisma.ProcessingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProcessingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>[]
+        }
+        delete: {
+          args: Prisma.ProcessingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        update: {
+          args: Prisma.ProcessingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProcessingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProcessingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProcessingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProcessingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingPayload>
+        }
+        aggregate: {
+          args: Prisma.ProcessingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProcessing>
+        }
+        groupBy: {
+          args: Prisma.ProcessingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProcessingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProcessingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProcessingCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProcessingItem: {
+      payload: Prisma.$ProcessingItemPayload<ExtArgs>
+      fields: Prisma.ProcessingItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProcessingItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProcessingItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        findFirst: {
+          args: Prisma.ProcessingItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProcessingItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        findMany: {
+          args: Prisma.ProcessingItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>[]
+        }
+        create: {
+          args: Prisma.ProcessingItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        createMany: {
+          args: Prisma.ProcessingItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProcessingItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>[]
+        }
+        delete: {
+          args: Prisma.ProcessingItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        update: {
+          args: Prisma.ProcessingItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProcessingItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProcessingItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProcessingItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProcessingItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProcessingItemPayload>
+        }
+        aggregate: {
+          args: Prisma.ProcessingItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProcessingItem>
+        }
+        groupBy: {
+          args: Prisma.ProcessingItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProcessingItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProcessingItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProcessingItemCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1507,6 +1657,34 @@ export const SaleItemScalarFieldEnum = {
 export type SaleItemScalarFieldEnum = (typeof SaleItemScalarFieldEnum)[keyof typeof SaleItemScalarFieldEnum]
 
 
+export const ProcessingScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  processingDate: 'processingDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  totalInputVolume: 'totalInputVolume',
+  totalOutputVolume: 'totalOutputVolume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingScalarFieldEnum = (typeof ProcessingScalarFieldEnum)[keyof typeof ProcessingScalarFieldEnum]
+
+
+export const ProcessingItemScalarFieldEnum = {
+  id: 'id',
+  processingId: 'processingId',
+  woodVariantId: 'woodVariantId',
+  type: 'type',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingItemScalarFieldEnum = (typeof ProcessingItemScalarFieldEnum)[keyof typeof ProcessingItemScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1662,6 +1840,20 @@ export type EnumReferenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
 export type ListEnumReferenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReferenceType[]'>
     
 
+
+/**
+ * Reference to a field of type 'ProcessingType'
+ */
+export type EnumProcessingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingType'>
+    
+
+
+/**
+ * Reference to a field of type 'ProcessingType[]'
+ */
+export type ListEnumProcessingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingType[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1784,6 +1976,8 @@ export type GlobalOmitConfig = {
   purchaseItem?: Prisma.PurchaseItemOmit
   sale?: Prisma.SaleOmit
   saleItem?: Prisma.SaleItemOmit
+  processing?: Prisma.ProcessingOmit
+  processingItem?: Prisma.ProcessingItemOmit
 }
 
 /* Types for Logging */

@@ -37,6 +37,14 @@ export const Measurement = {
 export type Measurement = (typeof Measurement)[keyof typeof Measurement]
 
 
+export const ProcessingType = {
+  INPUT: 'INPUT',
+  OUTPUT: 'OUTPUT'
+} as const
+
+export type ProcessingType = (typeof ProcessingType)[keyof typeof ProcessingType]
+
+
 export const MutationType = {
   IN: 'IN',
   OUT: 'OUT'

@@ -8,7 +8,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
 import { PurchaseDetail } from "@/lib/services/purchase-service";
-import { calculateSubtotal, calculateWoodTotalVolume } from "@/lib/helpers/core";
 
 interface PurchaseDetailCardProps {
   purchase: PurchaseDetail;
@@ -93,8 +92,8 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                   const wood = variant.wood;
                   const material = variant.material;
                   const singleVolume = variant.volume;
-                  const totalVol = calculateWoodTotalVolume(singleVolume, item.quantity);
-                  const subtotal = calculateSubtotal(singleVolume, item.quantity, item.pricePerCubic);
+                  const totalVol = singleVolume * item.quantity;
+                  const subtotal = totalVol * item.pricePerCubic;
 
                   return (
                     <tr key={item.id} className="hover:bg-muted/10">

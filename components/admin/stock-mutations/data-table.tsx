@@ -8,10 +8,9 @@ import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllStockMutations } from "@/hooks/swr/stock-mutations/use-get-all-stock-mutations";
 import type { StockMutationListItem } from "@/lib/services/stock-mutation-service";
 import { formatDate } from "@/lib/utils";
-import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/core";
+import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { Badge } from "@/components/ui/badge";
 import { getReferenceLink } from "@/lib/helpers/core";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function StockMutationsDataTable() {
@@ -56,20 +55,6 @@ export default function StockMutationsDataTable() {
         },
       },
       {
-        id: "volume",
-        header: "Volume (m³)",
-        cell: ({ row }) => {
-          const singleVolume = row.original.variant.volume;
-          const totalVol = calculateWoodTotalVolume(singleVolume, row.original.quantity);
-          return (
-            <div className="space-y-0.5 font-mono text-xs">
-              <div>Single: {singleVolume.toFixed(4)}</div>
-              <div className="font-semibold text-muted-foreground">Total: {totalVol.toFixed(4)}</div>
-            </div>
-          );
-        },
-      },
-      {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
@@ -80,6 +65,15 @@ export default function StockMutationsDataTable() {
         cell: ({ row }) => {
           const type = row.original.type;
           return <Badge variant={type === "IN" ? "success" : "destructive"}>{type}</Badge>;
+        },
+      },
+      {
+        id: "volume",
+        header: "Volume (m³)",
+        cell: ({ row }) => {
+          const singleVolume = row.original.variant.volume;
+          const totalVol = singleVolume * row.original.quantity;
+          return <span>{row.original.type === "IN" ? `+${totalVol.toFixed(4)}` : `-${totalVol.toFixed(4)}`}</span>;
         },
       },
       {

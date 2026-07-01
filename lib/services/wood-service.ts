@@ -1,9 +1,14 @@
 import { prisma } from "@/lib/db/prisma";
-import { Wood } from "@/generated/prisma/client";
+import { Wood, WoodVariant, Material } from "@/generated/prisma/client";
 import { WoodWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 
 export type WoodForSelect = Pick<Wood, "id" | "name" | "code">;
+
+export type WoodVariantForSelect = WoodVariant & {
+  wood: Wood;
+  material: Material;
+};
 
 class WoodService {
   async getAllWoods(params: TableQuery): Promise<TableResponse<Wood>> {
@@ -35,6 +40,15 @@ class WoodService {
         id: true,
         name: true,
         code: true,
+      },
+    });
+  }
+
+  async getWoodVariantsForSelect(): Promise<WoodVariantForSelect[]> {
+    return prisma.woodVariant.findMany({
+      include: {
+        wood: true,
+        material: true,
       },
     });
   }

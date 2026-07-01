@@ -24,7 +24,6 @@ import {
   Settings,
   Users,
   Boxes,
-  SearchCheck,
   Truck,
 } from "lucide-react";
 import Link from "next/link";
@@ -100,13 +99,7 @@ export function AdminSidebar() {
     {
       name: "Processing",
       icon: <Settings className="mr-1" />,
-      href: "#",
-      group: "Core",
-    },
-    {
-      name: "Inspection",
-      icon: <SearchCheck className="mr-1" />,
-      href: "#",
+      href: "/admin/processings",
       group: "Core",
     },
     {

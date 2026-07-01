@@ -63,11 +63,3 @@ export function calculateWoodVolume(params: WoodVolumeCalculationParams): number
 
   throw new Error("Unknown measurement type");
 }
-
-export function calculateWoodTotalVolume(woodVolume: number, quantity: number) {
-  return woodVolume * quantity;
-}
-
-export function calculateSubtotal(woodVolume: number, pricePerM3: number, quantity: number) {
-  return calculateWoodTotalVolume(woodVolume, quantity) * pricePerM3;
-}

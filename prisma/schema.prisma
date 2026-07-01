@@ -63,6 +63,7 @@ model Location {
   stockMutations StockMutation[]
   purchases      Purchase[]
   sales          Sale[]
+  processings    Processing[]
 
   @@map("locations")
 }
@@ -94,12 +95,13 @@ model WoodVariant {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  wood        Wood            @relation(fields: [woodId], references: [id])
-  material    Material        @relation(fields: [materialId], references: [id])
-  inventories Inventory[]
-  mutations   StockMutation[]
-  items       PurchaseItem[]
-  saleItems   SaleItem[]
+  wood            Wood             @relation(fields: [woodId], references: [id])
+  material        Material         @relation(fields: [materialId], references: [id])
+  inventories     Inventory[]
+  mutations       StockMutation[]
+  purchaseItems   PurchaseItem[]
+  saleItems       SaleItem[]
+  processingItems ProcessingItem[]
 
   @@map("wood_variants")
 }
@@ -211,6 +213,40 @@ model SaleItem {
   @@map("sale_items")
 }
 
+model Processing {
+  id                Int      @id @default(autoincrement())
+  tid               String   @unique()
+  processingDate    DateTime @map("processing_date") @db.Timestamptz(6)
+  locationId        Int      @map("location_id")
+  notes             String?  @db.Text
+  totalInputVolume  Float    @map("total_input_volume")
+  totalOutputVolume Float    @map("total_output_volume")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  location Location         @relation(fields: [locationId], references: [id])
+  items    ProcessingItem[]
+
+  @@map("processing")
+}
+
+model ProcessingItem {
+  id            Int            @id @default(autoincrement())
+  processingId  Int            @map("processing_id")
+  woodVariantId Int            @map("wood_variant_id")
+  type          ProcessingType
+  quantity      Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  processing Processing  @relation(fields: [processingId], references: [id])
+  variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
+
+  @@map("processing_items")
+}
+
 enum ContactType {
   CUSTOMER
   SUPPLIER
@@ -234,6 +270,11 @@ enum Measurement {
   CUBE // W x H x L
 
   @@map("measurements")
+}
+
+enum ProcessingType {
+  INPUT
+  OUTPUT
 }
 
 enum MutationType {

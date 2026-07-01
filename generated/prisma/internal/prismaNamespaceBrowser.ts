@@ -62,7 +62,9 @@ export const ModelName = {
   Purchase: 'Purchase',
   PurchaseItem: 'PurchaseItem',
   Sale: 'Sale',
-  SaleItem: 'SaleItem'
+  SaleItem: 'SaleItem',
+  Processing: 'Processing',
+  ProcessingItem: 'ProcessingItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -244,6 +246,34 @@ export const SaleItemScalarFieldEnum = {
 } as const
 
 export type SaleItemScalarFieldEnum = (typeof SaleItemScalarFieldEnum)[keyof typeof SaleItemScalarFieldEnum]
+
+
+export const ProcessingScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  processingDate: 'processingDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  totalInputVolume: 'totalInputVolume',
+  totalOutputVolume: 'totalOutputVolume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingScalarFieldEnum = (typeof ProcessingScalarFieldEnum)[keyof typeof ProcessingScalarFieldEnum]
+
+
+export const ProcessingItemScalarFieldEnum = {
+  id: 'id',
+  processingId: 'processingId',
+  woodVariantId: 'woodVariantId',
+  type: 'type',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingItemScalarFieldEnum = (typeof ProcessingItemScalarFieldEnum)[keyof typeof ProcessingItemScalarFieldEnum]
 
 
 export const SortOrder = {

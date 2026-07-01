@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/db/prisma";
-import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, ReferenceType } from "@/generated/prisma/client";
+import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material } from "@/generated/prisma/client";
 import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
 import { UpdatePurchaseSchema } from "@/lib/schemas/purchases/update-purchase";
+import { calculateWoodVolume } from "@/lib/helpers/core";
 import dayjs from "@/lib/integrations/dayjs";
-import { calculateWoodVolume, calculateWoodTotalVolume, calculateSubtotal } from "@/lib/helpers/core";
 
 export type PurchaseListItem = Purchase & {
   location: Pick<Location, "name">;
@@ -118,8 +118,8 @@ class PurchaseService {
             measurement: item.measurement,
           });
 
-          const itemTotalVolume = calculateWoodTotalVolume(volume, item.quantity);
-          const itemSubtotal = calculateSubtotal(volume, item.pricePerCubic, item.quantity);
+          const itemTotalVolume = volume * item.quantity;
+          const itemSubtotal = itemTotalVolume * item.pricePerCubic;
 
           totalVolume += itemTotalVolume;
           totalPrice += itemSubtotal;

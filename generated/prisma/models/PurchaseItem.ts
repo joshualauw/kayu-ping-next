@@ -313,7 +313,7 @@ export type PurchaseItemCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
-  variant: Prisma.WoodVariantCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutPurchaseItemsInput
 }
 
 export type PurchaseItemUncheckedCreateInput = {
@@ -332,7 +332,7 @@ export type PurchaseItemUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutPurchaseItemsNestedInput
 }
 
 export type PurchaseItemUncheckedUpdateInput = {
@@ -573,7 +573,7 @@ export type PurchaseItemCreateWithoutPurchaseInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  variant: Prisma.WoodVariantCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutPurchaseItemsInput
 }
 
 export type PurchaseItemUncheckedCreateWithoutPurchaseInput = {
@@ -660,7 +660,7 @@ export type PurchaseItemUpdateWithoutPurchaseInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutPurchaseItemsNestedInput
 }
 
 export type PurchaseItemUncheckedUpdateWithoutPurchaseInput = {

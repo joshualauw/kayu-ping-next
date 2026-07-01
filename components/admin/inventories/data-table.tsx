@@ -7,7 +7,7 @@ import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllInventories } from "@/hooks/swr/inventories/use-get-all-inventories";
 import type { InventoryListItem } from "@/lib/services/inventory-service";
 import { formatDate } from "@/lib/utils";
-import { calculateWoodTotalVolume, generateWoodVariantLabel } from "@/lib/helpers/core";
+import { generateWoodVariantLabel } from "@/lib/helpers/core";
 
 export default function InventoriesDataTable() {
   const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
@@ -50,7 +50,7 @@ export default function InventoriesDataTable() {
         header: "Volume (m³)",
         cell: ({ row }) => {
           const singleVolume = row.original.variant.volume;
-          const totalVol = calculateWoodTotalVolume(singleVolume, row.original.stock);
+          const totalVol = singleVolume * row.original.stock;
           return (
             <div className="space-y-0.5 font-mono text-xs">
               <div>Single: {singleVolume.toFixed(4)}</div>

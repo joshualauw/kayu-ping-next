@@ -77,3 +77,13 @@ export type Sale = Prisma.SaleModel
  * 
  */
 export type SaleItem = Prisma.SaleItemModel
+/**
+ * Model Processing
+ * 
+ */
+export type Processing = Prisma.ProcessingModel
+/**
+ * Model ProcessingItem
+ * 
+ */
+export type ProcessingItem = Prisma.ProcessingItemModel

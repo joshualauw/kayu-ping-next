@@ -12,34 +12,33 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft } from "lucide-react";
 import { LocationForSelect } from "@/lib/services/location-service";
-import { WoodForSelect } from "@/lib/services/wood-service";
-import { MaterialForSelect } from "@/lib/services/material-service";
 import { ContactForSelect } from "@/lib/services/contact-service";
-import { createPurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
-import { createPurchaseAction } from "@/lib/actions/purchases/create-purchase";
+import { WoodVariantForSelect } from "@/lib/services/wood-service";
+import { createProcessingSchema } from "@/lib/schemas/processings/create-processing";
+import { createProcessingAction } from "@/lib/actions/processings/create-processing";
 import dayjs from "@/lib/integrations/dayjs";
-import PurchasesCart from "./cart";
+import ProcessingCart from "./cart";
 
-interface PurchaseCreateFormProps {
+interface ProcessingCreateFormProps {
   locations: LocationForSelect[];
-  woods: WoodForSelect[];
-  materials: MaterialForSelect[];
   contacts: ContactForSelect[];
+  woodVariants: WoodVariantForSelect[];
 }
 
-export default function PurchaseCreateForm({ locations, woods, materials, contacts }: PurchaseCreateFormProps) {
+export default function ProcessingCreateForm({ locations, contacts, woodVariants }: ProcessingCreateFormProps) {
   const router = useRouter();
-  const formId = "purchase-create-form";
+  const formId = "processing-create-form";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<any>({
     defaultValues: {
-      purchaseDate: dayjs().format("YYYY-MM-DDTHH:mm"),
+      processingDate: dayjs().format("YYYY-MM-DDTHH:mm"),
       locationId: "",
-      supplierId: "",
+      contactId: "",
       notes: "",
-      items: [],
+      inputItems: [],
+      outputItems: [],
     },
   });
 
@@ -52,33 +51,23 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
   async function onSubmit(data: any) {
     form.clearErrors();
 
-    const mappedItems = (data.items || []).map((item: any) => {
-      const material = materials.find((m) => m.id === Number(item.materialId));
-      const measurement = material?.measurement;
-
-      return {
-        woodId: item.woodId ? Number(item.woodId) : undefined,
-        materialId: item.materialId ? Number(item.materialId) : undefined,
-        measurement,
-        width: item.width === "" ? null : item.width,
-        height: item.height === "" ? null : item.height,
-        diameterSmall: item.diameterSmall === "" ? null : item.diameterSmall,
-        diameterLarge: item.diameterLarge === "" ? null : item.diameterLarge,
-        length: item.length === "" ? undefined : item.length,
-        quantity: item.quantity === "" ? undefined : item.quantity,
-        pricePerCubic: item.pricePerCubic === "" ? undefined : item.pricePerCubic,
-      };
-    });
-
-    const flattenedData = {
-      purchaseDate: data.purchaseDate,
+    const formattedData = {
+      processingDate: data.processingDate,
       locationId: data.locationId,
-      supplierId: data.supplierId,
+      contactId: data.contactId,
       notes: data.notes || null,
-      items: mappedItems,
+      inputItems: (data.inputItems || []).map((i: any) => ({
+        inventoryId: Number(i.inventoryId),
+        woodVariantId: Number(i.woodVariantId),
+        quantity: Number(i.quantity),
+      })),
+      outputItems: (data.outputItems || []).map((o: any) => ({
+        woodVariantId: Number(o.woodVariantId),
+        quantity: Number(o.quantity),
+      })),
     };
 
-    const validation = createPurchaseSchema.safeParse(flattenedData);
+    const validation = createProcessingSchema.safeParse(formattedData);
 
     if (!validation.success) {
       validation.error.issues.forEach((issue) => {
@@ -91,11 +80,11 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
 
     setIsSubmitting(true);
     try {
-      const result = await createPurchaseAction(validation.data);
+      const result = await createProcessingAction(validation.data);
 
       if (result.success) {
-        router.push("/admin/purchases");
-        toast.success("Purchase created successfully");
+        router.push("/admin/processings");
+        toast.success("Processing logged successfully (Console only)");
       } else {
         toast.error(result.message);
       }
@@ -107,18 +96,18 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Create Purchase</CardTitle>
-        <CardDescription>Record a new wood/material purchase transaction.</CardDescription>
+        <CardTitle>Create Processing Record</CardTitle>
+        <CardDescription>Record a new wood processing transaction (inputs and outputs).</CardDescription>
       </CardHeader>
       <CardContent>
         <form id={formId} onSubmit={handleCustomSubmit} className="space-y-6">
           <FieldGroup className="flex flex-col gap-6">
             <Controller
-              name="purchaseDate"
+              name="processingDate"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Purchase Date</FieldLabel>
+                  <FieldLabel>Processing Date</FieldLabel>
                   <Input type="datetime-local" {...field} />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
@@ -134,7 +123,7 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
                     <FieldLabel>Location</FieldLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select purchase location" />
+                        <SelectValue placeholder="Select processing location" />
                       </SelectTrigger>
                       <SelectContent position="popper">
                         {locations.map((l) => (
@@ -150,14 +139,14 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
               />
 
               <Controller
-                name="supplierId"
+                name="contactId"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Supplier</FieldLabel>
+                    <FieldLabel>Worker / Contact</FieldLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select supplier" />
+                        <SelectValue placeholder="Select worker/contractor" />
                       </SelectTrigger>
                       <SelectContent position="popper">
                         {contacts.map((c) => (
@@ -179,34 +168,37 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Notes (Optional)</FieldLabel>
-                  <Textarea {...field} value={field.value || ""} placeholder="Add any details or specifications..." />
+                  <Textarea {...field} value={field.value || ""} placeholder="Add any processing details or memos..." />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}
             />
           </FieldGroup>
 
-          {/* Cart Component */}
+          {/* Side-by-Side Carts Component */}
           <div className="border-t pt-6">
-            <PurchasesCart
+            <ProcessingCart
               control={form.control}
-              woods={woods}
-              materials={materials}
-              errors={form.formState.errors.items}
-              setValue={form.setValue}
+              errors={form.formState.errors}
+              woodVariants={woodVariants}
+              setError={form.setError}
+              clearErrors={form.clearErrors}
             />
-            {(form.formState.errors.items as any)?.message && (
-              <p className="mt-2 text-sm font-medium text-destructive">{String((form.formState.errors.items as any).message)}</p>
+            {form.formState.errors.inputItems?.message && (
+              <p className="mt-2 text-sm font-medium text-destructive">{String(form.formState.errors.inputItems.message)}</p>
+            )}
+            {form.formState.errors.outputItems?.message && (
+              <p className="mt-2 text-sm font-medium text-destructive">{String(form.formState.errors.outputItems.message)}</p>
             )}
           </div>
 
-          <div className="flex justify-end gap-2 border-t pt-6">
-            <Button type="button" variant="secondary" onClick={() => router.push("/admin/purchases")} className="flex items-center gap-2">
+          <div className="flex justify-end gap-2 border-t border-muted-foreground/10 pt-6">
+            <Button type="button" variant="secondary" onClick={() => router.push("/admin/processings")} className="flex items-center gap-2">
               <ArrowLeft className="size-4" />
               Back to List
             </Button>
-            <Button type="submit" form={formId} disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Save Purchase"}
+            <Button type="submit" form={formId} disabled={isSubmitting || !!form.formState.errors.outputItems}>
+              {isSubmitting ? "Submitting..." : "Save Processing Record"}
             </Button>
           </div>
         </form>
