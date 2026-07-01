@@ -51,12 +51,12 @@ export default function ProcessingDetailCard({ processing }: ProcessingDetailCar
             <div className="space-y-4">
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Input Volume</span>
-                <p className="text-sm font-medium">{processing.totalInputVolume.toFixed(4)} m³</p>
+                <p className="text-sm font-bold text-primary">{processing.totalInputVolume.toFixed(4)} m³</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Output Volume</span>
-                <p className="text-sm font-medium">{processing.totalOutputVolume.toFixed(4)} m³</p>
+                <p className="text-sm font-bold text-primary">{processing.totalOutputVolume.toFixed(4)} m³</p>
               </div>
 
               <div className="space-y-1">

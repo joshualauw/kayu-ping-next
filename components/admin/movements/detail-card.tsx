@@ -5,60 +5,60 @@ import { ArrowLeft, Pencil } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { formatDate, formatCurrency } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
-import { PurchaseDetail } from "@/lib/services/purchase-service";
+import { MovementDetail } from "@/lib/services/movement-service";
 
-interface PurchaseDetailCardProps {
-  purchase: PurchaseDetail;
+interface MovementDetailCardProps {
+  movement: MovementDetail;
 }
 
-export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps) {
+export default function MovementDetailCard({ movement }: MovementDetailCardProps) {
   const router = useRouter();
-  const items = purchase.items || [];
+  const items = movement.items || [];
 
   return (
     <div className="space-y-6">
       <Card className="w-full">
         <CardHeader>
           <div>
-            <CardTitle>{purchase.tid}</CardTitle>
-            <CardDescription>Detail of the purchase transaction</CardDescription>
+            <CardTitle>{movement.tid}</CardTitle>
+            <CardDescription>Detail of the wood stock movement transaction</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4">
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Purchase Date</span>
-                <p className="text-sm font-medium">{formatDate(purchase.purchaseDate)}</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Movement Date</span>
+                <p className="text-sm font-medium">{formatDate(movement.movementDate)}</p>
               </div>
 
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Supplier</span>
-                <p className="text-sm font-medium">{purchase.supplier.name}</p>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
-                <p className="text-sm font-medium">{purchase.location.name}</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Trucker</span>
+                <p className="text-sm font-medium">{movement.trucker.name}</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Notes</span>
-                <p className="text-sm font-medium whitespace-pre-wrap">{purchase.notes || "-"}</p>
+                <p className="text-sm font-medium whitespace-pre-wrap">{movement.notes || "-"}</p>
               </div>
             </div>
 
             <div className="space-y-4">
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Volume</span>
-                <p className="text-sm font-bold text-primary">{purchase.totalVolume.toFixed(4)} m³</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">From Location</span>
+                <p className="text-sm font-medium">{movement.fromLocation.name}</p>
               </div>
 
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Price</span>
-                <p className="text-sm font-bold text-primary">{formatCurrency(purchase.totalPrice)}</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">To Location</span>
+                <p className="text-sm font-medium">{movement.toLocation.name}</p>
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Moved Volume</span>
+                <p className="text-sm font-bold text-primary">{movement.totalMovedVolume.toFixed(4)} m³</p>
               </div>
             </div>
           </div>
@@ -67,8 +67,8 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
 
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>Items Purchased</CardTitle>
-          <CardDescription>Detailed lists of wood variants in this transaction</CardDescription>
+          <CardTitle>Items Moved</CardTitle>
+          <CardDescription>Detailed lists of wood variants transferred in this transaction</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto rounded-md border">
@@ -82,8 +82,6 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Qty</th>
                   <th className="p-3">Volume (m³)</th>
-                  <th className="p-3">Price / m³</th>
-                  <th className="p-3">Subtotal</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -93,7 +91,6 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                   const material = variant.material;
                   const singleVolume = variant.volume;
                   const totalVol = singleVolume * item.quantity;
-                  const subtotal = totalVol * item.pricePerCubic;
 
                   return (
                     <tr key={item.id} className="hover:bg-muted/10">
@@ -123,15 +120,13 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                           <div className="font-semibold text-muted-foreground">Total: {totalVol.toFixed(4)}</div>
                         </div>
                       </td>
-                      <td className="p-3">{formatCurrency(item.pricePerCubic)}</td>
-                      <td className="p-3 font-bold text-primary">{formatCurrency(subtotal)}</td>
                     </tr>
                   );
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="p-8 text-center text-sm text-muted-foreground italic">
-                      No items found in this purchase.
+                    <td colSpan={7} className="p-8 text-center text-sm text-muted-foreground italic">
+                      No items found in this movement.
                     </td>
                   </tr>
                 )}
@@ -140,14 +135,14 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-3">
-            <Button type="button" variant="secondary" onClick={() => router.push("/admin/purchases")} className="flex items-center gap-2">
+            <Button type="button" variant="secondary" onClick={() => router.push("/admin/movements")} className="flex items-center gap-2">
               <ArrowLeft className="size-4" />
               Back to List
             </Button>
             <Button asChild variant="outline" size="sm">
-              <Link href={`/admin/purchases/${purchase.id}/edit`}>
+              <Link href={`/admin/movements/${movement.id}/edit`}>
                 <Pencil className="mr-2 size-4" />
-                Edit Purchase
+                Edit Notes
               </Link>
             </Button>
           </div>

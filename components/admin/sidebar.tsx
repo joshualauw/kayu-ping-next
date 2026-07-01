@@ -93,7 +93,7 @@ export function AdminSidebar() {
     {
       name: "Movements",
       icon: <Truck className="mr-1" />,
-      href: "#",
+      href: "/admin/movements",
       group: "Core",
     },
     {

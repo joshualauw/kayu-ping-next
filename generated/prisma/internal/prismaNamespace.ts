@@ -397,7 +397,9 @@ export const ModelName = {
   Sale: 'Sale',
   SaleItem: 'SaleItem',
   Processing: 'Processing',
-  ProcessingItem: 'ProcessingItem'
+  ProcessingItem: 'ProcessingItem',
+  Movement: 'Movement',
+  MovementItem: 'MovementItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem"
+    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem" | "movement" | "movementItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1453,6 +1455,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Movement: {
+      payload: Prisma.$MovementPayload<ExtArgs>
+      fields: Prisma.MovementFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MovementFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MovementFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        findFirst: {
+          args: Prisma.MovementFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MovementFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        findMany: {
+          args: Prisma.MovementFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>[]
+        }
+        create: {
+          args: Prisma.MovementCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        createMany: {
+          args: Prisma.MovementCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MovementCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>[]
+        }
+        delete: {
+          args: Prisma.MovementDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        update: {
+          args: Prisma.MovementUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        deleteMany: {
+          args: Prisma.MovementDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MovementUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MovementUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>[]
+        }
+        upsert: {
+          args: Prisma.MovementUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementPayload>
+        }
+        aggregate: {
+          args: Prisma.MovementAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMovement>
+        }
+        groupBy: {
+          args: Prisma.MovementGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovementGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MovementCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovementCountAggregateOutputType> | number
+        }
+      }
+    }
+    MovementItem: {
+      payload: Prisma.$MovementItemPayload<ExtArgs>
+      fields: Prisma.MovementItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MovementItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MovementItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        findFirst: {
+          args: Prisma.MovementItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MovementItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        findMany: {
+          args: Prisma.MovementItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>[]
+        }
+        create: {
+          args: Prisma.MovementItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        createMany: {
+          args: Prisma.MovementItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MovementItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>[]
+        }
+        delete: {
+          args: Prisma.MovementItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        update: {
+          args: Prisma.MovementItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.MovementItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MovementItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MovementItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.MovementItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovementItemPayload>
+        }
+        aggregate: {
+          args: Prisma.MovementItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMovementItem>
+        }
+        groupBy: {
+          args: Prisma.MovementItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovementItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MovementItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovementItemCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1683,6 +1833,34 @@ export const ProcessingItemScalarFieldEnum = {
 } as const
 
 export type ProcessingItemScalarFieldEnum = (typeof ProcessingItemScalarFieldEnum)[keyof typeof ProcessingItemScalarFieldEnum]
+
+
+export const MovementScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  truckerId: 'truckerId',
+  movementDate: 'movementDate',
+  fromLocationId: 'fromLocationId',
+  toLocationId: 'toLocationId',
+  notes: 'notes',
+  totalMovedVolume: 'totalMovedVolume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MovementScalarFieldEnum = (typeof MovementScalarFieldEnum)[keyof typeof MovementScalarFieldEnum]
+
+
+export const MovementItemScalarFieldEnum = {
+  id: 'id',
+  movementId: 'movementId',
+  woodVariantId: 'woodVariantId',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MovementItemScalarFieldEnum = (typeof MovementItemScalarFieldEnum)[keyof typeof MovementItemScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1978,6 +2156,8 @@ export type GlobalOmitConfig = {
   saleItem?: Prisma.SaleItemOmit
   processing?: Prisma.ProcessingOmit
   processingItem?: Prisma.ProcessingItemOmit
+  movement?: Prisma.MovementOmit
+  movementItem?: Prisma.MovementItemOmit
 }
 
 /* Types for Logging */

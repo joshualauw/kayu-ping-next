@@ -87,3 +87,13 @@ export type Processing = Prisma.ProcessingModel
  * 
  */
 export type ProcessingItem = Prisma.ProcessingItemModel
+/**
+ * Model Movement
+ * 
+ */
+export type Movement = Prisma.MovementModel
+/**
+ * Model MovementItem
+ * 
+ */
+export type MovementItem = Prisma.MovementItemModel

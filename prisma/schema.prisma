@@ -46,6 +46,7 @@ model Contact {
 
   purchases Purchase[]
   sales     Sale[]
+  movements Movement[]
 
   @@map("contacts")
 }
@@ -64,6 +65,8 @@ model Location {
   purchases      Purchase[]
   sales          Sale[]
   processings    Processing[]
+  movementsFrom  Movement[]      @relation("FromLocation")
+  movementsTo    Movement[]      @relation("ToLocation")
 
   @@map("locations")
 }
@@ -102,6 +105,7 @@ model WoodVariant {
   purchaseItems   PurchaseItem[]
   saleItems       SaleItem[]
   processingItems ProcessingItem[]
+  movementItems   MovementItem[]
 
   @@map("wood_variants")
 }
@@ -245,6 +249,42 @@ model ProcessingItem {
   variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
 
   @@map("processing_items")
+}
+
+model Movement {
+  id               Int      @id @default(autoincrement())
+  tid              String   @unique()
+  truckerId        Int      @map("trucker_id")
+  movementDate     DateTime @map("movement_date") @db.Timestamptz(6)
+  fromLocationId   Int      @map("from_location_id")
+  toLocationId     Int      @map("to_location_id")
+  notes            String?  @db.Text
+  totalMovedVolume Float    @map("total_moved_volume")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  trucker      Contact        @relation(fields: [truckerId], references: [id])
+  fromLocation Location       @relation("FromLocation", fields: [fromLocationId], references: [id])
+  toLocation   Location       @relation("ToLocation", fields: [toLocationId], references: [id])
+  items        MovementItem[]
+
+  @@map("movements")
+}
+
+model MovementItem {
+  id            Int @id @default(autoincrement())
+  movementId    Int @map("movement_id")
+  woodVariantId Int @map("wood_variant_id")
+  quantity      Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  movement Movement    @relation(fields: [movementId], references: [id])
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
+
+  @@map("movement_items")
 }
 
 enum ContactType {

@@ -53,7 +53,7 @@ export default function SaleDetailCard({ sale }: SaleDetailCardProps) {
             <div className="space-y-4">
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Volume</span>
-                <p className="text-sm font-medium">{sale.totalVolume.toFixed(4)} m³</p>
+                <p className="text-sm font-bold text-primary">{sale.totalVolume.toFixed(4)} m³</p>
               </div>
 
               <div className="space-y-1">
