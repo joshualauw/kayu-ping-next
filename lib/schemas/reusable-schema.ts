@@ -17,3 +17,21 @@ export const requiredPositiveNumber = (fieldName: string, isInt: boolean = false
       ? z.int(`${fieldName} must be an integer`)
       : z.number({ message: `${fieldName} is required` }).positive(`${fieldName} must be positive`),
   );
+
+export const positiveNumericString = (fieldName: string) =>
+  z
+    .string()
+    .min(1, `${fieldName} is required`)
+    .refine((val) => {
+      const num = Number(val);
+      return !isNaN(num) && num > 0;
+    }, `${fieldName} must be positive`);
+
+export const positiveIntegerString = (fieldName: string) =>
+  z
+    .string()
+    .min(1, `${fieldName} is required`)
+    .refine((val) => {
+      const num = Number(val);
+      return !isNaN(num) && Number.isInteger(num) && num > 0;
+    }, `${fieldName} must be a positive integer`);

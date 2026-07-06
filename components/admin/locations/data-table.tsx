@@ -32,10 +32,7 @@ export default function LocationsDataTable() {
       setDeletingId(location.id);
 
       try {
-        const formData = new FormData();
-        formData.append("id", String(location.id));
-
-        const result = await deleteLocationAction(formData);
+        const result = await deleteLocationAction(location.id);
 
         if (result.success) {
           toast.success("Location deleted successfully");

@@ -32,10 +32,7 @@ export default function ContactsDataTable() {
       setDeletingId(contact.id);
 
       try {
-        const formData = new FormData();
-        formData.append("id", String(contact.id));
-
-        const result = await deleteContactAction(formData);
+        const result = await deleteContactAction(contact.id);
 
         if (result.success) {
           toast.success("Contact deleted successfully");

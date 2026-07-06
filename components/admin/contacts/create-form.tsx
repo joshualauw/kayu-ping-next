@@ -12,15 +12,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ContactType } from "@/generated/prisma/enums";
 import { createContactAction } from "@/lib/actions/contacts/create-contact";
-import { createContactSchema, type CreateContactSchema } from "@/lib/schemas/contacts/create-contact";
+import { createContactFormSchema, type CreateContactFormInput, type CreateContactFormOutput } from "@/lib/schemas/contacts/create-contact";
 import { ArrowLeft } from "lucide-react";
 
 export default function ContactCreateForm() {
   const router = useRouter();
   const formId = "contact-create-form";
 
-  const form = useForm<CreateContactSchema>({
-    resolver: zodResolver(createContactSchema),
+  const form = useForm<CreateContactFormInput, any, CreateContactFormOutput>({
+    resolver: zodResolver(createContactFormSchema),
     defaultValues: {
       name: "",
       phoneNumber: "",
@@ -31,16 +31,8 @@ export default function ContactCreateForm() {
     },
   });
 
-  async function onSubmit(data: CreateContactSchema) {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("phoneNumber", data.phoneNumber || "");
-    formData.append("email", data.email || "");
-    formData.append("address", data.address || "");
-    formData.append("type", data.type);
-    formData.append("notes", data.notes || "");
-
-    const result = await createContactAction(formData);
+  async function onSubmit(data: CreateContactFormOutput) {
+    const result = await createContactAction(data);
 
     if (result.success) {
       router.push("/admin/contacts");

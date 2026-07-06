@@ -12,15 +12,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LocationType } from "@/generated/prisma/enums";
 import { createLocationAction } from "@/lib/actions/locations/create-location";
-import { createLocationSchema, type CreateLocationSchema } from "@/lib/schemas/locations/create-location";
+import {
+  createLocationFormSchema,
+  type CreateLocationFormInput,
+  type CreateLocationFormOutput,
+} from "@/lib/schemas/locations/create-location";
 import { ArrowLeft } from "lucide-react";
 
 export default function LocationCreateForm() {
   const router = useRouter();
   const formId = "location-create-form";
 
-  const form = useForm<CreateLocationSchema>({
-    resolver: zodResolver(createLocationSchema),
+  const form = useForm<CreateLocationFormInput, any, CreateLocationFormOutput>({
+    resolver: zodResolver(createLocationFormSchema),
     defaultValues: {
       name: "",
       address: "",
@@ -28,13 +32,8 @@ export default function LocationCreateForm() {
     },
   });
 
-  async function onSubmit(data: CreateLocationSchema) {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("address", data.address || "");
-    formData.append("type", data.type);
-
-    const result = await createLocationAction(formData);
+  async function onSubmit(data: CreateLocationFormOutput) {
+    const result = await createLocationAction(data);
 
     if (result.success) {
       router.push("/admin/locations");

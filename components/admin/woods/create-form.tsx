@@ -9,27 +9,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { createWoodAction } from "@/lib/actions/woods/create-wood";
-import { createWoodSchema, type CreateWoodSchema } from "@/lib/schemas/woods/create-wood";
+import { createWoodFormSchema, type CreateWoodFormInput, type CreateWoodFormOutput } from "@/lib/schemas/woods/create-wood";
 import { ArrowLeft } from "lucide-react";
 
 export default function WoodCreateForm() {
   const router = useRouter();
   const formId = "wood-create-form";
 
-  const form = useForm<CreateWoodSchema>({
-    resolver: zodResolver(createWoodSchema),
+  const form = useForm<CreateWoodFormInput, any, CreateWoodFormOutput>({
+    resolver: zodResolver(createWoodFormSchema),
     defaultValues: {
       name: "",
       code: "",
     },
   });
 
-  async function onSubmit(data: CreateWoodSchema) {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("code", data.code);
-
-    const result = await createWoodAction(formData);
+  async function onSubmit(data: CreateWoodFormOutput) {
+    const result = await createWoodAction(data);
 
     if (result.success) {
       router.push("/admin/woods");

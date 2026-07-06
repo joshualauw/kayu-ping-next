@@ -5,27 +5,22 @@ import locationService from "@/lib/services/location-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { createLocationSchema } from "@/lib/schemas/locations/create-location";
+import { createLocationSchema, type CreateLocationSchema } from "@/lib/schemas/locations/create-location";
 import type { ApiResponse } from "@/types/api-response";
 
 export type UpdateLocationResponse = number | null;
 
-export async function updateLocationAction(formData: FormData): Promise<ApiResponse<UpdateLocationResponse>> {
+export async function updateLocationAction(id: number, data: CreateLocationSchema): Promise<ApiResponse<UpdateLocationResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid location id");
     }
 
-    const parsed = createLocationSchema.parse({
-      name: formData.get("name"),
-      address: formData.get("address"),
-      type: formData.get("type"),
-    });
+    const parsed = createLocationSchema.parse(data);
 
     const location = await locationService.updateLocation(id, parsed);
 

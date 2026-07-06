@@ -15,7 +15,8 @@ import { LocationForSelect } from "@/lib/services/location-service";
 import { WoodForSelect } from "@/lib/services/wood-service";
 import { MaterialForSelect } from "@/lib/services/material-service";
 import { ContactForSelect } from "@/lib/services/contact-service";
-import { createPurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CreatePurchaseFormInput, CreatePurchaseFormOutput, createPurchaseFormSchema } from "@/lib/schemas/purchases/create-purchase";
 import { createPurchaseAction } from "@/lib/actions/purchases/create-purchase";
 import dayjs from "@/lib/integrations/dayjs";
 import PurchasesCart from "./cart";
@@ -33,7 +34,8 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<any>({
+  const form = useForm<CreatePurchaseFormInput, any, CreatePurchaseFormOutput>({
+    resolver: zodResolver(createPurchaseFormSchema),
     defaultValues: {
       purchaseDate: dayjs().format("YYYY-MM-DDTHH:mm"),
       locationId: "",
@@ -43,55 +45,36 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
     },
   });
 
-  const handleCustomSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = form.getValues();
-    onSubmit(data);
-  };
-
-  async function onSubmit(data: any) {
-    form.clearErrors();
-
-    const mappedItems = (data.items || []).map((item: any) => {
-      const material = materials.find((m) => m.id === Number(item.materialId));
-      const measurement = material?.measurement;
-
-      return {
-        woodId: item.woodId ? Number(item.woodId) : undefined,
-        materialId: item.materialId ? Number(item.materialId) : undefined,
-        measurement,
-        width: item.width === "" ? null : item.width,
-        height: item.height === "" ? null : item.height,
-        diameterSmall: item.diameterSmall === "" ? null : item.diameterSmall,
-        diameterLarge: item.diameterLarge === "" ? null : item.diameterLarge,
-        length: item.length === "" ? undefined : item.length,
-        quantity: item.quantity === "" ? undefined : item.quantity,
-        pricePerCubic: item.pricePerCubic === "" ? undefined : item.pricePerCubic,
-      };
-    });
-
-    const flattenedData = {
-      purchaseDate: data.purchaseDate,
-      locationId: data.locationId,
-      supplierId: data.supplierId,
-      notes: data.notes || null,
-      items: mappedItems,
-    };
-
-    const validation = createPurchaseSchema.safeParse(flattenedData);
-
-    if (!validation.success) {
-      validation.error.issues.forEach((issue) => {
-        const path = issue.path;
-        form.setError(path.join(".") as any, { message: issue.message });
-      });
-      toast.error("Please fix the validation errors in the form.");
-      return;
-    }
-
+  async function onSubmit(data: CreatePurchaseFormOutput) {
     setIsSubmitting(true);
     try {
-      const result = await createPurchaseAction(validation.data);
+      const mappedItems = data.items.map((item) => {
+        const material = materials.find((m) => m.id === Number(item.materialId));
+        const measurement = material?.measurement as "CUBE" | "CYLINDER";
+
+        return {
+          woodId: Number(item.woodId),
+          materialId: Number(item.materialId),
+          measurement,
+          width: item.width && item.width !== "" ? Number(item.width) : null,
+          height: item.height && item.height !== "" ? Number(item.height) : null,
+          diameterSmall: item.diameterSmall && item.diameterSmall !== "" ? Number(item.diameterSmall) : null,
+          diameterLarge: item.diameterLarge && item.diameterLarge !== "" ? Number(item.diameterLarge) : null,
+          length: Number(item.length),
+          quantity: Number(item.quantity),
+          pricePerCubic: Number(item.pricePerCubic),
+        };
+      });
+
+      const payload = {
+        purchaseDate: data.purchaseDate,
+        locationId: Number(data.locationId),
+        supplierId: Number(data.supplierId),
+        notes: data.notes && data.notes.trim() !== "" ? data.notes : null,
+        items: mappedItems,
+      };
+
+      const result = await createPurchaseAction(payload);
 
       if (result.success) {
         router.push("/admin/purchases");
@@ -99,6 +82,8 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
       } else {
         toast.error(result.message);
       }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to save purchase");
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +96,7 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
         <CardDescription>Record a new wood/material purchase transaction.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id={formId} onSubmit={handleCustomSubmit} className="space-y-6">
+        <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FieldGroup className="flex flex-col gap-6">
             <Controller
               name="purchaseDate"

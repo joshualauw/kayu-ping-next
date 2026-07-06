@@ -9,13 +9,12 @@ import type { ApiResponse } from "@/types/api-response";
 
 export type DeleteContactResponse = number | null;
 
-export async function deleteContactAction(formData: FormData): Promise<ApiResponse<DeleteContactResponse>> {
+export async function deleteContactAction(id: number): Promise<ApiResponse<DeleteContactResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid contact id");
     }

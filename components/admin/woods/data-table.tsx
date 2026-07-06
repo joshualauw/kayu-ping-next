@@ -32,10 +32,7 @@ export default function WoodsDataTable() {
       setDeletingId(wood.id);
 
       try {
-        const formData = new FormData();
-        formData.append("id", String(wood.id));
-
-        const result = await deleteWoodAction(formData);
+        const result = await deleteWoodAction(wood.id);
 
         if (result.success) {
           toast.success("Wood deleted successfully");

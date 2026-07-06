@@ -6,20 +6,17 @@ import materialService from "@/lib/services/material-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { createMaterialSchema } from "@/lib/schemas/materials/create-material";
+import { createMaterialSchema, type CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
 
 export type CreateMaterialResponse = number | null;
 
-export async function createMaterialAction(formData: FormData): Promise<ApiResponse<CreateMaterialResponse>> {
+export async function createMaterialAction(data: CreateMaterialSchema): Promise<ApiResponse<CreateMaterialResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const parsed = createMaterialSchema.parse({
-      name: formData.get("name"),
-      measurement: formData.get("measurement"),
-    });
+    const parsed = createMaterialSchema.parse(data);
 
     const material = await materialService.createMaterial(parsed);
 

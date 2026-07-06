@@ -5,26 +5,22 @@ import woodService from "@/lib/services/wood-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { createWoodSchema } from "@/lib/schemas/woods/create-wood";
+import { createWoodSchema, type CreateWoodSchema } from "@/lib/schemas/woods/create-wood";
 import type { ApiResponse } from "@/types/api-response";
 
 export type UpdateWoodResponse = number | null;
 
-export async function updateWoodAction(formData: FormData): Promise<ApiResponse<UpdateWoodResponse>> {
+export async function updateWoodAction(id: number, data: CreateWoodSchema): Promise<ApiResponse<UpdateWoodResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid wood id");
     }
 
-    const parsed = createWoodSchema.parse({
-      name: formData.get("name"),
-      code: formData.get("code"),
-    });
+    const parsed = createWoodSchema.parse(data);
 
     const wood = await woodService.updateWood(id, parsed);
 

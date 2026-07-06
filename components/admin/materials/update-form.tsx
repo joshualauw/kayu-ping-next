@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Measurement } from "@/generated/prisma/enums";
 import { updateMaterialAction } from "@/lib/actions/materials/update-material";
-import { createMaterialSchema, type CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
+import { updateMaterialFormSchema, type UpdateMaterialFormInput, type UpdateMaterialFormOutput } from "@/lib/schemas/materials/update-material";
 import { ArrowLeft } from "lucide-react";
 
 interface MaterialUpdateFormProps {
@@ -26,20 +26,16 @@ export default function MaterialUpdateForm({ material }: MaterialUpdateFormProps
   const router = useRouter();
   const formId = "material-update-form";
 
-  const form = useForm<CreateMaterialSchema>({
-    resolver: zodResolver(createMaterialSchema),
+  const form = useForm<UpdateMaterialFormInput, any, UpdateMaterialFormOutput>({
+    resolver: zodResolver(updateMaterialFormSchema),
     defaultValues: {
       name: material.name,
       measurement: material.measurement,
     },
   });
 
-  async function onSubmit(data: CreateMaterialSchema) {
-    const formData = new FormData();
-    formData.append("id", String(material.id));
-    formData.append("name", data.name);
-
-    const result = await updateMaterialAction(formData);
+  async function onSubmit(data: UpdateMaterialFormOutput) {
+    const result = await updateMaterialAction(material.id, data);
 
     if (result.success) {
       router.push("/admin/materials");

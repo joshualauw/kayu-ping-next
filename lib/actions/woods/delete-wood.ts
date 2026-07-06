@@ -9,13 +9,12 @@ import type { ApiResponse } from "@/types/api-response";
 
 export type DeleteWoodResponse = number | null;
 
-export async function deleteWoodAction(formData: FormData): Promise<ApiResponse<DeleteWoodResponse>> {
+export async function deleteWoodAction(id: number): Promise<ApiResponse<DeleteWoodResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid wood id");
     }

@@ -6,20 +6,17 @@ import woodService from "@/lib/services/wood-service";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { createWoodSchema } from "@/lib/schemas/woods/create-wood";
+import { createWoodSchema, type CreateWoodSchema } from "@/lib/schemas/woods/create-wood";
 
 export type CreateWoodResponse = number | null;
 
-export async function createWoodAction(formData: FormData): Promise<ApiResponse<CreateWoodResponse>> {
+export async function createWoodAction(data: CreateWoodSchema): Promise<ApiResponse<CreateWoodResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const parsed = createWoodSchema.parse({
-      name: formData.get("name"),
-      code: formData.get("code"),
-    });
+    const parsed = createWoodSchema.parse(data);
 
     const wood = await woodService.createWood(parsed);
 

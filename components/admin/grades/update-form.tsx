@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { updateGradeAction } from "@/lib/actions/grades/update-grade";
-import { createGradeSchema, type CreateGradeSchema } from "@/lib/schemas/grades/create-grade";
+import { createGradeFormSchema, type CreateGradeFormInput, type CreateGradeFormOutput } from "@/lib/schemas/grades/create-grade";
 import { ArrowLeft } from "lucide-react";
 import type { Grade } from "@/generated/prisma/client";
 
@@ -21,21 +21,16 @@ export default function GradeUpdateForm({ grade }: GradeUpdateFormProps) {
   const router = useRouter();
   const formId = "grade-update-form";
 
-  const form = useForm<CreateGradeSchema>({
-    resolver: zodResolver(createGradeSchema),
+  const form = useForm<CreateGradeFormInput, any, CreateGradeFormOutput>({
+    resolver: zodResolver(createGradeFormSchema),
     defaultValues: {
       name: grade.name,
       code: grade.code,
     },
   });
 
-  async function onSubmit(data: CreateGradeSchema) {
-    const formData = new FormData();
-    formData.append("id", String(grade.id));
-    formData.append("name", data.name);
-    formData.append("code", data.code);
-
-    const result = await updateGradeAction(formData);
+  async function onSubmit(data: CreateGradeFormOutput) {
+    const result = await updateGradeAction(grade.id, data);
 
     if (result.success) {
       router.push("/admin/grades");

@@ -12,7 +12,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LocationType } from "@/generated/prisma/enums";
 import { updateLocationAction } from "@/lib/actions/locations/update-location";
-import { createLocationSchema, type CreateLocationSchema } from "@/lib/schemas/locations/create-location";
+import {
+  createLocationFormSchema,
+  type CreateLocationFormInput,
+  type CreateLocationFormOutput,
+} from "@/lib/schemas/locations/create-location";
 import { ArrowLeft } from "lucide-react";
 
 interface LocationUpdateFormProps {
@@ -28,8 +32,8 @@ export default function LocationUpdateForm({ location }: LocationUpdateFormProps
   const router = useRouter();
   const formId = "location-update-form";
 
-  const form = useForm<CreateLocationSchema>({
-    resolver: zodResolver(createLocationSchema),
+  const form = useForm<CreateLocationFormInput, any, CreateLocationFormOutput>({
+    resolver: zodResolver(createLocationFormSchema),
     defaultValues: {
       name: location.name,
       address: location.address || "",
@@ -37,14 +41,8 @@ export default function LocationUpdateForm({ location }: LocationUpdateFormProps
     },
   });
 
-  async function onSubmit(data: CreateLocationSchema) {
-    const formData = new FormData();
-    formData.append("id", String(location.id));
-    formData.append("name", data.name);
-    formData.append("address", data.address || "");
-    formData.append("type", data.type);
-
-    const result = await updateLocationAction(formData);
+  async function onSubmit(data: CreateLocationFormOutput) {
+    const result = await updateLocationAction(location.id, data);
 
     if (result.success) {
       router.push("/admin/locations");

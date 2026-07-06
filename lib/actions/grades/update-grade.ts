@@ -5,26 +5,22 @@ import gradeService from "@/lib/services/grade-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { createGradeSchema } from "@/lib/schemas/grades/create-grade";
+import { createGradeSchema, type CreateGradeSchema } from "@/lib/schemas/grades/create-grade";
 import type { ApiResponse } from "@/types/api-response";
 
 export type UpdateGradeResponse = number | null;
 
-export async function updateGradeAction(formData: FormData): Promise<ApiResponse<UpdateGradeResponse>> {
+export async function updateGradeAction(id: number, data: CreateGradeSchema): Promise<ApiResponse<UpdateGradeResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid grade id");
     }
 
-    const parsed = createGradeSchema.parse({
-      name: formData.get("name"),
-      code: formData.get("code"),
-    });
+    const parsed = createGradeSchema.parse(data);
 
     const grade = await gradeService.updateGrade(id, parsed);
 

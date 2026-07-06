@@ -32,10 +32,7 @@ export default function GradesDataTable() {
       setDeletingId(grade.id);
 
       try {
-        const formData = new FormData();
-        formData.append("id", String(grade.id));
-
-        const result = await deleteGradeAction(formData);
+        const result = await deleteGradeAction(grade.id);
 
         if (result.success) {
           toast.success("Grade deleted successfully");

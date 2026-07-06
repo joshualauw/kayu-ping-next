@@ -9,27 +9,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { createGradeAction } from "@/lib/actions/grades/create-grade";
-import { createGradeSchema, type CreateGradeSchema } from "@/lib/schemas/grades/create-grade";
+import { createGradeFormSchema, type CreateGradeFormInput, type CreateGradeFormOutput } from "@/lib/schemas/grades/create-grade";
 import { ArrowLeft } from "lucide-react";
 
 export default function GradeCreateForm() {
   const router = useRouter();
   const formId = "grade-create-form";
 
-  const form = useForm<CreateGradeSchema>({
-    resolver: zodResolver(createGradeSchema),
+  const form = useForm<CreateGradeFormInput, any, CreateGradeFormOutput>({
+    resolver: zodResolver(createGradeFormSchema),
     defaultValues: {
       name: "",
       code: "",
     },
   });
 
-  async function onSubmit(data: CreateGradeSchema) {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("code", data.code);
-
-    const result = await createGradeAction(formData);
+  async function onSubmit(data: CreateGradeFormOutput) {
+    const result = await createGradeAction(data);
 
     if (result.success) {
       router.push("/admin/grades");

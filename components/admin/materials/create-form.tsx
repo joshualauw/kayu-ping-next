@@ -11,27 +11,23 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Measurement } from "@/generated/prisma/enums";
 import { createMaterialAction } from "@/lib/actions/materials/create-material";
-import { createMaterialSchema, type CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
+import { createMaterialFormSchema, type CreateMaterialFormInput, type CreateMaterialFormOutput } from "@/lib/schemas/materials/create-material";
 import { ArrowLeft } from "lucide-react";
 
 export default function MaterialCreateForm() {
   const router = useRouter();
   const formId = "material-create-form";
 
-  const form = useForm<CreateMaterialSchema>({
-    resolver: zodResolver(createMaterialSchema),
+  const form = useForm<CreateMaterialFormInput, any, CreateMaterialFormOutput>({
+    resolver: zodResolver(createMaterialFormSchema),
     defaultValues: {
       name: "",
       measurement: undefined,
     },
   });
 
-  async function onSubmit(data: CreateMaterialSchema) {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("measurement", data.measurement);
-
-    const result = await createMaterialAction(formData);
+  async function onSubmit(data: CreateMaterialFormOutput) {
+    const result = await createMaterialAction(data);
 
     if (result.success) {
       router.push("/admin/materials");

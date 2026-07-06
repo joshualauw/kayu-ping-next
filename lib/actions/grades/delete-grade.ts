@@ -9,13 +9,12 @@ import type { ApiResponse } from "@/types/api-response";
 
 export type DeleteGradeResponse = number | null;
 
-export async function deleteGradeAction(formData: FormData): Promise<ApiResponse<DeleteGradeResponse>> {
+export async function deleteGradeAction(id: number): Promise<ApiResponse<DeleteGradeResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid grade id");
     }

@@ -32,10 +32,7 @@ export default function MaterialsDataTable() {
       setDeletingId(material.id);
 
       try {
-        const formData = new FormData();
-        formData.append("id", String(material.id));
-
-        const result = await deleteMaterialAction(formData);
+        const result = await deleteMaterialAction(material.id);
 
         if (result.success) {
           toast.success("Material deleted successfully");

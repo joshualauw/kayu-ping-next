@@ -9,13 +9,12 @@ import type { ApiResponse } from "@/types/api-response";
 
 export type DeleteLocationResponse = number | null;
 
-export async function deleteLocationAction(formData: FormData): Promise<ApiResponse<DeleteLocationResponse>> {
+export async function deleteLocationAction(id: number): Promise<ApiResponse<DeleteLocationResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid location id");
     }

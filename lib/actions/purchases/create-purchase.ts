@@ -5,12 +5,12 @@ import { getAuthenticatedUser } from "@/lib/helpers/user";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { createPurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
+import { createPurchaseSchema, type CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
 import purchaseService from "@/lib/services/purchase-service";
 
 export type CreatePurchaseResponse = number | null;
 
-export async function createPurchaseAction(data: any): Promise<ApiResponse<CreatePurchaseResponse>> {
+export async function createPurchaseAction(data: CreatePurchaseSchema): Promise<ApiResponse<CreatePurchaseResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);

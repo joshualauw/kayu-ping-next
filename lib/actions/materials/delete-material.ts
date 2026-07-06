@@ -9,13 +9,12 @@ import type { ApiResponse } from "@/types/api-response";
 
 export type DeleteMaterialResponse = number | null;
 
-export async function deleteMaterialAction(formData: FormData): Promise<ApiResponse<DeleteMaterialResponse>> {
+export async function deleteMaterialAction(id: number): Promise<ApiResponse<DeleteMaterialResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid material id");
     }

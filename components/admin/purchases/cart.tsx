@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { useFieldArray, Control, Controller, useWatch } from "react-hook-form";
+import { useFieldArray, Control, Controller, useWatch, UseFormSetValue } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
+import { CreatePurchaseFormOutput } from "@/lib/schemas/purchases/create-purchase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -14,11 +15,11 @@ import { calculateWoodVolume } from "@/lib/helpers/core";
 import { formatCurrency } from "@/lib/utils";
 
 interface PurchasesCartProps {
-  control: Control<any>;
+  control: Control<CreatePurchaseFormOutput>;
   woods: WoodForSelect[];
   materials: MaterialForSelect[];
   errors?: any;
-  setValue: (name: string, value: any) => void;
+  setValue: UseFormSetValue<CreatePurchaseFormOutput>;
 }
 
 export default function PurchasesCart({ control, woods, materials, errors, setValue }: PurchasesCartProps) {
@@ -41,6 +42,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
     appendItem({
       woodId: "",
       materialId: "",
+      measurement: "",
       pricePerCubic: "",
       width: "",
       height: "",
@@ -55,7 +57,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
     let total = 0;
     let totalVol = 0;
 
-    const computed = (watchedItems || []).map((item: any) => {
+    const computed = (watchedItems || []).map((item) => {
       let volume = 0;
       let totalVolume = 0;
       let subtotal = 0;
@@ -183,6 +185,8 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                 <Select
                                   onValueChange={(newVal) => {
                                     field.onChange(newVal);
+                                    const material = materials.find((m) => m.id === Number(newVal));
+                                    setValue(`items.${itemIndex}.measurement`, material?.measurement || "");
                                     setValue(`items.${itemIndex}.width`, "");
                                     setValue(`items.${itemIndex}.height`, "");
                                     setValue(`items.${itemIndex}.diameterSmall`, "");

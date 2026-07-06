@@ -5,30 +5,22 @@ import contactService from "@/lib/services/contact-service";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
-import { createContactSchema } from "@/lib/schemas/contacts/create-contact";
+import { createContactSchema, type CreateContactSchema } from "@/lib/schemas/contacts/create-contact";
 import type { ApiResponse } from "@/types/api-response";
 
 export type UpdateContactResponse = number | null;
 
-export async function updateContactAction(formData: FormData): Promise<ApiResponse<UpdateContactResponse>> {
+export async function updateContactAction(id: number, data: CreateContactSchema): Promise<ApiResponse<UpdateContactResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);
     if (!user) throw new AuthorizationError();
 
-    const id = Number(formData.get("id"));
     if (!Number.isInteger(id) || id <= 0) {
       throw new Error("Invalid contact id");
     }
 
-    const parsed = createContactSchema.parse({
-      name: formData.get("name"),
-      phoneNumber: formData.get("phoneNumber"),
-      email: formData.get("email"),
-      address: formData.get("address"),
-      type: formData.get("type"),
-      notes: formData.get("notes"),
-    });
+    const parsed = createContactSchema.parse(data);
 
     const contact = await contactService.updateContact(id, parsed);
 
