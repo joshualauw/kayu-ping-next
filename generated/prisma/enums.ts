@@ -45,6 +45,14 @@ export const ProcessingType = {
 export type ProcessingType = (typeof ProcessingType)[keyof typeof ProcessingType]
 
 
+export const GradingType = {
+  BEFORE: 'BEFORE',
+  AFTER: 'AFTER'
+} as const
+
+export type GradingType = (typeof GradingType)[keyof typeof GradingType]
+
+
 export const MutationType = {
   IN: 'IN',
   OUT: 'OUT'
@@ -58,7 +66,8 @@ export const ReferenceType = {
   SALES: 'SALES',
   ADJUSTMENT: 'ADJUSTMENT',
   PROCESSING: 'PROCESSING',
-  MOVEMENT: 'MOVEMENT'
+  MOVEMENT: 'MOVEMENT',
+  GRADING: 'GRADING'
 } as const
 
 export type ReferenceType = (typeof ReferenceType)[keyof typeof ReferenceType]

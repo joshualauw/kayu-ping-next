@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import DataTable from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllLocations } from "@/hooks/swr/locations/use-get-all-locations";
-import type { LocationListItem } from "@/app/api/locations/route";
+import type { LocationListItem } from "@/lib/services/location-service";
 import { formatDate } from "@/lib/utils";
 import { deleteLocationAction } from "@/lib/actions/locations/delete-location";
 

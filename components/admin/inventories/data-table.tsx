@@ -9,6 +9,8 @@ import type { InventoryListItem } from "@/lib/services/inventory-service";
 import { formatDate } from "@/lib/utils";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 
+import { Badge } from "@/components/ui/badge";
+
 export default function InventoriesDataTable() {
   const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
 
@@ -42,6 +44,18 @@ export default function InventoriesDataTable() {
                 measurement: variant.material.measurement,
               })}
             </div>
+          );
+        },
+      },
+      {
+        id: "grade",
+        header: "Grade",
+        cell: ({ row }) => {
+          const grade = row.original.grade;
+          return grade ? (
+            <Badge variant="secondary">{grade.code}</Badge>
+          ) : (
+            <span className="text-xs text-muted-foreground italic">Ungraded</span>
           );
         },
       },

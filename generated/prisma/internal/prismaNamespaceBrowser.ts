@@ -57,6 +57,7 @@ export const ModelName = {
   Location: 'Location',
   Material: 'Material',
   WoodVariant: 'WoodVariant',
+  Grade: 'Grade',
   Inventory: 'Inventory',
   StockMutation: 'StockMutation',
   Purchase: 'Purchase',
@@ -66,7 +67,9 @@ export const ModelName = {
   Processing: 'Processing',
   ProcessingItem: 'ProcessingItem',
   Movement: 'Movement',
-  MovementItem: 'MovementItem'
+  MovementItem: 'MovementItem',
+  Grading: 'Grading',
+  GradingItem: 'GradingItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -163,10 +166,22 @@ export const WoodVariantScalarFieldEnum = {
 export type WoodVariantScalarFieldEnum = (typeof WoodVariantScalarFieldEnum)[keyof typeof WoodVariantScalarFieldEnum]
 
 
+export const GradeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
+
+
 export const InventoryScalarFieldEnum = {
   id: 'id',
   woodVariantId: 'woodVariantId',
   locationId: 'locationId',
+  gradeId: 'gradeId',
   stock: 'stock',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -182,6 +197,7 @@ export const StockMutationScalarFieldEnum = {
   locationId: 'locationId',
   type: 'type',
   quantity: 'quantity',
+  gradeId: 'gradeId',
   referenceType: 'referenceType',
   referenceId: 'referenceId',
   notes: 'notes',
@@ -304,6 +320,34 @@ export const MovementItemScalarFieldEnum = {
 } as const
 
 export type MovementItemScalarFieldEnum = (typeof MovementItemScalarFieldEnum)[keyof typeof MovementItemScalarFieldEnum]
+
+
+export const GradingScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  gradingDate: 'gradingDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GradingScalarFieldEnum = (typeof GradingScalarFieldEnum)[keyof typeof GradingScalarFieldEnum]
+
+
+export const GradingItemScalarFieldEnum = {
+  id: 'id',
+  gradeId: 'gradeId',
+  gradingId: 'gradingId',
+  woodVariantId: 'woodVariantId',
+  type: 'type',
+  quantity: 'quantity',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GradingItemScalarFieldEnum = (typeof GradingItemScalarFieldEnum)[keyof typeof GradingItemScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { StockMutation, WoodVariant, Wood, Material, Location } from "@/generated/prisma/client";
+import { StockMutation, WoodVariant, Wood, Material, Location, Grade } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { Prisma } from "@/generated/prisma/client";
 
@@ -9,6 +9,7 @@ export type StockMutationListItem = StockMutation & {
     material: Material;
   };
   location: Location;
+  grade: Grade | null;
 };
 
 class StockMutationService {
@@ -39,6 +40,7 @@ class StockMutationService {
             },
           },
           location: true,
+          grade: true,
         },
         skip: page * size,
         take: size,

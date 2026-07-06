@@ -66,7 +66,7 @@ export default function WoodsDataTable() {
       {
         accessorKey: "code",
         header: "Code",
-        cell: ({ row }) => <span className="font-mono text-sm">{row.original.code}</span>,
+        cell: ({ row }) => <span className="whitespace-nowrap">{row.original.code}</span>,
       },
       {
         accessorKey: "createdAt",

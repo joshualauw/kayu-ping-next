@@ -5,13 +5,14 @@ import { getAuthenticatedUser } from "@/lib/helpers/user";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { ApiResponse } from "@/types/api-response";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import type { Inventory, WoodVariant, Wood, Material } from "@/generated/prisma/client";
+import type { Inventory, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
 
 export type LocationInventoryItem = Inventory & {
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
   };
+  grade: Grade | null;
 };
 
 export type GetLocationInventoryResponse = LocationInventoryItem[];

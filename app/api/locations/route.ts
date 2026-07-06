@@ -7,8 +7,6 @@ import { ApiResponse } from "@/types/api-response";
 import { tableQuerySchema } from "@/lib/schemas/table-query";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 
-export type { LocationListItem } from "@/lib/services/location-service";
-
 export type GetAllLocationsResponse = {
   locations: LocationListItem[];
   count: number;

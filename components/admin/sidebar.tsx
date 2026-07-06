@@ -16,7 +16,6 @@ import {
   ChevronRight,
   HandCoins,
   Gauge,
-  MapPin,
   Package,
   Repeat,
   ShoppingBag,
@@ -25,6 +24,10 @@ import {
   Users,
   Boxes,
   Truck,
+  PackageCheck,
+  Warehouse,
+  UserRoundSearch,
+  ChartColumnStacked,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -62,7 +65,7 @@ export function AdminSidebar() {
     },
     {
       name: "Locations",
-      icon: <MapPin className="mr-1" />,
+      icon: <Warehouse className="mr-1" />,
       href: "/admin/locations",
       group: "Master",
     },
@@ -85,6 +88,12 @@ export function AdminSidebar() {
       group: "Master",
     },
     {
+      name: "Grades",
+      icon: <ChartColumnStacked className="mr-1" />,
+      href: "/admin/grades",
+      group: "Master",
+    },
+    {
       name: "Purchases",
       icon: <ShoppingBag className="mr-1" />,
       href: "/admin/purchases",
@@ -100,6 +109,18 @@ export function AdminSidebar() {
       name: "Processing",
       icon: <Settings className="mr-1" />,
       href: "/admin/processings",
+      group: "Core",
+    },
+    {
+      name: "Adjustment",
+      icon: <PackageCheck className="mr-1" />,
+      href: "#",
+      group: "Core",
+    },
+    {
+      name: "Grading",
+      icon: <UserRoundSearch className="mr-1" />,
+      href: "/admin/gradings",
       group: "Core",
     },
     {

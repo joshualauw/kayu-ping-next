@@ -30,6 +30,7 @@ export type InventoryAvgAggregateOutputType = {
   id: number | null
   woodVariantId: number | null
   locationId: number | null
+  gradeId: number | null
   stock: number | null
 }
 
@@ -37,6 +38,7 @@ export type InventorySumAggregateOutputType = {
   id: number | null
   woodVariantId: number | null
   locationId: number | null
+  gradeId: number | null
   stock: number | null
 }
 
@@ -44,6 +46,7 @@ export type InventoryMinAggregateOutputType = {
   id: number | null
   woodVariantId: number | null
   locationId: number | null
+  gradeId: number | null
   stock: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -53,6 +56,7 @@ export type InventoryMaxAggregateOutputType = {
   id: number | null
   woodVariantId: number | null
   locationId: number | null
+  gradeId: number | null
   stock: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -62,6 +66,7 @@ export type InventoryCountAggregateOutputType = {
   id: number
   woodVariantId: number
   locationId: number
+  gradeId: number
   stock: number
   createdAt: number
   updatedAt: number
@@ -73,6 +78,7 @@ export type InventoryAvgAggregateInputType = {
   id?: true
   woodVariantId?: true
   locationId?: true
+  gradeId?: true
   stock?: true
 }
 
@@ -80,6 +86,7 @@ export type InventorySumAggregateInputType = {
   id?: true
   woodVariantId?: true
   locationId?: true
+  gradeId?: true
   stock?: true
 }
 
@@ -87,6 +94,7 @@ export type InventoryMinAggregateInputType = {
   id?: true
   woodVariantId?: true
   locationId?: true
+  gradeId?: true
   stock?: true
   createdAt?: true
   updatedAt?: true
@@ -96,6 +104,7 @@ export type InventoryMaxAggregateInputType = {
   id?: true
   woodVariantId?: true
   locationId?: true
+  gradeId?: true
   stock?: true
   createdAt?: true
   updatedAt?: true
@@ -105,6 +114,7 @@ export type InventoryCountAggregateInputType = {
   id?: true
   woodVariantId?: true
   locationId?: true
+  gradeId?: true
   stock?: true
   createdAt?: true
   updatedAt?: true
@@ -201,6 +211,7 @@ export type InventoryGroupByOutputType = {
   id: number
   woodVariantId: number
   locationId: number
+  gradeId: number | null
   stock: number
   createdAt: Date
   updatedAt: Date
@@ -233,22 +244,26 @@ export type InventoryWhereInput = {
   id?: Prisma.IntFilter<"Inventory"> | number
   woodVariantId?: Prisma.IntFilter<"Inventory"> | number
   locationId?: Prisma.IntFilter<"Inventory"> | number
+  gradeId?: Prisma.IntNullableFilter<"Inventory"> | number | null
   stock?: Prisma.IntFilter<"Inventory"> | number
   createdAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
 }
 
 export type InventoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   stock?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   variant?: Prisma.WoodVariantOrderByWithRelationInput
   location?: Prisma.LocationOrderByWithRelationInput
+  grade?: Prisma.GradeOrderByWithRelationInput
 }
 
 export type InventoryWhereUniqueInput = Prisma.AtLeast<{
@@ -258,17 +273,20 @@ export type InventoryWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.InventoryWhereInput | Prisma.InventoryWhereInput[]
   woodVariantId?: Prisma.IntFilter<"Inventory"> | number
   locationId?: Prisma.IntFilter<"Inventory"> | number
+  gradeId?: Prisma.IntNullableFilter<"Inventory"> | number | null
   stock?: Prisma.IntFilter<"Inventory"> | number
   createdAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
 }, "id">
 
 export type InventoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   stock?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -286,6 +304,7 @@ export type InventoryScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Inventory"> | number
   woodVariantId?: Prisma.IntWithAggregatesFilter<"Inventory"> | number
   locationId?: Prisma.IntWithAggregatesFilter<"Inventory"> | number
+  gradeId?: Prisma.IntNullableWithAggregatesFilter<"Inventory"> | number | null
   stock?: Prisma.IntWithAggregatesFilter<"Inventory"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Inventory"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Inventory"> | Date | string
@@ -297,12 +316,14 @@ export type InventoryCreateInput = {
   updatedAt?: Date | string
   variant: Prisma.WoodVariantCreateNestedOneWithoutInventoriesInput
   location: Prisma.LocationCreateNestedOneWithoutInventoriesInput
+  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
 }
 
 export type InventoryUncheckedCreateInput = {
   id?: number
   woodVariantId: number
   locationId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -314,12 +335,14 @@ export type InventoryUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput
   location?: Prisma.LocationUpdateOneRequiredWithoutInventoriesNestedInput
+  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
 }
 
 export type InventoryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -329,6 +352,7 @@ export type InventoryCreateManyInput = {
   id?: number
   woodVariantId: number
   locationId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -344,6 +368,7 @@ export type InventoryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -363,6 +388,7 @@ export type InventoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -372,6 +398,7 @@ export type InventoryAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   stock?: Prisma.SortOrder
 }
 
@@ -379,6 +406,7 @@ export type InventoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -388,6 +416,7 @@ export type InventoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -397,6 +426,7 @@ export type InventorySumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   stock?: Prisma.SortOrder
 }
 
@@ -484,16 +514,68 @@ export type InventoryUncheckedUpdateManyWithoutVariantNestedInput = {
   deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
 }
 
+export type InventoryCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput> | Prisma.InventoryCreateWithoutGradeInput[] | Prisma.InventoryUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutGradeInput | Prisma.InventoryCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.InventoryCreateManyGradeInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+}
+
+export type InventoryUncheckedCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput> | Prisma.InventoryCreateWithoutGradeInput[] | Prisma.InventoryUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutGradeInput | Prisma.InventoryCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.InventoryCreateManyGradeInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+}
+
+export type InventoryUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput> | Prisma.InventoryCreateWithoutGradeInput[] | Prisma.InventoryUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutGradeInput | Prisma.InventoryCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutGradeInput | Prisma.InventoryUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.InventoryCreateManyGradeInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput | Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutGradeInput | Prisma.InventoryUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+}
+
+export type InventoryUncheckedUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput> | Prisma.InventoryCreateWithoutGradeInput[] | Prisma.InventoryUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutGradeInput | Prisma.InventoryCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutGradeInput | Prisma.InventoryUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.InventoryCreateManyGradeInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput | Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutGradeInput | Prisma.InventoryUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type InventoryCreateWithoutLocationInput = {
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
   variant: Prisma.WoodVariantCreateNestedOneWithoutInventoriesInput
+  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
 }
 
 export type InventoryUncheckedCreateWithoutLocationInput = {
   id?: number
   woodVariantId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -532,6 +614,7 @@ export type InventoryScalarWhereInput = {
   id?: Prisma.IntFilter<"Inventory"> | number
   woodVariantId?: Prisma.IntFilter<"Inventory"> | number
   locationId?: Prisma.IntFilter<"Inventory"> | number
+  gradeId?: Prisma.IntNullableFilter<"Inventory"> | number | null
   stock?: Prisma.IntFilter<"Inventory"> | number
   createdAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
@@ -542,11 +625,13 @@ export type InventoryCreateWithoutVariantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   location: Prisma.LocationCreateNestedOneWithoutInventoriesInput
+  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
 }
 
 export type InventoryUncheckedCreateWithoutVariantInput = {
   id?: number
   locationId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -578,9 +663,53 @@ export type InventoryUpdateManyWithWhereWithoutVariantInput = {
   data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutVariantInput>
 }
 
+export type InventoryCreateWithoutGradeInput = {
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  variant: Prisma.WoodVariantCreateNestedOneWithoutInventoriesInput
+  location: Prisma.LocationCreateNestedOneWithoutInventoriesInput
+}
+
+export type InventoryUncheckedCreateWithoutGradeInput = {
+  id?: number
+  woodVariantId: number
+  locationId: number
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InventoryCreateOrConnectWithoutGradeInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput>
+}
+
+export type InventoryCreateManyGradeInputEnvelope = {
+  data: Prisma.InventoryCreateManyGradeInput | Prisma.InventoryCreateManyGradeInput[]
+  skipDuplicates?: boolean
+}
+
+export type InventoryUpsertWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutGradeInput, Prisma.InventoryUncheckedUpdateWithoutGradeInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput>
+}
+
+export type InventoryUpdateWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutGradeInput, Prisma.InventoryUncheckedUpdateWithoutGradeInput>
+}
+
+export type InventoryUpdateManyWithWhereWithoutGradeInput = {
+  where: Prisma.InventoryScalarWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutGradeInput>
+}
+
 export type InventoryCreateManyLocationInput = {
   id?: number
   woodVariantId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -591,11 +720,13 @@ export type InventoryUpdateWithoutLocationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput
+  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutLocationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -604,6 +735,7 @@ export type InventoryUncheckedUpdateWithoutLocationInput = {
 export type InventoryUncheckedUpdateManyWithoutLocationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -612,6 +744,7 @@ export type InventoryUncheckedUpdateManyWithoutLocationInput = {
 export type InventoryCreateManyVariantInput = {
   id?: number
   locationId: number
+  gradeId?: number | null
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -622,11 +755,13 @@ export type InventoryUpdateWithoutVariantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   location?: Prisma.LocationUpdateOneRequiredWithoutInventoriesNestedInput
+  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -634,6 +769,42 @@ export type InventoryUncheckedUpdateWithoutVariantInput = {
 
 export type InventoryUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventoryCreateManyGradeInput = {
+  id?: number
+  woodVariantId: number
+  locationId: number
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InventoryUpdateWithoutGradeInput = {
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutInventoriesNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventoryUncheckedUpdateManyWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -646,56 +817,66 @@ export type InventorySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   woodVariantId?: boolean
   locationId?: boolean
+  gradeId?: boolean
   stock?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["inventory"]>
 
 export type InventorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   woodVariantId?: boolean
   locationId?: boolean
+  gradeId?: boolean
   stock?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["inventory"]>
 
 export type InventorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   woodVariantId?: boolean
   locationId?: boolean
+  gradeId?: boolean
   stock?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["inventory"]>
 
 export type InventorySelectScalar = {
   id?: boolean
   woodVariantId?: boolean
   locationId?: boolean
+  gradeId?: boolean
   stock?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InventoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "woodVariantId" | "locationId" | "stock" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
+export type InventoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "woodVariantId" | "locationId" | "gradeId" | "stock" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
 export type InventoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }
 export type InventoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }
 export type InventoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  grade?: boolean | Prisma.Inventory$gradeArgs<ExtArgs>
 }
 
 export type $InventoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -703,11 +884,13 @@ export type $InventoryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     variant: Prisma.$WoodVariantPayload<ExtArgs>
     location: Prisma.$LocationPayload<ExtArgs>
+    grade: Prisma.$GradePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     woodVariantId: number
     locationId: number
+    gradeId: number | null
     stock: number
     createdAt: Date
     updatedAt: Date
@@ -1107,6 +1290,7 @@ export interface Prisma__InventoryClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  grade<T extends Prisma.Inventory$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1139,6 +1323,7 @@ export interface InventoryFieldRefs {
   readonly id: Prisma.FieldRef<"Inventory", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"Inventory", 'Int'>
   readonly locationId: Prisma.FieldRef<"Inventory", 'Int'>
+  readonly gradeId: Prisma.FieldRef<"Inventory", 'Int'>
   readonly stock: Prisma.FieldRef<"Inventory", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Inventory", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Inventory", 'DateTime'>
@@ -1540,6 +1725,25 @@ export type InventoryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many Inventories to delete.
    */
   limit?: number
+}
+
+/**
+ * Inventory.grade
+ */
+export type Inventory$gradeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Grade
+   */
+  select?: Prisma.GradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Grade
+   */
+  omit?: Prisma.GradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GradeInclude<ExtArgs> | null
+  where?: Prisma.GradeWhereInput
 }
 
 /**

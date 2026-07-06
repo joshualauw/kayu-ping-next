@@ -55,6 +55,18 @@ export default function StockMutationsDataTable() {
         },
       },
       {
+        id: "grade",
+        header: "Grade",
+        cell: ({ row }) => {
+          const grade = row.original.grade;
+          return grade ? (
+            <Badge variant="secondary">{grade.code}</Badge>
+          ) : (
+            <span className="text-xs text-muted-foreground italic">Ungraded</span>
+          );
+        },
+      },
+      {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
@@ -65,15 +77,6 @@ export default function StockMutationsDataTable() {
         cell: ({ row }) => {
           const type = row.original.type;
           return <Badge variant={type === "IN" ? "success" : "destructive"}>{type}</Badge>;
-        },
-      },
-      {
-        id: "volume",
-        header: "Volume (m³)",
-        cell: ({ row }) => {
-          const singleVolume = row.original.variant.volume;
-          const totalVol = singleVolume * row.original.quantity;
-          return <span>{row.original.type === "IN" ? `+${totalVol.toFixed(4)}` : `-${totalVol.toFixed(4)}`}</span>;
         },
       },
       {

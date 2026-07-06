@@ -1,22 +1,5 @@
 import z from "zod";
-
-const optionalPositiveNumber = (fieldName: string) =>
-  z.preprocess(
-    (val) => (val === "" || val === null || val === undefined ? null : Number(val)),
-    z
-      .number({ message: `${fieldName} must be a number` })
-      .positive(`${fieldName} must be positive`)
-      .nullable()
-      .optional(),
-  );
-
-const requiredPositiveNumber = (fieldName: string, isInt: boolean = false) =>
-  z.preprocess(
-    (val) => (val === "" || val === null || val === undefined ? undefined : Number(val)),
-    isInt
-      ? z.int(`${fieldName} must be an integer`)
-      : z.number({ message: `${fieldName} is required` }).positive(`${fieldName} must be positive`),
-  );
+import { optionalPositiveNumber, requiredPositiveNumber } from "@/lib/schemas/reusable-schema";
 
 export const createProcessingSchema = z.object({
   processingDate: z.string().min(1, "Processing date is required"),

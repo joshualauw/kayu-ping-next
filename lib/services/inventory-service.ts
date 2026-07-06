@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Inventory, WoodVariant, Wood, Material, Location } from "@/generated/prisma/client";
+import { Inventory, WoodVariant, Wood, Material, Location, Grade } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { Prisma } from "@/generated/prisma/client";
 
@@ -9,6 +9,7 @@ export type InventoryListItem = Inventory & {
     material: Material;
   };
   location: Location;
+  grade: Grade | null;
 };
 
 class InventoryService {
@@ -38,6 +39,7 @@ class InventoryService {
             },
           },
           location: true,
+          grade: true,
         },
         skip: page * size,
         take: size,
@@ -62,6 +64,7 @@ class InventoryService {
             material: true,
           },
         },
+        grade: true,
       },
     });
   }

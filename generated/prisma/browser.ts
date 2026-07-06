@@ -48,6 +48,11 @@ export type Material = Prisma.MaterialModel
  */
 export type WoodVariant = Prisma.WoodVariantModel
 /**
+ * Model Grade
+ * 
+ */
+export type Grade = Prisma.GradeModel
+/**
  * Model Inventory
  * 
  */
@@ -97,3 +102,13 @@ export type Movement = Prisma.MovementModel
  * 
  */
 export type MovementItem = Prisma.MovementItemModel
+/**
+ * Model Grading
+ * 
+ */
+export type Grading = Prisma.GradingModel
+/**
+ * Model GradingItem
+ * 
+ */
+export type GradingItem = Prisma.GradingItemModel

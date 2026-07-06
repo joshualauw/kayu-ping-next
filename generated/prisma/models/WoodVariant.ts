@@ -304,6 +304,7 @@ export type WoodVariantWhereInput = {
   saleItems?: Prisma.SaleItemListRelationFilter
   processingItems?: Prisma.ProcessingItemListRelationFilter
   movementItems?: Prisma.MovementItemListRelationFilter
+  gradingItems?: Prisma.GradingItemListRelationFilter
 }
 
 export type WoodVariantOrderByWithRelationInput = {
@@ -326,6 +327,7 @@ export type WoodVariantOrderByWithRelationInput = {
   saleItems?: Prisma.SaleItemOrderByRelationAggregateInput
   processingItems?: Prisma.ProcessingItemOrderByRelationAggregateInput
   movementItems?: Prisma.MovementItemOrderByRelationAggregateInput
+  gradingItems?: Prisma.GradingItemOrderByRelationAggregateInput
 }
 
 export type WoodVariantWhereUniqueInput = Prisma.AtLeast<{
@@ -351,6 +353,7 @@ export type WoodVariantWhereUniqueInput = Prisma.AtLeast<{
   saleItems?: Prisma.SaleItemListRelationFilter
   processingItems?: Prisma.ProcessingItemListRelationFilter
   movementItems?: Prisma.MovementItemListRelationFilter
+  gradingItems?: Prisma.GradingItemListRelationFilter
 }, "id">
 
 export type WoodVariantOrderByWithAggregationInput = {
@@ -406,6 +409,7 @@ export type WoodVariantCreateInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateInput = {
@@ -426,6 +430,7 @@ export type WoodVariantUncheckedCreateInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUpdateInput = {
@@ -445,6 +450,7 @@ export type WoodVariantUpdateInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateInput = {
@@ -465,6 +471,7 @@ export type WoodVariantUncheckedUpdateInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateManyInput = {
@@ -771,6 +778,20 @@ export type WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutMovementItemsInput, Prisma.WoodVariantUpdateWithoutMovementItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
 }
 
+export type WoodVariantCreateNestedOneWithoutGradingItemsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+}
+
+export type WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutGradingItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.WoodVariantUpdateWithoutGradingItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
+}
+
 export type WoodVariantCreateWithoutWoodInput = {
   width?: number | null
   height?: number | null
@@ -787,6 +808,7 @@ export type WoodVariantCreateWithoutWoodInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutWoodInput = {
@@ -806,6 +828,7 @@ export type WoodVariantUncheckedCreateWithoutWoodInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutWoodInput = {
@@ -867,6 +890,7 @@ export type WoodVariantCreateWithoutMaterialInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutMaterialInput = {
@@ -886,6 +910,7 @@ export type WoodVariantUncheckedCreateWithoutMaterialInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutMaterialInput = {
@@ -930,6 +955,7 @@ export type WoodVariantCreateWithoutInventoriesInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutInventoriesInput = {
@@ -949,6 +975,7 @@ export type WoodVariantUncheckedCreateWithoutInventoriesInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutInventoriesInput = {
@@ -983,6 +1010,7 @@ export type WoodVariantUpdateWithoutInventoriesInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutInventoriesInput = {
@@ -1002,6 +1030,7 @@ export type WoodVariantUncheckedUpdateWithoutInventoriesInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutMutationsInput = {
@@ -1020,6 +1049,7 @@ export type WoodVariantCreateWithoutMutationsInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutMutationsInput = {
@@ -1039,6 +1069,7 @@ export type WoodVariantUncheckedCreateWithoutMutationsInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutMutationsInput = {
@@ -1073,6 +1104,7 @@ export type WoodVariantUpdateWithoutMutationsInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutMutationsInput = {
@@ -1092,6 +1124,7 @@ export type WoodVariantUncheckedUpdateWithoutMutationsInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutPurchaseItemsInput = {
@@ -1110,6 +1143,7 @@ export type WoodVariantCreateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutPurchaseItemsInput = {
@@ -1129,6 +1163,7 @@ export type WoodVariantUncheckedCreateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutPurchaseItemsInput = {
@@ -1163,6 +1198,7 @@ export type WoodVariantUpdateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutPurchaseItemsInput = {
@@ -1182,6 +1218,7 @@ export type WoodVariantUncheckedUpdateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutSaleItemsInput = {
@@ -1200,6 +1237,7 @@ export type WoodVariantCreateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutSaleItemsInput = {
@@ -1219,6 +1257,7 @@ export type WoodVariantUncheckedCreateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutSaleItemsInput = {
@@ -1253,6 +1292,7 @@ export type WoodVariantUpdateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutSaleItemsInput = {
@@ -1272,6 +1312,7 @@ export type WoodVariantUncheckedUpdateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutProcessingItemsInput = {
@@ -1290,6 +1331,7 @@ export type WoodVariantCreateWithoutProcessingItemsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutProcessingItemsInput = {
@@ -1309,6 +1351,7 @@ export type WoodVariantUncheckedCreateWithoutProcessingItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutProcessingItemsInput = {
@@ -1343,6 +1386,7 @@ export type WoodVariantUpdateWithoutProcessingItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutProcessingItemsInput = {
@@ -1362,6 +1406,7 @@ export type WoodVariantUncheckedUpdateWithoutProcessingItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutMovementItemsInput = {
@@ -1380,6 +1425,7 @@ export type WoodVariantCreateWithoutMovementItemsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantUncheckedCreateWithoutMovementItemsInput = {
@@ -1399,6 +1445,7 @@ export type WoodVariantUncheckedCreateWithoutMovementItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type WoodVariantCreateOrConnectWithoutMovementItemsInput = {
@@ -1433,6 +1480,7 @@ export type WoodVariantUpdateWithoutMovementItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutMovementItemsInput = {
@@ -1452,6 +1500,101 @@ export type WoodVariantUncheckedUpdateWithoutMovementItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantCreateWithoutGradingItemsInput = {
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
+  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantUncheckedCreateWithoutGradingItemsInput = {
+  id?: number
+  woodId: number
+  materialId: number
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantCreateOrConnectWithoutGradingItemsInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+}
+
+export type WoodVariantUpsertWithoutGradingItemsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  where?: Prisma.WoodVariantWhereInput
+}
+
+export type WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput = {
+  where?: Prisma.WoodVariantWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
+}
+
+export type WoodVariantUpdateWithoutGradingItemsInput = {
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantUncheckedUpdateWithoutGradingItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodId?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateManyWoodInput = {
@@ -1483,6 +1626,7 @@ export type WoodVariantUpdateWithoutWoodInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutWoodInput = {
@@ -1502,6 +1646,7 @@ export type WoodVariantUncheckedUpdateWithoutWoodInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateManyWithoutWoodInput = {
@@ -1546,6 +1691,7 @@ export type WoodVariantUpdateWithoutMaterialInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateWithoutMaterialInput = {
@@ -1565,6 +1711,7 @@ export type WoodVariantUncheckedUpdateWithoutMaterialInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantUncheckedUpdateManyWithoutMaterialInput = {
@@ -1592,6 +1739,7 @@ export type WoodVariantCountOutputType = {
   saleItems: number
   processingItems: number
   movementItems: number
+  gradingItems: number
 }
 
 export type WoodVariantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1601,6 +1749,7 @@ export type WoodVariantCountOutputTypeSelect<ExtArgs extends runtime.Types.Exten
   saleItems?: boolean | WoodVariantCountOutputTypeCountSaleItemsArgs
   processingItems?: boolean | WoodVariantCountOutputTypeCountProcessingItemsArgs
   movementItems?: boolean | WoodVariantCountOutputTypeCountMovementItemsArgs
+  gradingItems?: boolean | WoodVariantCountOutputTypeCountGradingItemsArgs
 }
 
 /**
@@ -1655,6 +1804,13 @@ export type WoodVariantCountOutputTypeCountMovementItemsArgs<ExtArgs extends run
   where?: Prisma.MovementItemWhereInput
 }
 
+/**
+ * WoodVariantCountOutputType without action
+ */
+export type WoodVariantCountOutputTypeCountGradingItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GradingItemWhereInput
+}
+
 
 export type WoodVariantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1676,6 +1832,7 @@ export type WoodVariantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   saleItems?: boolean | Prisma.WoodVariant$saleItemsArgs<ExtArgs>
   processingItems?: boolean | Prisma.WoodVariant$processingItemsArgs<ExtArgs>
   movementItems?: boolean | Prisma.WoodVariant$movementItemsArgs<ExtArgs>
+  gradingItems?: boolean | Prisma.WoodVariant$gradingItemsArgs<ExtArgs>
   _count?: boolean | Prisma.WoodVariantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["woodVariant"]>
 
@@ -1735,6 +1892,7 @@ export type WoodVariantInclude<ExtArgs extends runtime.Types.Extensions.Internal
   saleItems?: boolean | Prisma.WoodVariant$saleItemsArgs<ExtArgs>
   processingItems?: boolean | Prisma.WoodVariant$processingItemsArgs<ExtArgs>
   movementItems?: boolean | Prisma.WoodVariant$movementItemsArgs<ExtArgs>
+  gradingItems?: boolean | Prisma.WoodVariant$gradingItemsArgs<ExtArgs>
   _count?: boolean | Prisma.WoodVariantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WoodVariantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1757,6 +1915,7 @@ export type $WoodVariantPayload<ExtArgs extends runtime.Types.Extensions.Interna
     saleItems: Prisma.$SaleItemPayload<ExtArgs>[]
     processingItems: Prisma.$ProcessingItemPayload<ExtArgs>[]
     movementItems: Prisma.$MovementItemPayload<ExtArgs>[]
+    gradingItems: Prisma.$GradingItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2172,6 +2331,7 @@ export interface Prisma__WoodVariantClient<T, Null = never, ExtArgs extends runt
   saleItems<T extends Prisma.WoodVariant$saleItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariant$saleItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SaleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   processingItems<T extends Prisma.WoodVariant$processingItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariant$processingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProcessingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   movementItems<T extends Prisma.WoodVariant$movementItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariant$movementItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovementItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  gradingItems<T extends Prisma.WoodVariant$gradingItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariant$gradingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GradingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2754,6 +2914,30 @@ export type WoodVariant$movementItemsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.MovementItemScalarFieldEnum | Prisma.MovementItemScalarFieldEnum[]
+}
+
+/**
+ * WoodVariant.gradingItems
+ */
+export type WoodVariant$gradingItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GradingItem
+   */
+  select?: Prisma.GradingItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GradingItem
+   */
+  omit?: Prisma.GradingItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GradingItemInclude<ExtArgs> | null
+  where?: Prisma.GradingItemWhereInput
+  orderBy?: Prisma.GradingItemOrderByWithRelationInput | Prisma.GradingItemOrderByWithRelationInput[]
+  cursor?: Prisma.GradingItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GradingItemScalarFieldEnum | Prisma.GradingItemScalarFieldEnum[]
 }
 
 /**
