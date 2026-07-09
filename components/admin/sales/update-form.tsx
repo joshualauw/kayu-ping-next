@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { updateSaleAction } from "@/lib/actions/sales/update-sale";
-import { updateSaleSchema, type UpdateSaleSchema } from "@/lib/schemas/sales/update-sale";
+import { updateSaleFormSchema, type UpdateSaleFormInput, type UpdateSaleFormOutput } from "@/lib/schemas/sales/update-sale";
 import { SaleDetail } from "@/lib/services/sale-service";
 
 interface SaleUpdateFormProps {
@@ -21,14 +21,14 @@ export default function SaleUpdateForm({ sale }: SaleUpdateFormProps) {
   const router = useRouter();
   const formId = "sale-update-form";
 
-  const form = useForm<UpdateSaleSchema>({
-    resolver: zodResolver(updateSaleSchema),
+  const form = useForm<UpdateSaleFormInput, any, UpdateSaleFormOutput>({
+    resolver: zodResolver(updateSaleFormSchema),
     defaultValues: {
       notes: sale.notes || "",
     },
   });
 
-  async function onSubmit(data: UpdateSaleSchema) {
+  async function onSubmit(data: UpdateSaleFormOutput) {
     const result = await updateSaleAction(sale.id, data);
 
     if (result.success) {

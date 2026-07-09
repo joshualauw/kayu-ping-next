@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Pencil } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
@@ -78,6 +79,7 @@ export default function MovementDetailCard({ movement }: MovementDetailCardProps
                   <th className="p-3">No.</th>
                   <th className="p-3">Wood</th>
                   <th className="p-3">Material</th>
+                  <th className="p-3">Grade</th>
                   <th className="p-3">Dimensions (cm)</th>
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Qty</th>
@@ -100,6 +102,13 @@ export default function MovementDetailCard({ movement }: MovementDetailCardProps
                         <div className="text-[10px] text-muted-foreground">{wood.code}</div>
                       </td>
                       <td className="p-3 font-medium">{material.name}</td>
+                      <td className="p-3">
+                        {item.grade ? (
+                          <Badge variant="secondary">{item.grade.code}</Badge>
+                        ) : (
+                          <span className="text-xs text-muted-foreground italic">Ungraded</span>
+                        )}
+                      </td>
                       <td className="p-3">
                         {material.measurement === Measurement.CUBE && (
                           <div>
@@ -125,7 +134,7 @@ export default function MovementDetailCard({ movement }: MovementDetailCardProps
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="p-8 text-center text-sm text-muted-foreground italic">
+                    <td colSpan={8} className="p-8 text-center text-sm text-muted-foreground italic">
                       No items found in this movement.
                     </td>
                   </tr>

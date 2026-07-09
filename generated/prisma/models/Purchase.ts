@@ -30,27 +30,27 @@ export type PurchaseAvgAggregateOutputType = {
   id: number | null
   supplierId: number | null
   locationId: number | null
-  totalVolume: number | null
   totalPrice: number | null
+  totalVolume: number | null
 }
 
 export type PurchaseSumAggregateOutputType = {
   id: number | null
   supplierId: number | null
   locationId: number | null
-  totalVolume: number | null
   totalPrice: number | null
+  totalVolume: number | null
 }
 
 export type PurchaseMinAggregateOutputType = {
   id: number | null
   tid: string | null
   supplierId: number | null
-  purchaseDate: Date | null
   locationId: number | null
+  purchaseDate: Date | null
   notes: string | null
-  totalVolume: number | null
   totalPrice: number | null
+  totalVolume: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -59,11 +59,11 @@ export type PurchaseMaxAggregateOutputType = {
   id: number | null
   tid: string | null
   supplierId: number | null
-  purchaseDate: Date | null
   locationId: number | null
+  purchaseDate: Date | null
   notes: string | null
-  totalVolume: number | null
   totalPrice: number | null
+  totalVolume: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -72,11 +72,11 @@ export type PurchaseCountAggregateOutputType = {
   id: number
   tid: number
   supplierId: number
-  purchaseDate: number
   locationId: number
+  purchaseDate: number
   notes: number
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -87,27 +87,27 @@ export type PurchaseAvgAggregateInputType = {
   id?: true
   supplierId?: true
   locationId?: true
-  totalVolume?: true
   totalPrice?: true
+  totalVolume?: true
 }
 
 export type PurchaseSumAggregateInputType = {
   id?: true
   supplierId?: true
   locationId?: true
-  totalVolume?: true
   totalPrice?: true
+  totalVolume?: true
 }
 
 export type PurchaseMinAggregateInputType = {
   id?: true
   tid?: true
   supplierId?: true
-  purchaseDate?: true
   locationId?: true
+  purchaseDate?: true
   notes?: true
-  totalVolume?: true
   totalPrice?: true
+  totalVolume?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -116,11 +116,11 @@ export type PurchaseMaxAggregateInputType = {
   id?: true
   tid?: true
   supplierId?: true
-  purchaseDate?: true
   locationId?: true
+  purchaseDate?: true
   notes?: true
-  totalVolume?: true
   totalPrice?: true
+  totalVolume?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -129,11 +129,11 @@ export type PurchaseCountAggregateInputType = {
   id?: true
   tid?: true
   supplierId?: true
-  purchaseDate?: true
   locationId?: true
+  purchaseDate?: true
   notes?: true
-  totalVolume?: true
   totalPrice?: true
+  totalVolume?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -229,11 +229,11 @@ export type PurchaseGroupByOutputType = {
   id: number
   tid: string
   supplierId: number
-  purchaseDate: Date
   locationId: number
+  purchaseDate: Date
   notes: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt: Date
   updatedAt: Date
   _count: PurchaseCountAggregateOutputType | null
@@ -265,32 +265,32 @@ export type PurchaseWhereInput = {
   id?: Prisma.IntFilter<"Purchase"> | number
   tid?: Prisma.StringFilter<"Purchase"> | string
   supplierId?: Prisma.IntFilter<"Purchase"> | number
-  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   locationId?: Prisma.IntFilter<"Purchase"> | number
+  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   notes?: Prisma.StringNullableFilter<"Purchase"> | string | null
-  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   totalPrice?: Prisma.FloatFilter<"Purchase"> | number
+  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   createdAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
+  items?: Prisma.PurchaseItemListRelationFilter
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   supplier?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
-  items?: Prisma.PurchaseItemListRelationFilter
 }
 
 export type PurchaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  purchaseDate?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  items?: Prisma.PurchaseItemOrderByRelationAggregateInput
   location?: Prisma.LocationOrderByWithRelationInput
   supplier?: Prisma.ContactOrderByWithRelationInput
-  items?: Prisma.PurchaseItemOrderByRelationAggregateInput
 }
 
 export type PurchaseWhereUniqueInput = Prisma.AtLeast<{
@@ -300,27 +300,27 @@ export type PurchaseWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PurchaseWhereInput[]
   NOT?: Prisma.PurchaseWhereInput | Prisma.PurchaseWhereInput[]
   supplierId?: Prisma.IntFilter<"Purchase"> | number
-  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   locationId?: Prisma.IntFilter<"Purchase"> | number
+  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   notes?: Prisma.StringNullableFilter<"Purchase"> | string | null
-  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   totalPrice?: Prisma.FloatFilter<"Purchase"> | number
+  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   createdAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
+  items?: Prisma.PurchaseItemListRelationFilter
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   supplier?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
-  items?: Prisma.PurchaseItemListRelationFilter
 }, "id" | "tid">
 
 export type PurchaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  purchaseDate?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PurchaseCountOrderByAggregateInput
@@ -337,11 +337,11 @@ export type PurchaseScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Purchase"> | number
   tid?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   supplierId?: Prisma.IntWithAggregatesFilter<"Purchase"> | number
-  purchaseDate?: Prisma.DateTimeWithAggregatesFilter<"Purchase"> | Date | string
   locationId?: Prisma.IntWithAggregatesFilter<"Purchase"> | number
+  purchaseDate?: Prisma.DateTimeWithAggregatesFilter<"Purchase"> | Date | string
   notes?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
-  totalVolume?: Prisma.FloatWithAggregatesFilter<"Purchase"> | number
   totalPrice?: Prisma.FloatWithAggregatesFilter<"Purchase"> | number
+  totalVolume?: Prisma.FloatWithAggregatesFilter<"Purchase"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Purchase"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Purchase"> | Date | string
 }
@@ -350,24 +350,24 @@ export type PurchaseCreateInput = {
   tid: string
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  items?: Prisma.PurchaseItemCreateNestedManyWithoutPurchaseInput
   location: Prisma.LocationCreateNestedOneWithoutPurchasesInput
   supplier: Prisma.ContactCreateNestedOneWithoutPurchasesInput
-  items?: Prisma.PurchaseItemCreateNestedManyWithoutPurchaseInput
 }
 
 export type PurchaseUncheckedCreateInput = {
   id?: number
   tid: string
   supplierId: number
-  purchaseDate: Date | string
   locationId: number
+  purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutPurchaseInput
@@ -377,24 +377,24 @@ export type PurchaseUpdateInput = {
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.PurchaseItemUpdateManyWithoutPurchaseNestedInput
   location?: Prisma.LocationUpdateOneRequiredWithoutPurchasesNestedInput
   supplier?: Prisma.ContactUpdateOneRequiredWithoutPurchasesNestedInput
-  items?: Prisma.PurchaseItemUpdateManyWithoutPurchaseNestedInput
 }
 
 export type PurchaseUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   supplierId?: Prisma.IntFieldUpdateOperationsInput | number
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.PurchaseItemUncheckedUpdateManyWithoutPurchaseNestedInput
@@ -404,11 +404,11 @@ export type PurchaseCreateManyInput = {
   id?: number
   tid: string
   supplierId: number
-  purchaseDate: Date | string
   locationId: number
+  purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -417,8 +417,8 @@ export type PurchaseUpdateManyMutationInput = {
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -427,11 +427,11 @@ export type PurchaseUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   supplierId?: Prisma.IntFieldUpdateOperationsInput | number
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -450,11 +450,11 @@ export type PurchaseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  purchaseDate?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -463,19 +463,19 @@ export type PurchaseAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
 }
 
 export type PurchaseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  purchaseDate?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -484,11 +484,11 @@ export type PurchaseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
+  purchaseDate?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -497,8 +497,8 @@ export type PurchaseSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   supplierId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
-  totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
+  totalVolume?: Prisma.SortOrder
 }
 
 export type PurchaseScalarRelationFilter = {
@@ -608,22 +608,22 @@ export type PurchaseCreateWithoutSupplierInput = {
   tid: string
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutPurchasesInput
   items?: Prisma.PurchaseItemCreateNestedManyWithoutPurchaseInput
+  location: Prisma.LocationCreateNestedOneWithoutPurchasesInput
 }
 
 export type PurchaseUncheckedCreateWithoutSupplierInput = {
   id?: number
   tid: string
-  purchaseDate: Date | string
   locationId: number
+  purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutPurchaseInput
@@ -662,11 +662,11 @@ export type PurchaseScalarWhereInput = {
   id?: Prisma.IntFilter<"Purchase"> | number
   tid?: Prisma.StringFilter<"Purchase"> | string
   supplierId?: Prisma.IntFilter<"Purchase"> | number
-  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   locationId?: Prisma.IntFilter<"Purchase"> | number
+  purchaseDate?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   notes?: Prisma.StringNullableFilter<"Purchase"> | string | null
-  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   totalPrice?: Prisma.FloatFilter<"Purchase"> | number
+  totalVolume?: Prisma.FloatFilter<"Purchase"> | number
   createdAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
 }
@@ -675,12 +675,12 @@ export type PurchaseCreateWithoutLocationInput = {
   tid: string
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  supplier: Prisma.ContactCreateNestedOneWithoutPurchasesInput
   items?: Prisma.PurchaseItemCreateNestedManyWithoutPurchaseInput
+  supplier: Prisma.ContactCreateNestedOneWithoutPurchasesInput
 }
 
 export type PurchaseUncheckedCreateWithoutLocationInput = {
@@ -689,8 +689,8 @@ export type PurchaseUncheckedCreateWithoutLocationInput = {
   supplierId: number
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutPurchaseInput
@@ -726,8 +726,8 @@ export type PurchaseCreateWithoutItemsInput = {
   tid: string
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
   location: Prisma.LocationCreateNestedOneWithoutPurchasesInput
@@ -738,11 +738,11 @@ export type PurchaseUncheckedCreateWithoutItemsInput = {
   id?: number
   tid: string
   supplierId: number
-  purchaseDate: Date | string
   locationId: number
+  purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -767,8 +767,8 @@ export type PurchaseUpdateWithoutItemsInput = {
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   location?: Prisma.LocationUpdateOneRequiredWithoutPurchasesNestedInput
@@ -779,11 +779,11 @@ export type PurchaseUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   supplierId?: Prisma.IntFieldUpdateOperationsInput | number
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -791,11 +791,11 @@ export type PurchaseUncheckedUpdateWithoutItemsInput = {
 export type PurchaseCreateManySupplierInput = {
   id?: number
   tid: string
-  purchaseDate: Date | string
   locationId: number
+  purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -804,22 +804,22 @@ export type PurchaseUpdateWithoutSupplierInput = {
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutPurchasesNestedInput
   items?: Prisma.PurchaseItemUpdateManyWithoutPurchaseNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutPurchasesNestedInput
 }
 
 export type PurchaseUncheckedUpdateWithoutSupplierInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.PurchaseItemUncheckedUpdateManyWithoutPurchaseNestedInput
@@ -828,11 +828,11 @@ export type PurchaseUncheckedUpdateWithoutSupplierInput = {
 export type PurchaseUncheckedUpdateManyWithoutSupplierInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -843,8 +843,8 @@ export type PurchaseCreateManyLocationInput = {
   supplierId: number
   purchaseDate: Date | string
   notes?: string | null
-  totalVolume: number
   totalPrice: number
+  totalVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -853,12 +853,12 @@ export type PurchaseUpdateWithoutLocationInput = {
   tid?: Prisma.StringFieldUpdateOperationsInput | string
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  supplier?: Prisma.ContactUpdateOneRequiredWithoutPurchasesNestedInput
   items?: Prisma.PurchaseItemUpdateManyWithoutPurchaseNestedInput
+  supplier?: Prisma.ContactUpdateOneRequiredWithoutPurchasesNestedInput
 }
 
 export type PurchaseUncheckedUpdateWithoutLocationInput = {
@@ -867,8 +867,8 @@ export type PurchaseUncheckedUpdateWithoutLocationInput = {
   supplierId?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.PurchaseItemUncheckedUpdateManyWithoutPurchaseNestedInput
@@ -880,8 +880,8 @@ export type PurchaseUncheckedUpdateManyWithoutLocationInput = {
   supplierId?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -921,16 +921,16 @@ export type PurchaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   tid?: boolean
   supplierId?: boolean
-  purchaseDate?: boolean
   locationId?: boolean
+  purchaseDate?: boolean
   notes?: boolean
-  totalVolume?: boolean
   totalPrice?: boolean
+  totalVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  items?: boolean | Prisma.Purchase$itemsArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   supplier?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.Purchase$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.PurchaseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["purchase"]>
 
@@ -938,11 +938,11 @@ export type PurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   tid?: boolean
   supplierId?: boolean
-  purchaseDate?: boolean
   locationId?: boolean
+  purchaseDate?: boolean
   notes?: boolean
-  totalVolume?: boolean
   totalPrice?: boolean
+  totalVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
@@ -953,11 +953,11 @@ export type PurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   tid?: boolean
   supplierId?: boolean
-  purchaseDate?: boolean
   locationId?: boolean
+  purchaseDate?: boolean
   notes?: boolean
-  totalVolume?: boolean
   totalPrice?: boolean
+  totalVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
@@ -968,20 +968,20 @@ export type PurchaseSelectScalar = {
   id?: boolean
   tid?: boolean
   supplierId?: boolean
-  purchaseDate?: boolean
   locationId?: boolean
+  purchaseDate?: boolean
   notes?: boolean
-  totalVolume?: boolean
   totalPrice?: boolean
+  totalVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "supplierId" | "purchaseDate" | "locationId" | "notes" | "totalVolume" | "totalPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
+export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "supplierId" | "locationId" | "purchaseDate" | "notes" | "totalPrice" | "totalVolume" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
 export type PurchaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  items?: boolean | Prisma.Purchase$itemsArgs<ExtArgs>
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   supplier?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.Purchase$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.PurchaseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PurchaseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -996,19 +996,19 @@ export type PurchaseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $PurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Purchase"
   objects: {
+    items: Prisma.$PurchaseItemPayload<ExtArgs>[]
     location: Prisma.$LocationPayload<ExtArgs>
     supplier: Prisma.$ContactPayload<ExtArgs>
-    items: Prisma.$PurchaseItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     tid: string
     supplierId: number
-    purchaseDate: Date
     locationId: number
+    purchaseDate: Date
     notes: string | null
-    totalVolume: number
     totalPrice: number
+    totalVolume: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["purchase"]>
@@ -1405,9 +1405,9 @@ readonly fields: PurchaseFieldRefs;
  */
 export interface Prisma__PurchaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  items<T extends Prisma.Purchase$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Purchase$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   supplier<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  items<T extends Prisma.Purchase$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Purchase$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1440,11 +1440,11 @@ export interface PurchaseFieldRefs {
   readonly id: Prisma.FieldRef<"Purchase", 'Int'>
   readonly tid: Prisma.FieldRef<"Purchase", 'String'>
   readonly supplierId: Prisma.FieldRef<"Purchase", 'Int'>
-  readonly purchaseDate: Prisma.FieldRef<"Purchase", 'DateTime'>
   readonly locationId: Prisma.FieldRef<"Purchase", 'Int'>
+  readonly purchaseDate: Prisma.FieldRef<"Purchase", 'DateTime'>
   readonly notes: Prisma.FieldRef<"Purchase", 'String'>
-  readonly totalVolume: Prisma.FieldRef<"Purchase", 'Float'>
   readonly totalPrice: Prisma.FieldRef<"Purchase", 'Float'>
+  readonly totalVolume: Prisma.FieldRef<"Purchase", 'Float'>
   readonly createdAt: Prisma.FieldRef<"Purchase", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Purchase", 'DateTime'>
 }

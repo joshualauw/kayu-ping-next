@@ -28,24 +28,24 @@ export type AggregateGradingItem = {
 
 export type GradingItemAvgAggregateOutputType = {
   id: number | null
-  gradeId: number | null
   gradingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
 
 export type GradingItemSumAggregateOutputType = {
   id: number | null
-  gradeId: number | null
   gradingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
 
 export type GradingItemMinAggregateOutputType = {
   id: number | null
-  gradeId: number | null
   gradingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   type: $Enums.GradingType | null
   quantity: number | null
@@ -56,8 +56,8 @@ export type GradingItemMinAggregateOutputType = {
 
 export type GradingItemMaxAggregateOutputType = {
   id: number | null
-  gradeId: number | null
   gradingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   type: $Enums.GradingType | null
   quantity: number | null
@@ -68,8 +68,8 @@ export type GradingItemMaxAggregateOutputType = {
 
 export type GradingItemCountAggregateOutputType = {
   id: number
-  gradeId: number
   gradingId: number
+  gradeId: number
   woodVariantId: number
   type: number
   quantity: number
@@ -82,24 +82,24 @@ export type GradingItemCountAggregateOutputType = {
 
 export type GradingItemAvgAggregateInputType = {
   id?: true
-  gradeId?: true
   gradingId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
 
 export type GradingItemSumAggregateInputType = {
   id?: true
-  gradeId?: true
   gradingId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
 
 export type GradingItemMinAggregateInputType = {
   id?: true
-  gradeId?: true
   gradingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -110,8 +110,8 @@ export type GradingItemMinAggregateInputType = {
 
 export type GradingItemMaxAggregateInputType = {
   id?: true
-  gradeId?: true
   gradingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -122,8 +122,8 @@ export type GradingItemMaxAggregateInputType = {
 
 export type GradingItemCountAggregateInputType = {
   id?: true
-  gradeId?: true
   gradingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -221,8 +221,8 @@ export type GradingItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type GradingItemGroupByOutputType = {
   id: number
-  gradeId: number | null
   gradingId: number
+  gradeId: number | null
   woodVariantId: number
   type: $Enums.GradingType
   quantity: number
@@ -256,32 +256,32 @@ export type GradingItemWhereInput = {
   OR?: Prisma.GradingItemWhereInput[]
   NOT?: Prisma.GradingItemWhereInput | Prisma.GradingItemWhereInput[]
   id?: Prisma.IntFilter<"GradingItem"> | number
-  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   gradingId?: Prisma.IntFilter<"GradingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"GradingItem"> | number
   type?: Prisma.EnumGradingTypeFilter<"GradingItem"> | $Enums.GradingType
   quantity?: Prisma.IntFilter<"GradingItem"> | number
   comment?: Prisma.StringNullableFilter<"GradingItem"> | string | null
   createdAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   grading?: Prisma.XOR<Prisma.GradingScalarRelationFilter, Prisma.GradingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
-  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
 }
 
 export type GradingItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  grade?: Prisma.GradeOrderByWithRelationInput
   grading?: Prisma.GradingOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
-  grade?: Prisma.GradeOrderByWithRelationInput
 }
 
 export type GradingItemWhereUniqueInput = Prisma.AtLeast<{
@@ -289,23 +289,23 @@ export type GradingItemWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.GradingItemWhereInput | Prisma.GradingItemWhereInput[]
   OR?: Prisma.GradingItemWhereInput[]
   NOT?: Prisma.GradingItemWhereInput | Prisma.GradingItemWhereInput[]
-  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   gradingId?: Prisma.IntFilter<"GradingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"GradingItem"> | number
   type?: Prisma.EnumGradingTypeFilter<"GradingItem"> | $Enums.GradingType
   quantity?: Prisma.IntFilter<"GradingItem"> | number
   comment?: Prisma.StringNullableFilter<"GradingItem"> | string | null
   createdAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   grading?: Prisma.XOR<Prisma.GradingScalarRelationFilter, Prisma.GradingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
-  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
 }, "id">
 
 export type GradingItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -324,8 +324,8 @@ export type GradingItemScalarWhereWithAggregatesInput = {
   OR?: Prisma.GradingItemScalarWhereWithAggregatesInput[]
   NOT?: Prisma.GradingItemScalarWhereWithAggregatesInput | Prisma.GradingItemScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"GradingItem"> | number
-  gradeId?: Prisma.IntNullableWithAggregatesFilter<"GradingItem"> | number | null
   gradingId?: Prisma.IntWithAggregatesFilter<"GradingItem"> | number
+  gradeId?: Prisma.IntNullableWithAggregatesFilter<"GradingItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"GradingItem"> | number
   type?: Prisma.EnumGradingTypeWithAggregatesFilter<"GradingItem"> | $Enums.GradingType
   quantity?: Prisma.IntWithAggregatesFilter<"GradingItem"> | number
@@ -340,15 +340,15 @@ export type GradingItemCreateInput = {
   comment?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
   grading: Prisma.GradingCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutGradingItemsInput
-  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
 }
 
 export type GradingItemUncheckedCreateInput = {
   id?: number
-  gradeId?: number | null
   gradingId: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.GradingType
   quantity: number
@@ -363,15 +363,15 @@ export type GradingItemUpdateInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
   grading?: Prisma.GradingUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput
-  grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
 }
 
 export type GradingItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gradingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -382,8 +382,8 @@ export type GradingItemUncheckedUpdateInput = {
 
 export type GradingItemCreateManyInput = {
   id?: number
-  gradeId?: number | null
   gradingId: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.GradingType
   quantity: number
@@ -402,8 +402,8 @@ export type GradingItemUpdateManyMutationInput = {
 
 export type GradingItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gradingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -424,8 +424,8 @@ export type GradingItemOrderByRelationAggregateInput = {
 
 export type GradingItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -436,16 +436,16 @@ export type GradingItemCountOrderByAggregateInput = {
 
 export type GradingItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
 
 export type GradingItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -456,8 +456,8 @@ export type GradingItemMaxOrderByAggregateInput = {
 
 export type GradingItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -468,8 +468,8 @@ export type GradingItemMinOrderByAggregateInput = {
 
 export type GradingItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  gradeId?: Prisma.SortOrder
   gradingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -610,14 +610,14 @@ export type GradingItemCreateWithoutVariantInput = {
   comment?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
   grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
+  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
 }
 
 export type GradingItemUncheckedCreateWithoutVariantInput = {
   id?: number
-  gradeId?: number | null
   gradingId: number
+  gradeId?: number | null
   type: $Enums.GradingType
   quantity: number
   comment?: string | null
@@ -656,8 +656,8 @@ export type GradingItemScalarWhereInput = {
   OR?: Prisma.GradingItemScalarWhereInput[]
   NOT?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
   id?: Prisma.IntFilter<"GradingItem"> | number
-  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   gradingId?: Prisma.IntFilter<"GradingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"GradingItem"> | number
   type?: Prisma.EnumGradingTypeFilter<"GradingItem"> | $Enums.GradingType
   quantity?: Prisma.IntFilter<"GradingItem"> | number
@@ -719,8 +719,8 @@ export type GradingItemCreateWithoutGradingInput = {
   comment?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  variant: Prisma.WoodVariantCreateNestedOneWithoutGradingItemsInput
   grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutGradingItemsInput
 }
 
 export type GradingItemUncheckedCreateWithoutGradingInput = {
@@ -762,8 +762,8 @@ export type GradingItemUpdateManyWithWhereWithoutGradingInput = {
 
 export type GradingItemCreateManyVariantInput = {
   id?: number
-  gradeId?: number | null
   gradingId: number
+  gradeId?: number | null
   type: $Enums.GradingType
   quantity: number
   comment?: string | null
@@ -777,14 +777,14 @@ export type GradingItemUpdateWithoutVariantInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grading?: Prisma.GradingUpdateOneRequiredWithoutItemsNestedInput
   grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
+  grading?: Prisma.GradingUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type GradingItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gradingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -794,8 +794,8 @@ export type GradingItemUncheckedUpdateWithoutVariantInput = {
 
 export type GradingItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   gradingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -863,8 +863,8 @@ export type GradingItemUpdateWithoutGradingInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput
   grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput
 }
 
 export type GradingItemUncheckedUpdateWithoutGradingInput = {
@@ -893,53 +893,53 @@ export type GradingItemUncheckedUpdateManyWithoutGradingInput = {
 
 export type GradingItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  gradeId?: boolean
   gradingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   comment?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["gradingItem"]>
 
 export type GradingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  gradeId?: boolean
   gradingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   comment?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["gradingItem"]>
 
 export type GradingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  gradeId?: boolean
   gradingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   comment?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }, ExtArgs["result"]["gradingItem"]>
 
 export type GradingItemSelectScalar = {
   id?: boolean
-  gradeId?: boolean
   gradingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
@@ -948,34 +948,34 @@ export type GradingItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type GradingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "gradeId" | "gradingId" | "woodVariantId" | "type" | "quantity" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["gradingItem"]>
+export type GradingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "gradingId" | "gradeId" | "woodVariantId" | "type" | "quantity" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["gradingItem"]>
 export type GradingItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }
 export type GradingItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }
 export type GradingItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
   grading?: boolean | Prisma.GradingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
-  grade?: boolean | Prisma.GradingItem$gradeArgs<ExtArgs>
 }
 
 export type $GradingItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "GradingItem"
   objects: {
+    grade: Prisma.$GradePayload<ExtArgs> | null
     grading: Prisma.$GradingPayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
-    grade: Prisma.$GradePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    gradeId: number | null
     gradingId: number
+    gradeId: number | null
     woodVariantId: number
     type: $Enums.GradingType
     quantity: number
@@ -1376,9 +1376,9 @@ readonly fields: GradingItemFieldRefs;
  */
 export interface Prisma__GradingItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  grade<T extends Prisma.GradingItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GradingItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   grading<T extends Prisma.GradingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GradingDefaultArgs<ExtArgs>>): Prisma.Prisma__GradingClient<runtime.Types.Result.GetResult<Prisma.$GradingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  grade<T extends Prisma.GradingItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GradingItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1409,8 +1409,8 @@ export interface Prisma__GradingItemClient<T, Null = never, ExtArgs extends runt
  */
 export interface GradingItemFieldRefs {
   readonly id: Prisma.FieldRef<"GradingItem", 'Int'>
-  readonly gradeId: Prisma.FieldRef<"GradingItem", 'Int'>
   readonly gradingId: Prisma.FieldRef<"GradingItem", 'Int'>
+  readonly gradeId: Prisma.FieldRef<"GradingItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"GradingItem", 'Int'>
   readonly type: Prisma.FieldRef<"GradingItem", 'GradingType'>
   readonly quantity: Prisma.FieldRef<"GradingItem", 'Int'>

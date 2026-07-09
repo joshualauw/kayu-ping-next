@@ -21,7 +21,6 @@ export async function updateLocationAction(id: number, data: CreateLocationSchem
     }
 
     const parsed = createLocationSchema.parse(data);
-
     const location = await locationService.updateLocation(id, parsed);
 
     return successResponse(location.id, "Location updated successfully");

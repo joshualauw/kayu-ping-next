@@ -45,8 +45,8 @@ export type SaleSumAggregateOutputType = {
 export type SaleMinAggregateOutputType = {
   id: number | null
   tid: string | null
-  customerId: number | null
   saleDate: Date | null
+  customerId: number | null
   locationId: number | null
   notes: string | null
   totalVolume: number | null
@@ -58,8 +58,8 @@ export type SaleMinAggregateOutputType = {
 export type SaleMaxAggregateOutputType = {
   id: number | null
   tid: string | null
-  customerId: number | null
   saleDate: Date | null
+  customerId: number | null
   locationId: number | null
   notes: string | null
   totalVolume: number | null
@@ -71,8 +71,8 @@ export type SaleMaxAggregateOutputType = {
 export type SaleCountAggregateOutputType = {
   id: number
   tid: number
-  customerId: number
   saleDate: number
+  customerId: number
   locationId: number
   notes: number
   totalVolume: number
@@ -102,8 +102,8 @@ export type SaleSumAggregateInputType = {
 export type SaleMinAggregateInputType = {
   id?: true
   tid?: true
-  customerId?: true
   saleDate?: true
+  customerId?: true
   locationId?: true
   notes?: true
   totalVolume?: true
@@ -115,8 +115,8 @@ export type SaleMinAggregateInputType = {
 export type SaleMaxAggregateInputType = {
   id?: true
   tid?: true
-  customerId?: true
   saleDate?: true
+  customerId?: true
   locationId?: true
   notes?: true
   totalVolume?: true
@@ -128,8 +128,8 @@ export type SaleMaxAggregateInputType = {
 export type SaleCountAggregateInputType = {
   id?: true
   tid?: true
-  customerId?: true
   saleDate?: true
+  customerId?: true
   locationId?: true
   notes?: true
   totalVolume?: true
@@ -228,8 +228,8 @@ export type SaleGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type SaleGroupByOutputType = {
   id: number
   tid: string
-  customerId: number
   saleDate: Date
+  customerId: number
   locationId: number
   notes: string | null
   totalVolume: number
@@ -264,33 +264,33 @@ export type SaleWhereInput = {
   NOT?: Prisma.SaleWhereInput | Prisma.SaleWhereInput[]
   id?: Prisma.IntFilter<"Sale"> | number
   tid?: Prisma.StringFilter<"Sale"> | string
-  customerId?: Prisma.IntFilter<"Sale"> | number
   saleDate?: Prisma.DateTimeFilter<"Sale"> | Date | string
+  customerId?: Prisma.IntFilter<"Sale"> | number
   locationId?: Prisma.IntFilter<"Sale"> | number
   notes?: Prisma.StringNullableFilter<"Sale"> | string | null
   totalVolume?: Prisma.FloatFilter<"Sale"> | number
   totalPrice?: Prisma.FloatFilter<"Sale"> | number
   createdAt?: Prisma.DateTimeFilter<"Sale"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Sale"> | Date | string
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
-  customer?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   items?: Prisma.SaleItemListRelationFilter
+  customer?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }
 
 export type SaleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
   saleDate?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   totalVolume?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  location?: Prisma.LocationOrderByWithRelationInput
-  customer?: Prisma.ContactOrderByWithRelationInput
   items?: Prisma.SaleItemOrderByRelationAggregateInput
+  customer?: Prisma.ContactOrderByWithRelationInput
+  location?: Prisma.LocationOrderByWithRelationInput
 }
 
 export type SaleWhereUniqueInput = Prisma.AtLeast<{
@@ -299,24 +299,24 @@ export type SaleWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SaleWhereInput | Prisma.SaleWhereInput[]
   OR?: Prisma.SaleWhereInput[]
   NOT?: Prisma.SaleWhereInput | Prisma.SaleWhereInput[]
-  customerId?: Prisma.IntFilter<"Sale"> | number
   saleDate?: Prisma.DateTimeFilter<"Sale"> | Date | string
+  customerId?: Prisma.IntFilter<"Sale"> | number
   locationId?: Prisma.IntFilter<"Sale"> | number
   notes?: Prisma.StringNullableFilter<"Sale"> | string | null
   totalVolume?: Prisma.FloatFilter<"Sale"> | number
   totalPrice?: Prisma.FloatFilter<"Sale"> | number
   createdAt?: Prisma.DateTimeFilter<"Sale"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Sale"> | Date | string
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
-  customer?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   items?: Prisma.SaleItemListRelationFilter
+  customer?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }, "id" | "tid">
 
 export type SaleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
   saleDate?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   totalVolume?: Prisma.SortOrder
@@ -336,8 +336,8 @@ export type SaleScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SaleScalarWhereWithAggregatesInput | Prisma.SaleScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Sale"> | number
   tid?: Prisma.StringWithAggregatesFilter<"Sale"> | string
-  customerId?: Prisma.IntWithAggregatesFilter<"Sale"> | number
   saleDate?: Prisma.DateTimeWithAggregatesFilter<"Sale"> | Date | string
+  customerId?: Prisma.IntWithAggregatesFilter<"Sale"> | number
   locationId?: Prisma.IntWithAggregatesFilter<"Sale"> | number
   notes?: Prisma.StringNullableWithAggregatesFilter<"Sale"> | string | null
   totalVolume?: Prisma.FloatWithAggregatesFilter<"Sale"> | number
@@ -354,16 +354,16 @@ export type SaleCreateInput = {
   totalPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutSalesInput
-  customer: Prisma.ContactCreateNestedOneWithoutSalesInput
   items?: Prisma.SaleItemCreateNestedManyWithoutSaleInput
+  customer: Prisma.ContactCreateNestedOneWithoutSalesInput
+  location: Prisma.LocationCreateNestedOneWithoutSalesInput
 }
 
 export type SaleUncheckedCreateInput = {
   id?: number
   tid: string
-  customerId: number
   saleDate: Date | string
+  customerId: number
   locationId: number
   notes?: string | null
   totalVolume: number
@@ -381,16 +381,16 @@ export type SaleUpdateInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
-  customer?: Prisma.ContactUpdateOneRequiredWithoutSalesNestedInput
   items?: Prisma.SaleItemUpdateManyWithoutSaleNestedInput
+  customer?: Prisma.ContactUpdateOneRequiredWithoutSalesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
 }
 
 export type SaleUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   saleDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -403,8 +403,8 @@ export type SaleUncheckedUpdateInput = {
 export type SaleCreateManyInput = {
   id?: number
   tid: string
-  customerId: number
   saleDate: Date | string
+  customerId: number
   locationId: number
   notes?: string | null
   totalVolume: number
@@ -426,8 +426,8 @@ export type SaleUpdateManyMutationInput = {
 export type SaleUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   saleDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -449,8 +449,8 @@ export type SaleOrderByRelationAggregateInput = {
 export type SaleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
   saleDate?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   totalVolume?: Prisma.SortOrder
@@ -470,8 +470,8 @@ export type SaleAvgOrderByAggregateInput = {
 export type SaleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
   saleDate?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   totalVolume?: Prisma.SortOrder
@@ -483,8 +483,8 @@ export type SaleMaxOrderByAggregateInput = {
 export type SaleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
-  customerId?: Prisma.SortOrder
   saleDate?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   locationId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   totalVolume?: Prisma.SortOrder
@@ -612,8 +612,8 @@ export type SaleCreateWithoutCustomerInput = {
   totalPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutSalesInput
   items?: Prisma.SaleItemCreateNestedManyWithoutSaleInput
+  location: Prisma.LocationCreateNestedOneWithoutSalesInput
 }
 
 export type SaleUncheckedCreateWithoutCustomerInput = {
@@ -661,8 +661,8 @@ export type SaleScalarWhereInput = {
   NOT?: Prisma.SaleScalarWhereInput | Prisma.SaleScalarWhereInput[]
   id?: Prisma.IntFilter<"Sale"> | number
   tid?: Prisma.StringFilter<"Sale"> | string
-  customerId?: Prisma.IntFilter<"Sale"> | number
   saleDate?: Prisma.DateTimeFilter<"Sale"> | Date | string
+  customerId?: Prisma.IntFilter<"Sale"> | number
   locationId?: Prisma.IntFilter<"Sale"> | number
   notes?: Prisma.StringNullableFilter<"Sale"> | string | null
   totalVolume?: Prisma.FloatFilter<"Sale"> | number
@@ -679,15 +679,15 @@ export type SaleCreateWithoutLocationInput = {
   totalPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer: Prisma.ContactCreateNestedOneWithoutSalesInput
   items?: Prisma.SaleItemCreateNestedManyWithoutSaleInput
+  customer: Prisma.ContactCreateNestedOneWithoutSalesInput
 }
 
 export type SaleUncheckedCreateWithoutLocationInput = {
   id?: number
   tid: string
-  customerId: number
   saleDate: Date | string
+  customerId: number
   notes?: string | null
   totalVolume: number
   totalPrice: number
@@ -730,15 +730,15 @@ export type SaleCreateWithoutItemsInput = {
   totalPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutSalesInput
   customer: Prisma.ContactCreateNestedOneWithoutSalesInput
+  location: Prisma.LocationCreateNestedOneWithoutSalesInput
 }
 
 export type SaleUncheckedCreateWithoutItemsInput = {
   id?: number
   tid: string
-  customerId: number
   saleDate: Date | string
+  customerId: number
   locationId: number
   notes?: string | null
   totalVolume: number
@@ -771,15 +771,15 @@ export type SaleUpdateWithoutItemsInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
   customer?: Prisma.ContactUpdateOneRequiredWithoutSalesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
 }
 
 export type SaleUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   saleDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -808,8 +808,8 @@ export type SaleUpdateWithoutCustomerInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
   items?: Prisma.SaleItemUpdateManyWithoutSaleNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutSalesNestedInput
 }
 
 export type SaleUncheckedUpdateWithoutCustomerInput = {
@@ -840,8 +840,8 @@ export type SaleUncheckedUpdateManyWithoutCustomerInput = {
 export type SaleCreateManyLocationInput = {
   id?: number
   tid: string
-  customerId: number
   saleDate: Date | string
+  customerId: number
   notes?: string | null
   totalVolume: number
   totalPrice: number
@@ -857,15 +857,15 @@ export type SaleUpdateWithoutLocationInput = {
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.ContactUpdateOneRequiredWithoutSalesNestedInput
   items?: Prisma.SaleItemUpdateManyWithoutSaleNestedInput
+  customer?: Prisma.ContactUpdateOneRequiredWithoutSalesNestedInput
 }
 
 export type SaleUncheckedUpdateWithoutLocationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   saleDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -877,8 +877,8 @@ export type SaleUncheckedUpdateWithoutLocationInput = {
 export type SaleUncheckedUpdateManyWithoutLocationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   tid?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   saleDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   totalVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   totalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -920,55 +920,55 @@ export type SaleCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Exte
 export type SaleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   tid?: boolean
-  customerId?: boolean
   saleDate?: boolean
+  customerId?: boolean
   locationId?: boolean
   notes?: boolean
   totalVolume?: boolean
   totalPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Sale$itemsArgs<ExtArgs>
+  customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SaleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sale"]>
 
 export type SaleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   tid?: boolean
-  customerId?: boolean
   saleDate?: boolean
+  customerId?: boolean
   locationId?: boolean
   notes?: boolean
   totalVolume?: boolean
   totalPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sale"]>
 
 export type SaleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   tid?: boolean
-  customerId?: boolean
   saleDate?: boolean
+  customerId?: boolean
   locationId?: boolean
   notes?: boolean
   totalVolume?: boolean
   totalPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sale"]>
 
 export type SaleSelectScalar = {
   id?: boolean
   tid?: boolean
-  customerId?: boolean
   saleDate?: boolean
+  customerId?: boolean
   locationId?: boolean
   notes?: boolean
   totalVolume?: boolean
@@ -977,34 +977,34 @@ export type SaleSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SaleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "customerId" | "saleDate" | "locationId" | "notes" | "totalVolume" | "totalPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["sale"]>
+export type SaleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "saleDate" | "customerId" | "locationId" | "notes" | "totalVolume" | "totalPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["sale"]>
 export type SaleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Sale$itemsArgs<ExtArgs>
+  customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SaleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SaleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }
 export type SaleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
 }
 
 export type $SalePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Sale"
   objects: {
-    location: Prisma.$LocationPayload<ExtArgs>
-    customer: Prisma.$ContactPayload<ExtArgs>
     items: Prisma.$SaleItemPayload<ExtArgs>[]
+    customer: Prisma.$ContactPayload<ExtArgs>
+    location: Prisma.$LocationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     tid: string
-    customerId: number
     saleDate: Date
+    customerId: number
     locationId: number
     notes: string | null
     totalVolume: number
@@ -1405,9 +1405,9 @@ readonly fields: SaleFieldRefs;
  */
 export interface Prisma__SaleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  customer<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Sale$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sale$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SaleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  customer<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1439,8 +1439,8 @@ export interface Prisma__SaleClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface SaleFieldRefs {
   readonly id: Prisma.FieldRef<"Sale", 'Int'>
   readonly tid: Prisma.FieldRef<"Sale", 'String'>
-  readonly customerId: Prisma.FieldRef<"Sale", 'Int'>
   readonly saleDate: Prisma.FieldRef<"Sale", 'DateTime'>
+  readonly customerId: Prisma.FieldRef<"Sale", 'Int'>
   readonly locationId: Prisma.FieldRef<"Sale", 'Int'>
   readonly notes: Prisma.FieldRef<"Sale", 'String'>
   readonly totalVolume: Prisma.FieldRef<"Sale", 'Float'>

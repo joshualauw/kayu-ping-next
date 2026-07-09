@@ -5,12 +5,12 @@ import { getAuthenticatedUser } from "@/lib/helpers/user";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { createSaleSchema } from "@/lib/schemas/sales/create-sale";
+import { createSaleSchema, type CreateSaleSchema } from "@/lib/schemas/sales/create-sale";
 import saleService from "@/lib/services/sale-service";
 
 export type CreateSaleResponse = number | null;
 
-export async function createSaleAction(data: any): Promise<ApiResponse<CreateSaleResponse>> {
+export async function createSaleAction(data: CreateSaleSchema): Promise<ApiResponse<CreateSaleResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);

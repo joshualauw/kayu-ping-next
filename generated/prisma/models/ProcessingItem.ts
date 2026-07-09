@@ -29,6 +29,7 @@ export type AggregateProcessingItem = {
 export type ProcessingItemAvgAggregateOutputType = {
   id: number | null
   processingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
@@ -36,6 +37,7 @@ export type ProcessingItemAvgAggregateOutputType = {
 export type ProcessingItemSumAggregateOutputType = {
   id: number | null
   processingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
@@ -43,6 +45,7 @@ export type ProcessingItemSumAggregateOutputType = {
 export type ProcessingItemMinAggregateOutputType = {
   id: number | null
   processingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   type: $Enums.ProcessingType | null
   quantity: number | null
@@ -53,6 +56,7 @@ export type ProcessingItemMinAggregateOutputType = {
 export type ProcessingItemMaxAggregateOutputType = {
   id: number | null
   processingId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   type: $Enums.ProcessingType | null
   quantity: number | null
@@ -63,6 +67,7 @@ export type ProcessingItemMaxAggregateOutputType = {
 export type ProcessingItemCountAggregateOutputType = {
   id: number
   processingId: number
+  gradeId: number
   woodVariantId: number
   type: number
   quantity: number
@@ -75,6 +80,7 @@ export type ProcessingItemCountAggregateOutputType = {
 export type ProcessingItemAvgAggregateInputType = {
   id?: true
   processingId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
@@ -82,6 +88,7 @@ export type ProcessingItemAvgAggregateInputType = {
 export type ProcessingItemSumAggregateInputType = {
   id?: true
   processingId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
@@ -89,6 +96,7 @@ export type ProcessingItemSumAggregateInputType = {
 export type ProcessingItemMinAggregateInputType = {
   id?: true
   processingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -99,6 +107,7 @@ export type ProcessingItemMinAggregateInputType = {
 export type ProcessingItemMaxAggregateInputType = {
   id?: true
   processingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -109,6 +118,7 @@ export type ProcessingItemMaxAggregateInputType = {
 export type ProcessingItemCountAggregateInputType = {
   id?: true
   processingId?: true
+  gradeId?: true
   woodVariantId?: true
   type?: true
   quantity?: true
@@ -206,6 +216,7 @@ export type ProcessingItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type ProcessingItemGroupByOutputType = {
   id: number
   processingId: number
+  gradeId: number | null
   woodVariantId: number
   type: $Enums.ProcessingType
   quantity: number
@@ -239,11 +250,13 @@ export type ProcessingItemWhereInput = {
   NOT?: Prisma.ProcessingItemWhereInput | Prisma.ProcessingItemWhereInput[]
   id?: Prisma.IntFilter<"ProcessingItem"> | number
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   processing?: Prisma.XOR<Prisma.ProcessingScalarRelationFilter, Prisma.ProcessingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }
@@ -251,11 +264,13 @@ export type ProcessingItemWhereInput = {
 export type ProcessingItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  grade?: Prisma.GradeOrderByWithRelationInput
   processing?: Prisma.ProcessingOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
 }
@@ -266,11 +281,13 @@ export type ProcessingItemWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProcessingItemWhereInput[]
   NOT?: Prisma.ProcessingItemWhereInput | Prisma.ProcessingItemWhereInput[]
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   processing?: Prisma.XOR<Prisma.ProcessingScalarRelationFilter, Prisma.ProcessingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }, "id">
@@ -278,6 +295,7 @@ export type ProcessingItemWhereUniqueInput = Prisma.AtLeast<{
 export type ProcessingItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -296,6 +314,7 @@ export type ProcessingItemScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProcessingItemScalarWhereWithAggregatesInput | Prisma.ProcessingItemScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
   processingId?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
+  gradeId?: Prisma.IntNullableWithAggregatesFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeWithAggregatesFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
@@ -308,6 +327,7 @@ export type ProcessingItemCreateInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
 }
@@ -315,6 +335,7 @@ export type ProcessingItemCreateInput = {
 export type ProcessingItemUncheckedCreateInput = {
   id?: number
   processingId: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.ProcessingType
   quantity: number
@@ -327,6 +348,7 @@ export type ProcessingItemUpdateInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
@@ -334,6 +356,7 @@ export type ProcessingItemUpdateInput = {
 export type ProcessingItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -344,6 +367,7 @@ export type ProcessingItemUncheckedUpdateInput = {
 export type ProcessingItemCreateManyInput = {
   id?: number
   processingId: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.ProcessingType
   quantity: number
@@ -361,6 +385,7 @@ export type ProcessingItemUpdateManyMutationInput = {
 export type ProcessingItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -381,6 +406,7 @@ export type ProcessingItemOrderByRelationAggregateInput = {
 export type ProcessingItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -391,6 +417,7 @@ export type ProcessingItemCountOrderByAggregateInput = {
 export type ProcessingItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -398,6 +425,7 @@ export type ProcessingItemAvgOrderByAggregateInput = {
 export type ProcessingItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -408,6 +436,7 @@ export type ProcessingItemMaxOrderByAggregateInput = {
 export type ProcessingItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -418,6 +447,7 @@ export type ProcessingItemMinOrderByAggregateInput = {
 export type ProcessingItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   processingId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -461,6 +491,48 @@ export type ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput = {
   connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
   update?: Prisma.ProcessingItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.ProcessingItemUpdateWithWhereUniqueWithoutVariantInput[]
   updateMany?: Prisma.ProcessingItemUpdateManyWithWhereWithoutVariantInput | Prisma.ProcessingItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
+}
+
+export type ProcessingItemCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput> | Prisma.ProcessingItemCreateWithoutGradeInput[] | Prisma.ProcessingItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutGradeInput | Prisma.ProcessingItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.ProcessingItemCreateManyGradeInputEnvelope
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+}
+
+export type ProcessingItemUncheckedCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput> | Prisma.ProcessingItemCreateWithoutGradeInput[] | Prisma.ProcessingItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutGradeInput | Prisma.ProcessingItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.ProcessingItemCreateManyGradeInputEnvelope
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+}
+
+export type ProcessingItemUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput> | Prisma.ProcessingItemCreateWithoutGradeInput[] | Prisma.ProcessingItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutGradeInput | Prisma.ProcessingItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.ProcessingItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.ProcessingItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.ProcessingItemCreateManyGradeInputEnvelope
+  set?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  disconnect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  delete?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  update?: Prisma.ProcessingItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.ProcessingItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.ProcessingItemUpdateManyWithWhereWithoutGradeInput | Prisma.ProcessingItemUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
+}
+
+export type ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput> | Prisma.ProcessingItemCreateWithoutGradeInput[] | Prisma.ProcessingItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutGradeInput | Prisma.ProcessingItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.ProcessingItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.ProcessingItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.ProcessingItemCreateManyGradeInputEnvelope
+  set?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  disconnect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  delete?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  update?: Prisma.ProcessingItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.ProcessingItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.ProcessingItemUpdateManyWithWhereWithoutGradeInput | Prisma.ProcessingItemUpdateManyWithWhereWithoutGradeInput[]
   deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
 }
 
@@ -515,12 +587,14 @@ export type ProcessingItemCreateWithoutVariantInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
 }
 
 export type ProcessingItemUncheckedCreateWithoutVariantInput = {
   id?: number
   processingId: number
+  gradeId?: number | null
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -559,6 +633,7 @@ export type ProcessingItemScalarWhereInput = {
   NOT?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
   id?: Prisma.IntFilter<"ProcessingItem"> | number
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
@@ -566,16 +641,63 @@ export type ProcessingItemScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
 }
 
+export type ProcessingItemCreateWithoutGradeInput = {
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
+}
+
+export type ProcessingItemUncheckedCreateWithoutGradeInput = {
+  id?: number
+  processingId: number
+  woodVariantId: number
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProcessingItemCreateOrConnectWithoutGradeInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput>
+}
+
+export type ProcessingItemCreateManyGradeInputEnvelope = {
+  data: Prisma.ProcessingItemCreateManyGradeInput | Prisma.ProcessingItemCreateManyGradeInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProcessingItemUpsertWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProcessingItemUpdateWithoutGradeInput, Prisma.ProcessingItemUncheckedUpdateWithoutGradeInput>
+  create: Prisma.XOR<Prisma.ProcessingItemCreateWithoutGradeInput, Prisma.ProcessingItemUncheckedCreateWithoutGradeInput>
+}
+
+export type ProcessingItemUpdateWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProcessingItemUpdateWithoutGradeInput, Prisma.ProcessingItemUncheckedUpdateWithoutGradeInput>
+}
+
+export type ProcessingItemUpdateManyWithWhereWithoutGradeInput = {
+  where: Prisma.ProcessingItemScalarWhereInput
+  data: Prisma.XOR<Prisma.ProcessingItemUpdateManyMutationInput, Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeInput>
+}
+
 export type ProcessingItemCreateWithoutProcessingInput = {
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
 }
 
 export type ProcessingItemUncheckedCreateWithoutProcessingInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.ProcessingType
   quantity: number
@@ -612,6 +734,7 @@ export type ProcessingItemUpdateManyWithWhereWithoutProcessingInput = {
 export type ProcessingItemCreateManyVariantInput = {
   id?: number
   processingId: number
+  gradeId?: number | null
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -623,12 +746,14 @@ export type ProcessingItemUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -638,6 +763,46 @@ export type ProcessingItemUncheckedUpdateWithoutVariantInput = {
 export type ProcessingItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProcessingItemCreateManyGradeInput = {
+  id?: number
+  processingId: number
+  woodVariantId: number
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProcessingItemUpdateWithoutGradeInput = {
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
+}
+
+export type ProcessingItemUncheckedUpdateWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProcessingItemUncheckedUpdateManyWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -646,6 +811,7 @@ export type ProcessingItemUncheckedUpdateManyWithoutVariantInput = {
 
 export type ProcessingItemCreateManyProcessingInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   type: $Enums.ProcessingType
   quantity: number
@@ -658,11 +824,13 @@ export type ProcessingItemUpdateWithoutProcessingInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateWithoutProcessingInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -672,6 +840,7 @@ export type ProcessingItemUncheckedUpdateWithoutProcessingInput = {
 
 export type ProcessingItemUncheckedUpdateManyWithoutProcessingInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -684,11 +853,13 @@ export type ProcessingItemUncheckedUpdateManyWithoutProcessingInput = {
 export type ProcessingItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   processingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
@@ -696,11 +867,13 @@ export type ProcessingItemSelect<ExtArgs extends runtime.Types.Extensions.Intern
 export type ProcessingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   processingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
@@ -708,11 +881,13 @@ export type ProcessingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Type
 export type ProcessingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   processingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
@@ -720,6 +895,7 @@ export type ProcessingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type ProcessingItemSelectScalar = {
   id?: boolean
   processingId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   type?: boolean
   quantity?: boolean
@@ -727,16 +903,19 @@ export type ProcessingItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProcessingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "processingId" | "woodVariantId" | "type" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["processingItem"]>
+export type ProcessingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "processingId" | "gradeId" | "woodVariantId" | "type" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["processingItem"]>
 export type ProcessingItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type ProcessingItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type ProcessingItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
@@ -744,12 +923,14 @@ export type ProcessingItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type $ProcessingItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProcessingItem"
   objects: {
+    grade: Prisma.$GradePayload<ExtArgs> | null
     processing: Prisma.$ProcessingPayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     processingId: number
+    gradeId: number | null
     woodVariantId: number
     type: $Enums.ProcessingType
     quantity: number
@@ -1149,6 +1330,7 @@ readonly fields: ProcessingItemFieldRefs;
  */
 export interface Prisma__ProcessingItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  grade<T extends Prisma.ProcessingItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProcessingItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   processing<T extends Prisma.ProcessingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProcessingDefaultArgs<ExtArgs>>): Prisma.Prisma__ProcessingClient<runtime.Types.Result.GetResult<Prisma.$ProcessingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1182,6 +1364,7 @@ export interface Prisma__ProcessingItemClient<T, Null = never, ExtArgs extends r
 export interface ProcessingItemFieldRefs {
   readonly id: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly processingId: Prisma.FieldRef<"ProcessingItem", 'Int'>
+  readonly gradeId: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly type: Prisma.FieldRef<"ProcessingItem", 'ProcessingType'>
   readonly quantity: Prisma.FieldRef<"ProcessingItem", 'Int'>
@@ -1585,6 +1768,25 @@ export type ProcessingItemDeleteManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many ProcessingItems to delete.
    */
   limit?: number
+}
+
+/**
+ * ProcessingItem.grade
+ */
+export type ProcessingItem$gradeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Grade
+   */
+  select?: Prisma.GradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Grade
+   */
+  omit?: Prisma.GradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GradeInclude<ExtArgs> | null
+  where?: Prisma.GradeWhereInput
 }
 
 /**

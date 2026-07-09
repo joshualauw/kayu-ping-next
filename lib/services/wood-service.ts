@@ -5,11 +5,6 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 
 export type WoodForSelect = Pick<Wood, "id" | "name" | "code">;
 
-export type WoodVariantForSelect = WoodVariant & {
-  wood: Wood;
-  material: Material;
-};
-
 class WoodService {
   async getAllWoods(params: TableQuery): Promise<TableResponse<Wood>> {
     const { page, size, search } = params;
@@ -40,15 +35,6 @@ class WoodService {
         id: true,
         name: true,
         code: true,
-      },
-    });
-  }
-
-  async getWoodVariantsForSelect(): Promise<WoodVariantForSelect[]> {
-    return prisma.woodVariant.findMany({
-      include: {
-        wood: true,
-        material: true,
       },
     });
   }

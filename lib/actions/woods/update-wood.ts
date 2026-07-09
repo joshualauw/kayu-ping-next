@@ -21,7 +21,6 @@ export async function updateWoodAction(id: number, data: CreateWoodSchema): Prom
     }
 
     const parsed = createWoodSchema.parse(data);
-
     const wood = await woodService.updateWood(id, parsed);
 
     return successResponse(wood.id, "Wood updated successfully");

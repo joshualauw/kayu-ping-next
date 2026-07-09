@@ -236,8 +236,8 @@ export type GradingWhereInput = {
   notes?: Prisma.StringNullableFilter<"Grading"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   items?: Prisma.GradingItemListRelationFilter
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }
 
 export type GradingOrderByWithRelationInput = {
@@ -248,8 +248,8 @@ export type GradingOrderByWithRelationInput = {
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  location?: Prisma.LocationOrderByWithRelationInput
   items?: Prisma.GradingItemOrderByRelationAggregateInput
+  location?: Prisma.LocationOrderByWithRelationInput
 }
 
 export type GradingWhereUniqueInput = Prisma.AtLeast<{
@@ -263,8 +263,8 @@ export type GradingWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.StringNullableFilter<"Grading"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   items?: Prisma.GradingItemListRelationFilter
+  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
 }, "id" | "tid">
 
 export type GradingOrderByWithAggregationInput = {
@@ -301,8 +301,8 @@ export type GradingCreateInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutGradingsInput
   items?: Prisma.GradingItemCreateNestedManyWithoutGradingInput
+  location: Prisma.LocationCreateNestedOneWithoutGradingsInput
 }
 
 export type GradingUncheckedCreateInput = {
@@ -322,8 +322,8 @@ export type GradingUpdateInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutGradingsNestedInput
   items?: Prisma.GradingItemUpdateManyWithoutGradingNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutGradingsNestedInput
 }
 
 export type GradingUncheckedUpdateInput = {
@@ -664,8 +664,8 @@ export type GradingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Grading$itemsArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.GradingCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grading"]>
 
@@ -703,8 +703,8 @@ export type GradingSelectScalar = {
 
 export type GradingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "gradingDate" | "locationId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["grading"]>
 export type GradingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Grading$itemsArgs<ExtArgs>
+  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.GradingCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type GradingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -717,8 +717,8 @@ export type GradingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $GradingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Grading"
   objects: {
-    location: Prisma.$LocationPayload<ExtArgs>
     items: Prisma.$GradingItemPayload<ExtArgs>[]
+    location: Prisma.$LocationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1122,8 +1122,8 @@ readonly fields: GradingFieldRefs;
  */
 export interface Prisma__GradingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Grading$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grading$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GradingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

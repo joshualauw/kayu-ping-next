@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material } from "@/generated/prisma/client";
+import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
 import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
@@ -19,6 +19,7 @@ export type PurchaseDetail = Purchase & {
 };
 
 export type PurchaseItemWithVariant = PurchaseItem & {
+  grade: Grade | null;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -69,6 +70,7 @@ class PurchaseService {
         supplier: true,
         items: {
           include: {
+            grade: true,
             variant: {
               include: {
                 wood: true,
@@ -97,7 +99,7 @@ class PurchaseService {
     });
 
     const sequence = String(count + 1).padStart(3, "0");
-    return `T-BELI-${dateStr}-${sequence}`;
+    return `T-PURCHASE-${dateStr}-${sequence}`;
   }
 
   async createPurchase(data: CreatePurchaseSchema): Promise<Purchase> {
@@ -145,10 +147,10 @@ class PurchaseService {
           where: {
             woodId: item.woodId,
             materialId: item.materialId,
-            width: item.width ?? null,
-            height: item.height ?? null,
-            diameterSmall: item.diameterSmall ?? null,
-            diamterLarge: item.diameterLarge ?? null,
+            width: item.width,
+            height: item.height,
+            diameterSmall: item.diameterSmall,
+            diamterLarge: item.diameterLarge,
             length: item.length,
           },
         });
@@ -158,10 +160,10 @@ class PurchaseService {
             data: {
               woodId: item.woodId,
               materialId: item.materialId,
-              width: item.width ?? null,
-              height: item.height ?? null,
-              diameterSmall: item.diameterSmall ?? null,
-              diamterLarge: item.diameterLarge ?? null,
+              width: item.width,
+              height: item.height,
+              diameterSmall: item.diameterSmall,
+              diamterLarge: item.diameterLarge,
               length: item.length,
               volume: item.volume,
             },
@@ -174,6 +176,7 @@ class PurchaseService {
             woodVariantId: variant.id,
             pricePerCubic: item.pricePerCubic,
             quantity: item.quantity,
+            gradeId: null,
           },
         });
 
@@ -181,6 +184,7 @@ class PurchaseService {
           where: {
             woodVariantId: variant.id,
             locationId: data.locationId,
+            gradeId: null,
           },
         });
 
@@ -196,6 +200,7 @@ class PurchaseService {
             data: {
               woodVariantId: variant.id,
               locationId: data.locationId,
+              gradeId: null,
               stock: item.quantity,
             },
           });
@@ -208,6 +213,7 @@ class PurchaseService {
             locationId: data.locationId,
             type: "IN",
             quantity: item.quantity,
+            gradeId: null,
             referenceType: "PURCHASE",
             referenceId: purchase.id,
           },

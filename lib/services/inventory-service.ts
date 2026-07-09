@@ -16,7 +16,9 @@ class InventoryService {
   async getAllInventories(params: TableQuery): Promise<TableResponse<InventoryListItem>> {
     const { page, size, search } = params;
 
-    const where: Prisma.InventoryWhereInput = {};
+    const where: Prisma.InventoryWhereInput = {
+      stock: { gt: 0 },
+    };
 
     if (search) {
       where.OR = [

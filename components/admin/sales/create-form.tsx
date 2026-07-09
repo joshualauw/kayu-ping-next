@@ -13,7 +13,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft } from "lucide-react";
 import { LocationForSelect } from "@/lib/services/location-service";
 import { ContactForSelect } from "@/lib/services/contact-service";
-import { createSaleSchema } from "@/lib/schemas/sales/create-sale";
+import { WoodForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
+import { GradeForSelect } from "@/lib/services/grade-service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createSaleFormSchema, type CreateSaleFormInput, type CreateSaleFormOutput } from "@/lib/schemas/sales/create-sale";
 import { createSaleAction } from "@/lib/actions/sales/create-sale";
 import dayjs from "@/lib/integrations/dayjs";
 import SalesCart from "./cart";
@@ -21,15 +25,19 @@ import SalesCart from "./cart";
 interface SaleCreateFormProps {
   locations: LocationForSelect[];
   contacts: ContactForSelect[];
+  woods: WoodForSelect[];
+  materials: MaterialForSelect[];
+  grades: GradeForSelect[];
 }
 
-export default function SaleCreateForm({ locations, contacts }: SaleCreateFormProps) {
+export default function SaleCreateForm({ locations, contacts, woods, materials, grades }: SaleCreateFormProps) {
   const router = useRouter();
   const formId = "sale-create-form";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<any>({
+  const form = useForm<CreateSaleFormInput, any, CreateSaleFormOutput>({
+    resolver: zodResolver(createSaleFormSchema),
     defaultValues: {
       saleDate: dayjs().format("YYYY-MM-DDTHH:mm"),
       locationId: "",
@@ -39,48 +47,14 @@ export default function SaleCreateForm({ locations, contacts }: SaleCreateFormPr
     },
   });
 
-  const handleCustomSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = form.getValues();
-    onSubmit(data);
-  };
-
-  async function onSubmit(data: any) {
-    form.clearErrors();
-
-    const mappedItems = (data.items || []).map((item: any) => ({
-      inventoryId: Number(item.inventoryId),
-      woodVariantId: Number(item.woodVariantId),
-      quantity: Number(item.quantity),
-      pricePerCubic: Number(item.pricePerCubic),
-    }));
-
-    const flattenedData = {
-      saleDate: data.saleDate,
-      locationId: data.locationId,
-      customerId: data.customerId,
-      notes: data.notes || null,
-      items: mappedItems,
-    };
-
-    const validation = createSaleSchema.safeParse(flattenedData);
-
-    if (!validation.success) {
-      validation.error.issues.forEach((issue) => {
-        const path = issue.path;
-        form.setError(path.join(".") as any, { message: issue.message });
-      });
-      toast.error("Please fix the validation errors in the form.");
-      return;
-    }
-
+  async function onSubmit(data: CreateSaleFormOutput) {
     setIsSubmitting(true);
     try {
-      const result = await createSaleAction(validation.data);
+      const result = await createSaleAction(data);
 
       if (result.success) {
         router.push("/admin/sales");
-        toast.success("Sale logged successfully (Console only)");
+        toast.success("Sale logged successfully");
       } else {
         toast.error(result.message);
       }
@@ -96,7 +70,7 @@ export default function SaleCreateForm({ locations, contacts }: SaleCreateFormPr
         <CardDescription>Record a new wood/material sale transaction.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id={formId} onSubmit={handleCustomSubmit} className="space-y-6">
+        <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FieldGroup className="flex flex-col gap-6">
             <Controller
               name="saleDate"
@@ -117,7 +91,7 @@ export default function SaleCreateForm({ locations, contacts }: SaleCreateFormPr
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Location</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select sale location" />
                       </SelectTrigger>
@@ -140,7 +114,7 @@ export default function SaleCreateForm({ locations, contacts }: SaleCreateFormPr
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Customer</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select customer" />
                       </SelectTrigger>
@@ -173,7 +147,7 @@ export default function SaleCreateForm({ locations, contacts }: SaleCreateFormPr
 
           {/* Cart Component */}
           <div className="border-t pt-6">
-            <SalesCart control={form.control} errors={form.formState.errors.items} />
+            <SalesCart control={form.control} errors={form.formState.errors.items} woods={woods} materials={materials} grades={grades} />
             {(form.formState.errors.items as any)?.message && (
               <p className="mt-2 text-sm font-medium text-destructive">{String((form.formState.errors.items as any).message)}</p>
             )}

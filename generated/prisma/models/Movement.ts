@@ -272,10 +272,10 @@ export type MovementWhereInput = {
   totalMovedVolume?: Prisma.FloatFilter<"Movement"> | number
   createdAt?: Prisma.DateTimeFilter<"Movement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movement"> | Date | string
-  trucker?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  items?: Prisma.MovementItemListRelationFilter
   fromLocation?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   toLocation?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
-  items?: Prisma.MovementItemListRelationFilter
+  trucker?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
 }
 
 export type MovementOrderByWithRelationInput = {
@@ -289,10 +289,10 @@ export type MovementOrderByWithRelationInput = {
   totalMovedVolume?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  trucker?: Prisma.ContactOrderByWithRelationInput
+  items?: Prisma.MovementItemOrderByRelationAggregateInput
   fromLocation?: Prisma.LocationOrderByWithRelationInput
   toLocation?: Prisma.LocationOrderByWithRelationInput
-  items?: Prisma.MovementItemOrderByRelationAggregateInput
+  trucker?: Prisma.ContactOrderByWithRelationInput
 }
 
 export type MovementWhereUniqueInput = Prisma.AtLeast<{
@@ -309,10 +309,10 @@ export type MovementWhereUniqueInput = Prisma.AtLeast<{
   totalMovedVolume?: Prisma.FloatFilter<"Movement"> | number
   createdAt?: Prisma.DateTimeFilter<"Movement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movement"> | Date | string
-  trucker?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  items?: Prisma.MovementItemListRelationFilter
   fromLocation?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   toLocation?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
-  items?: Prisma.MovementItemListRelationFilter
+  trucker?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
 }, "id" | "tid">
 
 export type MovementOrderByWithAggregationInput = {
@@ -356,10 +356,10 @@ export type MovementCreateInput = {
   totalMovedVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
+  items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
   fromLocation: Prisma.LocationCreateNestedOneWithoutMovementsFromInput
   toLocation: Prisma.LocationCreateNestedOneWithoutMovementsToInput
-  items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
+  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
 }
 
 export type MovementUncheckedCreateInput = {
@@ -383,10 +383,10 @@ export type MovementUpdateInput = {
   totalMovedVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
+  items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
   fromLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsFromNestedInput
   toLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsToNestedInput
-  items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
+  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
 }
 
 export type MovementUncheckedUpdateInput = {
@@ -655,9 +655,9 @@ export type MovementCreateWithoutTruckerInput = {
   totalMovedVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
   fromLocation: Prisma.LocationCreateNestedOneWithoutMovementsFromInput
   toLocation: Prisma.LocationCreateNestedOneWithoutMovementsToInput
-  items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
 }
 
 export type MovementUncheckedCreateWithoutTruckerInput = {
@@ -722,9 +722,9 @@ export type MovementCreateWithoutFromLocationInput = {
   totalMovedVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
-  toLocation: Prisma.LocationCreateNestedOneWithoutMovementsToInput
   items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
+  toLocation: Prisma.LocationCreateNestedOneWithoutMovementsToInput
+  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
 }
 
 export type MovementUncheckedCreateWithoutFromLocationInput = {
@@ -757,9 +757,9 @@ export type MovementCreateWithoutToLocationInput = {
   totalMovedVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
-  fromLocation: Prisma.LocationCreateNestedOneWithoutMovementsFromInput
   items?: Prisma.MovementItemCreateNestedManyWithoutMovementInput
+  fromLocation: Prisma.LocationCreateNestedOneWithoutMovementsFromInput
+  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
 }
 
 export type MovementUncheckedCreateWithoutToLocationInput = {
@@ -824,9 +824,9 @@ export type MovementCreateWithoutItemsInput = {
   totalMovedVolume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
   fromLocation: Prisma.LocationCreateNestedOneWithoutMovementsFromInput
   toLocation: Prisma.LocationCreateNestedOneWithoutMovementsToInput
+  trucker: Prisma.ContactCreateNestedOneWithoutMovementsInput
 }
 
 export type MovementUncheckedCreateWithoutItemsInput = {
@@ -865,9 +865,9 @@ export type MovementUpdateWithoutItemsInput = {
   totalMovedVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
   fromLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsFromNestedInput
   toLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsToNestedInput
+  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
 }
 
 export type MovementUncheckedUpdateWithoutItemsInput = {
@@ -902,9 +902,9 @@ export type MovementUpdateWithoutTruckerInput = {
   totalMovedVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
   fromLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsFromNestedInput
   toLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsToNestedInput
-  items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
 }
 
 export type MovementUncheckedUpdateWithoutTruckerInput = {
@@ -963,9 +963,9 @@ export type MovementUpdateWithoutFromLocationInput = {
   totalMovedVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
-  toLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsToNestedInput
   items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
+  toLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsToNestedInput
+  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
 }
 
 export type MovementUncheckedUpdateWithoutFromLocationInput = {
@@ -1000,9 +1000,9 @@ export type MovementUpdateWithoutToLocationInput = {
   totalMovedVolume?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
-  fromLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsFromNestedInput
   items?: Prisma.MovementItemUpdateManyWithoutMovementNestedInput
+  fromLocation?: Prisma.LocationUpdateOneRequiredWithoutMovementsFromNestedInput
+  trucker?: Prisma.ContactUpdateOneRequiredWithoutMovementsNestedInput
 }
 
 export type MovementUncheckedUpdateWithoutToLocationInput = {
@@ -1072,10 +1072,10 @@ export type MovementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   totalMovedVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  items?: boolean | Prisma.Movement$itemsArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.Movement$itemsArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MovementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movement"]>
 
@@ -1090,9 +1090,9 @@ export type MovementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   totalMovedVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movement"]>
 
 export type MovementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1106,9 +1106,9 @@ export type MovementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   totalMovedVolume?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movement"]>
 
 export type MovementSelectScalar = {
@@ -1126,30 +1126,30 @@ export type MovementSelectScalar = {
 
 export type MovementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tid" | "truckerId" | "movementDate" | "fromLocationId" | "toLocationId" | "notes" | "totalMovedVolume" | "createdAt" | "updatedAt", ExtArgs["result"]["movement"]>
 export type MovementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  items?: boolean | Prisma.Movement$itemsArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
-  items?: boolean | Prisma.Movement$itemsArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MovementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MovementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
 }
 export type MovementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   fromLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   toLocation?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  trucker?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
 }
 
 export type $MovementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Movement"
   objects: {
-    trucker: Prisma.$ContactPayload<ExtArgs>
+    items: Prisma.$MovementItemPayload<ExtArgs>[]
     fromLocation: Prisma.$LocationPayload<ExtArgs>
     toLocation: Prisma.$LocationPayload<ExtArgs>
-    items: Prisma.$MovementItemPayload<ExtArgs>[]
+    trucker: Prisma.$ContactPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1556,10 +1556,10 @@ readonly fields: MovementFieldRefs;
  */
 export interface Prisma__MovementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  trucker<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  items<T extends Prisma.Movement$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movement$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovementItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fromLocation<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   toLocation<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  items<T extends Prisma.Movement$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Movement$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovementItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  trucker<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -10,7 +10,7 @@ datasource db {
 model Users {
   id       Int    @id @default(autoincrement())
   name     String @db.VarChar(255)
-  email    String @unique()
+  email    String @unique
   password String @db.VarChar(255)
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
@@ -22,7 +22,7 @@ model Users {
 model Wood {
   id   Int    @id @default(autoincrement())
   name String @db.VarChar(255)
-  code String @unique() @db.VarChar(255)
+  code String @unique @db.VarChar(255)
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
@@ -33,20 +33,20 @@ model Wood {
 }
 
 model Contact {
-  id          Int         @id @default(autoincrement())
-  name        String      @db.VarChar(255)
-  phoneNumber String?     @unique() @db.VarChar(255)
-  email       String?     @unique() @db.VarChar(255)
-  address     String?     @db.Text
-  type        ContactType
-  notes       String?     @db.Text
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  phoneNumber String? @unique @db.VarChar(255)
+  email       String? @unique @db.VarChar(255)
+  address     String?
+  notes       String?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  type      ContactType
+  movements Movement[]
   purchases Purchase[]
   sales     Sale[]
-  movements Movement[]
 
   @@map("contacts")
 }
@@ -54,33 +54,33 @@ model Contact {
 model Location {
   id      Int          @id @default(autoincrement())
   name    String       @db.VarChar(255)
-  address String?      @db.Text
+  address String?
   type    LocationType
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  gradings       Grading[]
   inventories    Inventory[]
-  stockMutations StockMutation[]
-  purchases      Purchase[]
-  sales          Sale[]
-  processings    Processing[]
   movementsFrom  Movement[]      @relation("FromLocation")
   movementsTo    Movement[]      @relation("ToLocation")
-  gradings       Grading[]
+  processings    Processing[]
+  purchases      Purchase[]
+  sales          Sale[]
+  stockMutations StockMutation[]
 
   @@map("locations")
 }
 
 model Material {
-  id          Int         @id @default(autoincrement())
-  name        String      @db.VarChar(255)
-  measurement Measurement
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  variants WoodVariant[]
+  measurement Measurement
+  variants    WoodVariant[]
 
   @@map("materials")
 }
@@ -99,15 +99,15 @@ model WoodVariant {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  wood            Wood             @relation(fields: [woodId], references: [id])
-  material        Material         @relation(fields: [materialId], references: [id])
+  gradingItems    GradingItem[]
   inventories     Inventory[]
-  mutations       StockMutation[]
+  movementItems   MovementItem[]
+  processingItems ProcessingItem[]
   purchaseItems   PurchaseItem[]
   saleItems       SaleItem[]
-  processingItems ProcessingItem[]
-  movementItems   MovementItem[]
-  gradingItems    GradingItem[]
+  mutations       StockMutation[]
+  material        Material         @relation(fields: [materialId], references: [id])
+  wood            Wood             @relation(fields: [woodId], references: [id])
 
   @@map("wood_variants")
 }
@@ -115,14 +115,18 @@ model WoodVariant {
 model Grade {
   id   Int    @id @default(autoincrement())
   name String @db.VarChar(255)
-  code String @unique() @db.VarChar(255)
+  code String @unique @db.VarChar(255)
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  gradingItems   GradingItem[]
-  inventories    Inventory[]
-  stockMutations StockMutation[]
+  inventories     Inventory[]
+  stockMutations  StockMutation[]
+  gradingItems    GradingItem[]
+  movementItems   MovementItem[]
+  processingItems ProcessingItem[]
+  saleItems       SaleItem[]
+  purchaseItems   PurchaseItem[]
 
   @@map("grades")
 }
@@ -130,16 +134,16 @@ model Grade {
 model Inventory {
   id            Int  @id @default(autoincrement())
   woodVariantId Int  @map("wood_variant_id")
-  locationId    Int  @map("location_id")
   gradeId       Int? @map("grade_id")
+  locationId    Int  @map("location_id")
   stock         Int
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
-  location Location    @relation(fields: [locationId], references: [id])
   grade    Grade?      @relation(fields: [gradeId], references: [id])
+  location Location    @relation(fields: [locationId], references: [id])
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
 
   @@map("inventories")
 }
@@ -148,40 +152,40 @@ model StockMutation {
   id            Int           @id @default(autoincrement())
   mutationDate  DateTime      @map("mutation_date") @db.Timestamptz(6)
   woodVariantId Int           @map("wood_variant_id")
+  gradeId       Int?          @map("grade_id")
   locationId    Int           @map("location_id")
   type          MutationType
   quantity      Int
-  gradeId       Int?          @map("grade_id")
   referenceType ReferenceType
   referenceId   Int?
-  notes         String?       @db.Text
+  notes         String?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
-  location Location    @relation(fields: [locationId], references: [id])
   grade    Grade?      @relation(fields: [gradeId], references: [id])
+  location Location    @relation(fields: [locationId], references: [id])
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
 
   @@map("stock_mutations")
 }
 
 model Purchase {
   id           Int      @id @default(autoincrement())
-  tid          String   @unique()
+  tid          String   @unique
   supplierId   Int      @map("supplier_id")
-  purchaseDate DateTime @map("purchase_date") @db.Timestamptz(6)
   locationId   Int      @map("location_id")
-  notes        String?  @db.Text()
-  totalVolume  Float
+  purchaseDate DateTime @map("purchase_date") @db.Timestamptz(6)
+  notes        String?
   totalPrice   Float
+  totalVolume  Float
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  items    PurchaseItem[]
   location Location       @relation(fields: [locationId], references: [id])
   supplier Contact        @relation(fields: [supplierId], references: [id])
-  items    PurchaseItem[]
 
   @@map("purchases")
 }
@@ -189,6 +193,7 @@ model Purchase {
 model PurchaseItem {
   id            Int   @id @default(autoincrement())
   purchaseId    Int   @map("purchase_id")
+  gradeId       Int?  @map("grade_id")
   woodVariantId Int   @map("wood_variant_id")
   pricePerCubic Float @map("price_per_cubic")
   quantity      Int
@@ -196,6 +201,7 @@ model PurchaseItem {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  grade    Grade?      @relation(fields: [gradeId], references: [id])
   purchase Purchase    @relation(fields: [purchaseId], references: [id])
   variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
 
@@ -204,20 +210,20 @@ model PurchaseItem {
 
 model Sale {
   id          Int      @id @default(autoincrement())
-  tid         String   @unique()
-  customerId  Int      @map("customer_id")
+  tid         String   @unique
   saleDate    DateTime @map("sale_date") @db.Timestamptz(6)
+  customerId  Int      @map("customer_id")
   locationId  Int      @map("location_id")
-  notes       String?  @db.Text
+  notes       String?
   totalVolume Float
   totalPrice  Float
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  location Location   @relation(fields: [locationId], references: [id])
-  customer Contact    @relation(fields: [customerId], references: [id])
   items    SaleItem[]
+  customer Contact    @relation(fields: [customerId], references: [id])
+  location Location   @relation(fields: [locationId], references: [id])
 
   @@map("sales")
 }
@@ -225,6 +231,7 @@ model Sale {
 model SaleItem {
   id            Int   @id @default(autoincrement())
   saleId        Int   @map("sale_id")
+  gradeId       Int?  @map("grade_id")
   woodVariantId Int   @map("wood_variant_id")
   pricePerCubic Float @map("price_per_cubic")
   quantity      Int
@@ -232,6 +239,7 @@ model SaleItem {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  grade   Grade?      @relation(fields: [gradeId], references: [id])
   sale    Sale        @relation(fields: [saleId], references: [id])
   variant WoodVariant @relation(fields: [woodVariantId], references: [id])
 
@@ -240,10 +248,10 @@ model SaleItem {
 
 model Processing {
   id                Int      @id @default(autoincrement())
-  tid               String   @unique()
+  tid               String   @unique
   processingDate    DateTime @map("processing_date") @db.Timestamptz(6)
   locationId        Int      @map("location_id")
-  notes             String?  @db.Text
+  notes             String?
   totalInputVolume  Float    @map("total_input_volume")
   totalOutputVolume Float    @map("total_output_volume")
 
@@ -259,6 +267,7 @@ model Processing {
 model ProcessingItem {
   id            Int            @id @default(autoincrement())
   processingId  Int            @map("processing_id")
+  gradeId       Int?           @map("grade_id")
   woodVariantId Int            @map("wood_variant_id")
   type          ProcessingType
   quantity      Int
@@ -266,6 +275,7 @@ model ProcessingItem {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  grade      Grade?      @relation(fields: [gradeId], references: [id])
   processing Processing  @relation(fields: [processingId], references: [id])
   variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
 
@@ -274,34 +284,36 @@ model ProcessingItem {
 
 model Movement {
   id               Int      @id @default(autoincrement())
-  tid              String   @unique()
+  tid              String   @unique
   truckerId        Int      @map("trucker_id")
   movementDate     DateTime @map("movement_date") @db.Timestamptz(6)
   fromLocationId   Int      @map("from_location_id")
   toLocationId     Int      @map("to_location_id")
-  notes            String?  @db.Text
+  notes            String?
   totalMovedVolume Float    @map("total_moved_volume")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  trucker      Contact        @relation(fields: [truckerId], references: [id])
+  items        MovementItem[]
   fromLocation Location       @relation("FromLocation", fields: [fromLocationId], references: [id])
   toLocation   Location       @relation("ToLocation", fields: [toLocationId], references: [id])
-  items        MovementItem[]
+  trucker      Contact        @relation(fields: [truckerId], references: [id])
 
   @@map("movements")
 }
 
 model MovementItem {
-  id            Int @id @default(autoincrement())
-  movementId    Int @map("movement_id")
-  woodVariantId Int @map("wood_variant_id")
+  id            Int  @id @default(autoincrement())
+  movementId    Int  @map("movement_id")
+  gradeId       Int? @map("grade_id")
+  woodVariantId Int  @map("wood_variant_id")
   quantity      Int
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  grade    Grade?      @relation(fields: [gradeId], references: [id])
   movement Movement    @relation(fields: [movementId], references: [id])
   variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
 
@@ -310,24 +322,24 @@ model MovementItem {
 
 model Grading {
   id          Int      @id @default(autoincrement())
-  tid         String   @unique()
+  tid         String   @unique
   gradingDate DateTime @map("grading_date") @db.Timestamptz(6)
   locationId  Int      @map("location_id")
-  notes       String?  @db.Text
+  notes       String?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  location Location      @relation(fields: [locationId], references: [id])
   items    GradingItem[]
+  location Location      @relation(fields: [locationId], references: [id])
 
   @@map("gradings")
 }
 
 model GradingItem {
   id            Int         @id @default(autoincrement())
-  gradeId       Int?        @map("grade_id")
   gradingId     Int         @map("grading_id")
+  gradeId       Int?        @map("grade_id")
   woodVariantId Int         @map("wood_variant_id")
   type          GradingType
   quantity      Int
@@ -336,9 +348,9 @@ model GradingItem {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  grade   Grade?      @relation(fields: [gradeId], references: [id])
   grading Grading     @relation(fields: [gradingId], references: [id])
   variant WoodVariant @relation(fields: [woodVariantId], references: [id])
-  grade   Grade?      @relation(fields: [gradeId], references: [id])
 
   @@map("grading_items")
 }
@@ -362,8 +374,8 @@ enum LocationType {
 }
 
 enum Measurement {
-  CYLINDER // D0 x D1 x L
-  CUBE // W x H x L
+  CYLINDER
+  CUBE
 
   @@map("measurements")
 }

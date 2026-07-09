@@ -85,6 +85,11 @@ export default function StockMutationsDataTable() {
         cell: ({ row }) => <span>{row.original.type === "IN" ? `+${row.original.quantity}` : `-${row.original.quantity}`}</span>,
       },
       {
+        accessorKey: "referenceType",
+        header: "Source",
+        cell: ({ row }) => row.original.referenceType,
+      },
+      {
         id: "reference",
         header: "Reference",
         cell: ({ row }) => {

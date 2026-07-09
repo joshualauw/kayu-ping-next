@@ -1,5 +1,5 @@
 import z from "zod";
-import { positiveIntegerString, positiveNumericString } from "@/lib/schemas/reusable-schema";
+import { Measurement } from "@/generated/prisma/enums";
 
 export const createPurchaseSchema = z.object({
   purchaseDate: z.string().min(1),
@@ -26,58 +26,92 @@ export const createPurchaseSchema = z.object({
 
 export type CreatePurchaseSchema = z.infer<typeof createPurchaseSchema>;
 
-export const createPurchaseFormSchema = z.object({
-  purchaseDate: z.string().min(1, "Purchase date is required"),
-  locationId: z.string().min(1, "Location is required"),
-  supplierId: z.string().min(1, "Supplier is required"),
-  notes: z.string().optional(),
-  items: z
-    .array(
-      z.object({
-        woodId: z.string().min(1, "Wood is required"),
-        materialId: z.string().min(1, "Material is required"),
-        measurement: z.string().optional(),
-        width: z.string().optional(),
-        height: z.string().optional(),
-        diameterSmall: z.string().optional(),
-        diameterLarge: z.string().optional(),
-        length: positiveNumericString("Length"),
-        quantity: positiveIntegerString("Quantity"),
-        pricePerCubic: positiveNumericString("Price"),
+export const getCreatePurchaseFormSchema = (materials: { id: number; measurement: Measurement }[]) =>
+  z.object({
+    purchaseDate: z.string().min(1, "Purchase date is required"),
+    locationId: z.coerce.number().int().positive("Location is required"),
+    supplierId: z.coerce.number().int().positive("Supplier is required"),
+    notes: z
+      .string()
+      .trim()
+      .transform((val) => (val === "" ? null : val))
+      .optional(),
+    items: z
+      .array(
+        z.object({
+          woodId: z.coerce.number().int().positive("Wood is required"),
+          materialId: z.coerce.number().int().positive("Material is required"),
+          measurement: z.enum(["CUBE", "CYLINDER"]).optional(),
+          width: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? null : Number(val)),
+            z.number().positive("Width must be positive").nullable().optional(),
+          ),
+          height: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? null : Number(val)),
+            z.number().positive("Height must be positive").nullable().optional(),
+          ),
+          diameterSmall: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? null : Number(val)),
+            z.number().positive("Diameter must be positive").nullable().optional(),
+          ),
+          diameterLarge: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? null : Number(val)),
+            z.number().positive("Diameter must be positive").nullable().optional(),
+          ),
+          length: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? undefined : Number(val)),
+            z.number({ message: "Length is required" }).positive("Length must be positive"),
+          ),
+          quantity: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? undefined : Number(val)),
+            z.number({ message: "Quantity is required" }).int().positive("Quantity must be positive"),
+          ),
+          pricePerCubic: z.preprocess(
+            (val) => (val === "" || val === null || val === undefined ? undefined : Number(val)),
+            z.number({ message: "Price is required" }).positive("Price must be positive"),
+          ),
+        }),
+      )
+      .min(1, "At least one item must be added to the cart")
+      .superRefine((items, ctx) => {
+        items.forEach((item, index) => {
+          const material = materials.find((m) => m.id === Number(item.materialId));
+          const measurement = material?.measurement;
+          if (measurement === "CUBE") {
+            if (item.width === null || item.width === undefined) {
+              ctx.addIssue({
+                code: "custom",
+                message: "Width is required",
+                path: [index, "width"],
+              });
+            }
+            if (item.height === null || item.height === undefined) {
+              ctx.addIssue({
+                code: "custom",
+                message: "Height is required",
+                path: [index, "height"],
+              });
+            }
+          } else if (measurement === "CYLINDER") {
+            if (item.diameterSmall === null || item.diameterSmall === undefined) {
+              ctx.addIssue({
+                code: "custom",
+                message: "Diameter Small is required",
+                path: [index, "diameterSmall"],
+              });
+            }
+            if (item.diameterLarge === null || item.diameterLarge === undefined) {
+              ctx.addIssue({
+                code: "custom",
+                message: "Diameter Large is required",
+                path: [index, "diameterLarge"],
+              });
+            }
+          }
+        });
       }),
-    )
-    .min(1, "At least one item must be added to the cart")
-    .superRefine((items, ctx) => {
-      items.forEach((item, index) => {
-        const validateRequiredPositive = (val: string | undefined, fieldName: string, path: string) => {
-          if (!val || val.trim() === "") {
-            ctx.addIssue({
-              code: "custom",
-              message: `${fieldName} is required`,
-              path: [index, path],
-            });
-            return;
-          }
-          const num = Number(val);
-          if (isNaN(num) || num <= 0) {
-            ctx.addIssue({
-              code: "custom",
-              message: `${fieldName} must be positive`,
-              path: [index, path],
-            });
-          }
-        };
+  });
 
-        if (item.measurement === "CUBE") {
-          validateRequiredPositive(item.width, "Width", "width");
-          validateRequiredPositive(item.height, "Height", "height");
-        } else if (item.measurement === "CYLINDER") {
-          validateRequiredPositive(item.diameterSmall, "Diameter Small", "diameterSmall");
-          validateRequiredPositive(item.diameterLarge, "Diameter Large", "diameterLarge");
-        }
-      });
-    }),
-});
-
-export type CreatePurchaseFormInput = z.input<typeof createPurchaseFormSchema>;
-export type CreatePurchaseFormOutput = z.output<typeof createPurchaseFormSchema>;
+export type CreatePurchaseFormSchema = ReturnType<typeof getCreatePurchaseFormSchema>;
+export type CreatePurchaseFormInput = z.input<CreatePurchaseFormSchema>;
+export type CreatePurchaseFormOutput = z.output<CreatePurchaseFormSchema>;

@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { Measurement } from "@/generated/prisma/enums";
 import { PurchaseDetail } from "@/lib/services/purchase-service";
+import { Badge } from "@/components/ui/badge";
 
 interface PurchaseDetailCardProps {
   purchase: PurchaseDetail;
@@ -78,6 +79,7 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                   <th className="p-3">No.</th>
                   <th className="p-3">Wood</th>
                   <th className="p-3">Material</th>
+                  <th className="p-3">Grade</th>
                   <th className="p-3">Dimensions (cm)</th>
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Qty</th>
@@ -103,6 +105,13 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                         <div className="text-[10px] text-muted-foreground">{wood.code}</div>
                       </td>
                       <td className="p-3 font-medium">{material.name}</td>
+                      <td className="p-3">
+                        {item.grade ? (
+                          <Badge variant="secondary">{item.grade.code}</Badge>
+                        ) : (
+                          <span className="text-xs text-muted-foreground italic">Ungraded</span>
+                        )}
+                      </td>
                       <td className="p-3">
                         {material.measurement === Measurement.CUBE && (
                           <div>
@@ -130,7 +139,7 @@ export default function PurchaseDetailCard({ purchase }: PurchaseDetailCardProps
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="p-8 text-center text-sm text-muted-foreground italic">
+                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
                       No items found in this purchase.
                     </td>
                   </tr>

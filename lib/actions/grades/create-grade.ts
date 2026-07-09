@@ -17,7 +17,6 @@ export async function createGradeAction(data: CreateGradeSchema): Promise<ApiRes
     if (!user) throw new AuthorizationError();
 
     const parsed = createGradeSchema.parse(data);
-
     const grade = await gradeService.createGrade(parsed);
 
     return successResponse(grade.id, "Grade created successfully");

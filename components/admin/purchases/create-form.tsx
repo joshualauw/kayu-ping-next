@@ -16,7 +16,11 @@ import { WoodForSelect } from "@/lib/services/wood-service";
 import { MaterialForSelect } from "@/lib/services/material-service";
 import { ContactForSelect } from "@/lib/services/contact-service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreatePurchaseFormInput, CreatePurchaseFormOutput, createPurchaseFormSchema } from "@/lib/schemas/purchases/create-purchase";
+import {
+  getCreatePurchaseFormSchema,
+  type CreatePurchaseFormInput,
+  type CreatePurchaseFormOutput,
+} from "@/lib/schemas/purchases/create-purchase";
 import { createPurchaseAction } from "@/lib/actions/purchases/create-purchase";
 import dayjs from "@/lib/integrations/dayjs";
 import PurchasesCart from "./cart";
@@ -35,11 +39,11 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<CreatePurchaseFormInput, any, CreatePurchaseFormOutput>({
-    resolver: zodResolver(createPurchaseFormSchema),
+    resolver: zodResolver(getCreatePurchaseFormSchema(materials)),
     defaultValues: {
       purchaseDate: dayjs().format("YYYY-MM-DDTHH:mm"),
-      locationId: "",
-      supplierId: "",
+      locationId: "" as any,
+      supplierId: "" as any,
       notes: "",
       items: [],
     },
@@ -49,28 +53,28 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
     setIsSubmitting(true);
     try {
       const mappedItems = data.items.map((item) => {
-        const material = materials.find((m) => m.id === Number(item.materialId));
-        const measurement = material?.measurement as "CUBE" | "CYLINDER";
+        const material = materials.find((m) => m.id === item.materialId);
+        const measurement = (material?.measurement || item.measurement) as "CUBE" | "CYLINDER";
 
         return {
-          woodId: Number(item.woodId),
-          materialId: Number(item.materialId),
+          woodId: item.woodId,
+          materialId: item.materialId,
           measurement,
-          width: item.width && item.width !== "" ? Number(item.width) : null,
-          height: item.height && item.height !== "" ? Number(item.height) : null,
-          diameterSmall: item.diameterSmall && item.diameterSmall !== "" ? Number(item.diameterSmall) : null,
-          diameterLarge: item.diameterLarge && item.diameterLarge !== "" ? Number(item.diameterLarge) : null,
-          length: Number(item.length),
-          quantity: Number(item.quantity),
-          pricePerCubic: Number(item.pricePerCubic),
+          width: item.width,
+          height: item.height,
+          diameterSmall: item.diameterSmall,
+          diameterLarge: item.diameterLarge,
+          length: item.length,
+          quantity: item.quantity,
+          pricePerCubic: item.pricePerCubic,
         };
       });
 
       const payload = {
         purchaseDate: data.purchaseDate,
-        locationId: Number(data.locationId),
-        supplierId: Number(data.supplierId),
-        notes: data.notes && data.notes.trim() !== "" ? data.notes : null,
+        locationId: data.locationId,
+        supplierId: data.supplierId,
+        notes: data.notes || null,
         items: mappedItems,
       };
 
@@ -117,7 +121,7 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Location</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select purchase location" />
                       </SelectTrigger>
@@ -140,7 +144,7 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Supplier</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select supplier" />
                       </SelectTrigger>

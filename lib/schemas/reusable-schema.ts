@@ -35,3 +35,9 @@ export const positiveIntegerString = (fieldName: string) =>
       const num = Number(val);
       return !isNaN(num) && Number.isInteger(num) && num > 0;
     }, `${fieldName} must be a positive integer`);
+
+export const formSelectIdSchema = (requiredMessage: string) =>
+  z
+    .union([z.string().min(1, requiredMessage), z.number({ message: requiredMessage })])
+    .transform((val) => Number(val))
+    .refine((val) => !isNaN(val) && val > 0, { message: requiredMessage });

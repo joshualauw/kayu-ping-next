@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Processing, Location, ProcessingItem, WoodVariant, Wood, Material } from "@/generated/prisma/client";
+import { Processing, Location, ProcessingItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
 import { ProcessingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateProcessingSchema } from "@/lib/schemas/processings/create-processing";
@@ -12,6 +12,7 @@ export type ProcessingListItem = Processing & {
 };
 
 export type ProcessingItemWithVariant = ProcessingItem & {
+  grade: Grade | null;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -91,17 +92,20 @@ class ProcessingService {
           throw new Error(`Wood variant with ID ${item.woodVariantId} not found.`);
         }
 
-        const inventory = await tx.inventory.findFirst({
-          where: {
-            woodVariantId: item.woodVariantId,
-            locationId: data.locationId,
-          },
+        const inventory = await tx.inventory.findUnique({
+          where: { id: item.inventoryId },
         });
 
-        if (!inventory || inventory.stock < item.quantity) {
-          throw new Error(
-            `Insufficient stock for "${variant.wood.name}". Available: ${inventory?.stock ?? 0}, Requested: ${item.quantity}`,
-          );
+        if (!inventory) {
+          throw new Error(`Inventory item with ID ${item.inventoryId} not found.`);
+        }
+
+        if (inventory.locationId !== data.locationId) {
+          throw new Error(`Inventory item with ID ${item.inventoryId} is not at location ${data.locationId}.`);
+        }
+
+        if (inventory.stock < item.quantity) {
+          throw new Error(`Insufficient stock for "${variant.wood.name}". Available: ${inventory.stock}, Requested: ${item.quantity}`);
         }
 
         const itemVolume = variant.volume * item.quantity;
@@ -163,6 +167,7 @@ class ProcessingService {
           data: {
             processingId: processing.id,
             woodVariantId: item.woodVariantId,
+            gradeId: inventory.gradeId,
             type: "INPUT",
             quantity: item.quantity,
           },
@@ -174,6 +179,7 @@ class ProcessingService {
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
+            gradeId: inventory.gradeId,
             quantity: item.quantity,
             referenceType: "PROCESSING",
             referenceId: processing.id,
@@ -186,10 +192,10 @@ class ProcessingService {
           where: {
             woodId: item.woodId,
             materialId: item.materialId,
-            width: item.width ?? null,
-            height: item.height ?? null,
-            diameterSmall: item.diameterSmall ?? null,
-            diamterLarge: item.diameterLarge ?? null,
+            width: item.width,
+            height: item.height,
+            diameterSmall: item.diameterSmall,
+            diamterLarge: item.diameterLarge,
             length: item.length,
           },
         });
@@ -199,10 +205,10 @@ class ProcessingService {
             data: {
               woodId: item.woodId,
               materialId: item.materialId,
-              width: item.width ?? null,
-              height: item.height ?? null,
-              diameterSmall: item.diameterSmall ?? null,
-              diamterLarge: item.diameterLarge ?? null,
+              width: item.width,
+              height: item.height,
+              diameterSmall: item.diameterSmall,
+              diamterLarge: item.diameterLarge,
               length: item.length,
               volume,
             },
@@ -213,6 +219,7 @@ class ProcessingService {
           data: {
             processingId: processing.id,
             woodVariantId: variant.id,
+            gradeId: null,
             type: "OUTPUT",
             quantity: item.quantity,
           },
@@ -222,6 +229,7 @@ class ProcessingService {
           where: {
             woodVariantId: variant.id,
             locationId: data.locationId,
+            gradeId: null,
           },
         });
 
@@ -237,6 +245,7 @@ class ProcessingService {
             data: {
               woodVariantId: variant.id,
               locationId: data.locationId,
+              gradeId: null,
               stock: item.quantity,
             },
           });
@@ -248,6 +257,7 @@ class ProcessingService {
             woodVariantId: variant.id,
             locationId: data.locationId,
             type: "IN",
+            gradeId: null,
             quantity: item.quantity,
             referenceType: "PROCESSING",
             referenceId: processing.id,
@@ -266,6 +276,7 @@ class ProcessingService {
         location: true,
         items: {
           include: {
+            grade: true,
             variant: {
               include: {
                 wood: true,

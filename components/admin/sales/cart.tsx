@@ -5,19 +5,29 @@ import { useFieldArray, Control, Controller, useWatch } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FieldError } from "@/components/ui/field";
+import { Badge } from "@/components/ui/badge";
 import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { formatCurrency } from "@/lib/utils";
 import { toast } from "sonner";
 
+import { CreateSaleFormInput } from "@/lib/schemas/sales/create-sale";
+import { WoodForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
+import { GradeForSelect } from "@/lib/services/grade-service";
+import InventoryPicker from "@/components/shared/inventory-picker";
+import { LocationInventoryItem } from "@/app/api/inventories/by-location/route";
+
 interface SalesCartProps {
-  control: Control<any>;
+  control: Control<CreateSaleFormInput, any, any>;
   errors?: any;
+  woods: WoodForSelect[];
+  materials: MaterialForSelect[];
+  grades: GradeForSelect[];
 }
 
-export default function SalesCart({ control, errors }: SalesCartProps) {
+export default function SalesCart({ control, errors, woods, materials, grades }: SalesCartProps) {
   const {
     fields: itemFields,
     append: appendItem,
@@ -48,49 +58,33 @@ export default function SalesCart({ control, errors }: SalesCartProps) {
     }
   }, [locationId, replaceItems]);
 
-  const { data: inventoryData, isLoading, error: fetchError } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
+  const { data: _, isLoading, error: fetchError } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
 
-  const [selectedInvId, setSelectedInvId] = useState("");
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
-  const availableInventory = useMemo(() => {
-    if (!inventoryData) return [];
-    return inventoryData.filter((inv) => !watchedItems.some((item: any) => Number(item.inventoryId) === inv.id));
-  }, [inventoryData, watchedItems]);
+  const existingIds = useMemo(() => {
+    return (watchedItems || []).map((item) => Number(item?.inventoryId)).filter(Boolean);
+  }, [watchedItems]);
 
-  const handleAddItem = () => {
-    if (!locationId) {
-      toast.error("Please select a location first.");
-      return;
-    }
-
-    if (!selectedInvId) {
-      toast.error("Please select an item to add.");
-      return;
-    }
-
-    const selectedInv = inventoryData?.find((inv) => inv.id === Number(selectedInvId));
-    if (!selectedInv) {
-      toast.error("Selected item not found.");
-      return;
-    }
-
-    appendItem({
-      inventoryId: selectedInv.id,
-      woodVariantId: selectedInv.woodVariantId,
-      quantity: 1,
-      pricePerCubic: "",
-      originalStock: selectedInv.stock,
-      variant: selectedInv.variant,
+  const handleSelectItems = (selectedInvs: LocationInventoryItem[]) => {
+    selectedInvs.forEach((selectedInv) => {
+      appendItem({
+        inventoryId: selectedInv.id,
+        woodVariantId: selectedInv.woodVariantId,
+        quantity: 1,
+        pricePerCubic: "" as any,
+        originalStock: selectedInv.stock,
+        variant: selectedInv.variant,
+        grade: selectedInv.grade,
+      });
     });
-
-    setSelectedInvId("");
   };
 
   const { computedItems, grandTotal, grandVolume } = useMemo(() => {
     let total = 0;
     let totalVol = 0;
 
-    const computed = (watchedItems || []).map((item: any) => {
+    const computed = (watchedItems || []).map((item) => {
       const qty = Number(item.quantity) || 0;
       const price = Number(item.pricePerCubic) || 0;
       const singleVolume = item.variant?.volume || 0;
@@ -137,6 +131,7 @@ export default function SalesCart({ control, errors }: SalesCartProps) {
                   <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
                     <th className="w-10 p-2">No.</th>
                     <th className="p-2">Wood Variant</th>
+                    <th className="w-24 p-2">Grade</th>
                     <th className="w-24 p-2">Qty</th>
                     <th className="w-32 p-2">Price / m³</th>
                     <th className="w-40 p-2">Volume (m³)</th>
@@ -170,9 +165,16 @@ export default function SalesCart({ control, errors }: SalesCartProps) {
                           <div className="space-y-0.5">
                             <div>{woodLabel}</div>
                             <div className="text-[10px] font-normal text-muted-foreground">
-                              Available Stock: {(itemField as any).originalStock}
+                              Available Stock: {itemData?.originalStock ?? 0}
                             </div>
                           </div>
+                        </td>
+                        <td className="p-2 align-middle">
+                          {itemData?.grade ? (
+                            <Badge variant="secondary">{itemData.grade.code}</Badge>
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic">Ungraded</span>
+                          )}
                         </td>
                         <td className="p-2 align-middle">
                           <Controller
@@ -185,7 +187,7 @@ export default function SalesCart({ control, errors }: SalesCartProps) {
                                 value={field.value ?? ""}
                                 onChange={(e) => {
                                   const val = Number(e.target.value);
-                                  const max = (itemField as any).originalStock;
+                                  const max = Number(itemData?.originalStock) || 0;
                                   if (val > max) {
                                     toast.error(`Quantity cannot exceed available stock (${max})`);
                                     field.onChange(max);
@@ -242,49 +244,39 @@ export default function SalesCart({ control, errors }: SalesCartProps) {
             </div>
           )}
 
-          <div className="flex flex-col gap-3 rounded-md bg-muted/20 p-3 sm:flex-row sm:items-end">
-            <div className="flex-1 space-y-1">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Select Item</span>
-              <Select onValueChange={setSelectedInvId} value={selectedInvId}>
-                <SelectTrigger className="h-9 w-full bg-background">
-                  <SelectValue placeholder="Choose an item from stock..." />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  {availableInventory.map((inv) => {
-                    const label =
-                      generateWoodVariantLabel({
-                        woodCode: inv.variant.wood.code,
-                        materialCode: inv.variant.material.name,
-                        width: inv.variant.width,
-                        height: inv.variant.height,
-                        diameterSmall: inv.variant.diameterSmall,
-                        diameterLarge: inv.variant.diamterLarge,
-                        length: inv.variant.length,
-                        measurement: inv.variant.material.measurement,
-                      }) + ` (qty: ${inv.stock})`;
-
-                    return (
-                      <SelectItem key={inv.id} value={String(inv.id)}>
-                        {label}
-                      </SelectItem>
-                    );
-                  })}
-                  {availableInventory.length === 0 && (
-                    <div className="p-2 text-center text-xs text-muted-foreground italic">No items available to select.</div>
-                  )}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button type="button" size="sm" onClick={handleAddItem} className="mb-1 h-9 gap-1">
+          <div className="flex justify-start">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                if (!locationId) {
+                  toast.error("Please select a location first.");
+                  return;
+                }
+                setIsPickerOpen(true);
+              }}
+              className="h-9 gap-1.5"
+            >
               <Plus className="size-4" />
-              Add Row
+              Select Item from Stock
             </Button>
           </div>
         </div>
       )}
 
-      {locationId && itemFields.length > 0 && (
+      <InventoryPicker
+        isOpen={isPickerOpen}
+        onOpenChange={setIsPickerOpen}
+        locationId={locationId ? Number(locationId) : null}
+        onSelect={handleSelectItems}
+        woods={woods}
+        materials={materials}
+        grades={grades}
+        existingIds={existingIds}
+      />
+
+      {!!locationId && itemFields.length > 0 && (
         <div className="flex justify-end gap-8 border-t pt-4 pr-3">
           <div className="space-y-1 text-right">
             <span className="block text-sm font-medium text-muted-foreground">Total Volume</span>

@@ -17,7 +17,6 @@ export async function createMaterialAction(data: CreateMaterialSchema): Promise<
     if (!user) throw new AuthorizationError();
 
     const parsed = createMaterialSchema.parse(data);
-
     const material = await materialService.createMaterial(parsed);
 
     return successResponse(material.id, "Material created successfully");

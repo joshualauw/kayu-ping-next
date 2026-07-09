@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { updateProcessingAction } from "@/lib/actions/processings/update-processing";
-import { updateProcessingSchema, type UpdateProcessingSchema } from "@/lib/schemas/processings/update-processing";
+import { updateProcessingFormSchema, type UpdateProcessingFormInput, type UpdateProcessingFormOutput } from "@/lib/schemas/processings/update-processing";
 import { ProcessingDetail } from "@/lib/services/processing-service";
 
 interface ProcessingUpdateFormProps {
@@ -21,14 +21,14 @@ export default function ProcessingUpdateForm({ processing }: ProcessingUpdateFor
   const router = useRouter();
   const formId = "processing-update-form";
 
-  const form = useForm<UpdateProcessingSchema>({
-    resolver: zodResolver(updateProcessingSchema),
+  const form = useForm<UpdateProcessingFormInput, any, UpdateProcessingFormOutput>({
+    resolver: zodResolver(updateProcessingFormSchema),
     defaultValues: {
       notes: processing.notes || "",
     },
   });
 
-  async function onSubmit(data: UpdateProcessingSchema) {
+  async function onSubmit(data: UpdateProcessingFormOutput) {
     const result = await updateProcessingAction(processing.id, data);
 
     if (result.success) {

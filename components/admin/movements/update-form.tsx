@@ -10,7 +10,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { updateMovementAction } from "@/lib/actions/movements/update-movement";
-import { updateMovementSchema, type UpdateMovementSchema } from "@/lib/schemas/movements/update-movement";
+import {
+  updateMovementFormSchema,
+  type UpdateMovementFormInput,
+  type UpdateMovementFormOutput,
+} from "@/lib/schemas/movements/update-movement";
 import { MovementDetail } from "@/lib/services/movement-service";
 
 interface MovementUpdateFormProps {
@@ -21,14 +25,14 @@ export default function MovementUpdateForm({ movement }: MovementUpdateFormProps
   const router = useRouter();
   const formId = "movement-update-form";
 
-  const form = useForm<UpdateMovementSchema>({
-    resolver: zodResolver(updateMovementSchema),
+  const form = useForm<UpdateMovementFormInput, any, UpdateMovementFormOutput>({
+    resolver: zodResolver(updateMovementFormSchema),
     defaultValues: {
       notes: movement.notes || "",
     },
   });
 
-  async function onSubmit(data: UpdateMovementSchema) {
+  async function onSubmit(data: UpdateMovementFormOutput) {
     const result = await updateMovementAction(movement.id, data);
 
     if (result.success) {

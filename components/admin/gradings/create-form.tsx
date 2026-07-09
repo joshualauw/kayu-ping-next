@@ -13,7 +13,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft } from "lucide-react";
 import { LocationForSelect } from "@/lib/services/location-service";
 import { GradeForSelect } from "@/lib/services/grade-service";
-import { createGradingSchema } from "@/lib/schemas/gradings/create-grading";
+import { WoodForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  getCreateGradingFormSchema,
+  type CreateGradingFormInput,
+  type CreateGradingFormOutput,
+} from "@/lib/schemas/gradings/create-grading";
 import { createGradingAction } from "@/lib/actions/gradings/create-grading";
 import dayjs from "@/lib/integrations/dayjs";
 import GradingCart from "./cart";
@@ -21,75 +28,46 @@ import GradingCart from "./cart";
 interface GradingCreateFormProps {
   locations: LocationForSelect[];
   grades: GradeForSelect[];
+  woods: WoodForSelect[];
+  materials: MaterialForSelect[];
 }
 
-function mapBeforeIndexToNested(groups: any[], flatIndex: number) {
-  if (flatIndex < groups.length) {
-    return {
-      groupIndex: flatIndex,
-    };
-  }
-  return null;
-}
-
-function mapAfterIndexToNested(groups: any[], flatIndex: number) {
-  let count = 0;
-  for (let gIndex = 0; gIndex < groups.length; gIndex++) {
-    const outputsCount = (groups[gIndex].outputs || []).length;
-    if (flatIndex < count + outputsCount) {
-      return {
-        groupIndex: gIndex,
-        outputIndex: flatIndex - count,
-      };
-    }
-    count += outputsCount;
-  }
-  return null;
-}
-
-export default function GradingCreateForm({ locations, grades }: GradingCreateFormProps) {
+export default function GradingCreateForm({ locations, grades, woods, materials }: GradingCreateFormProps) {
   const router = useRouter();
   const formId = "grading-create-form";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<any>({
+  const form = useForm<CreateGradingFormInput, any, CreateGradingFormOutput>({
+    resolver: zodResolver(getCreateGradingFormSchema()),
     defaultValues: {
       gradingDate: dayjs().format("YYYY-MM-DDTHH:mm"),
-      locationId: "",
+      locationId: "" as any,
       notes: "",
       groups: [],
     },
   });
 
-  const handleCustomSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = form.getValues();
-    onSubmit(data);
-  };
-
-  async function onSubmit(data: any) {
-    form.clearErrors();
-
+  async function onSubmit(data: CreateGradingFormOutput) {
     const beforeItems: any[] = [];
     const afterItems: any[] = [];
 
-    (data.groups || []).forEach((group: any) => {
+    (data.groups || []).forEach((group) => {
       if (group.input) {
-        const totalQty = (group.outputs || []).reduce((sum: number, out: any) => sum + (Number(out.quantity) || 0), 0);
+        const totalQty = (group.outputs || []).reduce((sum, out) => sum + (Number(out.quantity) || 0), 0);
 
         beforeItems.push({
-          inventoryId: Number(group.input.inventoryId),
-          woodVariantId: Number(group.input.woodVariantId),
-          gradeId: group.input.gradeId ? Number(group.input.gradeId) : null,
+          inventoryId: group.input.inventoryId,
+          woodVariantId: group.input.woodVariantId,
+          gradeId: group.input.gradeId ?? null,
           quantity: totalQty,
         });
 
-        (group.outputs || []).forEach((out: any) => {
+        (group.outputs || []).forEach((out) => {
           afterItems.push({
-            woodVariantId: Number(group.input.woodVariantId),
-            gradeId: out.gradeId && out.gradeId !== "ungraded" ? Number(out.gradeId) : null,
-            quantity: out.quantity === "" ? undefined : Number(out.quantity),
+            woodVariantId: group.input.woodVariantId,
+            gradeId: out.gradeId ?? null,
+            quantity: out.quantity,
             comment: out.comment || null,
           });
         });
@@ -98,54 +76,15 @@ export default function GradingCreateForm({ locations, grades }: GradingCreateFo
 
     const formattedData = {
       gradingDate: data.gradingDate,
-      locationId: data.locationId ? Number(data.locationId) : undefined,
+      locationId: data.locationId,
       notes: data.notes || null,
       beforeItems,
       afterItems,
     };
 
-    const validation = createGradingSchema.safeParse(formattedData);
-
-    if (!validation.success) {
-      validation.error.issues.forEach((issue) => {
-        const path = issue.path;
-        if (path[0] === "beforeItems") {
-          if (path.length === 1) {
-            form.setError("groups" as any, { message: issue.message });
-          } else {
-            const flatIndex = Number(path[1]);
-            const fieldName = String(path[2]);
-            const mapping = mapBeforeIndexToNested(data.groups, flatIndex);
-            if (mapping) {
-              form.setError(`groups.${mapping.groupIndex}.input.${fieldName}` as any, {
-                message: issue.message,
-              });
-            }
-          }
-        } else if (path[0] === "afterItems") {
-          if (path.length === 1) {
-            form.setError("groups" as any, { message: issue.message });
-          } else {
-            const flatIndex = Number(path[1]);
-            const fieldName = String(path[2]);
-            const mapping = mapAfterIndexToNested(data.groups, flatIndex);
-            if (mapping) {
-              form.setError(`groups.${mapping.groupIndex}.outputs.${mapping.outputIndex}.${fieldName}` as any, {
-                message: issue.message,
-              });
-            }
-          }
-        } else {
-          form.setError(path.join(".") as any, { message: issue.message });
-        }
-      });
-      toast.error("Please fix the validation errors in the form.");
-      return;
-    }
-
     setIsSubmitting(true);
     try {
-      const result = await createGradingAction(validation.data);
+      const result = await createGradingAction(formattedData);
 
       if (result.success) {
         router.push("/admin/gradings");
@@ -165,7 +104,7 @@ export default function GradingCreateForm({ locations, grades }: GradingCreateFo
         <CardDescription>Record a new wood grading transaction (reallocating grades of existing stock).</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id={formId} onSubmit={handleCustomSubmit} className="space-y-6">
+        <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FieldGroup className="flex flex-col gap-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <Controller
@@ -186,7 +125,7 @@ export default function GradingCreateForm({ locations, grades }: GradingCreateFo
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel>Location</FieldLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select grading location" />
                       </SelectTrigger>
@@ -222,6 +161,8 @@ export default function GradingCreateForm({ locations, grades }: GradingCreateFo
               control={form.control}
               errors={form.formState.errors}
               grades={grades}
+              woods={woods}
+              materials={materials}
               setError={form.setError}
               clearErrors={form.clearErrors}
               setValue={form.setValue}

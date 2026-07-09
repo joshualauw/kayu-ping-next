@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Movement, Location, Contact, MovementItem, WoodVariant, Wood, Material } from "@/generated/prisma/client";
+import { Movement, Location, Contact, MovementItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
 import { MovementWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMovementSchema } from "@/lib/schemas/movements/create-movement";
@@ -13,6 +13,7 @@ export type MovementListItem = Movement & {
 };
 
 export type MovementItemWithVariant = MovementItem & {
+  grade: Grade | null;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -108,10 +109,9 @@ class MovementService {
           throw new Error(`Wood variant with ID ${item.woodVariantId} not found.`);
         }
 
-        const sourceInventory = await tx.inventory.findFirst({
+        const sourceInventory = await tx.inventory.findUnique({
           where: {
-            woodVariantId: item.woodVariantId,
-            locationId: data.fromLocationId,
+            id: item.inventoryId,
           },
         });
 
@@ -158,6 +158,7 @@ class MovementService {
             locationId: data.fromLocationId,
             type: "OUT",
             quantity: item.quantity,
+            gradeId: sourceInventory.gradeId,
             referenceType: "MOVEMENT",
             referenceId: movement.id,
           },
@@ -168,6 +169,7 @@ class MovementService {
             movementId: movement.id,
             woodVariantId: item.woodVariantId,
             quantity: item.quantity,
+            gradeId: sourceInventory.gradeId,
           },
         });
 
@@ -175,6 +177,7 @@ class MovementService {
           where: {
             woodVariantId: item.woodVariantId,
             locationId: data.toLocationId,
+            gradeId: sourceInventory.gradeId,
           },
         });
 
@@ -190,6 +193,7 @@ class MovementService {
             data: {
               woodVariantId: item.woodVariantId,
               locationId: data.toLocationId,
+              gradeId: sourceInventory.gradeId,
               stock: item.quantity,
             },
           });
@@ -202,6 +206,7 @@ class MovementService {
             locationId: data.toLocationId,
             type: "IN",
             quantity: item.quantity,
+            gradeId: sourceInventory.gradeId,
             referenceType: "MOVEMENT",
             referenceId: movement.id,
           },
@@ -221,6 +226,7 @@ class MovementService {
         toLocation: true,
         items: {
           include: {
+            grade: true,
             variant: {
               include: {
                 wood: true,

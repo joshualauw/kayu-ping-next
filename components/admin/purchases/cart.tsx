@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useFieldArray, Control, Controller, useWatch, UseFormSetValue } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
-import { CreatePurchaseFormOutput } from "@/lib/schemas/purchases/create-purchase";
+import { CreatePurchaseFormInput } from "@/lib/schemas/purchases/create-purchase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -15,11 +15,11 @@ import { calculateWoodVolume } from "@/lib/helpers/core";
 import { formatCurrency } from "@/lib/utils";
 
 interface PurchasesCartProps {
-  control: Control<CreatePurchaseFormOutput>;
+  control: Control<CreatePurchaseFormInput, any, any>;
   woods: WoodForSelect[];
   materials: MaterialForSelect[];
   errors?: any;
-  setValue: UseFormSetValue<CreatePurchaseFormOutput>;
+  setValue: UseFormSetValue<CreatePurchaseFormInput>;
 }
 
 export default function PurchasesCart({ control, woods, materials, errors, setValue }: PurchasesCartProps) {
@@ -42,7 +42,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
     appendItem({
       woodId: "",
       materialId: "",
-      measurement: "",
+      measurement: undefined,
       pricePerCubic: "",
       width: "",
       height: "",
@@ -186,7 +186,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                   onValueChange={(newVal) => {
                                     field.onChange(newVal);
                                     const material = materials.find((m) => m.id === Number(newVal));
-                                    setValue(`items.${itemIndex}.measurement`, material?.measurement || "");
+                                    setValue(`items.${itemIndex}.measurement`, material?.measurement);
                                     setValue(`items.${itemIndex}.width`, "");
                                     setValue(`items.${itemIndex}.height`, "");
                                     setValue(`items.${itemIndex}.diameterSmall`, "");
@@ -224,7 +224,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                     <Input
                                       type="number"
                                       {...field}
-                                      value={field.value ?? ""}
+                                      value={(field.value as any) ?? ""}
                                       placeholder="Width (cm)"
                                       className="h-8 w-full px-2 text-xs"
                                     />
@@ -240,7 +240,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                     <Input
                                       type="number"
                                       {...field}
-                                      value={field.value ?? ""}
+                                      value={(field.value as any) ?? ""}
                                       placeholder="Height (cm)"
                                       className="h-8 w-full px-2 text-xs"
                                     />
@@ -259,7 +259,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                     <Input
                                       type="number"
                                       {...field}
-                                      value={field.value ?? ""}
+                                      value={(field.value as any) ?? ""}
                                       placeholder="Dia. S (cm)"
                                       className="h-8 w-full px-2 text-xs"
                                     />
@@ -275,7 +275,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                                     <Input
                                       type="number"
                                       {...field}
-                                      value={field.value ?? ""}
+                                      value={(field.value as any) ?? ""}
                                       placeholder="Dia. L (cm)"
                                       className="h-8 w-full px-2 text-xs"
                                     />
@@ -297,7 +297,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                           <Input
                             type="number"
                             {...field}
-                            value={field.value ?? ""}
+                            value={(field.value as any) ?? ""}
                             placeholder="Length"
                             className="h-8 w-full px-2 text-xs"
                           />
@@ -311,7 +311,13 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                         control={control}
                         name={`items.${itemIndex}.quantity`}
                         render={({ field }) => (
-                          <Input type="number" {...field} value={field.value ?? ""} placeholder="Qty" className="h-8 w-full px-2 text-xs" />
+                          <Input
+                            type="number"
+                            {...field}
+                            value={(field.value as any) ?? ""}
+                            placeholder="Qty"
+                            className="h-8 w-full px-2 text-xs"
+                          />
                         )}
                       />
                       {rowErrors?.quantity && <FieldError errors={[rowErrors.quantity]} />}
@@ -325,7 +331,7 @@ export default function PurchasesCart({ control, woods, materials, errors, setVa
                           <Input
                             type="number"
                             {...field}
-                            value={field.value ?? ""}
+                            value={(field.value as any) ?? ""}
                             placeholder="Price"
                             className="h-8 w-full px-2 text-xs"
                           />

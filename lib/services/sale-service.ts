@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Sale, Location, Contact, WoodVariant, Wood, Material, SaleItem } from "@/generated/prisma/client";
+import { Sale, Location, Contact, WoodVariant, Wood, Material, SaleItem, Grade } from "@/generated/prisma/client";
 import { SaleWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateSaleSchema } from "@/lib/schemas/sales/create-sale";
@@ -12,6 +12,7 @@ export type SaleListItem = Sale & {
 };
 
 export type SaleItemWithVariant = SaleItem & {
+  grade: Grade | null;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -68,6 +69,7 @@ class SaleService {
         customer: true,
         items: {
           include: {
+            grade: true,
             variant: {
               include: {
                 wood: true,
@@ -119,17 +121,20 @@ class SaleService {
           throw new Error(`Wood variant with ID ${item.woodVariantId} not found.`);
         }
 
-        const inventory = await tx.inventory.findFirst({
-          where: {
-            woodVariantId: item.woodVariantId,
-            locationId: data.locationId,
-          },
+        const inventory = await tx.inventory.findUnique({
+          where: { id: item.inventoryId },
         });
 
-        if (!inventory || inventory.stock < item.quantity) {
-          throw new Error(
-            `Insufficient stock for "${variant.wood.name}". Available: ${inventory?.stock ?? 0}, Requested: ${item.quantity}`,
-          );
+        if (!inventory) {
+          throw new Error(`Inventory item with ID ${item.inventoryId} not found.`);
+        }
+
+        if (inventory.locationId !== data.locationId) {
+          throw new Error(`Inventory item with ID ${item.inventoryId} is not at location ${data.locationId}.`);
+        }
+
+        if (inventory.stock < item.quantity) {
+          throw new Error(`Insufficient stock for "${variant.wood.name}". Available: ${inventory.stock}, Requested: ${item.quantity}`);
         }
 
         const itemVolume = variant.volume * item.quantity;
@@ -169,6 +174,7 @@ class SaleService {
           data: {
             saleId: sale.id,
             woodVariantId: item.woodVariantId,
+            gradeId: inventory.gradeId,
             pricePerCubic: item.pricePerCubic,
             quantity: item.quantity,
           },
@@ -180,6 +186,7 @@ class SaleService {
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
+            gradeId: inventory.gradeId,
             quantity: item.quantity,
             referenceType: "SALES",
             referenceId: sale.id,

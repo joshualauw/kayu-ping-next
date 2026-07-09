@@ -21,7 +21,6 @@ export async function updateMaterialAction(id: number, data: UpdateMaterialSchem
     }
 
     const parsed = updateMaterialSchema.parse(data);
-
     const material = await materialService.updateMaterial(id, parsed);
 
     return successResponse(material.id, "Material updated successfully");

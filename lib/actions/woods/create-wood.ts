@@ -17,7 +17,6 @@ export async function createWoodAction(data: CreateWoodSchema): Promise<ApiRespo
     if (!user) throw new AuthorizationError();
 
     const parsed = createWoodSchema.parse(data);
-
     const wood = await woodService.createWood(parsed);
 
     return successResponse(wood.id, "Wood created successfully");

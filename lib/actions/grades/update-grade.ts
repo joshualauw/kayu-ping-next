@@ -21,7 +21,6 @@ export async function updateGradeAction(id: number, data: CreateGradeSchema): Pr
     }
 
     const parsed = createGradeSchema.parse(data);
-
     const grade = await gradeService.updateGrade(id, parsed);
 
     return successResponse(grade.id, "Grade updated successfully");

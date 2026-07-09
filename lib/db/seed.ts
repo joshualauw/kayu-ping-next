@@ -121,6 +121,23 @@ async function main() {
     }
   }
 
+  // 6. Seed Grades
+  const grades = [
+    { name: "KW Super", code: "KWS" },
+    { name: "RW Super", code: "RWS" },
+  ];
+
+  for (const grade of grades) {
+    const existing = await prisma.grade.findFirst({
+      where: { code: grade.code },
+    });
+    if (!existing) {
+      await prisma.grade.create({
+        data: grade,
+      });
+    }
+  }
+
   console.log("🌱 Database seeded successfully");
 }
 

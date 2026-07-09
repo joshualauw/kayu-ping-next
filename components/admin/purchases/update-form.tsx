@@ -10,9 +10,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { updatePurchaseAction } from "@/lib/actions/purchases/update-purchase";
-import { updatePurchaseSchema, type UpdatePurchaseSchema } from "@/lib/schemas/purchases/update-purchase";
+import {
+  updatePurchaseFormSchema,
+  type UpdatePurchaseFormInput,
+  type UpdatePurchaseFormOutput,
+} from "@/lib/schemas/purchases/update-purchase";
 import { PurchaseDetail } from "@/lib/services/purchase-service";
-import { formatDate, formatCurrency } from "@/lib/utils";
 
 interface PurchaseUpdateFormProps {
   purchase: PurchaseDetail;
@@ -22,14 +25,14 @@ export default function PurchaseUpdateForm({ purchase }: PurchaseUpdateFormProps
   const router = useRouter();
   const formId = "purchase-update-form";
 
-  const form = useForm<UpdatePurchaseSchema>({
-    resolver: zodResolver(updatePurchaseSchema),
+  const form = useForm<UpdatePurchaseFormInput, any, UpdatePurchaseFormOutput>({
+    resolver: zodResolver(updatePurchaseFormSchema),
     defaultValues: {
       notes: purchase.notes || "",
     },
   });
 
-  async function onSubmit(data: UpdatePurchaseSchema) {
+  async function onSubmit(data: UpdatePurchaseFormOutput) {
     const result = await updatePurchaseAction(purchase.id, data);
 
     if (result.success) {

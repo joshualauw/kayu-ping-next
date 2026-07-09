@@ -1,27 +1,35 @@
 "use client";
 
 import { useMemo, useEffect, useRef, useState } from "react";
-import { useFieldArray, Control, Controller, useWatch, UseFormSetError, UseFormClearErrors } from "react-hook-form";
+import { useFieldArray, Control, Controller, useWatch, UseFormSetError, UseFormClearErrors, UseFormSetValue } from "react-hook-form";
 import { Plus, Trash2, AlertTriangle, ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FieldError } from "@/components/ui/field";
+import { Badge } from "@/components/ui/badge";
 import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { GradeForSelect } from "@/lib/services/grade-service";
+import { WoodForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
 import { toast } from "sonner";
+import InventoryPicker from "@/components/shared/inventory-picker";
+import { LocationInventoryItem } from "@/app/api/inventories/by-location/route";
+import { CreateGradingFormInput } from "@/lib/schemas/gradings/create-grading";
 
 interface GradingCartProps {
-  control: Control<any>;
+  control: Control<CreateGradingFormInput, any, any>;
   errors?: any;
   grades: GradeForSelect[];
-  setError: UseFormSetError<any>;
-  clearErrors: UseFormClearErrors<any>;
-  setValue: (name: string, value: any) => void;
+  woods: WoodForSelect[];
+  materials: MaterialForSelect[];
+  setError: UseFormSetError<CreateGradingFormInput>;
+  clearErrors: UseFormClearErrors<CreateGradingFormInput>;
+  setValue: UseFormSetValue<CreateGradingFormInput>;
 }
 
-export default function GradingCart({ control, errors, grades, setError, clearErrors, setValue }: GradingCartProps) {
+export default function GradingCart({ control, errors, grades, woods, materials, setError, clearErrors, setValue }: GradingCartProps) {
   const locationId = useWatch({
     control,
     name: "locationId",
@@ -52,51 +60,34 @@ export default function GradingCart({ control, errors, grades, setError, clearEr
     }
   }, [locationId, replaceGroups]);
 
-  const { data: inventoryData, isLoading: isInventoryLoading } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
+  const { data: _, isLoading: isInventoryLoading } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
 
-  const [selectedInputInvId, setSelectedInputInvId] = useState("");
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
-  const availableInputInventory = useMemo(() => {
-    if (!inventoryData) return [];
-    return inventoryData.filter((inv) => !watchedGroups.some((group: any) => group?.input?.inventoryId === inv.id));
-  }, [inventoryData, watchedGroups]);
+  const existingIds = useMemo(() => {
+    return (watchedGroups || []).map((group: any) => Number(group?.input?.inventoryId)).filter(Boolean);
+  }, [watchedGroups]);
 
-  const handleAddGroup = () => {
-    if (!locationId) {
-      toast.error("Please select a location first.");
-      return;
-    }
-
-    if (!selectedInputInvId) {
-      toast.error("Please select a stock item first.");
-      return;
-    }
-
-    const selectedInv = inventoryData?.find((inv) => inv.id === Number(selectedInputInvId));
-    if (!selectedInv) {
-      toast.error("Selected item not found.");
-      return;
-    }
-
-    appendGroup({
-      input: {
-        inventoryId: selectedInv.id,
-        woodVariantId: selectedInv.woodVariantId,
-        originalStock: selectedInv.stock,
-        gradeId: selectedInv.gradeId || null,
-        variant: selectedInv.variant,
-        grade: selectedInv.grade,
-      },
-      outputs: [
-        {
-          gradeId: "",
-          quantity: "1",
-          comment: "",
+  const handleSelectItems = (selectedInvs: LocationInventoryItem[]) => {
+    selectedInvs.forEach((selectedInv) => {
+      appendGroup({
+        input: {
+          inventoryId: selectedInv.id,
+          woodVariantId: selectedInv.woodVariantId,
+          originalStock: selectedInv.stock,
+          gradeId: selectedInv.gradeId || null,
+          variant: selectedInv.variant,
+          grade: selectedInv.grade,
         },
-      ],
+        outputs: [
+          {
+            gradeId: "",
+            quantity: "1",
+            comment: "",
+          },
+        ],
+      });
     });
-
-    setSelectedInputInvId("");
   };
 
   const computedGroups = useMemo(() => {
@@ -147,46 +138,22 @@ export default function GradingCart({ control, errors, grades, setError, clearEr
         </div>
       ) : (
         <div className="space-y-6">
-          <div className="flex flex-col gap-3 rounded-md bg-muted/20 p-3 sm:flex-row sm:items-end">
-            <div className="flex-1 space-y-1">
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
-                Select Input Wood Log/Pack (With Grade)
-              </span>
-              <Select onValueChange={setSelectedInputInvId} value={selectedInputInvId}>
-                <SelectTrigger className="h-9 w-full bg-background">
-                  <SelectValue placeholder="Choose a log/pack from stock..." />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  {availableInputInventory.map((inv) => {
-                    const gradeLabel = inv.grade ? inv.grade.name : "Ungraded";
-                    const label =
-                      generateWoodVariantLabel({
-                        woodCode: inv.variant.wood.code,
-                        materialCode: inv.variant.material.name,
-                        width: inv.variant.width,
-                        height: inv.variant.height,
-                        diameterSmall: inv.variant.diameterSmall,
-                        diameterLarge: inv.variant.diamterLarge,
-                        length: inv.variant.length,
-                        measurement: inv.variant.material.measurement,
-                      }) + ` [Grade: ${gradeLabel}] (stock: ${inv.stock})`;
-
-                    return (
-                      <SelectItem key={inv.id} value={String(inv.id)}>
-                        {label}
-                      </SelectItem>
-                    );
-                  })}
-                  {availableInputInventory.length === 0 && (
-                    <div className="p-2 text-center text-xs text-muted-foreground italic">No stock items available.</div>
-                  )}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button type="button" size="sm" onClick={handleAddGroup} className="mb-1 h-9 gap-1">
+          <div className="flex justify-start">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                if (!locationId) {
+                  toast.error("Please select a location first.");
+                  return;
+                }
+                setIsPickerOpen(true);
+              }}
+              className="h-9 gap-1.5"
+            >
               <Plus className="size-4" />
-              Add Group
+              Select Input from Stock
             </Button>
           </div>
 
@@ -223,12 +190,23 @@ export default function GradingCart({ control, errors, grades, setError, clearEr
           )}
         </div>
       )}
+
+      <InventoryPicker
+        isOpen={isPickerOpen}
+        onOpenChange={setIsPickerOpen}
+        locationId={locationId ? Number(locationId) : null}
+        onSelect={handleSelectItems}
+        woods={woods}
+        materials={materials}
+        grades={grades}
+        existingIds={existingIds}
+      />
     </div>
   );
 }
 
 interface GradingCartGroupProps {
-  control: Control<any>;
+  control: Control<CreateGradingFormInput, any, any>;
   groupIndex: number;
   grades: GradeForSelect[];
   groupErrors: any;
@@ -239,7 +217,7 @@ interface GradingCartGroupProps {
     isQtyInvalid: boolean;
   };
   onRemoveGroup: () => void;
-  setValue: (name: string, value: any) => void;
+  setValue: UseFormSetValue<CreateGradingFormInput>;
 }
 
 function GradingCartGroup({
@@ -289,7 +267,6 @@ function GradingCartGroup({
 
   const showUngraded = currentGradeId !== null;
 
-  const inputGradeLabel = inputItem.grade ? inputItem.grade.name : "Ungraded";
   const woodLabel = inputItem.variant
     ? generateWoodVariantLabel({
         woodCode: inputItem.variant.wood.code,
@@ -300,7 +277,7 @@ function GradingCartGroup({
         diameterLarge: inputItem.variant.diamterLarge,
         length: inputItem.variant.length,
         measurement: inputItem.variant.material.measurement,
-      }) + ` [Grade: ${inputGradeLabel}]`
+      })
     : "-";
 
   return (
@@ -316,10 +293,20 @@ function GradingCartGroup({
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/20 p-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/20 p-3 md:grid-cols-4">
         <div className="space-y-1">
           <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Input Log/Pack</span>
           <span className="block text-xs font-semibold">{woodLabel}</span>
+        </div>
+        <div className="space-y-1">
+          <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Grade</span>
+          <span className="block text-xs font-semibold">
+            {inputItem.grade ? (
+              <Badge variant="secondary">{inputItem.grade.code}</Badge>
+            ) : (
+              <span className="text-xs text-muted-foreground italic">Ungraded</span>
+            )}
+          </span>
         </div>
         <div className="space-y-1">
           <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Original Quantity (Max)</span>
@@ -412,7 +399,14 @@ function GradingCartGroup({
                           control={control}
                           name={`groups.${groupIndex}.outputs.${itemIndex}.gradeId`}
                           render={({ field }) => (
-                            <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={
+                                field.value === null || field.value === undefined || field.value === "ungraded"
+                                  ? "ungraded"
+                                  : String(field.value)
+                              }
+                            >
                               <SelectTrigger className="h-8 w-full bg-background text-xs">
                                 <SelectValue placeholder="Select Grade" />
                               </SelectTrigger>
@@ -438,7 +432,7 @@ function GradingCartGroup({
                             <Input
                               type="number"
                               {...field}
-                              value={field.value ?? ""}
+                              value={(field.value as number) ?? ""}
                               placeholder="Qty"
                               onChange={(e) => {
                                 const val = Number(e.target.value);

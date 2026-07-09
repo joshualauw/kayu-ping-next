@@ -1896,10 +1896,10 @@ export const ContactScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   email: 'email',
   address: 'address',
-  type: 'type',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  type: 'type'
 } as const
 
 export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
@@ -1920,9 +1920,9 @@ export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typ
 export const MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  measurement: 'measurement',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  measurement: 'measurement'
 } as const
 
 export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
@@ -1959,8 +1959,8 @@ export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof Gr
 export const InventoryScalarFieldEnum = {
   id: 'id',
   woodVariantId: 'woodVariantId',
-  locationId: 'locationId',
   gradeId: 'gradeId',
+  locationId: 'locationId',
   stock: 'stock',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1973,10 +1973,10 @@ export const StockMutationScalarFieldEnum = {
   id: 'id',
   mutationDate: 'mutationDate',
   woodVariantId: 'woodVariantId',
+  gradeId: 'gradeId',
   locationId: 'locationId',
   type: 'type',
   quantity: 'quantity',
-  gradeId: 'gradeId',
   referenceType: 'referenceType',
   referenceId: 'referenceId',
   notes: 'notes',
@@ -1991,11 +1991,11 @@ export const PurchaseScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
   supplierId: 'supplierId',
-  purchaseDate: 'purchaseDate',
   locationId: 'locationId',
+  purchaseDate: 'purchaseDate',
   notes: 'notes',
-  totalVolume: 'totalVolume',
   totalPrice: 'totalPrice',
+  totalVolume: 'totalVolume',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2006,6 +2006,7 @@ export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typ
 export const PurchaseItemScalarFieldEnum = {
   id: 'id',
   purchaseId: 'purchaseId',
+  gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
@@ -2019,8 +2020,8 @@ export type PurchaseItemScalarFieldEnum = (typeof PurchaseItemScalarFieldEnum)[k
 export const SaleScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
-  customerId: 'customerId',
   saleDate: 'saleDate',
+  customerId: 'customerId',
   locationId: 'locationId',
   notes: 'notes',
   totalVolume: 'totalVolume',
@@ -2035,6 +2036,7 @@ export type SaleScalarFieldEnum = (typeof SaleScalarFieldEnum)[keyof typeof Sale
 export const SaleItemScalarFieldEnum = {
   id: 'id',
   saleId: 'saleId',
+  gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
@@ -2063,6 +2065,7 @@ export type ProcessingScalarFieldEnum = (typeof ProcessingScalarFieldEnum)[keyof
 export const ProcessingItemScalarFieldEnum = {
   id: 'id',
   processingId: 'processingId',
+  gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
   type: 'type',
   quantity: 'quantity',
@@ -2092,6 +2095,7 @@ export type MovementScalarFieldEnum = (typeof MovementScalarFieldEnum)[keyof typ
 export const MovementItemScalarFieldEnum = {
   id: 'id',
   movementId: 'movementId',
+  gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -2116,8 +2120,8 @@ export type GradingScalarFieldEnum = (typeof GradingScalarFieldEnum)[keyof typeo
 
 export const GradingItemScalarFieldEnum = {
   id: 'id',
-  gradeId: 'gradeId',
   gradingId: 'gradingId',
+  gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
   type: 'type',
   quantity: 'quantity',

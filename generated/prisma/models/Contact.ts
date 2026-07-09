@@ -40,10 +40,10 @@ export type ContactMinAggregateOutputType = {
   phoneNumber: string | null
   email: string | null
   address: string | null
-  type: $Enums.ContactType | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  type: $Enums.ContactType | null
 }
 
 export type ContactMaxAggregateOutputType = {
@@ -52,10 +52,10 @@ export type ContactMaxAggregateOutputType = {
   phoneNumber: string | null
   email: string | null
   address: string | null
-  type: $Enums.ContactType | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  type: $Enums.ContactType | null
 }
 
 export type ContactCountAggregateOutputType = {
@@ -64,10 +64,10 @@ export type ContactCountAggregateOutputType = {
   phoneNumber: number
   email: number
   address: number
-  type: number
   notes: number
   createdAt: number
   updatedAt: number
+  type: number
   _all: number
 }
 
@@ -86,10 +86,10 @@ export type ContactMinAggregateInputType = {
   phoneNumber?: true
   email?: true
   address?: true
-  type?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
+  type?: true
 }
 
 export type ContactMaxAggregateInputType = {
@@ -98,10 +98,10 @@ export type ContactMaxAggregateInputType = {
   phoneNumber?: true
   email?: true
   address?: true
-  type?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
+  type?: true
 }
 
 export type ContactCountAggregateInputType = {
@@ -110,10 +110,10 @@ export type ContactCountAggregateInputType = {
   phoneNumber?: true
   email?: true
   address?: true
-  type?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
+  type?: true
   _all?: true
 }
 
@@ -209,10 +209,10 @@ export type ContactGroupByOutputType = {
   phoneNumber: string | null
   email: string | null
   address: string | null
-  type: $Enums.ContactType
   notes: string | null
   createdAt: Date
   updatedAt: Date
+  type: $Enums.ContactType
   _count: ContactCountAggregateOutputType | null
   _avg: ContactAvgAggregateOutputType | null
   _sum: ContactSumAggregateOutputType | null
@@ -244,13 +244,13 @@ export type ContactWhereInput = {
   phoneNumber?: Prisma.StringNullableFilter<"Contact"> | string | null
   email?: Prisma.StringNullableFilter<"Contact"> | string | null
   address?: Prisma.StringNullableFilter<"Contact"> | string | null
-  type?: Prisma.EnumContactTypeFilter<"Contact"> | $Enums.ContactType
   notes?: Prisma.StringNullableFilter<"Contact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
+  type?: Prisma.EnumContactTypeFilter<"Contact"> | $Enums.ContactType
+  movements?: Prisma.MovementListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
   sales?: Prisma.SaleListRelationFilter
-  movements?: Prisma.MovementListRelationFilter
 }
 
 export type ContactOrderByWithRelationInput = {
@@ -259,13 +259,13 @@ export type ContactOrderByWithRelationInput = {
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  movements?: Prisma.MovementOrderByRelationAggregateInput
   purchases?: Prisma.PurchaseOrderByRelationAggregateInput
   sales?: Prisma.SaleOrderByRelationAggregateInput
-  movements?: Prisma.MovementOrderByRelationAggregateInput
 }
 
 export type ContactWhereUniqueInput = Prisma.AtLeast<{
@@ -277,13 +277,13 @@ export type ContactWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ContactWhereInput | Prisma.ContactWhereInput[]
   name?: Prisma.StringFilter<"Contact"> | string
   address?: Prisma.StringNullableFilter<"Contact"> | string | null
-  type?: Prisma.EnumContactTypeFilter<"Contact"> | $Enums.ContactType
   notes?: Prisma.StringNullableFilter<"Contact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contact"> | Date | string
+  type?: Prisma.EnumContactTypeFilter<"Contact"> | $Enums.ContactType
+  movements?: Prisma.MovementListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
   sales?: Prisma.SaleListRelationFilter
-  movements?: Prisma.MovementListRelationFilter
 }, "id" | "phoneNumber" | "email">
 
 export type ContactOrderByWithAggregationInput = {
@@ -292,10 +292,10 @@ export type ContactOrderByWithAggregationInput = {
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   _count?: Prisma.ContactCountOrderByAggregateInput
   _avg?: Prisma.ContactAvgOrderByAggregateInput
   _max?: Prisma.ContactMaxOrderByAggregateInput
@@ -312,10 +312,10 @@ export type ContactScalarWhereWithAggregatesInput = {
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
-  type?: Prisma.EnumContactTypeWithAggregatesFilter<"Contact"> | $Enums.ContactType
   notes?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contact"> | Date | string
+  type?: Prisma.EnumContactTypeWithAggregatesFilter<"Contact"> | $Enums.ContactType
 }
 
 export type ContactCreateInput = {
@@ -323,13 +323,13 @@ export type ContactCreateInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  type: $Enums.ContactType
+  movements?: Prisma.MovementCreateNestedManyWithoutTruckerInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
   sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
-  movements?: Prisma.MovementCreateNestedManyWithoutTruckerInput
 }
 
 export type ContactUncheckedCreateInput = {
@@ -338,13 +338,13 @@ export type ContactUncheckedCreateInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  type: $Enums.ContactType
+  movements?: Prisma.MovementUncheckedCreateNestedManyWithoutTruckerInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
-  movements?: Prisma.MovementUncheckedCreateNestedManyWithoutTruckerInput
 }
 
 export type ContactUpdateInput = {
@@ -352,13 +352,13 @@ export type ContactUpdateInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
+  movements?: Prisma.MovementUpdateManyWithoutTruckerNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
   sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
-  movements?: Prisma.MovementUpdateManyWithoutTruckerNestedInput
 }
 
 export type ContactUncheckedUpdateInput = {
@@ -367,13 +367,13 @@ export type ContactUncheckedUpdateInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
+  movements?: Prisma.MovementUncheckedUpdateManyWithoutTruckerNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
   sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
-  movements?: Prisma.MovementUncheckedUpdateManyWithoutTruckerNestedInput
 }
 
 export type ContactCreateManyInput = {
@@ -382,10 +382,10 @@ export type ContactCreateManyInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  type: $Enums.ContactType
 }
 
 export type ContactUpdateManyMutationInput = {
@@ -393,10 +393,10 @@ export type ContactUpdateManyMutationInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
 }
 
 export type ContactUncheckedUpdateManyInput = {
@@ -405,10 +405,10 @@ export type ContactUncheckedUpdateManyInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
 }
 
 export type ContactCountOrderByAggregateInput = {
@@ -417,10 +417,10 @@ export type ContactCountOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
 }
 
 export type ContactAvgOrderByAggregateInput = {
@@ -433,10 +433,10 @@ export type ContactMaxOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
 }
 
 export type ContactMinOrderByAggregateInput = {
@@ -445,10 +445,10 @@ export type ContactMinOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
 }
 
 export type ContactSumOrderByAggregateInput = {
@@ -515,12 +515,12 @@ export type ContactCreateWithoutPurchasesInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
+  type: $Enums.ContactType
   movements?: Prisma.MovementCreateNestedManyWithoutTruckerInput
+  sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
 }
 
 export type ContactUncheckedCreateWithoutPurchasesInput = {
@@ -529,12 +529,12 @@ export type ContactUncheckedCreateWithoutPurchasesInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
+  type: $Enums.ContactType
   movements?: Prisma.MovementUncheckedCreateNestedManyWithoutTruckerInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type ContactCreateOrConnectWithoutPurchasesInput = {
@@ -558,12 +558,12 @@ export type ContactUpdateWithoutPurchasesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   movements?: Prisma.MovementUpdateManyWithoutTruckerNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
 }
 
 export type ContactUncheckedUpdateWithoutPurchasesInput = {
@@ -572,12 +572,12 @@ export type ContactUncheckedUpdateWithoutPurchasesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   movements?: Prisma.MovementUncheckedUpdateManyWithoutTruckerNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type ContactCreateWithoutSalesInput = {
@@ -585,12 +585,12 @@ export type ContactCreateWithoutSalesInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
+  type: $Enums.ContactType
   movements?: Prisma.MovementCreateNestedManyWithoutTruckerInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
 }
 
 export type ContactUncheckedCreateWithoutSalesInput = {
@@ -599,12 +599,12 @@ export type ContactUncheckedCreateWithoutSalesInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
+  type: $Enums.ContactType
   movements?: Prisma.MovementUncheckedCreateNestedManyWithoutTruckerInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
 }
 
 export type ContactCreateOrConnectWithoutSalesInput = {
@@ -628,12 +628,12 @@ export type ContactUpdateWithoutSalesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   movements?: Prisma.MovementUpdateManyWithoutTruckerNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
 }
 
 export type ContactUncheckedUpdateWithoutSalesInput = {
@@ -642,12 +642,12 @@ export type ContactUncheckedUpdateWithoutSalesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   movements?: Prisma.MovementUncheckedUpdateManyWithoutTruckerNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
 }
 
 export type ContactCreateWithoutMovementsInput = {
@@ -655,10 +655,10 @@ export type ContactCreateWithoutMovementsInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  type: $Enums.ContactType
   purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
   sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
 }
@@ -669,10 +669,10 @@ export type ContactUncheckedCreateWithoutMovementsInput = {
   phoneNumber?: string | null
   email?: string | null
   address?: string | null
-  type: $Enums.ContactType
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  type: $Enums.ContactType
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
 }
@@ -698,10 +698,10 @@ export type ContactUpdateWithoutMovementsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
   sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
 }
@@ -712,10 +712,10 @@ export type ContactUncheckedUpdateWithoutMovementsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
   sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
 }
@@ -726,15 +726,15 @@ export type ContactUncheckedUpdateWithoutMovementsInput = {
  */
 
 export type ContactCountOutputType = {
+  movements: number
   purchases: number
   sales: number
-  movements: number
 }
 
 export type ContactCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  movements?: boolean | ContactCountOutputTypeCountMovementsArgs
   purchases?: boolean | ContactCountOutputTypeCountPurchasesArgs
   sales?: boolean | ContactCountOutputTypeCountSalesArgs
-  movements?: boolean | ContactCountOutputTypeCountMovementsArgs
 }
 
 /**
@@ -745,6 +745,13 @@ export type ContactCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
    * Select specific fields to fetch from the ContactCountOutputType
    */
   select?: Prisma.ContactCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ContactCountOutputType without action
+ */
+export type ContactCountOutputTypeCountMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MovementWhereInput
 }
 
 /**
@@ -761,13 +768,6 @@ export type ContactCountOutputTypeCountSalesArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.SaleWhereInput
 }
 
-/**
- * ContactCountOutputType without action
- */
-export type ContactCountOutputTypeCountMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MovementWhereInput
-}
-
 
 export type ContactSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -775,13 +775,13 @@ export type ContactSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   phoneNumber?: boolean
   email?: boolean
   address?: boolean
-  type?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  type?: boolean
+  movements?: boolean | Prisma.Contact$movementsArgs<ExtArgs>
   purchases?: boolean | Prisma.Contact$purchasesArgs<ExtArgs>
   sales?: boolean | Prisma.Contact$salesArgs<ExtArgs>
-  movements?: boolean | Prisma.Contact$movementsArgs<ExtArgs>
   _count?: boolean | Prisma.ContactCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contact"]>
 
@@ -791,10 +791,10 @@ export type ContactSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   phoneNumber?: boolean
   email?: boolean
   address?: boolean
-  type?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  type?: boolean
 }, ExtArgs["result"]["contact"]>
 
 export type ContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -803,10 +803,10 @@ export type ContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   phoneNumber?: boolean
   email?: boolean
   address?: boolean
-  type?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  type?: boolean
 }, ExtArgs["result"]["contact"]>
 
 export type ContactSelectScalar = {
@@ -815,17 +815,17 @@ export type ContactSelectScalar = {
   phoneNumber?: boolean
   email?: boolean
   address?: boolean
-  type?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  type?: boolean
 }
 
-export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phoneNumber" | "email" | "address" | "type" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phoneNumber" | "email" | "address" | "notes" | "createdAt" | "updatedAt" | "type", ExtArgs["result"]["contact"]>
 export type ContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  movements?: boolean | Prisma.Contact$movementsArgs<ExtArgs>
   purchases?: boolean | Prisma.Contact$purchasesArgs<ExtArgs>
   sales?: boolean | Prisma.Contact$salesArgs<ExtArgs>
-  movements?: boolean | Prisma.Contact$movementsArgs<ExtArgs>
   _count?: boolean | Prisma.ContactCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContactIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -834,9 +834,9 @@ export type ContactIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contact"
   objects: {
+    movements: Prisma.$MovementPayload<ExtArgs>[]
     purchases: Prisma.$PurchasePayload<ExtArgs>[]
     sales: Prisma.$SalePayload<ExtArgs>[]
-    movements: Prisma.$MovementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -844,10 +844,10 @@ export type $ContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     phoneNumber: string | null
     email: string | null
     address: string | null
-    type: $Enums.ContactType
     notes: string | null
     createdAt: Date
     updatedAt: Date
+    type: $Enums.ContactType
   }, ExtArgs["result"]["contact"]>
   composites: {}
 }
@@ -1242,9 +1242,9 @@ readonly fields: ContactFieldRefs;
  */
 export interface Prisma__ContactClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  movements<T extends Prisma.Contact$movementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contact$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchases<T extends Prisma.Contact$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contact$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sales<T extends Prisma.Contact$salesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contact$salesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  movements<T extends Prisma.Contact$movementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contact$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1279,10 +1279,10 @@ export interface ContactFieldRefs {
   readonly phoneNumber: Prisma.FieldRef<"Contact", 'String'>
   readonly email: Prisma.FieldRef<"Contact", 'String'>
   readonly address: Prisma.FieldRef<"Contact", 'String'>
-  readonly type: Prisma.FieldRef<"Contact", 'ContactType'>
   readonly notes: Prisma.FieldRef<"Contact", 'String'>
   readonly createdAt: Prisma.FieldRef<"Contact", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Contact", 'DateTime'>
+  readonly type: Prisma.FieldRef<"Contact", 'ContactType'>
 }
     
 
@@ -1676,6 +1676,30 @@ export type ContactDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Contact.movements
+ */
+export type Contact$movementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Movement
+   */
+  select?: Prisma.MovementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Movement
+   */
+  omit?: Prisma.MovementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MovementInclude<ExtArgs> | null
+  where?: Prisma.MovementWhereInput
+  orderBy?: Prisma.MovementOrderByWithRelationInput | Prisma.MovementOrderByWithRelationInput[]
+  cursor?: Prisma.MovementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MovementScalarFieldEnum | Prisma.MovementScalarFieldEnum[]
+}
+
+/**
  * Contact.purchases
  */
 export type Contact$purchasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1721,30 +1745,6 @@ export type Contact$salesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.SaleScalarFieldEnum | Prisma.SaleScalarFieldEnum[]
-}
-
-/**
- * Contact.movements
- */
-export type Contact$movementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Movement
-   */
-  select?: Prisma.MovementSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Movement
-   */
-  omit?: Prisma.MovementOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MovementInclude<ExtArgs> | null
-  where?: Prisma.MovementWhereInput
-  orderBy?: Prisma.MovementOrderByWithRelationInput | Prisma.MovementOrderByWithRelationInput[]
-  cursor?: Prisma.MovementWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MovementScalarFieldEnum | Prisma.MovementScalarFieldEnum[]
 }
 
 /**

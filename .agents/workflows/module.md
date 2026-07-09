@@ -27,20 +27,32 @@ Create the validation schema in **`lib/schemas/[plural-kebab]/create-[singular-k
 
 - **File Path**: `lib/schemas/<your-models>/create-<your-model>.ts`
 - **Reference Examples**:
-  - [create-wood.ts](file:///c:/Projects/kayu-ping-next/lib/schemas/woods/create-wood.ts)
   - [create-contact.ts](file:///c:/Projects/kayu-ping-next/lib/schemas/contacts/create-contact.ts)
+  - [create-location.ts](file:///c:/Projects/kayu-ping-next/lib/schemas/locations/create-location.ts)
+  - [create-wood.ts](file:///c:/Projects/kayu-ping-next/lib/schemas/woods/create-wood.ts)
 - **Structure**:
 
 ```typescript
 import z from "zod";
 // If using enums from prisma: import { YourEnum } from "@/generated/prisma/enums";
 
+// 1. Backend / Database Schema (minimal validation, matches DB types, used in server actions)
 export const create<YourModel>Schema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
-  // define additional fields here...
+  name: z.string().trim().min(1),
+  // define additional fields here... e.g. notes: z.string().nullish(),
 });
 
 export type Create<YourModel>Schema = z.infer<typeof create<YourModel>Schema>;
+
+// 2. Frontend / Form Schema (custom error messages, empty-string transforms, UI-specific regex)
+export const create<YourModel>FormSchema = z.object({
+  name: z.string().trim().min(1, "Name is required"),
+  // define form-specific validations and transforms, e.g.:
+  // notes: z.string().trim().transform((val) => (val === "" ? null : val)).optional(),
+});
+
+export type Create<YourModel>FormInput = z.input<typeof create<YourModel>FormSchema>;
+export type Create<YourModel>FormOutput = z.output<typeof create<YourModel>FormSchema>;
 ```
 
 ---
@@ -172,8 +184,9 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
 
 - **File Path**: `components/admin/<your-models>/create-form.tsx`
 - **Key Logic & Reference**:
-  - Leverages `react-hook-form` along with `zodResolver(create<YourModel>Schema)`.
-  - Calls `create<YourModel>Action(formData)` on submission.
+  - Leverages `react-hook-form` along with `zodResolver(create<YourModel>FormSchema)`.
+  - Defines the form using `useForm<Create<YourModel>FormInput, any, Create<YourModel>FormOutput>()`.
+  - Calls `create<YourModel>Action(data)` on submission.
   - Navigates to `/admin/<your-models>` on success.
   - Uses standard layout components like `<Card>`, `<FieldGroup>`, `<Field>`, `<FieldLabel>`, `<Input>`, and `<FieldError>`.
   - Reference: [create-form.tsx (woods)](file:///c:/Projects/kayu-ping-next/components/admin/woods/create-form.tsx) or [create-form.tsx (contacts)](file:///c:/Projects/kayu-ping-next/components/admin/contacts/create-form.tsx)
@@ -183,7 +196,9 @@ Create UI and layout files in **`components/admin/[plural-kebab]/`**.
 - **File Path**: `components/admin/<your-models>/update-form.tsx`
 - **Key Logic & Reference**:
   - Accepts the model record as props to populate `defaultValues`.
-  - Passes fields and `id` inside the `FormData` to `update<YourModel>Action(formData)`.
+  - Leverages `react-hook-form` along with `zodResolver(create<YourModel>FormSchema)`.
+  - Defines the form using `useForm<Create<YourModel>FormInput, any, Create<YourModel>FormOutput>()`.
+  - Calls `update<YourModel>Action(id, data)` on submission.
   - Reference: [update-form.tsx (woods)](file:///c:/Projects/kayu-ping-next/components/admin/woods/update-form.tsx) or [update-form.tsx (contacts)](file:///c:/Projects/kayu-ping-next/components/admin/contacts/update-form.tsx)
 
 ### 6.4 Detail Card Component

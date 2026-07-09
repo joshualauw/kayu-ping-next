@@ -29,6 +29,7 @@ export type AggregateMovementItem = {
 export type MovementItemAvgAggregateOutputType = {
   id: number | null
   movementId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
@@ -36,6 +37,7 @@ export type MovementItemAvgAggregateOutputType = {
 export type MovementItemSumAggregateOutputType = {
   id: number | null
   movementId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
 }
@@ -43,6 +45,7 @@ export type MovementItemSumAggregateOutputType = {
 export type MovementItemMinAggregateOutputType = {
   id: number | null
   movementId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
   createdAt: Date | null
@@ -52,6 +55,7 @@ export type MovementItemMinAggregateOutputType = {
 export type MovementItemMaxAggregateOutputType = {
   id: number | null
   movementId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   quantity: number | null
   createdAt: Date | null
@@ -61,6 +65,7 @@ export type MovementItemMaxAggregateOutputType = {
 export type MovementItemCountAggregateOutputType = {
   id: number
   movementId: number
+  gradeId: number
   woodVariantId: number
   quantity: number
   createdAt: number
@@ -72,6 +77,7 @@ export type MovementItemCountAggregateOutputType = {
 export type MovementItemAvgAggregateInputType = {
   id?: true
   movementId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
@@ -79,6 +85,7 @@ export type MovementItemAvgAggregateInputType = {
 export type MovementItemSumAggregateInputType = {
   id?: true
   movementId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
 }
@@ -86,6 +93,7 @@ export type MovementItemSumAggregateInputType = {
 export type MovementItemMinAggregateInputType = {
   id?: true
   movementId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
   createdAt?: true
@@ -95,6 +103,7 @@ export type MovementItemMinAggregateInputType = {
 export type MovementItemMaxAggregateInputType = {
   id?: true
   movementId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
   createdAt?: true
@@ -104,6 +113,7 @@ export type MovementItemMaxAggregateInputType = {
 export type MovementItemCountAggregateInputType = {
   id?: true
   movementId?: true
+  gradeId?: true
   woodVariantId?: true
   quantity?: true
   createdAt?: true
@@ -200,6 +210,7 @@ export type MovementItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type MovementItemGroupByOutputType = {
   id: number
   movementId: number
+  gradeId: number | null
   woodVariantId: number
   quantity: number
   createdAt: Date
@@ -232,10 +243,12 @@ export type MovementItemWhereInput = {
   NOT?: Prisma.MovementItemWhereInput | Prisma.MovementItemWhereInput[]
   id?: Prisma.IntFilter<"MovementItem"> | number
   movementId?: Prisma.IntFilter<"MovementItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"MovementItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"MovementItem"> | number
   quantity?: Prisma.IntFilter<"MovementItem"> | number
   createdAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   movement?: Prisma.XOR<Prisma.MovementScalarRelationFilter, Prisma.MovementWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }
@@ -243,10 +256,12 @@ export type MovementItemWhereInput = {
 export type MovementItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  grade?: Prisma.GradeOrderByWithRelationInput
   movement?: Prisma.MovementOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
 }
@@ -257,10 +272,12 @@ export type MovementItemWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.MovementItemWhereInput[]
   NOT?: Prisma.MovementItemWhereInput | Prisma.MovementItemWhereInput[]
   movementId?: Prisma.IntFilter<"MovementItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"MovementItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"MovementItem"> | number
   quantity?: Prisma.IntFilter<"MovementItem"> | number
   createdAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   movement?: Prisma.XOR<Prisma.MovementScalarRelationFilter, Prisma.MovementWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }, "id">
@@ -268,6 +285,7 @@ export type MovementItemWhereUniqueInput = Prisma.AtLeast<{
 export type MovementItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -285,6 +303,7 @@ export type MovementItemScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MovementItemScalarWhereWithAggregatesInput | Prisma.MovementItemScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"MovementItem"> | number
   movementId?: Prisma.IntWithAggregatesFilter<"MovementItem"> | number
+  gradeId?: Prisma.IntNullableWithAggregatesFilter<"MovementItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"MovementItem"> | number
   quantity?: Prisma.IntWithAggregatesFilter<"MovementItem"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MovementItem"> | Date | string
@@ -295,6 +314,7 @@ export type MovementItemCreateInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutMovementItemsInput
   movement: Prisma.MovementCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutMovementItemsInput
 }
@@ -302,6 +322,7 @@ export type MovementItemCreateInput = {
 export type MovementItemUncheckedCreateInput = {
   id?: number
   movementId: number
+  gradeId?: number | null
   woodVariantId: number
   quantity: number
   createdAt?: Date | string
@@ -312,6 +333,7 @@ export type MovementItemUpdateInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutMovementItemsNestedInput
   movement?: Prisma.MovementUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput
 }
@@ -319,6 +341,7 @@ export type MovementItemUpdateInput = {
 export type MovementItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -328,6 +351,7 @@ export type MovementItemUncheckedUpdateInput = {
 export type MovementItemCreateManyInput = {
   id?: number
   movementId: number
+  gradeId?: number | null
   woodVariantId: number
   quantity: number
   createdAt?: Date | string
@@ -343,6 +367,7 @@ export type MovementItemUpdateManyMutationInput = {
 export type MovementItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -362,6 +387,7 @@ export type MovementItemOrderByRelationAggregateInput = {
 export type MovementItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -371,6 +397,7 @@ export type MovementItemCountOrderByAggregateInput = {
 export type MovementItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -378,6 +405,7 @@ export type MovementItemAvgOrderByAggregateInput = {
 export type MovementItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -387,6 +415,7 @@ export type MovementItemMaxOrderByAggregateInput = {
 export type MovementItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -396,6 +425,7 @@ export type MovementItemMinOrderByAggregateInput = {
 export type MovementItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   movementId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -439,6 +469,48 @@ export type MovementItemUncheckedUpdateManyWithoutVariantNestedInput = {
   connect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
   update?: Prisma.MovementItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.MovementItemUpdateWithWhereUniqueWithoutVariantInput[]
   updateMany?: Prisma.MovementItemUpdateManyWithWhereWithoutVariantInput | Prisma.MovementItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.MovementItemScalarWhereInput | Prisma.MovementItemScalarWhereInput[]
+}
+
+export type MovementItemCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput> | Prisma.MovementItemCreateWithoutGradeInput[] | Prisma.MovementItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.MovementItemCreateOrConnectWithoutGradeInput | Prisma.MovementItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.MovementItemCreateManyGradeInputEnvelope
+  connect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+}
+
+export type MovementItemUncheckedCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput> | Prisma.MovementItemCreateWithoutGradeInput[] | Prisma.MovementItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.MovementItemCreateOrConnectWithoutGradeInput | Prisma.MovementItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.MovementItemCreateManyGradeInputEnvelope
+  connect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+}
+
+export type MovementItemUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput> | Prisma.MovementItemCreateWithoutGradeInput[] | Prisma.MovementItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.MovementItemCreateOrConnectWithoutGradeInput | Prisma.MovementItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.MovementItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.MovementItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.MovementItemCreateManyGradeInputEnvelope
+  set?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  disconnect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  delete?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  connect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  update?: Prisma.MovementItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.MovementItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.MovementItemUpdateManyWithWhereWithoutGradeInput | Prisma.MovementItemUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.MovementItemScalarWhereInput | Prisma.MovementItemScalarWhereInput[]
+}
+
+export type MovementItemUncheckedUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput> | Prisma.MovementItemCreateWithoutGradeInput[] | Prisma.MovementItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.MovementItemCreateOrConnectWithoutGradeInput | Prisma.MovementItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.MovementItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.MovementItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.MovementItemCreateManyGradeInputEnvelope
+  set?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  disconnect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  delete?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  connect?: Prisma.MovementItemWhereUniqueInput | Prisma.MovementItemWhereUniqueInput[]
+  update?: Prisma.MovementItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.MovementItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.MovementItemUpdateManyWithWhereWithoutGradeInput | Prisma.MovementItemUpdateManyWithWhereWithoutGradeInput[]
   deleteMany?: Prisma.MovementItemScalarWhereInput | Prisma.MovementItemScalarWhereInput[]
 }
 
@@ -488,12 +560,14 @@ export type MovementItemCreateWithoutVariantInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutMovementItemsInput
   movement: Prisma.MovementCreateNestedOneWithoutItemsInput
 }
 
 export type MovementItemUncheckedCreateWithoutVariantInput = {
   id?: number
   movementId: number
+  gradeId?: number | null
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -531,21 +605,67 @@ export type MovementItemScalarWhereInput = {
   NOT?: Prisma.MovementItemScalarWhereInput | Prisma.MovementItemScalarWhereInput[]
   id?: Prisma.IntFilter<"MovementItem"> | number
   movementId?: Prisma.IntFilter<"MovementItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"MovementItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"MovementItem"> | number
   quantity?: Prisma.IntFilter<"MovementItem"> | number
   createdAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MovementItem"> | Date | string
 }
 
+export type MovementItemCreateWithoutGradeInput = {
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  movement: Prisma.MovementCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutMovementItemsInput
+}
+
+export type MovementItemUncheckedCreateWithoutGradeInput = {
+  id?: number
+  movementId: number
+  woodVariantId: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MovementItemCreateOrConnectWithoutGradeInput = {
+  where: Prisma.MovementItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput>
+}
+
+export type MovementItemCreateManyGradeInputEnvelope = {
+  data: Prisma.MovementItemCreateManyGradeInput | Prisma.MovementItemCreateManyGradeInput[]
+  skipDuplicates?: boolean
+}
+
+export type MovementItemUpsertWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.MovementItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.MovementItemUpdateWithoutGradeInput, Prisma.MovementItemUncheckedUpdateWithoutGradeInput>
+  create: Prisma.XOR<Prisma.MovementItemCreateWithoutGradeInput, Prisma.MovementItemUncheckedCreateWithoutGradeInput>
+}
+
+export type MovementItemUpdateWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.MovementItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.MovementItemUpdateWithoutGradeInput, Prisma.MovementItemUncheckedUpdateWithoutGradeInput>
+}
+
+export type MovementItemUpdateManyWithWhereWithoutGradeInput = {
+  where: Prisma.MovementItemScalarWhereInput
+  data: Prisma.XOR<Prisma.MovementItemUpdateManyMutationInput, Prisma.MovementItemUncheckedUpdateManyWithoutGradeInput>
+}
+
 export type MovementItemCreateWithoutMovementInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutMovementItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutMovementItemsInput
 }
 
 export type MovementItemUncheckedCreateWithoutMovementInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   quantity: number
   createdAt?: Date | string
@@ -581,6 +701,7 @@ export type MovementItemUpdateManyWithWhereWithoutMovementInput = {
 export type MovementItemCreateManyVariantInput = {
   id?: number
   movementId: number
+  gradeId?: number | null
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -590,12 +711,14 @@ export type MovementItemUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutMovementItemsNestedInput
   movement?: Prisma.MovementUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type MovementItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -604,6 +727,42 @@ export type MovementItemUncheckedUpdateWithoutVariantInput = {
 export type MovementItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MovementItemCreateManyGradeInput = {
+  id?: number
+  movementId: number
+  woodVariantId: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MovementItemUpdateWithoutGradeInput = {
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  movement?: Prisma.MovementUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput
+}
+
+export type MovementItemUncheckedUpdateWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MovementItemUncheckedUpdateManyWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  movementId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -611,6 +770,7 @@ export type MovementItemUncheckedUpdateManyWithoutVariantInput = {
 
 export type MovementItemCreateManyMovementInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   quantity: number
   createdAt?: Date | string
@@ -621,11 +781,13 @@ export type MovementItemUpdateWithoutMovementInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutMovementItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput
 }
 
 export type MovementItemUncheckedUpdateWithoutMovementInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -634,6 +796,7 @@ export type MovementItemUncheckedUpdateWithoutMovementInput = {
 
 export type MovementItemUncheckedUpdateManyWithoutMovementInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -645,10 +808,12 @@ export type MovementItemUncheckedUpdateManyWithoutMovementInput = {
 export type MovementItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   movementId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movementItem"]>
@@ -656,10 +821,12 @@ export type MovementItemSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type MovementItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   movementId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movementItem"]>
@@ -667,10 +834,12 @@ export type MovementItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type MovementItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   movementId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movementItem"]>
@@ -678,22 +847,26 @@ export type MovementItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type MovementItemSelectScalar = {
   id?: boolean
   movementId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MovementItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "movementId" | "woodVariantId" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["movementItem"]>
+export type MovementItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "movementId" | "gradeId" | "woodVariantId" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["movementItem"]>
 export type MovementItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type MovementItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type MovementItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.MovementItem$gradeArgs<ExtArgs>
   movement?: boolean | Prisma.MovementDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
@@ -701,12 +874,14 @@ export type MovementItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $MovementItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MovementItem"
   objects: {
+    grade: Prisma.$GradePayload<ExtArgs> | null
     movement: Prisma.$MovementPayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     movementId: number
+    gradeId: number | null
     woodVariantId: number
     quantity: number
     createdAt: Date
@@ -1105,6 +1280,7 @@ readonly fields: MovementItemFieldRefs;
  */
 export interface Prisma__MovementItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  grade<T extends Prisma.MovementItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MovementItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   movement<T extends Prisma.MovementDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MovementDefaultArgs<ExtArgs>>): Prisma.Prisma__MovementClient<runtime.Types.Result.GetResult<Prisma.$MovementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1138,6 +1314,7 @@ export interface Prisma__MovementItemClient<T, Null = never, ExtArgs extends run
 export interface MovementItemFieldRefs {
   readonly id: Prisma.FieldRef<"MovementItem", 'Int'>
   readonly movementId: Prisma.FieldRef<"MovementItem", 'Int'>
+  readonly gradeId: Prisma.FieldRef<"MovementItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"MovementItem", 'Int'>
   readonly quantity: Prisma.FieldRef<"MovementItem", 'Int'>
   readonly createdAt: Prisma.FieldRef<"MovementItem", 'DateTime'>
@@ -1540,6 +1717,25 @@ export type MovementItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many MovementItems to delete.
    */
   limit?: number
+}
+
+/**
+ * MovementItem.grade
+ */
+export type MovementItem$gradeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Grade
+   */
+  select?: Prisma.GradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Grade
+   */
+  omit?: Prisma.GradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GradeInclude<ExtArgs> | null
+  where?: Prisma.GradeWhereInput
 }
 
 /**

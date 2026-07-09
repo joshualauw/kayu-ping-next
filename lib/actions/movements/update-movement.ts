@@ -5,12 +5,12 @@ import { getAuthenticatedUser } from "@/lib/helpers/user";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { updateMovementSchema } from "@/lib/schemas/movements/update-movement";
+import { updateMovementSchema, type UpdateMovementSchema } from "@/lib/schemas/movements/update-movement";
 import movementService from "@/lib/services/movement-service";
 
 export type UpdateMovementResponse = number | null;
 
-export async function updateMovementAction(id: number, data: any): Promise<ApiResponse<UpdateMovementResponse>> {
+export async function updateMovementAction(id: number, data: UpdateMovementSchema): Promise<ApiResponse<UpdateMovementResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);

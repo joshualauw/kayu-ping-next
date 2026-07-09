@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +14,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, ArrowLeftRight } from "lucide-react";
 import { LocationForSelect } from "@/lib/services/location-service";
 import { ContactForSelect } from "@/lib/services/contact-service";
-import { createMovementSchema } from "@/lib/schemas/movements/create-movement";
+import { WoodForSelect } from "@/lib/services/wood-service";
+import { MaterialForSelect } from "@/lib/services/material-service";
+import { GradeForSelect } from "@/lib/services/grade-service";
+import {
+  createMovementFormSchema,
+  type CreateMovementFormInput,
+  type CreateMovementFormOutput,
+} from "@/lib/schemas/movements/create-movement";
 import { createMovementAction } from "@/lib/actions/movements/create-movement";
 import dayjs from "@/lib/integrations/dayjs";
 import MovementsCart from "./cart";
@@ -21,15 +29,19 @@ import MovementsCart from "./cart";
 interface MovementCreateFormProps {
   locations: LocationForSelect[];
   contacts: ContactForSelect[];
+  woods: WoodForSelect[];
+  materials: MaterialForSelect[];
+  grades: GradeForSelect[];
 }
 
-export default function MovementCreateForm({ locations, contacts }: MovementCreateFormProps) {
+export default function MovementCreateForm({ locations, contacts, woods, materials, grades }: MovementCreateFormProps) {
   const router = useRouter();
   const formId = "movement-create-form";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<any>({
+  const form = useForm<CreateMovementFormInput, any, CreateMovementFormOutput>({
+    resolver: zodResolver(createMovementFormSchema),
     defaultValues: {
       movementDate: dayjs().format("YYYY-MM-DDTHH:mm"),
       fromLocationId: "",
@@ -47,48 +59,14 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
     form.setValue("toLocationId", fromVal);
   };
 
-  const handleCustomSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = form.getValues();
-    onSubmit(data);
-  };
-
-  async function onSubmit(data: any) {
-    form.clearErrors();
-
-    const mappedItems = (data.items || []).map((item: any) => ({
-      inventoryId: Number(item.inventoryId),
-      woodVariantId: Number(item.woodVariantId),
-      quantity: Number(item.quantity),
-    }));
-
-    const flattenedData = {
-      movementDate: data.movementDate,
-      fromLocationId: data.fromLocationId ? Number(data.fromLocationId) : undefined,
-      toLocationId: data.toLocationId ? Number(data.toLocationId) : undefined,
-      truckerId: data.truckerId ? Number(data.truckerId) : undefined,
-      notes: data.notes || null,
-      items: mappedItems,
-    };
-
-    const validation = createMovementSchema.safeParse(flattenedData);
-
-    if (!validation.success) {
-      validation.error.issues.forEach((issue) => {
-        const path = issue.path;
-        form.setError(path.join(".") as any, { message: issue.message });
-      });
-      toast.error("Please fix the validation errors in the form.");
-      return;
-    }
-
+  async function onSubmit(data: CreateMovementFormOutput) {
     setIsSubmitting(true);
     try {
-      const result = await createMovementAction(validation.data);
+      const result = await createMovementAction(data);
 
       if (result.success) {
         router.push("/admin/movements");
-        toast.success("Movement logged successfully (Console only)");
+        toast.success("Movement logged successfully");
       } else {
         toast.error(result.message);
       }
@@ -104,7 +82,7 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
         <CardDescription>Record a new wood movement transaction between locations.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id={formId} onSubmit={handleCustomSubmit} className="space-y-6">
+        <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FieldGroup className="flex flex-col gap-6">
             <Controller
               name="movementDate"
@@ -126,7 +104,7 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel>From Location</FieldLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select source location" />
                         </SelectTrigger>
@@ -165,7 +143,7 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel>To Location</FieldLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select destination location" />
                         </SelectTrigger>
@@ -190,7 +168,7 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Trucker</FieldLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value ? String(field.value) : undefined}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select trucker" />
                     </SelectTrigger>
@@ -221,7 +199,13 @@ export default function MovementCreateForm({ locations, contacts }: MovementCrea
           </FieldGroup>
 
           <div className="border-t pt-6">
-            <MovementsCart control={form.control} errors={form.formState.errors.items} />
+            <MovementsCart
+              control={form.control}
+              errors={form.formState.errors.items}
+              woods={woods}
+              materials={materials}
+              grades={grades}
+            />
             {form.formState.errors.items?.message && (
               <p className="mt-2 text-sm font-medium text-destructive">{String(form.formState.errors.items.message)}</p>
             )}

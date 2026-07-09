@@ -21,7 +21,6 @@ export async function updateContactAction(id: number, data: CreateContactSchema)
     }
 
     const parsed = createContactSchema.parse(data);
-
     const contact = await contactService.updateContact(id, parsed);
 
     return successResponse(contact.id, "Contact updated successfully");

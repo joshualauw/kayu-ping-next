@@ -17,7 +17,6 @@ export async function createContactAction(data: CreateContactSchema): Promise<Ap
     if (!user) throw new AuthorizationError();
 
     const parsed = createContactSchema.parse(data);
-
     const contact = await contactService.createContact(parsed);
 
     return successResponse(contact.id, "Contact created successfully");

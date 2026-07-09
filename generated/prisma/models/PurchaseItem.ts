@@ -29,6 +29,7 @@ export type AggregatePurchaseItem = {
 export type PurchaseItemAvgAggregateOutputType = {
   id: number | null
   purchaseId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   pricePerCubic: number | null
   quantity: number | null
@@ -37,6 +38,7 @@ export type PurchaseItemAvgAggregateOutputType = {
 export type PurchaseItemSumAggregateOutputType = {
   id: number | null
   purchaseId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   pricePerCubic: number | null
   quantity: number | null
@@ -45,6 +47,7 @@ export type PurchaseItemSumAggregateOutputType = {
 export type PurchaseItemMinAggregateOutputType = {
   id: number | null
   purchaseId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   pricePerCubic: number | null
   quantity: number | null
@@ -55,6 +58,7 @@ export type PurchaseItemMinAggregateOutputType = {
 export type PurchaseItemMaxAggregateOutputType = {
   id: number | null
   purchaseId: number | null
+  gradeId: number | null
   woodVariantId: number | null
   pricePerCubic: number | null
   quantity: number | null
@@ -65,6 +69,7 @@ export type PurchaseItemMaxAggregateOutputType = {
 export type PurchaseItemCountAggregateOutputType = {
   id: number
   purchaseId: number
+  gradeId: number
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -77,6 +82,7 @@ export type PurchaseItemCountAggregateOutputType = {
 export type PurchaseItemAvgAggregateInputType = {
   id?: true
   purchaseId?: true
+  gradeId?: true
   woodVariantId?: true
   pricePerCubic?: true
   quantity?: true
@@ -85,6 +91,7 @@ export type PurchaseItemAvgAggregateInputType = {
 export type PurchaseItemSumAggregateInputType = {
   id?: true
   purchaseId?: true
+  gradeId?: true
   woodVariantId?: true
   pricePerCubic?: true
   quantity?: true
@@ -93,6 +100,7 @@ export type PurchaseItemSumAggregateInputType = {
 export type PurchaseItemMinAggregateInputType = {
   id?: true
   purchaseId?: true
+  gradeId?: true
   woodVariantId?: true
   pricePerCubic?: true
   quantity?: true
@@ -103,6 +111,7 @@ export type PurchaseItemMinAggregateInputType = {
 export type PurchaseItemMaxAggregateInputType = {
   id?: true
   purchaseId?: true
+  gradeId?: true
   woodVariantId?: true
   pricePerCubic?: true
   quantity?: true
@@ -113,6 +122,7 @@ export type PurchaseItemMaxAggregateInputType = {
 export type PurchaseItemCountAggregateInputType = {
   id?: true
   purchaseId?: true
+  gradeId?: true
   woodVariantId?: true
   pricePerCubic?: true
   quantity?: true
@@ -210,6 +220,7 @@ export type PurchaseItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type PurchaseItemGroupByOutputType = {
   id: number
   purchaseId: number
+  gradeId: number | null
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -243,11 +254,13 @@ export type PurchaseItemWhereInput = {
   NOT?: Prisma.PurchaseItemWhereInput | Prisma.PurchaseItemWhereInput[]
   id?: Prisma.IntFilter<"PurchaseItem"> | number
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"PurchaseItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
   quantity?: Prisma.IntFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   purchase?: Prisma.XOR<Prisma.PurchaseScalarRelationFilter, Prisma.PurchaseWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }
@@ -255,11 +268,13 @@ export type PurchaseItemWhereInput = {
 export type PurchaseItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  grade?: Prisma.GradeOrderByWithRelationInput
   purchase?: Prisma.PurchaseOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
 }
@@ -270,11 +285,13 @@ export type PurchaseItemWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PurchaseItemWhereInput[]
   NOT?: Prisma.PurchaseItemWhereInput | Prisma.PurchaseItemWhereInput[]
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"PurchaseItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
   quantity?: Prisma.IntFilter<"PurchaseItem"> | number
   createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
+  grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   purchase?: Prisma.XOR<Prisma.PurchaseScalarRelationFilter, Prisma.PurchaseWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
 }, "id">
@@ -282,6 +299,7 @@ export type PurchaseItemWhereUniqueInput = Prisma.AtLeast<{
 export type PurchaseItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -300,6 +318,7 @@ export type PurchaseItemScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PurchaseItemScalarWhereWithAggregatesInput | Prisma.PurchaseItemScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
   purchaseId?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
+  gradeId?: Prisma.IntNullableWithAggregatesFilter<"PurchaseItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatWithAggregatesFilter<"PurchaseItem"> | number
   quantity?: Prisma.IntWithAggregatesFilter<"PurchaseItem"> | number
@@ -312,6 +331,7 @@ export type PurchaseItemCreateInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutPurchaseItemsInput
   purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutPurchaseItemsInput
 }
@@ -319,6 +339,7 @@ export type PurchaseItemCreateInput = {
 export type PurchaseItemUncheckedCreateInput = {
   id?: number
   purchaseId: number
+  gradeId?: number | null
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -331,6 +352,7 @@ export type PurchaseItemUpdateInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutPurchaseItemsNestedInput
   purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutPurchaseItemsNestedInput
 }
@@ -338,6 +360,7 @@ export type PurchaseItemUpdateInput = {
 export type PurchaseItemUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -348,6 +371,7 @@ export type PurchaseItemUncheckedUpdateInput = {
 export type PurchaseItemCreateManyInput = {
   id?: number
   purchaseId: number
+  gradeId?: number | null
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -365,6 +389,7 @@ export type PurchaseItemUpdateManyMutationInput = {
 export type PurchaseItemUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -385,6 +410,7 @@ export type PurchaseItemOrderByRelationAggregateInput = {
 export type PurchaseItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -395,6 +421,7 @@ export type PurchaseItemCountOrderByAggregateInput = {
 export type PurchaseItemAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -403,6 +430,7 @@ export type PurchaseItemAvgOrderByAggregateInput = {
 export type PurchaseItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -413,6 +441,7 @@ export type PurchaseItemMaxOrderByAggregateInput = {
 export type PurchaseItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -423,6 +452,7 @@ export type PurchaseItemMinOrderByAggregateInput = {
 export type PurchaseItemSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   purchaseId?: Prisma.SortOrder
+  gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
@@ -467,6 +497,48 @@ export type PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput = {
   connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
   update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput[]
   updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
+}
+
+export type PurchaseItemCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput> | Prisma.PurchaseItemCreateWithoutGradeInput[] | Prisma.PurchaseItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutGradeInput | Prisma.PurchaseItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.PurchaseItemCreateManyGradeInputEnvelope
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+}
+
+export type PurchaseItemUncheckedCreateNestedManyWithoutGradeInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput> | Prisma.PurchaseItemCreateWithoutGradeInput[] | Prisma.PurchaseItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutGradeInput | Prisma.PurchaseItemCreateOrConnectWithoutGradeInput[]
+  createMany?: Prisma.PurchaseItemCreateManyGradeInputEnvelope
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+}
+
+export type PurchaseItemUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput> | Prisma.PurchaseItemCreateWithoutGradeInput[] | Prisma.PurchaseItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutGradeInput | Prisma.PurchaseItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.PurchaseItemCreateManyGradeInputEnvelope
+  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutGradeInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
+}
+
+export type PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput> | Prisma.PurchaseItemCreateWithoutGradeInput[] | Prisma.PurchaseItemUncheckedCreateWithoutGradeInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutGradeInput | Prisma.PurchaseItemCreateOrConnectWithoutGradeInput[]
+  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutGradeInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutGradeInput[]
+  createMany?: Prisma.PurchaseItemCreateManyGradeInputEnvelope
+  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutGradeInput[]
+  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutGradeInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutGradeInput[]
   deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
 }
 
@@ -517,12 +589,14 @@ export type PurchaseItemCreateWithoutVariantInput = {
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutPurchaseItemsInput
   purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
 }
 
 export type PurchaseItemUncheckedCreateWithoutVariantInput = {
   id?: number
   purchaseId: number
+  gradeId?: number | null
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -561,6 +635,7 @@ export type PurchaseItemScalarWhereInput = {
   NOT?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
   id?: Prisma.IntFilter<"PurchaseItem"> | number
   purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"PurchaseItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
   quantity?: Prisma.IntFilter<"PurchaseItem"> | number
@@ -568,16 +643,63 @@ export type PurchaseItemScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
 }
 
+export type PurchaseItemCreateWithoutGradeInput = {
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutPurchaseItemsInput
+}
+
+export type PurchaseItemUncheckedCreateWithoutGradeInput = {
+  id?: number
+  purchaseId: number
+  woodVariantId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PurchaseItemCreateOrConnectWithoutGradeInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput>
+}
+
+export type PurchaseItemCreateManyGradeInputEnvelope = {
+  data: Prisma.PurchaseItemCreateManyGradeInput | Prisma.PurchaseItemCreateManyGradeInput[]
+  skipDuplicates?: boolean
+}
+
+export type PurchaseItemUpsertWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutGradeInput, Prisma.PurchaseItemUncheckedUpdateWithoutGradeInput>
+  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput>
+}
+
+export type PurchaseItemUpdateWithWhereUniqueWithoutGradeInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutGradeInput, Prisma.PurchaseItemUncheckedUpdateWithoutGradeInput>
+}
+
+export type PurchaseItemUpdateManyWithWhereWithoutGradeInput = {
+  where: Prisma.PurchaseItemScalarWhereInput
+  data: Prisma.XOR<Prisma.PurchaseItemUpdateManyMutationInput, Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeInput>
+}
+
 export type PurchaseItemCreateWithoutPurchaseInput = {
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutPurchaseItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutPurchaseItemsInput
 }
 
 export type PurchaseItemUncheckedCreateWithoutPurchaseInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -614,6 +736,7 @@ export type PurchaseItemUpdateManyWithWhereWithoutPurchaseInput = {
 export type PurchaseItemCreateManyVariantInput = {
   id?: number
   purchaseId: number
+  gradeId?: number | null
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -625,12 +748,14 @@ export type PurchaseItemUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutPurchaseItemsNestedInput
   purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
 }
 
 export type PurchaseItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -640,6 +765,46 @@ export type PurchaseItemUncheckedUpdateWithoutVariantInput = {
 export type PurchaseItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PurchaseItemCreateManyGradeInput = {
+  id?: number
+  purchaseId: number
+  woodVariantId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PurchaseItemUpdateWithoutGradeInput = {
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutPurchaseItemsNestedInput
+}
+
+export type PurchaseItemUncheckedUpdateWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PurchaseItemUncheckedUpdateManyWithoutGradeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -648,6 +813,7 @@ export type PurchaseItemUncheckedUpdateManyWithoutVariantInput = {
 
 export type PurchaseItemCreateManyPurchaseInput = {
   id?: number
+  gradeId?: number | null
   woodVariantId: number
   pricePerCubic: number
   quantity: number
@@ -660,11 +826,13 @@ export type PurchaseItemUpdateWithoutPurchaseInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutPurchaseItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutPurchaseItemsNestedInput
 }
 
 export type PurchaseItemUncheckedUpdateWithoutPurchaseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -674,6 +842,7 @@ export type PurchaseItemUncheckedUpdateWithoutPurchaseInput = {
 
 export type PurchaseItemUncheckedUpdateManyWithoutPurchaseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -686,11 +855,13 @@ export type PurchaseItemUncheckedUpdateManyWithoutPurchaseInput = {
 export type PurchaseItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   purchaseId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["purchaseItem"]>
@@ -698,11 +869,13 @@ export type PurchaseItemSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type PurchaseItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   purchaseId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["purchaseItem"]>
@@ -710,11 +883,13 @@ export type PurchaseItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type PurchaseItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   purchaseId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["purchaseItem"]>
@@ -722,6 +897,7 @@ export type PurchaseItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type PurchaseItemSelectScalar = {
   id?: boolean
   purchaseId?: boolean
+  gradeId?: boolean
   woodVariantId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
@@ -729,16 +905,19 @@ export type PurchaseItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PurchaseItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "purchaseId" | "woodVariantId" | "pricePerCubic" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["purchaseItem"]>
+export type PurchaseItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "purchaseId" | "gradeId" | "woodVariantId" | "pricePerCubic" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["purchaseItem"]>
 export type PurchaseItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type PurchaseItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
 export type PurchaseItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  grade?: boolean | Prisma.PurchaseItem$gradeArgs<ExtArgs>
   purchase?: boolean | Prisma.PurchaseDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
 }
@@ -746,12 +925,14 @@ export type PurchaseItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $PurchaseItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PurchaseItem"
   objects: {
+    grade: Prisma.$GradePayload<ExtArgs> | null
     purchase: Prisma.$PurchasePayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     purchaseId: number
+    gradeId: number | null
     woodVariantId: number
     pricePerCubic: number
     quantity: number
@@ -1151,6 +1332,7 @@ readonly fields: PurchaseItemFieldRefs;
  */
 export interface Prisma__PurchaseItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  grade<T extends Prisma.PurchaseItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   purchase<T extends Prisma.PurchaseDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseDefaultArgs<ExtArgs>>): Prisma.Prisma__PurchaseClient<runtime.Types.Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1184,6 +1366,7 @@ export interface Prisma__PurchaseItemClient<T, Null = never, ExtArgs extends run
 export interface PurchaseItemFieldRefs {
   readonly id: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly purchaseId: Prisma.FieldRef<"PurchaseItem", 'Int'>
+  readonly gradeId: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"PurchaseItem", 'Int'>
   readonly pricePerCubic: Prisma.FieldRef<"PurchaseItem", 'Float'>
   readonly quantity: Prisma.FieldRef<"PurchaseItem", 'Int'>
@@ -1587,6 +1770,25 @@ export type PurchaseItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many PurchaseItems to delete.
    */
   limit?: number
+}
+
+/**
+ * PurchaseItem.grade
+ */
+export type PurchaseItem$gradeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Grade
+   */
+  select?: Prisma.GradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Grade
+   */
+  omit?: Prisma.GradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GradeInclude<ExtArgs> | null
+  where?: Prisma.GradeWhereInput
 }
 
 /**

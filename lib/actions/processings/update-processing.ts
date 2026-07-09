@@ -5,12 +5,12 @@ import { getAuthenticatedUser } from "@/lib/helpers/user";
 import type { ApiResponse } from "@/types/api-response";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import { updateProcessingSchema } from "@/lib/schemas/processings/update-processing";
+import { updateProcessingSchema, type UpdateProcessingSchema } from "@/lib/schemas/processings/update-processing";
 import processingService from "@/lib/services/processing-service";
 
 export type UpdateProcessingResponse = number | null;
 
-export async function updateProcessingAction(id: number, data: any): Promise<ApiResponse<UpdateProcessingResponse>> {
+export async function updateProcessingAction(id: number, data: UpdateProcessingSchema): Promise<ApiResponse<UpdateProcessingResponse>> {
   try {
     const session = await auth();
     const user = await getAuthenticatedUser(session?.user?.id);

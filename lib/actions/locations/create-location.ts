@@ -17,7 +17,6 @@ export async function createLocationAction(data: CreateLocationSchema): Promise<
     if (!user) throw new AuthorizationError();
 
     const parsed = createLocationSchema.parse(data);
-
     const location = await locationService.createLocation(parsed);
 
     return successResponse(location.id, "Location created successfully");
