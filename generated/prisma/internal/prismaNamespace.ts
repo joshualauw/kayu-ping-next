@@ -402,7 +402,10 @@ export const ModelName = {
   Movement: 'Movement',
   MovementItem: 'MovementItem',
   Grading: 'Grading',
-  GradingItem: 'GradingItem'
+  GradingItem: 'GradingItem',
+  Adjustment: 'Adjustment',
+  AdjustmentItem: 'AdjustmentItem',
+  Fee: 'Fee'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "grade" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem" | "movement" | "movementItem" | "grading" | "gradingItem"
+    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "grade" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem" | "movement" | "movementItem" | "grading" | "gradingItem" | "adjustment" | "adjustmentItem" | "fee"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1828,6 +1831,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Adjustment: {
+      payload: Prisma.$AdjustmentPayload<ExtArgs>
+      fields: Prisma.AdjustmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdjustmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdjustmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        findFirst: {
+          args: Prisma.AdjustmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdjustmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        findMany: {
+          args: Prisma.AdjustmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>[]
+        }
+        create: {
+          args: Prisma.AdjustmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        createMany: {
+          args: Prisma.AdjustmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdjustmentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>[]
+        }
+        delete: {
+          args: Prisma.AdjustmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        update: {
+          args: Prisma.AdjustmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdjustmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdjustmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdjustmentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdjustmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentPayload>
+        }
+        aggregate: {
+          args: Prisma.AdjustmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdjustment>
+        }
+        groupBy: {
+          args: Prisma.AdjustmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdjustmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdjustmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdjustmentCountAggregateOutputType> | number
+        }
+      }
+    }
+    AdjustmentItem: {
+      payload: Prisma.$AdjustmentItemPayload<ExtArgs>
+      fields: Prisma.AdjustmentItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdjustmentItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdjustmentItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        findFirst: {
+          args: Prisma.AdjustmentItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdjustmentItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        findMany: {
+          args: Prisma.AdjustmentItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>[]
+        }
+        create: {
+          args: Prisma.AdjustmentItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        createMany: {
+          args: Prisma.AdjustmentItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdjustmentItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>[]
+        }
+        delete: {
+          args: Prisma.AdjustmentItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        update: {
+          args: Prisma.AdjustmentItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdjustmentItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdjustmentItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdjustmentItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdjustmentItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdjustmentItemPayload>
+        }
+        aggregate: {
+          args: Prisma.AdjustmentItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdjustmentItem>
+        }
+        groupBy: {
+          args: Prisma.AdjustmentItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdjustmentItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdjustmentItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdjustmentItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    Fee: {
+      payload: Prisma.$FeePayload<ExtArgs>
+      fields: Prisma.FeeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FeeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FeeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        findFirst: {
+          args: Prisma.FeeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FeeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        findMany: {
+          args: Prisma.FeeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>[]
+        }
+        create: {
+          args: Prisma.FeeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        createMany: {
+          args: Prisma.FeeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FeeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>[]
+        }
+        delete: {
+          args: Prisma.FeeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        update: {
+          args: Prisma.FeeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        deleteMany: {
+          args: Prisma.FeeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FeeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FeeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>[]
+        }
+        upsert: {
+          args: Prisma.FeeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeePayload>
+        }
+        aggregate: {
+          args: Prisma.FeeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFee>
+        }
+        groupBy: {
+          args: Prisma.FeeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FeeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2133,6 +2358,46 @@ export const GradingItemScalarFieldEnum = {
 export type GradingItemScalarFieldEnum = (typeof GradingItemScalarFieldEnum)[keyof typeof GradingItemScalarFieldEnum]
 
 
+export const AdjustmentScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  adjustmentDate: 'adjustmentDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdjustmentScalarFieldEnum = (typeof AdjustmentScalarFieldEnum)[keyof typeof AdjustmentScalarFieldEnum]
+
+
+export const AdjustmentItemScalarFieldEnum = {
+  id: 'id',
+  adjustmentId: 'adjustmentId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  quantity: 'quantity',
+  type: 'type',
+  reason: 'reason',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdjustmentItemScalarFieldEnum = (typeof AdjustmentItemScalarFieldEnum)[keyof typeof AdjustmentItemScalarFieldEnum]
+
+
+export const FeeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  referenceId: 'referenceId',
+  referenceType: 'referenceType'
+} as const
+
+export type FeeScalarFieldEnum = (typeof FeeScalarFieldEnum)[keyof typeof FeeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2316,6 +2581,34 @@ export type EnumGradingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 export type ListEnumGradingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GradingType[]'>
     
 
+
+/**
+ * Reference to a field of type 'AdjustmentType'
+ */
+export type EnumAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdjustmentType'>
+    
+
+
+/**
+ * Reference to a field of type 'AdjustmentType[]'
+ */
+export type ListEnumAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdjustmentType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AdjustmentReason'
+ */
+export type EnumAdjustmentReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdjustmentReason'>
+    
+
+
+/**
+ * Reference to a field of type 'AdjustmentReason[]'
+ */
+export type ListEnumAdjustmentReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdjustmentReason[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2445,6 +2738,9 @@ export type GlobalOmitConfig = {
   movementItem?: Prisma.MovementItemOmit
   grading?: Prisma.GradingOmit
   gradingItem?: Prisma.GradingItemOmit
+  adjustment?: Prisma.AdjustmentOmit
+  adjustmentItem?: Prisma.AdjustmentItemOmit
+  fee?: Prisma.FeeOmit
 }
 
 /* Types for Logging */

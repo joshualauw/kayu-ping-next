@@ -71,7 +71,7 @@ class ProcessingService {
     });
 
     const sequence = String(count + 1).padStart(3, "0");
-    return `T-PROSES-${dateStr}-${sequence}`;
+    return `T-PROCESS-${dateStr}-${sequence}`;
   }
 
   async createProcessing(data: CreateProcessingSchema): Promise<Processing> {

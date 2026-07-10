@@ -223,6 +223,7 @@ export type GradeWhereInput = {
   processingItems?: Prisma.ProcessingItemListRelationFilter
   saleItems?: Prisma.SaleItemListRelationFilter
   purchaseItems?: Prisma.PurchaseItemListRelationFilter
+  adjustmentItems?: Prisma.AdjustmentItemListRelationFilter
 }
 
 export type GradeOrderByWithRelationInput = {
@@ -238,6 +239,7 @@ export type GradeOrderByWithRelationInput = {
   processingItems?: Prisma.ProcessingItemOrderByRelationAggregateInput
   saleItems?: Prisma.SaleItemOrderByRelationAggregateInput
   purchaseItems?: Prisma.PurchaseItemOrderByRelationAggregateInput
+  adjustmentItems?: Prisma.AdjustmentItemOrderByRelationAggregateInput
 }
 
 export type GradeWhereUniqueInput = Prisma.AtLeast<{
@@ -256,6 +258,7 @@ export type GradeWhereUniqueInput = Prisma.AtLeast<{
   processingItems?: Prisma.ProcessingItemListRelationFilter
   saleItems?: Prisma.SaleItemListRelationFilter
   purchaseItems?: Prisma.PurchaseItemListRelationFilter
+  adjustmentItems?: Prisma.AdjustmentItemListRelationFilter
 }, "id" | "code">
 
 export type GradeOrderByWithAggregationInput = {
@@ -294,6 +297,7 @@ export type GradeCreateInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateInput = {
@@ -309,6 +313,7 @@ export type GradeUncheckedCreateInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUpdateInput = {
@@ -323,6 +328,7 @@ export type GradeUpdateInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateInput = {
@@ -338,6 +344,7 @@ export type GradeUncheckedUpdateInput = {
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateManyInput = {
@@ -512,6 +519,22 @@ export type GradeUpdateOneWithoutGradingItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GradeUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.GradeUpdateWithoutGradingItemsInput>, Prisma.GradeUncheckedUpdateWithoutGradingItemsInput>
 }
 
+export type GradeCreateNestedOneWithoutAdjustmentItemsInput = {
+  create?: Prisma.XOR<Prisma.GradeCreateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.GradeCreateOrConnectWithoutAdjustmentItemsInput
+  connect?: Prisma.GradeWhereUniqueInput
+}
+
+export type GradeUpdateOneWithoutAdjustmentItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.GradeCreateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.GradeCreateOrConnectWithoutAdjustmentItemsInput
+  upsert?: Prisma.GradeUpsertWithoutAdjustmentItemsInput
+  disconnect?: Prisma.GradeWhereInput | boolean
+  delete?: Prisma.GradeWhereInput | boolean
+  connect?: Prisma.GradeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GradeUpdateToOneWithWhereWithoutAdjustmentItemsInput, Prisma.GradeUpdateWithoutAdjustmentItemsInput>, Prisma.GradeUncheckedUpdateWithoutAdjustmentItemsInput>
+}
+
 export type GradeCreateWithoutInventoriesInput = {
   name: string
   code: string
@@ -523,6 +546,7 @@ export type GradeCreateWithoutInventoriesInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutInventoriesInput = {
@@ -537,6 +561,7 @@ export type GradeUncheckedCreateWithoutInventoriesInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutInventoriesInput = {
@@ -566,6 +591,7 @@ export type GradeUpdateWithoutInventoriesInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutInventoriesInput = {
@@ -580,6 +606,7 @@ export type GradeUncheckedUpdateWithoutInventoriesInput = {
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutStockMutationsInput = {
@@ -593,6 +620,7 @@ export type GradeCreateWithoutStockMutationsInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutStockMutationsInput = {
@@ -607,6 +635,7 @@ export type GradeUncheckedCreateWithoutStockMutationsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutStockMutationsInput = {
@@ -636,6 +665,7 @@ export type GradeUpdateWithoutStockMutationsInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutStockMutationsInput = {
@@ -650,6 +680,7 @@ export type GradeUncheckedUpdateWithoutStockMutationsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutPurchaseItemsInput = {
@@ -663,6 +694,7 @@ export type GradeCreateWithoutPurchaseItemsInput = {
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutGradeInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutPurchaseItemsInput = {
@@ -677,6 +709,7 @@ export type GradeUncheckedCreateWithoutPurchaseItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutGradeInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutPurchaseItemsInput = {
@@ -706,6 +739,7 @@ export type GradeUpdateWithoutPurchaseItemsInput = {
   movementItems?: Prisma.MovementItemUpdateManyWithoutGradeNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutPurchaseItemsInput = {
@@ -720,6 +754,7 @@ export type GradeUncheckedUpdateWithoutPurchaseItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutGradeNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutSaleItemsInput = {
@@ -733,6 +768,7 @@ export type GradeCreateWithoutSaleItemsInput = {
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutGradeInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutSaleItemsInput = {
@@ -747,6 +783,7 @@ export type GradeUncheckedCreateWithoutSaleItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutGradeInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutSaleItemsInput = {
@@ -776,6 +813,7 @@ export type GradeUpdateWithoutSaleItemsInput = {
   movementItems?: Prisma.MovementItemUpdateManyWithoutGradeNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutSaleItemsInput = {
@@ -790,6 +828,7 @@ export type GradeUncheckedUpdateWithoutSaleItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutGradeNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutProcessingItemsInput = {
@@ -803,6 +842,7 @@ export type GradeCreateWithoutProcessingItemsInput = {
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutProcessingItemsInput = {
@@ -817,6 +857,7 @@ export type GradeUncheckedCreateWithoutProcessingItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutProcessingItemsInput = {
@@ -846,6 +887,7 @@ export type GradeUpdateWithoutProcessingItemsInput = {
   movementItems?: Prisma.MovementItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutProcessingItemsInput = {
@@ -860,6 +902,7 @@ export type GradeUncheckedUpdateWithoutProcessingItemsInput = {
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutMovementItemsInput = {
@@ -873,6 +916,7 @@ export type GradeCreateWithoutMovementItemsInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutMovementItemsInput = {
@@ -887,6 +931,7 @@ export type GradeUncheckedCreateWithoutMovementItemsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutMovementItemsInput = {
@@ -916,6 +961,7 @@ export type GradeUpdateWithoutMovementItemsInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutMovementItemsInput = {
@@ -930,6 +976,7 @@ export type GradeUncheckedUpdateWithoutMovementItemsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeCreateWithoutGradingItemsInput = {
@@ -943,6 +990,7 @@ export type GradeCreateWithoutGradingItemsInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutGradeInput
 }
 
 export type GradeUncheckedCreateWithoutGradingItemsInput = {
@@ -957,6 +1005,7 @@ export type GradeUncheckedCreateWithoutGradingItemsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutGradeInput
 }
 
 export type GradeCreateOrConnectWithoutGradingItemsInput = {
@@ -986,6 +1035,7 @@ export type GradeUpdateWithoutGradingItemsInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutGradeNestedInput
 }
 
 export type GradeUncheckedUpdateWithoutGradingItemsInput = {
@@ -996,6 +1046,81 @@ export type GradeUncheckedUpdateWithoutGradingItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutGradeNestedInput
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutGradeNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutGradeNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput
+}
+
+export type GradeCreateWithoutAdjustmentItemsInput = {
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutGradeInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutGradeInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutGradeInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutGradeInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutGradeInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutGradeInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutGradeInput
+}
+
+export type GradeUncheckedCreateWithoutAdjustmentItemsInput = {
+  id?: number
+  name: string
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutGradeInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutGradeInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutGradeInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutGradeInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutGradeInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutGradeInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutGradeInput
+}
+
+export type GradeCreateOrConnectWithoutAdjustmentItemsInput = {
+  where: Prisma.GradeWhereUniqueInput
+  create: Prisma.XOR<Prisma.GradeCreateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedCreateWithoutAdjustmentItemsInput>
+}
+
+export type GradeUpsertWithoutAdjustmentItemsInput = {
+  update: Prisma.XOR<Prisma.GradeUpdateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedUpdateWithoutAdjustmentItemsInput>
+  create: Prisma.XOR<Prisma.GradeCreateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedCreateWithoutAdjustmentItemsInput>
+  where?: Prisma.GradeWhereInput
+}
+
+export type GradeUpdateToOneWithWhereWithoutAdjustmentItemsInput = {
+  where?: Prisma.GradeWhereInput
+  data: Prisma.XOR<Prisma.GradeUpdateWithoutAdjustmentItemsInput, Prisma.GradeUncheckedUpdateWithoutAdjustmentItemsInput>
+}
+
+export type GradeUpdateWithoutAdjustmentItemsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutGradeNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutGradeNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutGradeNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutGradeNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutGradeNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutGradeNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutGradeNestedInput
+}
+
+export type GradeUncheckedUpdateWithoutAdjustmentItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutGradeNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutGradeNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutGradeNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutGradeNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutGradeNestedInput
@@ -1015,6 +1140,7 @@ export type GradeCountOutputType = {
   processingItems: number
   saleItems: number
   purchaseItems: number
+  adjustmentItems: number
 }
 
 export type GradeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1025,6 +1151,7 @@ export type GradeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   processingItems?: boolean | GradeCountOutputTypeCountProcessingItemsArgs
   saleItems?: boolean | GradeCountOutputTypeCountSaleItemsArgs
   purchaseItems?: boolean | GradeCountOutputTypeCountPurchaseItemsArgs
+  adjustmentItems?: boolean | GradeCountOutputTypeCountAdjustmentItemsArgs
 }
 
 /**
@@ -1086,6 +1213,13 @@ export type GradeCountOutputTypeCountPurchaseItemsArgs<ExtArgs extends runtime.T
   where?: Prisma.PurchaseItemWhereInput
 }
 
+/**
+ * GradeCountOutputType without action
+ */
+export type GradeCountOutputTypeCountAdjustmentItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdjustmentItemWhereInput
+}
+
 
 export type GradeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1100,6 +1234,7 @@ export type GradeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   processingItems?: boolean | Prisma.Grade$processingItemsArgs<ExtArgs>
   saleItems?: boolean | Prisma.Grade$saleItemsArgs<ExtArgs>
   purchaseItems?: boolean | Prisma.Grade$purchaseItemsArgs<ExtArgs>
+  adjustmentItems?: boolean | Prisma.Grade$adjustmentItemsArgs<ExtArgs>
   _count?: boolean | Prisma.GradeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grade"]>
 
@@ -1136,6 +1271,7 @@ export type GradeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   processingItems?: boolean | Prisma.Grade$processingItemsArgs<ExtArgs>
   saleItems?: boolean | Prisma.Grade$saleItemsArgs<ExtArgs>
   purchaseItems?: boolean | Prisma.Grade$purchaseItemsArgs<ExtArgs>
+  adjustmentItems?: boolean | Prisma.Grade$adjustmentItemsArgs<ExtArgs>
   _count?: boolean | Prisma.GradeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type GradeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1151,6 +1287,7 @@ export type $GradePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     processingItems: Prisma.$ProcessingItemPayload<ExtArgs>[]
     saleItems: Prisma.$SaleItemPayload<ExtArgs>[]
     purchaseItems: Prisma.$PurchaseItemPayload<ExtArgs>[]
+    adjustmentItems: Prisma.$AdjustmentItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1559,6 +1696,7 @@ export interface Prisma__GradeClient<T, Null = never, ExtArgs extends runtime.Ty
   processingItems<T extends Prisma.Grade$processingItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grade$processingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProcessingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   saleItems<T extends Prisma.Grade$saleItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grade$saleItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SaleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchaseItems<T extends Prisma.Grade$purchaseItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grade$purchaseItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  adjustmentItems<T extends Prisma.Grade$adjustmentItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grade$adjustmentItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdjustmentItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2151,6 +2289,30 @@ export type Grade$purchaseItemsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.PurchaseItemScalarFieldEnum | Prisma.PurchaseItemScalarFieldEnum[]
+}
+
+/**
+ * Grade.adjustmentItems
+ */
+export type Grade$adjustmentItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdjustmentItem
+   */
+  select?: Prisma.AdjustmentItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdjustmentItem
+   */
+  omit?: Prisma.AdjustmentItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdjustmentItemInclude<ExtArgs> | null
+  where?: Prisma.AdjustmentItemWhereInput
+  orderBy?: Prisma.AdjustmentItemOrderByWithRelationInput | Prisma.AdjustmentItemOrderByWithRelationInput[]
+  cursor?: Prisma.AdjustmentItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdjustmentItemScalarFieldEnum | Prisma.AdjustmentItemScalarFieldEnum[]
 }
 
 /**

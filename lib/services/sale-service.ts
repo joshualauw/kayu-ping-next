@@ -98,7 +98,7 @@ class SaleService {
     });
 
     const sequence = String(count + 1).padStart(3, "0");
-    return `T-JUAL-${dateStr}-${sequence}`;
+    return `T-SALE-${dateStr}-${sequence}`;
   }
 
   async createSale(data: CreateSaleSchema): Promise<Sale> {

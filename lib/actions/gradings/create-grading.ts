@@ -9,7 +9,7 @@ import type { ApiResponse } from "@/types/api-response";
 
 import gradingService from "@/lib/services/grading-service";
 
-export type CreateGradingResponse = null;
+export type CreateGradingResponse = number | null;
 
 export async function createGradingAction(data: any): Promise<ApiResponse<CreateGradingResponse>> {
   try {
@@ -18,9 +18,9 @@ export async function createGradingAction(data: any): Promise<ApiResponse<Create
     if (!user) throw new AuthorizationError();
 
     const parsed = createGradingSchema.parse(data);
-    await gradingService.createGrading(parsed);
+    const grading = await gradingService.createGrading(parsed);
 
-    return successResponse(null, "Grading transaction logged successfully");
+    return successResponse(grading.id, "Grading transaction logged successfully");
   } catch (error) {
     const response = handleError("createGradingAction", error);
     return errorResponse(response.message || "Failed to create grading");

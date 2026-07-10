@@ -6,55 +6,43 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
-import { GradingDetail } from "@/lib/services/grading-service";
+import { AdjustmentDetail } from "@/lib/services/adjustment-service";
 import { Measurement } from "@/generated/prisma/enums";
 import { Badge } from "@/components/ui/badge";
 
-interface GradingDetailCardProps {
-  grading: GradingDetail;
+interface AdjustmentDetailCardProps {
+  adjustment: AdjustmentDetail;
 }
 
-export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
+export default function AdjustmentDetailCard({ adjustment }: AdjustmentDetailCardProps) {
   const router = useRouter();
-  const items = grading.items || [];
+  const items = adjustment.items || [];
 
   return (
     <div className="space-y-6">
       <Card className="w-full">
         <CardHeader>
           <div>
-            <CardTitle>{grading.tid}</CardTitle>
-            <CardDescription>Detail of the wood grading transaction</CardDescription>
+            <CardTitle>{adjustment.tid}</CardTitle>
+            <CardDescription>Detail of the wood stock adjustment transaction</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4">
               <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Grading Date</span>
-                <p className="text-sm font-medium">{formatDate(grading.gradingDate)}</p>
+                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Adjustment Date</span>
+                <p className="text-sm font-medium">{formatDate(adjustment.adjustmentDate)}</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
-                <p className="text-sm font-medium">{grading.location.name}</p>
+                <p className="text-sm font-medium">{adjustment.location.name}</p>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Notes</span>
-                <p className="text-sm font-medium whitespace-pre-wrap">{grading.notes || "-"}</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Created At</span>
-                <p className="text-sm font-medium">{formatDate(grading.createdAt)}</p>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Updated At</span>
-                <p className="text-sm font-medium">{formatDate(grading.updatedAt)}</p>
+                <p className="text-sm font-medium whitespace-pre-wrap">{adjustment.notes || "-"}</p>
               </div>
             </div>
           </div>
@@ -63,8 +51,8 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
 
       <Card className="w-full">
         <CardHeader>
-          <CardTitle>Graded Items Details</CardTitle>
-          <CardDescription>Lists of items before and after the grading reallocation process</CardDescription>
+          <CardTitle>Adjusted Items Details</CardTitle>
+          <CardDescription>Lists of items that were adjusted in this transaction</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto rounded-md border">
@@ -78,8 +66,9 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Grade</th>
                   <th className="p-3">Qty</th>
-                  <th className="p-3">Comment</th>
                   <th className="p-3">Type</th>
+                  <th className="p-3">Reason</th>
+                  <th className="p-3">Comment</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -117,18 +106,21 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                           <span className="text-muted-foreground italic">Ungraded</span>
                         )}
                       </td>
-                      <td className="p-3">{item.quantity}</td>
-                      <td className="p-3 whitespace-pre-wrap">{item.comment || "-"}</td>
-                      <td className="p-3 font-medium">
-                        {item.type === "BEFORE" ? <Badge variant="destructive">BEFORE</Badge> : <Badge variant="success">AFTER</Badge>}
+                      <td className="p-3 font-medium">{item.quantity}</td>
+                      <td className="p-3">
+                        {item.type === "ADD" ? <Badge variant="success">ADD</Badge> : <Badge variant="destructive">SUBTRACT</Badge>}
                       </td>
+                      <td className="p-3">
+                        <Badge variant="secondary">{item.reason}</Badge>
+                      </td>
+                      <td className="p-3 whitespace-pre-wrap">{item.comment || "-"}</td>
                     </tr>
                   );
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="p-8 text-center text-sm text-muted-foreground italic">
-                      No items found in this grading transaction.
+                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
+                      No items found in this adjustment transaction.
                     </td>
                   </tr>
                 )}
@@ -137,12 +129,12 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-3">
-            <Button type="button" variant="secondary" onClick={() => router.push("/admin/gradings")} className="flex items-center gap-2">
+            <Button type="button" variant="secondary" onClick={() => router.push("/admin/adjustments")} className="flex items-center gap-2">
               <ArrowLeft className="size-4" />
               Back to List
             </Button>
             <Button asChild variant="outline" size="sm">
-              <Link href={`/admin/gradings/${grading.id}/edit`}>
+              <Link href={`/admin/adjustments/${adjustment.id}/edit`}>
                 <Pencil className="mr-2 size-4" />
                 Edit Notes
               </Link>

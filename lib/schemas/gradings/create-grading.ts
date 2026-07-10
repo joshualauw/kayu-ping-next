@@ -3,57 +3,29 @@ import { formSelectIdSchema } from "@/lib/schemas/reusable-schema";
 import type { LocationInventoryItem } from "@/app/api/inventories/by-location/route";
 
 export const createGradingSchema = z.object({
-  gradingDate: z.string().min(1, "Grading date is required"),
-  locationId: z.number().int().positive("Location is required"),
-  notes: z
-    .string()
-    .trim()
-    .transform((val) => (val === "" ? null : val))
-    .nullish(),
+  gradingDate: z.string().min(1),
+  locationId: z.number().int().positive(),
+  notes: z.string().nullish(),
   beforeItems: z
     .array(
       z.object({
         inventoryId: z.number().int().positive(),
         woodVariantId: z.number().int().positive(),
-        gradeId: z.preprocess(
-          (val) => (val === "" || val === null || val === undefined || val === "ungraded" ? null : Number(val)),
-          z.number().int().positive().nullable(),
-        ),
+        gradeId: z.number().int().positive().nullable(),
         quantity: z.number().int().positive(),
       }),
     )
-    .min(1, "At least one input item must be selected")
-    .refine(
-      (items) => {
-        const keys = items.map((i) => `${i.inventoryId}`);
-        return keys.length === new Set(keys).size;
-      },
-      { message: "Duplicate input inventory items are not allowed" },
-    ),
+    .min(1),
   afterItems: z
     .array(
       z.object({
         woodVariantId: z.number().int().positive(),
-        gradeId: z.preprocess(
-          (val) => (val === "" || val === null || val === undefined || val === "ungraded" ? null : Number(val)),
-          z.number().int().positive().nullable(),
-        ),
+        gradeId: z.number().int().positive().nullable(),
         quantity: z.number().int().positive(),
-        comment: z
-          .string()
-          .trim()
-          .transform((val) => (val === "" ? null : val))
-          .nullish(),
+        comment: z.string().nullish(),
       }),
     )
-    .min(1, "At least one graded output must be added")
-    .refine(
-      (items) => {
-        const keys = items.map((i) => `${i.woodVariantId}-${i.gradeId}`);
-        return keys.length === new Set(keys).size;
-      },
-      { message: "Duplicate wood variants with the same grade are not allowed in outputs" },
-    ),
+    .min(1),
 });
 
 export type CreateGradingSchema = z.infer<typeof createGradingSchema>;

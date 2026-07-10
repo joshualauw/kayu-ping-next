@@ -337,6 +337,40 @@ export type EnumGradingTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumGradingTypeFilter<$PrismaModel>
 }
 
+export type EnumAdjustmentTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentType | Prisma.EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel> | $Enums.AdjustmentType
+}
+
+export type EnumAdjustmentReasonFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentReason | Prisma.EnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel> | $Enums.AdjustmentReason
+}
+
+export type EnumAdjustmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentType | Prisma.EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel>
+}
+
+export type EnumAdjustmentReasonWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentReason | Prisma.EnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentReasonWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentReason
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -649,6 +683,40 @@ export type NestedEnumGradingTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumGradingTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumGradingTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumAdjustmentTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentType | Prisma.EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel> | $Enums.AdjustmentType
+}
+
+export type NestedEnumAdjustmentReasonFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentReason | Prisma.EnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel> | $Enums.AdjustmentReason
+}
+
+export type NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentType | Prisma.EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentType[] | Prisma.ListEnumAdjustmentTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdjustmentTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumAdjustmentReasonWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdjustmentReason | Prisma.EnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  in?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AdjustmentReason[] | Prisma.ListEnumAdjustmentReasonFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAdjustmentReasonWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentReason
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdjustmentReasonFilter<$PrismaModel>
 }
 
 

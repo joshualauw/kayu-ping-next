@@ -69,7 +69,10 @@ export const ModelName = {
   Movement: 'Movement',
   MovementItem: 'MovementItem',
   Grading: 'Grading',
-  GradingItem: 'GradingItem'
+  GradingItem: 'GradingItem',
+  Adjustment: 'Adjustment',
+  AdjustmentItem: 'AdjustmentItem',
+  Fee: 'Fee'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -352,6 +355,46 @@ export const GradingItemScalarFieldEnum = {
 } as const
 
 export type GradingItemScalarFieldEnum = (typeof GradingItemScalarFieldEnum)[keyof typeof GradingItemScalarFieldEnum]
+
+
+export const AdjustmentScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  adjustmentDate: 'adjustmentDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdjustmentScalarFieldEnum = (typeof AdjustmentScalarFieldEnum)[keyof typeof AdjustmentScalarFieldEnum]
+
+
+export const AdjustmentItemScalarFieldEnum = {
+  id: 'id',
+  adjustmentId: 'adjustmentId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  quantity: 'quantity',
+  type: 'type',
+  reason: 'reason',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdjustmentItemScalarFieldEnum = (typeof AdjustmentItemScalarFieldEnum)[keyof typeof AdjustmentItemScalarFieldEnum]
+
+
+export const FeeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  referenceId: 'referenceId',
+  referenceType: 'referenceType'
+} as const
+
+export type FeeScalarFieldEnum = (typeof FeeScalarFieldEnum)[keyof typeof FeeScalarFieldEnum]
 
 
 export const SortOrder = {

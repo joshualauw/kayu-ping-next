@@ -33,6 +33,8 @@ export function getReferenceLink(type: ReferenceType, id: number | null): string
     return `/admin/movements/${id}`;
   } else if (type === ReferenceType.GRADING) {
     return `/admin/gradings/${id}`;
+  } else if (type === ReferenceType.ADJUSTMENT) {
+    return `/admin/adjustments/${id}`;
   }
   return null;
 }

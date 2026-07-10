@@ -68,6 +68,7 @@ model Location {
   purchases      Purchase[]
   sales          Sale[]
   stockMutations StockMutation[]
+  adjustments    Adjustment[]
 
   @@map("locations")
 }
@@ -108,6 +109,7 @@ model WoodVariant {
   mutations       StockMutation[]
   material        Material         @relation(fields: [materialId], references: [id])
   wood            Wood             @relation(fields: [woodId], references: [id])
+  adjustmentItems AdjustmentItem[]
 
   @@map("wood_variants")
 }
@@ -127,6 +129,7 @@ model Grade {
   processingItems ProcessingItem[]
   saleItems       SaleItem[]
   purchaseItems   PurchaseItem[]
+  adjustmentItems AdjustmentItem[]
 
   @@map("grades")
 }
@@ -156,8 +159,8 @@ model StockMutation {
   locationId    Int           @map("location_id")
   type          MutationType
   quantity      Int
-  referenceType ReferenceType
-  referenceId   Int?
+  referenceType ReferenceType @map("reference_type")
+  referenceId   Int?          @map("reference_id")
   notes         String?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
@@ -177,8 +180,8 @@ model Purchase {
   locationId   Int      @map("location_id")
   purchaseDate DateTime @map("purchase_date") @db.Timestamptz(6)
   notes        String?
-  totalPrice   Float
-  totalVolume  Float
+  totalPrice   Float    @map("total_price")
+  totalVolume  Float    @map("total_volume")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
@@ -215,8 +218,8 @@ model Sale {
   customerId  Int      @map("customer_id")
   locationId  Int      @map("location_id")
   notes       String?
-  totalVolume Float
-  totalPrice  Float
+  totalVolume Float    @map("total_volume")
+  totalPrice  Float    @map("total_price")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
@@ -355,6 +358,52 @@ model GradingItem {
   @@map("grading_items")
 }
 
+model Adjustment {
+  id             Int      @id @default(autoincrement())
+  tid            String   @unique
+  adjustmentDate DateTime @map("adjustment_date") @db.Timestamptz(6)
+  locationId     Int      @map("location_id")
+  notes          String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  location Location         @relation(fields: [locationId], references: [id])
+  items    AdjustmentItem[]
+
+  @@map("adjustments")
+}
+
+model AdjustmentItem {
+  id            Int              @id @default(autoincrement())
+  adjustmentId  Int              @map("adjustment_id")
+  gradeId       Int?             @map("grade_id")
+  woodVariantId Int              @map("wood_variant_id")
+  quantity      Int
+  type          AdjustmentType
+  reason        AdjustmentReason
+  comment       String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade      Grade?      @relation(fields: [gradeId], references: [id])
+  adjustment Adjustment  @relation(fields: [adjustmentId], references: [id])
+  variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
+
+  @@map("adjustment_items")
+}
+
+model Fee {
+  id            Int           @id @default(autoincrement())
+  name          String        @db.VarChar(255)
+  price         Float
+  referenceId   Int           @map("reference_id")
+  referenceType ReferenceType @map("reference_type")
+
+  @@map("fees")
+}
+
 enum ContactType {
   CUSTOMER
   SUPPLIER
@@ -383,16 +432,38 @@ enum Measurement {
 enum ProcessingType {
   INPUT
   OUTPUT
+
+  @@map("processing_types")
 }
 
 enum GradingType {
   BEFORE
   AFTER
+
+  @@map("grading_types")
+}
+
+enum AdjustmentType {
+  ADD
+  SUBTRACT
+
+  @@map("adjustment_types")
+}
+
+enum AdjustmentReason {
+  LOST
+  FOUND
+  DAMAGE
+  OTHERS
+
+  @@map("adjustment_reasons")
 }
 
 enum MutationType {
   IN
   OUT
+
+  @@map("mutation_types")
 }
 
 enum ReferenceType {
@@ -402,4 +473,6 @@ enum ReferenceType {
   PROCESSING
   MOVEMENT
   GRADING
+
+  @@map("reference_types")
 }

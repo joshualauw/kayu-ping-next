@@ -114,7 +114,7 @@ export function AdminSidebar() {
     {
       name: "Adjustment",
       icon: <PackageCheck className="mr-1" />,
-      href: "#",
+      href: "/admin/adjustments",
       group: "Core",
     },
     {

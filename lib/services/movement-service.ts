@@ -89,7 +89,7 @@ class MovementService {
     });
 
     const sequence = String(count + 1).padStart(3, "0");
-    return `T-PINDAH-${dateStr}-${sequence}`;
+    return `T-MOVE-${dateStr}-${sequence}`;
   }
 
   async createMovement(data: CreateMovementSchema): Promise<Movement> {

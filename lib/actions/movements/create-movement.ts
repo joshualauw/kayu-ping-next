@@ -8,7 +8,7 @@ import { errorResponse, successResponse } from "@/lib/helpers/api";
 import { createMovementSchema, type CreateMovementSchema } from "@/lib/schemas/movements/create-movement";
 import movementService from "@/lib/services/movement-service";
 
-export type CreateMovementResponse = null;
+export type CreateMovementResponse = number | null;
 
 export async function createMovementAction(data: CreateMovementSchema): Promise<ApiResponse<CreateMovementResponse>> {
   try {
@@ -17,9 +17,9 @@ export async function createMovementAction(data: CreateMovementSchema): Promise<
     if (!user) throw new AuthorizationError();
 
     const parsed = createMovementSchema.parse(data);
-    await movementService.createMovement(parsed);
+    const movement = await movementService.createMovement(parsed);
 
-    return successResponse(null, "Movement created successfully");
+    return successResponse(movement.id, "Movement created successfully");
   } catch (error) {
     const response = handleError("createMovementAction", error);
     return errorResponse(response.message || "Failed to create movement record");

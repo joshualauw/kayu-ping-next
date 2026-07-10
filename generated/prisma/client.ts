@@ -136,3 +136,18 @@ export type Grading = Prisma.GradingModel
  * 
  */
 export type GradingItem = Prisma.GradingItemModel
+/**
+ * Model Adjustment
+ * 
+ */
+export type Adjustment = Prisma.AdjustmentModel
+/**
+ * Model AdjustmentItem
+ * 
+ */
+export type AdjustmentItem = Prisma.AdjustmentItemModel
+/**
+ * Model Fee
+ * 
+ */
+export type Fee = Prisma.FeeModel
