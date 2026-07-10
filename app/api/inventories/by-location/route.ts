@@ -34,7 +34,9 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       return NextResponse.json(errorResponse("Invalid Location ID"), { status: 400 });
     }
 
-    const items = await inventoryService.getInventoryByLocation(locationId);
+    const showEmptyInventory = searchParams.get("showEmptyInventory") === "true";
+
+    const items = await inventoryService.getInventoryByLocation(locationId, showEmptyInventory);
     return NextResponse.json(successResponse(items, "Inventories fetched successfully"));
   } catch (error) {
     const response = handleError("GET /api/inventories/by-location", error);

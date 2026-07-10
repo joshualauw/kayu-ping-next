@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Search, RotateCcw, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface InventoryPickerProps {
   isOpen: boolean;
@@ -39,7 +40,8 @@ export default function InventoryPicker({
   grades,
   existingIds,
 }: InventoryPickerProps) {
-  const { data: inventoryData, isLoading, error } = useGetInventoryByLocation(locationId);
+  const [showEmpty, setShowEmpty] = useState(false);
+  const { data: inventoryData, isLoading, error } = useGetInventoryByLocation(locationId, showEmpty);
 
   const [search, setSearch] = useState("");
   const [selectedWoodId, setSelectedWoodId] = useState<string>("all");
@@ -59,6 +61,7 @@ export default function InventoryPicker({
     setSelectedWoodId("all");
     setSelectedMaterialId("all");
     setSelectedGradeId("all");
+    setShowEmpty(false);
     setCurrentPage(1);
     setSelectedItems([]);
   }, [locationId]);
@@ -68,6 +71,7 @@ export default function InventoryPicker({
     setSelectedWoodId("all");
     setSelectedMaterialId("all");
     setSelectedGradeId("all");
+    setShowEmpty(false);
     setCurrentPage(1);
   };
 
@@ -125,7 +129,8 @@ export default function InventoryPicker({
     }
   };
 
-  const hasActiveFilters = search !== "" || selectedWoodId !== "all" || selectedMaterialId !== "all" || selectedGradeId !== "all";
+  const hasActiveFilters =
+    search !== "" || selectedWoodId !== "all" || selectedMaterialId !== "all" || selectedGradeId !== "all" || showEmpty;
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -223,6 +228,22 @@ export default function InventoryPicker({
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="flex items-end pb-1.5 pl-2">
+            <div className="flex items-center gap-2">
+              <Checkbox
+                id="show-empty"
+                checked={showEmpty}
+                onCheckedChange={(checked) => {
+                  setShowEmpty(!!checked);
+                  setCurrentPage(1);
+                }}
+              />
+              <label htmlFor="show-empty" className="cursor-pointer text-xs font-semibold text-muted-foreground uppercase select-none">
+                Show empty stock
+              </label>
+            </div>
           </div>
         </div>
 

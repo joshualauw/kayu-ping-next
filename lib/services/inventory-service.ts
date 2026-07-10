@@ -54,11 +54,17 @@ class InventoryService {
     return { items, count };
   }
 
-  async getInventoryByLocation(locationId: number) {
+  async getInventoryByLocation(locationId: number, showEmptyInventory: boolean = false) {
+    const where: Prisma.InventoryWhereInput = {
+      locationId,
+    };
+
+    if (!showEmptyInventory) {
+      where.stock = { gt: 0 };
+    }
+
     return await prisma.inventory.findMany({
-      where: {
-        locationId,
-      },
+      where,
       include: {
         variant: {
           include: {
