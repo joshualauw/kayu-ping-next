@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FieldError } from "@/components/ui/field";
 import { Badge } from "@/components/ui/badge";
-import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { formatCurrency } from "@/lib/utils";
 import { toast } from "sonner";
@@ -57,8 +56,6 @@ export default function SalesCart({ control, errors, woods, materials, grades }:
       prevLocationIdRef.current = locationId;
     }
   }, [locationId, replaceItems]);
-
-  const { data: _, isLoading, error: fetchError } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
 
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
@@ -113,8 +110,6 @@ export default function SalesCart({ control, errors, woods, materials, grades }:
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h2 className="text-lg font-semibold tracking-tight">Cart Items</h2>
-          {isLoading && <p className="animate-pulse text-xs text-muted-foreground">Loading inventory...</p>}
-          {fetchError && <p className="text-xs text-destructive">Failed to load inventory.</p>}
         </div>
       </div>
 

@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { FieldError } from "@/components/ui/field";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { toast } from "sonner";
 import { AdjustmentType, AdjustmentReason } from "@/generated/prisma/enums";
@@ -59,8 +58,6 @@ export default function AdjustmentsCart({ control, errors, woods, materials, gra
     }
   }, [locationId, replaceItems]);
 
-  const { isLoading, error: fetchError } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
-
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   const existingIds = useMemo(() => {
@@ -89,8 +86,6 @@ export default function AdjustmentsCart({ control, errors, woods, materials, gra
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h2 className="text-lg font-semibold tracking-tight">Cart Items</h2>
-          {isLoading && <p className="animate-pulse text-xs text-muted-foreground">Loading inventory...</p>}
-          {fetchError && <p className="text-xs text-destructive">Failed to load inventory.</p>}
         </div>
       </div>
 

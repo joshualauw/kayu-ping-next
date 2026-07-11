@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FieldError } from "@/components/ui/field";
 import { Badge } from "@/components/ui/badge";
-import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { GradeForSelect } from "@/lib/services/grade-service";
 import { WoodForSelect } from "@/lib/services/wood-service";
@@ -59,8 +58,6 @@ export default function GradingCart({ control, errors, grades, woods, materials,
       prevLocationIdRef.current = locationId;
     }
   }, [locationId, replaceGroups]);
-
-  const { data: _, isLoading: isInventoryLoading } = useGetInventoryByLocation(locationId ? Number(locationId) : null);
 
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 

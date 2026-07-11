@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FieldError } from "@/components/ui/field";
 import { Badge } from "@/components/ui/badge";
-import { useGetInventoryByLocation } from "@/hooks/swr/inventories/use-get-inventory-by-location";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { toast } from "sonner";
 import { CreateMovementFormInput } from "@/lib/schemas/movements/create-movement";
@@ -56,8 +55,6 @@ export default function MovementsCart({ control, errors, woods, materials, grade
     }
   }, [fromLocationId, replaceItems]);
 
-  const { data: _, isLoading, error: fetchError } = useGetInventoryByLocation(fromLocationId ? Number(fromLocationId) : null);
-
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   const existingIds = useMemo(() => {
@@ -103,8 +100,6 @@ export default function MovementsCart({ control, errors, woods, materials, grade
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h2 className="text-lg font-semibold tracking-tight">Cart Items</h2>
-          {isLoading && <p className="animate-pulse text-xs text-muted-foreground">Loading inventory...</p>}
-          {fetchError && <p className="text-xs text-destructive">Failed to load inventory.</p>}
         </div>
       </div>
 
