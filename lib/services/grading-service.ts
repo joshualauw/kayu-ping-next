@@ -74,8 +74,10 @@ class GradingService {
   }
 
   async createGrading(data: CreateGradingSchema): Promise<Grading> {
+    const gradingDate = new Date(data.gradingDate);
+
     return prisma.$transaction(async (tx) => {
-      const tid = await this.generateTid(data.gradingDate, tx);
+      const tid = await this.generateTid(gradingDate, tx);
 
       const inputsToProcess = [];
       for (const item of data.beforeItems) {
@@ -107,7 +109,7 @@ class GradingService {
       const grading = await tx.grading.create({
         data: {
           tid,
-          gradingDate: new Date(data.gradingDate),
+          gradingDate,
           locationId: data.locationId,
           notes: data.notes,
         },
@@ -133,7 +135,7 @@ class GradingService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.gradingDate),
+            mutationDate: gradingDate,
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
@@ -185,7 +187,7 @@ class GradingService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.gradingDate),
+            mutationDate: gradingDate,
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "IN",

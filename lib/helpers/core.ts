@@ -28,7 +28,7 @@ export function getReferenceLink(type: ReferenceType, id: number | null): string
   } else if (type === ReferenceType.SALES) {
     return `/admin/sales/${id}`;
   } else if (type === ReferenceType.PROCESSING) {
-    return `/admin/processing/${id}`;
+    return `/admin/processings/${id}`;
   } else if (type === ReferenceType.MOVEMENT) {
     return `/admin/movements/${id}`;
   } else if (type === ReferenceType.GRADING) {

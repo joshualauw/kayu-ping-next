@@ -93,8 +93,10 @@ class MovementService {
   }
 
   async createMovement(data: CreateMovementSchema): Promise<Movement> {
+    const movementDate = new Date(data.movementDate);
+
     return prisma.$transaction(async (tx) => {
-      const tid = await this.generateTid(data.movementDate, tx);
+      const tid = await this.generateTid(movementDate, tx);
 
       let totalMovedVolume = 0;
 
@@ -135,7 +137,7 @@ class MovementService {
         data: {
           tid,
           truckerId: data.truckerId,
-          movementDate: new Date(data.movementDate),
+          movementDate,
           fromLocationId: data.fromLocationId,
           toLocationId: data.toLocationId,
           notes: data.notes,
@@ -153,7 +155,7 @@ class MovementService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.movementDate),
+            mutationDate: movementDate,
             woodVariantId: item.woodVariantId,
             locationId: data.fromLocationId,
             type: "OUT",
@@ -201,7 +203,7 @@ class MovementService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.movementDate),
+            mutationDate: movementDate,
             woodVariantId: item.woodVariantId,
             locationId: data.toLocationId,
             type: "IN",

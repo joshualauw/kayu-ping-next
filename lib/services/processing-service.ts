@@ -75,8 +75,10 @@ class ProcessingService {
   }
 
   async createProcessing(data: CreateProcessingSchema): Promise<Processing> {
+    const processingDate = new Date(data.processingDate);
+
     return prisma.$transaction(async (tx) => {
-      const tid = await this.generateTid(data.processingDate, tx);
+      const tid = await this.generateTid(processingDate, tx);
 
       let totalInputVolume = 0;
       let totalOutputVolume = 0;
@@ -147,7 +149,7 @@ class ProcessingService {
       const processing = await tx.processing.create({
         data: {
           tid,
-          processingDate: new Date(data.processingDate),
+          processingDate,
           locationId: data.locationId,
           notes: data.notes,
           totalInputVolume,
@@ -175,7 +177,7 @@ class ProcessingService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.processingDate),
+            mutationDate: processingDate,
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
@@ -253,7 +255,7 @@ class ProcessingService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.processingDate),
+            mutationDate: processingDate,
             woodVariantId: variant.id,
             locationId: data.locationId,
             type: "IN",

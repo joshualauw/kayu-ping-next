@@ -78,8 +78,10 @@ class AdjustmentService {
   }
 
   async createAdjustment(data: CreateAdjustmentSchema): Promise<Adjustment> {
+    const adjustmentDate = new Date(data.adjustmentDate);
+
     return prisma.$transaction(async (tx) => {
-      const tid = await this.generateTid(data.adjustmentDate, tx);
+      const tid = await this.generateTid(adjustmentDate, tx);
 
       const itemsToProcess = [];
       for (const item of data.items) {
@@ -115,7 +117,7 @@ class AdjustmentService {
       const adjustment = await tx.adjustment.create({
         data: {
           tid,
-          adjustmentDate: new Date(data.adjustmentDate),
+          adjustmentDate,
           locationId: data.locationId,
           notes: data.notes,
         },
@@ -144,7 +146,7 @@ class AdjustmentService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.adjustmentDate),
+            mutationDate: adjustmentDate,
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             gradeId: inventory.gradeId,

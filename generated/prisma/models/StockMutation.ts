@@ -250,7 +250,7 @@ export type StockMutationGroupByOutputType = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId: number | null
+  referenceId: number
   notes: string | null
   createdAt: Date
   updatedAt: Date
@@ -288,7 +288,7 @@ export type StockMutationWhereInput = {
   type?: Prisma.EnumMutationTypeFilter<"StockMutation"> | $Enums.MutationType
   quantity?: Prisma.IntFilter<"StockMutation"> | number
   referenceType?: Prisma.EnumReferenceTypeFilter<"StockMutation"> | $Enums.ReferenceType
-  referenceId?: Prisma.IntNullableFilter<"StockMutation"> | number | null
+  referenceId?: Prisma.IntFilter<"StockMutation"> | number
   notes?: Prisma.StringNullableFilter<"StockMutation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
@@ -306,7 +306,7 @@ export type StockMutationOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   referenceType?: Prisma.SortOrder
-  referenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  referenceId?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -327,7 +327,7 @@ export type StockMutationWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumMutationTypeFilter<"StockMutation"> | $Enums.MutationType
   quantity?: Prisma.IntFilter<"StockMutation"> | number
   referenceType?: Prisma.EnumReferenceTypeFilter<"StockMutation"> | $Enums.ReferenceType
-  referenceId?: Prisma.IntNullableFilter<"StockMutation"> | number | null
+  referenceId?: Prisma.IntFilter<"StockMutation"> | number
   notes?: Prisma.StringNullableFilter<"StockMutation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
@@ -345,7 +345,7 @@ export type StockMutationOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   referenceType?: Prisma.SortOrder
-  referenceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  referenceId?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -368,7 +368,7 @@ export type StockMutationScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumMutationTypeWithAggregatesFilter<"StockMutation"> | $Enums.MutationType
   quantity?: Prisma.IntWithAggregatesFilter<"StockMutation"> | number
   referenceType?: Prisma.EnumReferenceTypeWithAggregatesFilter<"StockMutation"> | $Enums.ReferenceType
-  referenceId?: Prisma.IntNullableWithAggregatesFilter<"StockMutation"> | number | null
+  referenceId?: Prisma.IntWithAggregatesFilter<"StockMutation"> | number
   notes?: Prisma.StringNullableWithAggregatesFilter<"StockMutation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StockMutation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StockMutation"> | Date | string
@@ -379,7 +379,7 @@ export type StockMutationCreateInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -397,7 +397,7 @@ export type StockMutationUncheckedCreateInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -408,7 +408,7 @@ export type StockMutationUpdateInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,7 +426,7 @@ export type StockMutationUncheckedUpdateInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -441,7 +441,7 @@ export type StockMutationCreateManyInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -452,7 +452,7 @@ export type StockMutationUpdateManyMutationInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -467,7 +467,7 @@ export type StockMutationUncheckedUpdateManyInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -685,7 +685,7 @@ export type StockMutationCreateWithoutLocationInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -701,7 +701,7 @@ export type StockMutationUncheckedCreateWithoutLocationInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -745,7 +745,7 @@ export type StockMutationScalarWhereInput = {
   type?: Prisma.EnumMutationTypeFilter<"StockMutation"> | $Enums.MutationType
   quantity?: Prisma.IntFilter<"StockMutation"> | number
   referenceType?: Prisma.EnumReferenceTypeFilter<"StockMutation"> | $Enums.ReferenceType
-  referenceId?: Prisma.IntNullableFilter<"StockMutation"> | number | null
+  referenceId?: Prisma.IntFilter<"StockMutation"> | number
   notes?: Prisma.StringNullableFilter<"StockMutation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
@@ -756,7 +756,7 @@ export type StockMutationCreateWithoutVariantInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -772,7 +772,7 @@ export type StockMutationUncheckedCreateWithoutVariantInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -809,7 +809,7 @@ export type StockMutationCreateWithoutGradeInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -825,7 +825,7 @@ export type StockMutationUncheckedCreateWithoutGradeInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -865,7 +865,7 @@ export type StockMutationCreateManyLocationInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -876,7 +876,7 @@ export type StockMutationUpdateWithoutLocationInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -892,7 +892,7 @@ export type StockMutationUncheckedUpdateWithoutLocationInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -906,7 +906,7 @@ export type StockMutationUncheckedUpdateManyWithoutLocationInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -920,7 +920,7 @@ export type StockMutationCreateManyVariantInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -931,7 +931,7 @@ export type StockMutationUpdateWithoutVariantInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -947,7 +947,7 @@ export type StockMutationUncheckedUpdateWithoutVariantInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -961,7 +961,7 @@ export type StockMutationUncheckedUpdateManyWithoutVariantInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -975,7 +975,7 @@ export type StockMutationCreateManyGradeInput = {
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
-  referenceId?: number | null
+  referenceId: number
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -986,7 +986,7 @@ export type StockMutationUpdateWithoutGradeInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1002,7 +1002,7 @@ export type StockMutationUncheckedUpdateWithoutGradeInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1016,7 +1016,7 @@ export type StockMutationUncheckedUpdateManyWithoutGradeInput = {
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1126,7 +1126,7 @@ export type $StockMutationPayload<ExtArgs extends runtime.Types.Extensions.Inter
     type: $Enums.MutationType
     quantity: number
     referenceType: $Enums.ReferenceType
-    referenceId: number | null
+    referenceId: number
     notes: string | null
     createdAt: Date
     updatedAt: Date

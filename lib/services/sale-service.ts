@@ -102,8 +102,10 @@ class SaleService {
   }
 
   async createSale(data: CreateSaleSchema): Promise<Sale> {
+    const saleDate = new Date(data.saleDate);
+
     return prisma.$transaction(async (tx) => {
-      const tid = await this.generateTid(data.saleDate, tx);
+      const tid = await this.generateTid(saleDate, tx);
 
       let totalVolume = 0;
       let totalPrice = 0;
@@ -154,7 +156,7 @@ class SaleService {
         data: {
           tid,
           customerId: data.customerId,
-          saleDate: new Date(data.saleDate),
+          saleDate,
           locationId: data.locationId,
           notes: data.notes,
           totalVolume,
@@ -182,7 +184,7 @@ class SaleService {
 
         await tx.stockMutation.create({
           data: {
-            mutationDate: new Date(data.saleDate),
+            mutationDate: saleDate,
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",

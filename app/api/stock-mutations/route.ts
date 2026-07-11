@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import stockMutationService, { StockMutationListItem } from "@/lib/services/stock-mutation-service";
+import stockMutationService, { StockMutationGroupedItem } from "@/lib/services/stock-mutation-service";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
 import { AuthorizationError, handleError } from "@/lib/errors";
@@ -8,7 +8,7 @@ import { tableQuerySchema } from "@/lib/schemas/table-query";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
 
 export type GetAllStockMutationsResponse = {
-  stockMutations: StockMutationListItem[];
+  stockMutations: StockMutationGroupedItem[];
   count: number;
 };
 

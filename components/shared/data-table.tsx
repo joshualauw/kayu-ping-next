@@ -1,6 +1,7 @@
 "use client";
 
-import { flexRender, type Table } from "@tanstack/react-table";
+import { Fragment } from "react";
+import { flexRender, type Table, type Row } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Loader2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ interface DataTableProps<TData> {
   isFetching: boolean;
   isLoading: boolean;
   error: any;
+  renderRowDetails?: (row: Row<TData>) => React.ReactNode;
 }
 
 export default function DataTable<TData>({
@@ -30,6 +32,7 @@ export default function DataTable<TData>({
   isFetching,
   isLoading,
   error,
+  renderRowDetails,
 }: DataTableProps<TData>) {
   const pagination = table.getState().pagination;
   const pageCount = table.getPageCount();
@@ -62,7 +65,7 @@ export default function DataTable<TData>({
 
       <div className="overflow-hidden rounded-md border border-border bg-background">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[760px] caption-bottom text-sm">
+          <table className="w-full min-w-190 caption-bottom text-sm">
             <thead className="bg-muted/50">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id} className="border-b border-border">
@@ -77,13 +80,22 @@ export default function DataTable<TData>({
             <tbody>
               {hasRows ? (
                 table.getRowModel().rows.map((row) => (
-                  <tr key={row.id} className="border-b border-border transition-colors last:border-0 hover:bg-muted/40">
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="h-12 px-3 align-middle">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
-                    ))}
-                  </tr>
+                  <Fragment key={row.id}>
+                    <tr className="border-b border-border transition-colors last:border-0 hover:bg-muted/40">
+                      {row.getVisibleCells().map((cell) => (
+                        <td key={cell.id} className="h-12 px-3 align-middle">
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      ))}
+                    </tr>
+                    {row.getIsExpanded() && renderRowDetails && (
+                      <tr className="border-b border-border bg-muted/10 last:border-0">
+                        <td colSpan={columns.length} className="p-0">
+                          {renderRowDetails(row)}
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
                 ))
               ) : (
                 <tr>

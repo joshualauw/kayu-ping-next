@@ -160,7 +160,7 @@ model StockMutation {
   type          MutationType
   quantity      Int
   referenceType ReferenceType @map("reference_type")
-  referenceId   Int?          @map("reference_id")
+  referenceId   Int           @map("reference_id")
   notes         String?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
