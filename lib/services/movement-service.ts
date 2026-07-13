@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Movement, Location, Contact, MovementItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import { Movement, Location, Contact, MovementItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 import { MovementWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMovementSchema } from "@/lib/schemas/movements/create-movement";
@@ -14,6 +14,7 @@ export type MovementListItem = Movement & {
 
 export type MovementItemWithVariant = MovementItem & {
   grade: Grade | null;
+  lot: Lot;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -161,6 +162,7 @@ class MovementService {
             type: "OUT",
             quantity: item.quantity,
             gradeId: sourceInventory.gradeId,
+            lotId: sourceInventory.lotId,
             referenceType: "MOVEMENT",
             referenceId: movement.id,
           },
@@ -172,6 +174,7 @@ class MovementService {
             woodVariantId: item.woodVariantId,
             quantity: item.quantity,
             gradeId: sourceInventory.gradeId,
+            lotId: sourceInventory.lotId,
           },
         });
 
@@ -180,6 +183,7 @@ class MovementService {
             woodVariantId: item.woodVariantId,
             locationId: data.toLocationId,
             gradeId: sourceInventory.gradeId,
+            lotId: sourceInventory.lotId,
           },
         });
 
@@ -196,6 +200,7 @@ class MovementService {
               woodVariantId: item.woodVariantId,
               locationId: data.toLocationId,
               gradeId: sourceInventory.gradeId,
+              lotId: sourceInventory.lotId,
               stock: item.quantity,
             },
           });
@@ -209,6 +214,7 @@ class MovementService {
             type: "IN",
             quantity: item.quantity,
             gradeId: sourceInventory.gradeId,
+            lotId: sourceInventory.lotId,
             referenceType: "MOVEMENT",
             referenceId: movement.id,
           },
@@ -229,6 +235,7 @@ class MovementService {
         items: {
           include: {
             grade: true,
+            lot: true,
             variant: {
               include: {
                 wood: true,

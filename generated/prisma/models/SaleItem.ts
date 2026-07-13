@@ -31,6 +31,7 @@ export type SaleItemAvgAggregateOutputType = {
   saleId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   pricePerCubic: number | null
   quantity: number | null
 }
@@ -40,6 +41,7 @@ export type SaleItemSumAggregateOutputType = {
   saleId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   pricePerCubic: number | null
   quantity: number | null
 }
@@ -49,6 +51,7 @@ export type SaleItemMinAggregateOutputType = {
   saleId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   pricePerCubic: number | null
   quantity: number | null
   createdAt: Date | null
@@ -60,6 +63,7 @@ export type SaleItemMaxAggregateOutputType = {
   saleId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   pricePerCubic: number | null
   quantity: number | null
   createdAt: Date | null
@@ -71,6 +75,7 @@ export type SaleItemCountAggregateOutputType = {
   saleId: number
   gradeId: number
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt: number
@@ -84,6 +89,7 @@ export type SaleItemAvgAggregateInputType = {
   saleId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   pricePerCubic?: true
   quantity?: true
 }
@@ -93,6 +99,7 @@ export type SaleItemSumAggregateInputType = {
   saleId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   pricePerCubic?: true
   quantity?: true
 }
@@ -102,6 +109,7 @@ export type SaleItemMinAggregateInputType = {
   saleId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   pricePerCubic?: true
   quantity?: true
   createdAt?: true
@@ -113,6 +121,7 @@ export type SaleItemMaxAggregateInputType = {
   saleId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   pricePerCubic?: true
   quantity?: true
   createdAt?: true
@@ -124,6 +133,7 @@ export type SaleItemCountAggregateInputType = {
   saleId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   pricePerCubic?: true
   quantity?: true
   createdAt?: true
@@ -222,6 +232,7 @@ export type SaleItemGroupByOutputType = {
   saleId: number
   gradeId: number | null
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt: Date
@@ -256,6 +267,7 @@ export type SaleItemWhereInput = {
   saleId?: Prisma.IntFilter<"SaleItem"> | number
   gradeId?: Prisma.IntNullableFilter<"SaleItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"SaleItem"> | number
+  lotId?: Prisma.IntFilter<"SaleItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"SaleItem"> | number
   quantity?: Prisma.IntFilter<"SaleItem"> | number
   createdAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
@@ -263,6 +275,7 @@ export type SaleItemWhereInput = {
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   sale?: Prisma.XOR<Prisma.SaleScalarRelationFilter, Prisma.SaleWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }
 
 export type SaleItemOrderByWithRelationInput = {
@@ -270,6 +283,7 @@ export type SaleItemOrderByWithRelationInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -277,6 +291,7 @@ export type SaleItemOrderByWithRelationInput = {
   grade?: Prisma.GradeOrderByWithRelationInput
   sale?: Prisma.SaleOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
+  lot?: Prisma.LotOrderByWithRelationInput
 }
 
 export type SaleItemWhereUniqueInput = Prisma.AtLeast<{
@@ -287,6 +302,7 @@ export type SaleItemWhereUniqueInput = Prisma.AtLeast<{
   saleId?: Prisma.IntFilter<"SaleItem"> | number
   gradeId?: Prisma.IntNullableFilter<"SaleItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"SaleItem"> | number
+  lotId?: Prisma.IntFilter<"SaleItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"SaleItem"> | number
   quantity?: Prisma.IntFilter<"SaleItem"> | number
   createdAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
@@ -294,6 +310,7 @@ export type SaleItemWhereUniqueInput = Prisma.AtLeast<{
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   sale?: Prisma.XOR<Prisma.SaleScalarRelationFilter, Prisma.SaleWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }, "id">
 
 export type SaleItemOrderByWithAggregationInput = {
@@ -301,6 +318,7 @@ export type SaleItemOrderByWithAggregationInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -320,6 +338,7 @@ export type SaleItemScalarWhereWithAggregatesInput = {
   saleId?: Prisma.IntWithAggregatesFilter<"SaleItem"> | number
   gradeId?: Prisma.IntNullableWithAggregatesFilter<"SaleItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"SaleItem"> | number
+  lotId?: Prisma.IntWithAggregatesFilter<"SaleItem"> | number
   pricePerCubic?: Prisma.FloatWithAggregatesFilter<"SaleItem"> | number
   quantity?: Prisma.IntWithAggregatesFilter<"SaleItem"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SaleItem"> | Date | string
@@ -334,6 +353,7 @@ export type SaleItemCreateInput = {
   grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
   sale: Prisma.SaleCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutSaleItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
 }
 
 export type SaleItemUncheckedCreateInput = {
@@ -341,6 +361,7 @@ export type SaleItemUncheckedCreateInput = {
   saleId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -355,6 +376,7 @@ export type SaleItemUpdateInput = {
   grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
   sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutSaleItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
 }
 
 export type SaleItemUncheckedUpdateInput = {
@@ -362,6 +384,7 @@ export type SaleItemUncheckedUpdateInput = {
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -373,6 +396,7 @@ export type SaleItemCreateManyInput = {
   saleId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -391,6 +415,7 @@ export type SaleItemUncheckedUpdateManyInput = {
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -412,6 +437,7 @@ export type SaleItemCountOrderByAggregateInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -423,6 +449,7 @@ export type SaleItemAvgOrderByAggregateInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -432,6 +459,7 @@ export type SaleItemMaxOrderByAggregateInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -443,6 +471,7 @@ export type SaleItemMinOrderByAggregateInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -454,6 +483,7 @@ export type SaleItemSumOrderByAggregateInput = {
   saleId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   pricePerCubic?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
@@ -542,6 +572,48 @@ export type SaleItemUncheckedUpdateManyWithoutGradeNestedInput = {
   deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
 }
 
+export type SaleItemCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput> | Prisma.SaleItemCreateWithoutLotInput[] | Prisma.SaleItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutLotInput | Prisma.SaleItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.SaleItemCreateManyLotInputEnvelope
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+}
+
+export type SaleItemUncheckedCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput> | Prisma.SaleItemCreateWithoutLotInput[] | Prisma.SaleItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutLotInput | Prisma.SaleItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.SaleItemCreateManyLotInputEnvelope
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+}
+
+export type SaleItemUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput> | Prisma.SaleItemCreateWithoutLotInput[] | Prisma.SaleItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutLotInput | Prisma.SaleItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutLotInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.SaleItemCreateManyLotInputEnvelope
+  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutLotInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutLotInput | Prisma.SaleItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
+}
+
+export type SaleItemUncheckedUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput> | Prisma.SaleItemCreateWithoutLotInput[] | Prisma.SaleItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutLotInput | Prisma.SaleItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutLotInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.SaleItemCreateManyLotInputEnvelope
+  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutLotInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutLotInput | Prisma.SaleItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
+}
+
 export type SaleItemCreateNestedManyWithoutSaleInput = {
   create?: Prisma.XOR<Prisma.SaleItemCreateWithoutSaleInput, Prisma.SaleItemUncheckedCreateWithoutSaleInput> | Prisma.SaleItemCreateWithoutSaleInput[] | Prisma.SaleItemUncheckedCreateWithoutSaleInput[]
   connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutSaleInput | Prisma.SaleItemCreateOrConnectWithoutSaleInput[]
@@ -591,12 +663,14 @@ export type SaleItemCreateWithoutVariantInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
   sale: Prisma.SaleCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
 }
 
 export type SaleItemUncheckedCreateWithoutVariantInput = {
   id?: number
   saleId: number
   gradeId?: number | null
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -637,6 +711,7 @@ export type SaleItemScalarWhereInput = {
   saleId?: Prisma.IntFilter<"SaleItem"> | number
   gradeId?: Prisma.IntNullableFilter<"SaleItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"SaleItem"> | number
+  lotId?: Prisma.IntFilter<"SaleItem"> | number
   pricePerCubic?: Prisma.FloatFilter<"SaleItem"> | number
   quantity?: Prisma.IntFilter<"SaleItem"> | number
   createdAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
@@ -650,12 +725,14 @@ export type SaleItemCreateWithoutGradeInput = {
   updatedAt?: Date | string
   sale: Prisma.SaleCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutSaleItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
 }
 
 export type SaleItemUncheckedCreateWithoutGradeInput = {
   id?: number
   saleId: number
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -688,6 +765,53 @@ export type SaleItemUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutGradeInput>
 }
 
+export type SaleItemCreateWithoutLotInput = {
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
+  sale: Prisma.SaleCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutSaleItemsInput
+}
+
+export type SaleItemUncheckedCreateWithoutLotInput = {
+  id?: number
+  saleId: number
+  gradeId?: number | null
+  woodVariantId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SaleItemCreateOrConnectWithoutLotInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput>
+}
+
+export type SaleItemCreateManyLotInputEnvelope = {
+  data: Prisma.SaleItemCreateManyLotInput | Prisma.SaleItemCreateManyLotInput[]
+  skipDuplicates?: boolean
+}
+
+export type SaleItemUpsertWithWhereUniqueWithoutLotInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.SaleItemUpdateWithoutLotInput, Prisma.SaleItemUncheckedUpdateWithoutLotInput>
+  create: Prisma.XOR<Prisma.SaleItemCreateWithoutLotInput, Prisma.SaleItemUncheckedCreateWithoutLotInput>
+}
+
+export type SaleItemUpdateWithWhereUniqueWithoutLotInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.SaleItemUpdateWithoutLotInput, Prisma.SaleItemUncheckedUpdateWithoutLotInput>
+}
+
+export type SaleItemUpdateManyWithWhereWithoutLotInput = {
+  where: Prisma.SaleItemScalarWhereInput
+  data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutLotInput>
+}
+
 export type SaleItemCreateWithoutSaleInput = {
   pricePerCubic: number
   quantity: number
@@ -695,12 +819,14 @@ export type SaleItemCreateWithoutSaleInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutSaleItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
 }
 
 export type SaleItemUncheckedCreateWithoutSaleInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -737,6 +863,7 @@ export type SaleItemCreateManyVariantInput = {
   id?: number
   saleId: number
   gradeId?: number | null
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -750,12 +877,14 @@ export type SaleItemUpdateWithoutVariantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
   sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
 }
 
 export type SaleItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -766,6 +895,7 @@ export type SaleItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -776,6 +906,7 @@ export type SaleItemCreateManyGradeInput = {
   id?: number
   saleId: number
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -789,12 +920,14 @@ export type SaleItemUpdateWithoutGradeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutSaleItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
 }
 
 export type SaleItemUncheckedUpdateWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -804,6 +937,50 @@ export type SaleItemUncheckedUpdateWithoutGradeInput = {
 export type SaleItemUncheckedUpdateManyWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   saleId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SaleItemCreateManyLotInput = {
+  id?: number
+  saleId: number
+  gradeId?: number | null
+  woodVariantId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SaleItemUpdateWithoutLotInput = {
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
+  sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutSaleItemsNestedInput
+}
+
+export type SaleItemUncheckedUpdateWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  saleId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SaleItemUncheckedUpdateManyWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  saleId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -815,6 +992,7 @@ export type SaleItemCreateManySaleInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   pricePerCubic: number
   quantity: number
   createdAt?: Date | string
@@ -828,12 +1006,14 @@ export type SaleItemUpdateWithoutSaleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutSaleItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
 }
 
 export type SaleItemUncheckedUpdateWithoutSaleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -844,6 +1024,7 @@ export type SaleItemUncheckedUpdateManyWithoutSaleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -857,6 +1038,7 @@ export type SaleItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   saleId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -864,6 +1046,7 @@ export type SaleItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["saleItem"]>
 
 export type SaleItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -871,6 +1054,7 @@ export type SaleItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   saleId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -878,6 +1062,7 @@ export type SaleItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["saleItem"]>
 
 export type SaleItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -885,6 +1070,7 @@ export type SaleItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   saleId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -892,6 +1078,7 @@ export type SaleItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["saleItem"]>
 
 export type SaleItemSelectScalar = {
@@ -899,27 +1086,31 @@ export type SaleItemSelectScalar = {
   saleId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   pricePerCubic?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SaleItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "saleId" | "gradeId" | "woodVariantId" | "pricePerCubic" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["saleItem"]>
+export type SaleItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "saleId" | "gradeId" | "woodVariantId" | "lotId" | "pricePerCubic" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["saleItem"]>
 export type SaleItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type SaleItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type SaleItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.SaleItem$gradeArgs<ExtArgs>
   sale?: boolean | Prisma.SaleDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 
 export type $SaleItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -928,12 +1119,14 @@ export type $SaleItemPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     grade: Prisma.$GradePayload<ExtArgs> | null
     sale: Prisma.$SalePayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
+    lot: Prisma.$LotPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     saleId: number
     gradeId: number | null
     woodVariantId: number
+    lotId: number
     pricePerCubic: number
     quantity: number
     createdAt: Date
@@ -1335,6 +1528,7 @@ export interface Prisma__SaleItemClient<T, Null = never, ExtArgs extends runtime
   grade<T extends Prisma.SaleItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SaleItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sale<T extends Prisma.SaleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SaleDefaultArgs<ExtArgs>>): Prisma.Prisma__SaleClient<runtime.Types.Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  lot<T extends Prisma.LotDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LotDefaultArgs<ExtArgs>>): Prisma.Prisma__LotClient<runtime.Types.Result.GetResult<Prisma.$LotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1368,6 +1562,7 @@ export interface SaleItemFieldRefs {
   readonly saleId: Prisma.FieldRef<"SaleItem", 'Int'>
   readonly gradeId: Prisma.FieldRef<"SaleItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"SaleItem", 'Int'>
+  readonly lotId: Prisma.FieldRef<"SaleItem", 'Int'>
   readonly pricePerCubic: Prisma.FieldRef<"SaleItem", 'Float'>
   readonly quantity: Prisma.FieldRef<"SaleItem", 'Int'>
   readonly createdAt: Prisma.FieldRef<"SaleItem", 'DateTime'>

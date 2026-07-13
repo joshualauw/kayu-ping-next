@@ -335,6 +335,12 @@ export default function InventoryPicker({
                         <div className="text-xs text-muted-foreground">
                           Wood species: <span className="font-medium text-foreground">{item.variant.wood.name}</span>
                         </div>
+                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <span>Lot:</span>
+                          <Badge variant="outline" className="font-mono text-[10px] py-0 px-1.5 bg-card">
+                            {item.lot.code}
+                          </Badge>
+                        </div>
                       </div>
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t pt-4">
                         <Badge variant="outline" className="bg-muted/30 text-[10px] font-semibold">

@@ -17,6 +17,7 @@ import { MaterialForSelect } from "@/lib/services/material-service";
 import { GradeForSelect } from "@/lib/services/grade-service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  CreateProcessingSchema,
   getCreateProcessingFormSchema,
   type CreateProcessingFormInput,
   type CreateProcessingFormOutput,
@@ -49,44 +50,41 @@ export default function ProcessingCreateForm({ locations, materials, woods, grad
   });
 
   async function onSubmit(data: CreateProcessingFormOutput) {
-    const inputItems: any[] = [];
-    const outputItems: any[] = [];
+    const mappedGroups = (data.groups || []).map((group) => {
+      const woodId = group.input.variant?.woodId;
 
-    (data.groups || []).forEach((group) => {
-      if (group.input) {
-        inputItems.push({
+      const mappedOutputs = (group.outputs || []).map((item) => {
+        const material = materials.find((m) => m.id === Number(item.materialId));
+        const measurement = (material?.measurement || "CUBE") as "CUBE" | "CYLINDER";
+
+        return {
+          woodId: Number(woodId),
+          materialId: item.materialId,
+          measurement,
+          width: item.width,
+          height: item.height,
+          diameterSmall: item.diameterSmall,
+          diameterLarge: item.diameterLarge,
+          length: item.length,
+          quantity: item.quantity,
+        };
+      });
+
+      return {
+        input: {
           inventoryId: group.input.inventoryId,
           woodVariantId: group.input.woodVariantId,
           quantity: group.input.quantity,
-        });
-
-        const woodId = group.input.variant?.woodId;
-
-        (group.outputs || []).forEach((item) => {
-          const material = materials.find((m) => m.id === Number(item.materialId));
-          const measurement = material?.measurement;
-
-          outputItems.push({
-            woodId: Number(woodId),
-            materialId: item.materialId,
-            measurement,
-            width: item.width,
-            height: item.height,
-            diameterSmall: item.diameterSmall,
-            diameterLarge: item.diameterLarge,
-            length: item.length,
-            quantity: item.quantity,
-          });
-        });
-      }
+        },
+        outputs: mappedOutputs,
+      };
     });
 
-    const formattedData = {
+    const formattedData: CreateProcessingSchema = {
       processingDate: data.processingDate,
       locationId: data.locationId,
       notes: data.notes || null,
-      inputItems,
-      outputItems,
+      groups: mappedGroups,
     };
 
     setIsSubmitting(true);

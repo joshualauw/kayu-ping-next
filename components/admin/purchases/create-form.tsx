@@ -42,31 +42,54 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
     resolver: zodResolver(getCreatePurchaseFormSchema(materials)),
     defaultValues: {
       purchaseDate: dayjs().format("YYYY-MM-DDTHH:mm"),
-      locationId: "" as any,
-      supplierId: "" as any,
+      locationId: "",
+      supplierId: "",
       notes: "",
-      items: [],
+      groups: [
+        {
+          items: [
+            {
+              woodId: "",
+              materialId: "",
+              measurement: undefined,
+              pricePerCubic: "",
+              width: "",
+              height: "",
+              diameterSmall: "",
+              diameterLarge: "",
+              length: "",
+              quantity: "1",
+            },
+          ],
+        },
+      ],
     },
   });
 
   async function onSubmit(data: CreatePurchaseFormOutput) {
     setIsSubmitting(true);
     try {
-      const mappedItems = data.items.map((item) => {
-        const material = materials.find((m) => m.id === item.materialId);
-        const measurement = (material?.measurement || item.measurement) as "CUBE" | "CYLINDER";
+      const mappedGroups = data.groups.map((group) => {
+        const mappedItems = group.items.map((item) => {
+          const material = materials.find((m) => m.id === item.materialId);
+          const measurement = (material?.measurement || item.measurement) as "CUBE" | "CYLINDER";
+
+          return {
+            woodId: item.woodId,
+            materialId: item.materialId,
+            measurement,
+            width: item.width,
+            height: item.height,
+            diameterSmall: item.diameterSmall,
+            diameterLarge: item.diameterLarge,
+            length: item.length,
+            quantity: item.quantity,
+            pricePerCubic: item.pricePerCubic,
+          };
+        });
 
         return {
-          woodId: item.woodId,
-          materialId: item.materialId,
-          measurement,
-          width: item.width,
-          height: item.height,
-          diameterSmall: item.diameterSmall,
-          diameterLarge: item.diameterLarge,
-          length: item.length,
-          quantity: item.quantity,
-          pricePerCubic: item.pricePerCubic,
+          items: mappedItems,
         };
       });
 
@@ -75,7 +98,7 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
         locationId: data.locationId,
         supplierId: data.supplierId,
         notes: data.notes || null,
-        items: mappedItems,
+        groups: mappedGroups,
       };
 
       const result = await createPurchaseAction(payload);
@@ -181,11 +204,11 @@ export default function PurchaseCreateForm({ locations, woods, materials, contac
               control={form.control}
               woods={woods}
               materials={materials}
-              errors={form.formState.errors.items}
+              errors={form.formState.errors.groups}
               setValue={form.setValue}
             />
-            {(form.formState.errors.items as any)?.message && (
-              <p className="mt-2 text-sm font-medium text-destructive">{String((form.formState.errors.items as any).message)}</p>
+            {form.formState.errors.groups?.message && (
+              <p className="mt-2 text-sm font-medium text-destructive">{String(form.formState.errors.groups.message)}</p>
             )}
           </div>
 

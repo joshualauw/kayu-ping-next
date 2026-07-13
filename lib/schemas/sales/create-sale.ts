@@ -52,6 +52,7 @@ export const createSaleFormSchema = z.object({
         originalStock: z.number().optional(),
         variant: z.custom<LocationInventoryItem["variant"]>().optional(),
         grade: z.custom<LocationInventoryItem["grade"]>().optional(),
+        lot: z.custom<LocationInventoryItem["lot"]>().optional(),
       }),
     )
     .min(1, "At least one item must be added to the cart"),

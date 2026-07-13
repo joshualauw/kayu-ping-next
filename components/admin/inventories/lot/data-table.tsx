@@ -2,27 +2,28 @@
 
 import { useMemo, useState } from "react";
 import { ColumnDef, getCoreRowModel, getExpandedRowModel, useReactTable, type ExpandedState, type Row } from "@tanstack/react-table";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import DataTable from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
-import { useGetAllInventoriesByGrade } from "@/hooks/swr/inventories/use-get-all-inventories-by-grade";
-import type { InventoryGroupedByGradeItem } from "@/lib/services/inventory-service";
+import { useGetAllInventoriesByLot } from "@/hooks/swr/inventories/use-get-all-inventories-by-lot";
+import type { InventoryGroupedByLotItem } from "@/lib/services/inventory-service";
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export default function GradeInventoriesDataTable() {
+export default function LotInventoriesDataTable() {
   const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
   const [showEmpty, setShowEmpty] = useState(false);
-  const { data, error, isLoading, isValidating } = useGetAllInventoriesByGrade(query, showEmpty);
+  const { data, error, isLoading, isValidating } = useGetAllInventoriesByLot(query, showEmpty);
   const inventories = data?.inventories ?? [];
   const count = data?.count ?? 0;
   const pageCount = getPageCount(count);
 
-  const columns = useMemo<ColumnDef<InventoryGroupedByGradeItem>[]>(
+  const columns = useMemo<ColumnDef<InventoryGroupedByLotItem>[]>(
     () => [
       {
         id: "expander",
@@ -44,19 +45,13 @@ export default function GradeInventoriesDataTable() {
         cell: ({ row }) => row.index + 1,
       },
       {
-        id: "grade",
-        header: "Grade",
-        cell: ({ row }) => {
-          const grade = row.original.grade;
-          return grade ? (
-            <div className="space-y-0.5">
-              <div className="font-medium">{grade.name}</div>
-              <div className="text-[10px] text-muted-foreground">{grade.code}</div>
-            </div>
-          ) : (
-            <span className="text-xs text-muted-foreground italic">Ungraded</span>
-          );
-        },
+        id: "lot",
+        header: "Lot",
+        cell: ({ row }) => (
+          <Badge variant="outline" className="font-mono text-xs">
+            {row.original.lot.code}
+          </Badge>
+        ),
       },
       {
         id: "totalVolume",
@@ -67,6 +62,20 @@ export default function GradeInventoriesDataTable() {
         accessorKey: "totalStock",
         header: "Total Stock",
         cell: ({ row }) => <span>{row.original.totalStock}</span>,
+      },
+      {
+        id: "purchaseOrigin",
+        header: "Purchase Origin",
+        cell: ({ row }) => {
+          const originPurchaseId = row.original.originPurchaseId;
+          return (
+            <Button variant="ghost" size="icon-sm" asChild>
+              <Link href={`/admin/purchases/${originPurchaseId}`} target="_blank" aria-label="Open purchase page">
+                <ExternalLink className="size-3" />
+              </Link>
+            </Button>
+          );
+        },
       },
     ],
     [],
@@ -87,7 +96,7 @@ export default function GradeInventoriesDataTable() {
     getExpandedRowModel: getExpandedRowModel(),
   });
 
-  const renderRowDetails = (row: Row<InventoryGroupedByGradeItem>) => {
+  const renderRowDetails = (row: Row<InventoryGroupedByLotItem>) => {
     const items = row.original.items;
     return (
       <div className="border-l-4 border-primary/50 bg-muted/30 px-6 py-4">
@@ -102,10 +111,10 @@ export default function GradeInventoriesDataTable() {
                   Variant
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
-                  Location
+                  Grade
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
-                  Lot
+                  Location
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
                   Volume (m³)
@@ -133,12 +142,16 @@ export default function GradeInventoriesDataTable() {
                       measurement: item.variant.material.measurement,
                     })}
                   </td>
-                  <td className="h-9 px-3 align-middle">{item.location.name}</td>
                   <td className="h-9 px-3 align-middle">
-                    <Badge variant="outline" className="font-mono text-xs">
-                      {item.lot.code}
-                    </Badge>
+                    {item.grade ? (
+                      <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">
+                        {item.grade.code}
+                      </Badge>
+                    ) : (
+                      <span className="text-[10px] text-muted-foreground italic">Ungraded</span>
+                    )}
                   </td>
+                  <td className="h-9 px-3 align-middle">{item.location.name}</td>
                   <td className="h-9 px-3 align-middle font-mono text-[10px]">
                     <div className="space-y-0.5">
                       <div>Single: {item.variant.volume.toFixed(4)}</div>
@@ -172,8 +185,8 @@ export default function GradeInventoriesDataTable() {
       renderRowDetails={renderRowDetails}
       filterElement={
         <div className="ml-2 flex items-center gap-2">
-          <Checkbox id="show-empty-grade" checked={showEmpty} onCheckedChange={(checked) => setShowEmpty(!!checked)} />
-          <label htmlFor="show-empty-grade" className="cursor-pointer text-xs font-medium text-muted-foreground uppercase select-none">
+          <Checkbox id="show-empty-lot" checked={showEmpty} onCheckedChange={(checked) => setShowEmpty(!!checked)} />
+          <label htmlFor="show-empty-lot" className="cursor-pointer text-xs font-medium text-muted-foreground uppercase select-none">
             Show empty stock
           </label>
         </div>

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { StockMutation, WoodVariant, Wood, Material, Location, Grade, MutationType, ReferenceType } from "@/generated/prisma/client";
+import { StockMutation, WoodVariant, Wood, Material, Location, Grade, MutationType, ReferenceType, Lot } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { Prisma } from "@/generated/prisma/client";
 
@@ -15,6 +15,7 @@ export type StockMutationGroupedItem = {
       material: Material;
     };
     grade: Grade | null;
+    lot: Lot;
     type: MutationType;
     location: Location;
     quantity: number;
@@ -78,6 +79,7 @@ class StockMutationService {
         },
         location: true,
         grade: true,
+        lot: true,
       },
       orderBy: {
         mutationDate: "desc",
@@ -96,6 +98,7 @@ class StockMutationService {
           id: item.id,
           variant: item.variant,
           grade: item.grade,
+          lot: item.lot,
           type: item.type,
           location: item.location,
           quantity: item.quantity,

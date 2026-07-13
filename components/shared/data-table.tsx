@@ -19,6 +19,7 @@ interface DataTableProps<TData> {
   isLoading: boolean;
   error: any;
   renderRowDetails?: (row: Row<TData>) => React.ReactNode;
+  filterElement?: React.ReactNode;
 }
 
 export default function DataTable<TData>({
@@ -33,6 +34,7 @@ export default function DataTable<TData>({
   isLoading,
   error,
   renderRowDetails,
+  filterElement,
 }: DataTableProps<TData>) {
   const pagination = table.getState().pagination;
   const pageCount = table.getPageCount();
@@ -44,17 +46,19 @@ export default function DataTable<TData>({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative w-full sm:max-w-sm">
-          <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            value={search}
-            onChange={(event) => onSearchChange(event.target.value)}
-            placeholder={searchPlaceholder}
-            className="pl-8"
-            aria-label={searchAriaLabel}
-          />
+        <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative w-full sm:max-w-sm">
+            <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={search}
+              onChange={(event) => onSearchChange(event.target.value)}
+              placeholder={searchPlaceholder}
+              className="pl-8"
+              aria-label={searchAriaLabel}
+            />
+          </div>
+          {filterElement}
         </div>
-
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           {isFetching ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
           <span>
@@ -81,7 +85,11 @@ export default function DataTable<TData>({
               {hasRows ? (
                 table.getRowModel().rows.map((row) => (
                   <Fragment key={row.id}>
-                    <tr className="border-b border-border transition-colors last:border-0 hover:bg-muted/40">
+                    <tr
+                      className={`border-b border-border transition-colors last:border-0 hover:bg-muted/40 ${
+                        (row.original as any)?.stock === 0 || (row.original as any)?.totalStock === 0 ? "opacity-50 grayscale" : ""
+                      }`}
+                    >
                       {row.getVisibleCells().map((cell) => (
                         <td key={cell.id} className="h-12 px-3 align-middle">
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}

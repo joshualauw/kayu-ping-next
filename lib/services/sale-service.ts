@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Sale, Location, Contact, WoodVariant, Wood, Material, SaleItem, Grade } from "@/generated/prisma/client";
+import { Sale, Location, Contact, WoodVariant, Wood, Material, SaleItem, Grade, Lot } from "@/generated/prisma/client";
 import { SaleWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateSaleSchema } from "@/lib/schemas/sales/create-sale";
@@ -13,6 +13,7 @@ export type SaleListItem = Sale & {
 
 export type SaleItemWithVariant = SaleItem & {
   grade: Grade | null;
+  lot: Lot;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -70,6 +71,7 @@ class SaleService {
         items: {
           include: {
             grade: true,
+            lot: true,
             variant: {
               include: {
                 wood: true,
@@ -177,6 +179,7 @@ class SaleService {
             saleId: sale.id,
             woodVariantId: item.woodVariantId,
             gradeId: inventory.gradeId,
+            lotId: inventory.lotId,
             pricePerCubic: item.pricePerCubic,
             quantity: item.quantity,
           },
@@ -189,6 +192,7 @@ class SaleService {
             locationId: data.locationId,
             type: "OUT",
             gradeId: inventory.gradeId,
+            lotId: inventory.lotId,
             quantity: item.quantity,
             referenceType: "SALES",
             referenceId: sale.id,

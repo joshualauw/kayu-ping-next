@@ -77,6 +77,11 @@ export type WoodVariant = Prisma.WoodVariantModel
  */
 export type Grade = Prisma.GradeModel
 /**
+ * Model Lot
+ * 
+ */
+export type Lot = Prisma.LotModel
+/**
  * Model Inventory
  * 
  */

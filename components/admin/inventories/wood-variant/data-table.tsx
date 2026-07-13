@@ -10,12 +10,14 @@ import type { InventoryGroupedByVariantItem } from "@/lib/services/inventory-ser
 import { generateWoodVariantLabel } from "@/lib/helpers/core";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function WoodVariantInventoriesDataTable() {
   const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
-  const { data, error, isLoading, isValidating } = useGetAllInventoriesByWoodVariant(query);
+  const [showEmpty, setShowEmpty] = useState(false);
+  const { data, error, isLoading, isValidating } = useGetAllInventoriesByWoodVariant(query, showEmpty);
   const inventories = data?.inventories ?? [];
   const count = data?.count ?? 0;
   const pageCount = getPageCount(count);
@@ -107,6 +109,9 @@ export default function WoodVariantInventoriesDataTable() {
                   Grade
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
+                  Lot
+                </th>
+                <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
                   Location
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
@@ -119,7 +124,10 @@ export default function WoodVariantInventoriesDataTable() {
             </thead>
             <tbody>
               {items.map((item) => (
-                <tr key={item.id} className="border-b border-border last:border-0 hover:bg-muted/20">
+                <tr
+                  key={item.id}
+                  className={`border-b border-border last:border-0 hover:bg-muted/20 ${item.stock === 0 ? "opacity-50 grayscale" : ""}`}
+                >
                   <td className="h-9 px-3 align-middle">
                     {item.grade ? (
                       <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">
@@ -128,6 +136,11 @@ export default function WoodVariantInventoriesDataTable() {
                     ) : (
                       <span className="text-[10px] text-muted-foreground italic">Ungraded</span>
                     )}
+                  </td>
+                  <td className="h-9 px-3 align-middle">
+                    <Badge variant="outline" className="font-mono text-xs">
+                      {item.lot.code}
+                    </Badge>
                   </td>
                   <td className="h-9 px-3 align-middle">{item.location.name}</td>
                   <td className="h-9 px-3 align-middle font-mono text-[10px]">
@@ -161,6 +174,14 @@ export default function WoodVariantInventoriesDataTable() {
       isLoading={isLoading}
       error={error}
       renderRowDetails={renderRowDetails}
+      filterElement={
+        <div className="ml-2 flex items-center gap-2">
+          <Checkbox id="show-empty-variant" checked={showEmpty} onCheckedChange={(checked) => setShowEmpty(!!checked)} />
+          <label htmlFor="show-empty-variant" className="cursor-pointer text-xs font-medium text-muted-foreground uppercase select-none">
+            Show empty stock
+          </label>
+        </div>
+      }
     />
   );
 }

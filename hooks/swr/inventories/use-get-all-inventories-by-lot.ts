@@ -1,12 +1,12 @@
 import { fetcher } from "@/hooks/swr/fetcher";
 import { TableQuery } from "@/lib/schemas/table-query";
 import useSWR, { SWRConfiguration } from "swr";
-import type { GetGroupedInventoriesResponse } from "@/app/api/inventories/grouped/by-wood-variant/route";
+import type { GetGroupedInventoriesByLotResponse } from "@/app/api/inventories/grouped/by-lot/route";
 
-export function useGetAllInventoriesByWoodVariant(
+export function useGetAllInventoriesByLot(
   query: TableQuery,
   showEmptyInventory: boolean = false,
-  options?: SWRConfiguration<GetGroupedInventoriesResponse>,
+  options?: SWRConfiguration<GetGroupedInventoriesByLotResponse>,
 ) {
   const params = new URLSearchParams({
     page: String(query.page),
@@ -15,7 +15,7 @@ export function useGetAllInventoriesByWoodVariant(
     showEmptyInventory: String(showEmptyInventory),
   });
 
-  return useSWR<GetGroupedInventoriesResponse>(`/api/inventories/grouped/by-wood-variant?${params.toString()}`, fetcher, {
+  return useSWR<GetGroupedInventoriesByLotResponse>(`/api/inventories/grouped/by-lot?${params.toString()}`, fetcher, {
     keepPreviousData: true,
     errorRetryCount: 3,
     ...options,

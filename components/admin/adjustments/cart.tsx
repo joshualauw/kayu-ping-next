@@ -77,6 +77,7 @@ export default function AdjustmentsCart({ control, errors, woods, materials, gra
         originalStock: selectedInv.stock,
         variant: selectedInv.variant,
         grade: selectedInv.grade,
+        lot: selectedInv.lot,
       });
     });
   };
@@ -103,6 +104,7 @@ export default function AdjustmentsCart({ control, errors, woods, materials, gra
                     <th className="w-10 p-2">No.</th>
                     <th className="p-2">Wood Variant</th>
                     <th className="w-24 p-2">Grade</th>
+                    <th className="w-32 p-2">Lot</th>
                     <th className="w-24 p-2">Qty</th>
                     <th className="w-32 p-2">Type</th>
                     <th className="w-36 p-2">Reason</th>
@@ -144,6 +146,15 @@ export default function AdjustmentsCart({ control, errors, woods, materials, gra
                             <Badge variant="secondary">{itemData.grade.code}</Badge>
                           ) : (
                             <span className="text-xs text-muted-foreground italic">Ungraded</span>
+                          )}
+                        </td>
+                        <td className="p-2 align-middle">
+                          {itemData?.lot ? (
+                            <Badge variant="outline" className="font-mono text-xs">
+                              {itemData.lot.code}
+                            </Badge>
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic">-</span>
                           )}
                         </td>
                         <td className="p-2 align-middle">

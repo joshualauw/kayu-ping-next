@@ -143,18 +143,18 @@ export function AdminSidebar() {
   );
 
   return (
-    <Sidebar>
+    <Sidebar className="md:w-68">
       <SidebarHeader>
         <div className="mb-2 px-2 pt-4">
           Kayuping
-          <div className="text-[10px] font-medium tracking-widest text-muted-foreground uppercase">Wood Inventory System</div>
+          <div className="text-[10px] font-medium tracking-widest text-sidebar-foreground/70 uppercase">Wood Inventory System</div>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           {groupedNavs.map(([groupTitle, groupNavs]) => (
             <div key={groupTitle}>
-              <div className="px-4 py-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase">{groupTitle}</div>
+              <div className="px-4 py-2 text-xs font-semibold tracking-widest text-sidebar-foreground/70 uppercase">{groupTitle}</div>
               {groupNavs.map((nav) => {
                 const isActive = pathName === nav.href || pathName.startsWith(`${nav.href}/`);
                 return (

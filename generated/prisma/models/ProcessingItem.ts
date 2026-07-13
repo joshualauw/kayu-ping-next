@@ -31,6 +31,7 @@ export type ProcessingItemAvgAggregateOutputType = {
   processingId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
 }
 
@@ -39,6 +40,7 @@ export type ProcessingItemSumAggregateOutputType = {
   processingId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
 }
 
@@ -47,6 +49,7 @@ export type ProcessingItemMinAggregateOutputType = {
   processingId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   type: $Enums.ProcessingType | null
   quantity: number | null
   createdAt: Date | null
@@ -58,6 +61,7 @@ export type ProcessingItemMaxAggregateOutputType = {
   processingId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   type: $Enums.ProcessingType | null
   quantity: number | null
   createdAt: Date | null
@@ -69,6 +73,7 @@ export type ProcessingItemCountAggregateOutputType = {
   processingId: number
   gradeId: number
   woodVariantId: number
+  lotId: number
   type: number
   quantity: number
   createdAt: number
@@ -82,6 +87,7 @@ export type ProcessingItemAvgAggregateInputType = {
   processingId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
 }
 
@@ -90,6 +96,7 @@ export type ProcessingItemSumAggregateInputType = {
   processingId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
 }
 
@@ -98,6 +105,7 @@ export type ProcessingItemMinAggregateInputType = {
   processingId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   type?: true
   quantity?: true
   createdAt?: true
@@ -109,6 +117,7 @@ export type ProcessingItemMaxAggregateInputType = {
   processingId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   type?: true
   quantity?: true
   createdAt?: true
@@ -120,6 +129,7 @@ export type ProcessingItemCountAggregateInputType = {
   processingId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   type?: true
   quantity?: true
   createdAt?: true
@@ -218,6 +228,7 @@ export type ProcessingItemGroupByOutputType = {
   processingId: number
   gradeId: number | null
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt: Date
@@ -252,6 +263,7 @@ export type ProcessingItemWhereInput = {
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
   gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
+  lotId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
@@ -259,6 +271,7 @@ export type ProcessingItemWhereInput = {
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   processing?: Prisma.XOR<Prisma.ProcessingScalarRelationFilter, Prisma.ProcessingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }
 
 export type ProcessingItemOrderByWithRelationInput = {
@@ -266,6 +279,7 @@ export type ProcessingItemOrderByWithRelationInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -273,6 +287,7 @@ export type ProcessingItemOrderByWithRelationInput = {
   grade?: Prisma.GradeOrderByWithRelationInput
   processing?: Prisma.ProcessingOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
+  lot?: Prisma.LotOrderByWithRelationInput
 }
 
 export type ProcessingItemWhereUniqueInput = Prisma.AtLeast<{
@@ -283,6 +298,7 @@ export type ProcessingItemWhereUniqueInput = Prisma.AtLeast<{
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
   gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
+  lotId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
@@ -290,6 +306,7 @@ export type ProcessingItemWhereUniqueInput = Prisma.AtLeast<{
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   processing?: Prisma.XOR<Prisma.ProcessingScalarRelationFilter, Prisma.ProcessingWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }, "id">
 
 export type ProcessingItemOrderByWithAggregationInput = {
@@ -297,6 +314,7 @@ export type ProcessingItemOrderByWithAggregationInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -316,6 +334,7 @@ export type ProcessingItemScalarWhereWithAggregatesInput = {
   processingId?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
   gradeId?: Prisma.IntNullableWithAggregatesFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
+  lotId?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeWithAggregatesFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntWithAggregatesFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProcessingItem"> | Date | string
@@ -330,6 +349,7 @@ export type ProcessingItemCreateInput = {
   grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutProcessingItemsInput
 }
 
 export type ProcessingItemUncheckedCreateInput = {
@@ -337,6 +357,7 @@ export type ProcessingItemUncheckedCreateInput = {
   processingId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -351,6 +372,7 @@ export type ProcessingItemUpdateInput = {
   grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateInput = {
@@ -358,6 +380,7 @@ export type ProcessingItemUncheckedUpdateInput = {
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -369,6 +392,7 @@ export type ProcessingItemCreateManyInput = {
   processingId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -387,6 +411,7 @@ export type ProcessingItemUncheckedUpdateManyInput = {
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -408,6 +433,7 @@ export type ProcessingItemCountOrderByAggregateInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -419,6 +445,7 @@ export type ProcessingItemAvgOrderByAggregateInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
 
@@ -427,6 +454,7 @@ export type ProcessingItemMaxOrderByAggregateInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -438,6 +466,7 @@ export type ProcessingItemMinOrderByAggregateInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -449,6 +478,7 @@ export type ProcessingItemSumOrderByAggregateInput = {
   processingId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
 
@@ -536,6 +566,48 @@ export type ProcessingItemUncheckedUpdateManyWithoutGradeNestedInput = {
   deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
 }
 
+export type ProcessingItemCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput> | Prisma.ProcessingItemCreateWithoutLotInput[] | Prisma.ProcessingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutLotInput | Prisma.ProcessingItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.ProcessingItemCreateManyLotInputEnvelope
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+}
+
+export type ProcessingItemUncheckedCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput> | Prisma.ProcessingItemCreateWithoutLotInput[] | Prisma.ProcessingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutLotInput | Prisma.ProcessingItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.ProcessingItemCreateManyLotInputEnvelope
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+}
+
+export type ProcessingItemUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput> | Prisma.ProcessingItemCreateWithoutLotInput[] | Prisma.ProcessingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutLotInput | Prisma.ProcessingItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.ProcessingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.ProcessingItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.ProcessingItemCreateManyLotInputEnvelope
+  set?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  disconnect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  delete?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  update?: Prisma.ProcessingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.ProcessingItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.ProcessingItemUpdateManyWithWhereWithoutLotInput | Prisma.ProcessingItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
+}
+
+export type ProcessingItemUncheckedUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput> | Prisma.ProcessingItemCreateWithoutLotInput[] | Prisma.ProcessingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutLotInput | Prisma.ProcessingItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.ProcessingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.ProcessingItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.ProcessingItemCreateManyLotInputEnvelope
+  set?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  disconnect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  delete?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  connect?: Prisma.ProcessingItemWhereUniqueInput | Prisma.ProcessingItemWhereUniqueInput[]
+  update?: Prisma.ProcessingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.ProcessingItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.ProcessingItemUpdateManyWithWhereWithoutLotInput | Prisma.ProcessingItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.ProcessingItemScalarWhereInput | Prisma.ProcessingItemScalarWhereInput[]
+}
+
 export type ProcessingItemCreateNestedManyWithoutProcessingInput = {
   create?: Prisma.XOR<Prisma.ProcessingItemCreateWithoutProcessingInput, Prisma.ProcessingItemUncheckedCreateWithoutProcessingInput> | Prisma.ProcessingItemCreateWithoutProcessingInput[] | Prisma.ProcessingItemUncheckedCreateWithoutProcessingInput[]
   connectOrCreate?: Prisma.ProcessingItemCreateOrConnectWithoutProcessingInput | Prisma.ProcessingItemCreateOrConnectWithoutProcessingInput[]
@@ -589,12 +661,14 @@ export type ProcessingItemCreateWithoutVariantInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutProcessingItemsInput
 }
 
 export type ProcessingItemUncheckedCreateWithoutVariantInput = {
   id?: number
   processingId: number
   gradeId?: number | null
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -635,6 +709,7 @@ export type ProcessingItemScalarWhereInput = {
   processingId?: Prisma.IntFilter<"ProcessingItem"> | number
   gradeId?: Prisma.IntNullableFilter<"ProcessingItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"ProcessingItem"> | number
+  lotId?: Prisma.IntFilter<"ProcessingItem"> | number
   type?: Prisma.EnumProcessingTypeFilter<"ProcessingItem"> | $Enums.ProcessingType
   quantity?: Prisma.IntFilter<"ProcessingItem"> | number
   createdAt?: Prisma.DateTimeFilter<"ProcessingItem"> | Date | string
@@ -648,12 +723,14 @@ export type ProcessingItemCreateWithoutGradeInput = {
   updatedAt?: Date | string
   processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutProcessingItemsInput
 }
 
 export type ProcessingItemUncheckedCreateWithoutGradeInput = {
   id?: number
   processingId: number
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -686,6 +763,53 @@ export type ProcessingItemUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.ProcessingItemUpdateManyMutationInput, Prisma.ProcessingItemUncheckedUpdateManyWithoutGradeInput>
 }
 
+export type ProcessingItemCreateWithoutLotInput = {
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
+  processing: Prisma.ProcessingCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
+}
+
+export type ProcessingItemUncheckedCreateWithoutLotInput = {
+  id?: number
+  processingId: number
+  gradeId?: number | null
+  woodVariantId: number
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProcessingItemCreateOrConnectWithoutLotInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput>
+}
+
+export type ProcessingItemCreateManyLotInputEnvelope = {
+  data: Prisma.ProcessingItemCreateManyLotInput | Prisma.ProcessingItemCreateManyLotInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProcessingItemUpsertWithWhereUniqueWithoutLotInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProcessingItemUpdateWithoutLotInput, Prisma.ProcessingItemUncheckedUpdateWithoutLotInput>
+  create: Prisma.XOR<Prisma.ProcessingItemCreateWithoutLotInput, Prisma.ProcessingItemUncheckedCreateWithoutLotInput>
+}
+
+export type ProcessingItemUpdateWithWhereUniqueWithoutLotInput = {
+  where: Prisma.ProcessingItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProcessingItemUpdateWithoutLotInput, Prisma.ProcessingItemUncheckedUpdateWithoutLotInput>
+}
+
+export type ProcessingItemUpdateManyWithWhereWithoutLotInput = {
+  where: Prisma.ProcessingItemScalarWhereInput
+  data: Prisma.XOR<Prisma.ProcessingItemUpdateManyMutationInput, Prisma.ProcessingItemUncheckedUpdateManyWithoutLotInput>
+}
+
 export type ProcessingItemCreateWithoutProcessingInput = {
   type: $Enums.ProcessingType
   quantity: number
@@ -693,12 +817,14 @@ export type ProcessingItemCreateWithoutProcessingInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutProcessingItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutProcessingItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutProcessingItemsInput
 }
 
 export type ProcessingItemUncheckedCreateWithoutProcessingInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -735,6 +861,7 @@ export type ProcessingItemCreateManyVariantInput = {
   id?: number
   processingId: number
   gradeId?: number | null
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -748,12 +875,14 @@ export type ProcessingItemUpdateWithoutVariantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -764,6 +893,7 @@ export type ProcessingItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -774,6 +904,7 @@ export type ProcessingItemCreateManyGradeInput = {
   id?: number
   processingId: number
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -787,12 +918,14 @@ export type ProcessingItemUpdateWithoutGradeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -802,6 +935,50 @@ export type ProcessingItemUncheckedUpdateWithoutGradeInput = {
 export type ProcessingItemUncheckedUpdateManyWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProcessingItemCreateManyLotInput = {
+  id?: number
+  processingId: number
+  gradeId?: number | null
+  woodVariantId: number
+  type: $Enums.ProcessingType
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProcessingItemUpdateWithoutLotInput = {
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
+  processing?: Prisma.ProcessingUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
+}
+
+export type ProcessingItemUncheckedUpdateWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProcessingItemUncheckedUpdateManyWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  processingId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -813,6 +990,7 @@ export type ProcessingItemCreateManyProcessingInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   type: $Enums.ProcessingType
   quantity: number
   createdAt?: Date | string
@@ -826,12 +1004,14 @@ export type ProcessingItemUpdateWithoutProcessingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutProcessingItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutProcessingItemsNestedInput
 }
 
 export type ProcessingItemUncheckedUpdateWithoutProcessingInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -842,6 +1022,7 @@ export type ProcessingItemUncheckedUpdateManyWithoutProcessingInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumProcessingTypeFieldUpdateOperationsInput | $Enums.ProcessingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -855,6 +1036,7 @@ export type ProcessingItemSelect<ExtArgs extends runtime.Types.Extensions.Intern
   processingId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -862,6 +1044,7 @@ export type ProcessingItemSelect<ExtArgs extends runtime.Types.Extensions.Intern
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
 
 export type ProcessingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -869,6 +1052,7 @@ export type ProcessingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   processingId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -876,6 +1060,7 @@ export type ProcessingItemSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
 
 export type ProcessingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -883,6 +1068,7 @@ export type ProcessingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   processingId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
@@ -890,6 +1076,7 @@ export type ProcessingItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["processingItem"]>
 
 export type ProcessingItemSelectScalar = {
@@ -897,27 +1084,31 @@ export type ProcessingItemSelectScalar = {
   processingId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   type?: boolean
   quantity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProcessingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "processingId" | "gradeId" | "woodVariantId" | "type" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["processingItem"]>
+export type ProcessingItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "processingId" | "gradeId" | "woodVariantId" | "lotId" | "type" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["processingItem"]>
 export type ProcessingItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type ProcessingItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type ProcessingItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.ProcessingItem$gradeArgs<ExtArgs>
   processing?: boolean | Prisma.ProcessingDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 
 export type $ProcessingItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -926,12 +1117,14 @@ export type $ProcessingItemPayload<ExtArgs extends runtime.Types.Extensions.Inte
     grade: Prisma.$GradePayload<ExtArgs> | null
     processing: Prisma.$ProcessingPayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
+    lot: Prisma.$LotPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     processingId: number
     gradeId: number | null
     woodVariantId: number
+    lotId: number
     type: $Enums.ProcessingType
     quantity: number
     createdAt: Date
@@ -1333,6 +1526,7 @@ export interface Prisma__ProcessingItemClient<T, Null = never, ExtArgs extends r
   grade<T extends Prisma.ProcessingItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProcessingItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   processing<T extends Prisma.ProcessingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProcessingDefaultArgs<ExtArgs>>): Prisma.Prisma__ProcessingClient<runtime.Types.Result.GetResult<Prisma.$ProcessingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  lot<T extends Prisma.LotDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LotDefaultArgs<ExtArgs>>): Prisma.Prisma__LotClient<runtime.Types.Result.GetResult<Prisma.$LotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1366,6 +1560,7 @@ export interface ProcessingItemFieldRefs {
   readonly processingId: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly gradeId: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"ProcessingItem", 'Int'>
+  readonly lotId: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly type: Prisma.FieldRef<"ProcessingItem", 'ProcessingType'>
   readonly quantity: Prisma.FieldRef<"ProcessingItem", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ProcessingItem", 'DateTime'>

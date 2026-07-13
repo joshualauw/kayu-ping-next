@@ -65,6 +65,7 @@ export default function AdjustmentDetailCard({ adjustment }: AdjustmentDetailCar
                   <th className="p-3">Dimensions (cm)</th>
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Grade</th>
+                  <th className="p-3">Lot</th>
                   <th className="p-3">Qty</th>
                   <th className="p-3">Type</th>
                   <th className="p-3">Reason</th>
@@ -106,6 +107,11 @@ export default function AdjustmentDetailCard({ adjustment }: AdjustmentDetailCar
                           <span className="text-muted-foreground italic">Ungraded</span>
                         )}
                       </td>
+                      <td className="p-3">
+                        <Badge variant="outline" className="font-mono text-xs">
+                          {item.lot.code}
+                        </Badge>
+                      </td>
                       <td className="p-3 font-medium">{item.quantity}</td>
                       <td className="p-3">
                         {item.type === "ADD" ? <Badge variant="success">ADD</Badge> : <Badge variant="destructive">SUBTRACT</Badge>}
@@ -119,7 +125,7 @@ export default function AdjustmentDetailCard({ adjustment }: AdjustmentDetailCar
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
+                    <td colSpan={11} className="p-8 text-center text-sm text-muted-foreground italic">
                       No items found in this adjustment transaction.
                     </td>
                   </tr>

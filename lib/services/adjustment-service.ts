@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Adjustment, Location, AdjustmentItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import { Adjustment, Location, AdjustmentItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 import { AdjustmentWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateAdjustmentSchema } from "@/lib/schemas/adjustments/create-adjustment";
@@ -16,6 +16,7 @@ export type AdjustmentItemWithDetails = AdjustmentItem & {
     material: Material;
   };
   grade: Grade | null;
+  lot: Lot;
 };
 
 export type AdjustmentDetail = Adjustment & {
@@ -137,6 +138,7 @@ class AdjustmentService {
             adjustmentId: adjustment.id,
             woodVariantId: item.woodVariantId,
             gradeId: inventory.gradeId,
+            lotId: inventory.lotId,
             quantity: item.quantity,
             type: item.type,
             reason: item.reason,
@@ -150,6 +152,7 @@ class AdjustmentService {
             woodVariantId: item.woodVariantId,
             locationId: data.locationId,
             gradeId: inventory.gradeId,
+            lotId: inventory.lotId,
             type: item.type === "ADD" ? "IN" : "OUT",
             quantity: item.quantity,
             referenceType: "ADJUSTMENT",
@@ -170,6 +173,7 @@ class AdjustmentService {
         items: {
           include: {
             grade: true,
+            lot: true,
             variant: {
               include: {
                 wood: true,

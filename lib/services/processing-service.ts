@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Processing, Location, ProcessingItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import { Processing, Location, ProcessingItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 import { ProcessingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateProcessingSchema } from "@/lib/schemas/processings/create-processing";
@@ -13,6 +13,7 @@ export type ProcessingListItem = Processing & {
 
 export type ProcessingItemWithVariant = ProcessingItem & {
   grade: Grade | null;
+  lot: Lot;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -83,60 +84,67 @@ class ProcessingService {
       let totalInputVolume = 0;
       let totalOutputVolume = 0;
 
-      const inputsToProcess = [];
-      for (const item of data.inputItems) {
+      const groupsToProcess = [];
+
+      for (const group of data.groups) {
         const variant = await tx.woodVariant.findUnique({
-          where: { id: item.woodVariantId },
+          where: { id: group.input.woodVariantId },
           include: { wood: true },
         });
 
         if (!variant) {
-          throw new Error(`Wood variant with ID ${item.woodVariantId} not found.`);
+          throw new Error(`Wood variant with ID ${group.input.woodVariantId} not found.`);
         }
 
         const inventory = await tx.inventory.findUnique({
-          where: { id: item.inventoryId },
+          where: { id: group.input.inventoryId },
         });
 
         if (!inventory) {
-          throw new Error(`Inventory item with ID ${item.inventoryId} not found.`);
+          throw new Error(`Inventory item with ID ${group.input.inventoryId} not found.`);
         }
 
         if (inventory.locationId !== data.locationId) {
-          throw new Error(`Inventory item with ID ${item.inventoryId} is not at location ${data.locationId}.`);
+          throw new Error(`Inventory item with ID ${group.input.inventoryId} is not at location ${data.locationId}.`);
         }
 
-        if (inventory.stock < item.quantity) {
-          throw new Error(`Insufficient stock for "${variant.wood.name}". Available: ${inventory.stock}, Requested: ${item.quantity}`);
+        if (inventory.stock < group.input.quantity) {
+          throw new Error(
+            `Insufficient stock for "${variant.wood.name}". Available: ${inventory.stock}, Requested: ${group.input.quantity}`,
+          );
         }
 
-        const itemVolume = variant.volume * item.quantity;
-        totalInputVolume += itemVolume;
+        const inputVolume = variant.volume * group.input.quantity;
+        totalInputVolume += inputVolume;
 
-        inputsToProcess.push({
-          item,
-          inventory,
-          variant,
-        });
-      }
+        const outputsToCreate = [];
+        for (const item of group.outputs) {
+          const volume = calculateWoodVolume({
+            width: item.width ?? undefined,
+            height: item.height ?? undefined,
+            length: item.length,
+            diameterSmall: item.diameterSmall ?? undefined,
+            diameterLarge: item.diameterLarge ?? undefined,
+            measurement: item.measurement,
+          });
 
-      const outputsToCreate = [];
-      for (const item of data.outputItems) {
-        const volume = calculateWoodVolume({
-          width: item.width ?? undefined,
-          height: item.height ?? undefined,
-          length: item.length,
-          diameterSmall: item.diameterSmall ?? undefined,
-          diameterLarge: item.diameterLarge ?? undefined,
-          measurement: item.measurement,
-        });
+          const outputVolume = volume * item.quantity;
+          totalOutputVolume += outputVolume;
 
-        const itemTotalVolume = volume * item.quantity;
-        totalOutputVolume += itemTotalVolume;
+          outputsToCreate.push({
+            item,
+            volume,
+          });
+        }
 
-        outputsToCreate.push({
-          item,
-          volume,
+        groupsToProcess.push({
+          input: {
+            item: group.input,
+            inventory,
+            variant,
+          },
+          outputs: outputsToCreate,
+          lotId: inventory.lotId,
         });
       }
 
@@ -157,54 +165,46 @@ class ProcessingService {
         },
       });
 
-      for (const { item, inventory } of inputsToProcess) {
+      for (const group of groupsToProcess) {
+        const { input, outputs, lotId } = group;
+
         await tx.inventory.update({
-          where: { id: inventory.id },
+          where: { id: input.inventory.id },
           data: {
-            stock: inventory.stock - item.quantity,
+            stock: input.inventory.stock - input.item.quantity,
           },
         });
 
         await tx.processingItem.create({
           data: {
             processingId: processing.id,
-            woodVariantId: item.woodVariantId,
-            gradeId: inventory.gradeId,
+            woodVariantId: input.item.woodVariantId,
+            gradeId: input.inventory.gradeId,
+            lotId: lotId,
             type: "INPUT",
-            quantity: item.quantity,
+            quantity: input.item.quantity,
           },
         });
 
         await tx.stockMutation.create({
           data: {
             mutationDate: processingDate,
-            woodVariantId: item.woodVariantId,
+            woodVariantId: input.item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
-            gradeId: inventory.gradeId,
-            quantity: item.quantity,
+            gradeId: input.inventory.gradeId,
+            lotId: lotId,
+            quantity: input.item.quantity,
             referenceType: "PROCESSING",
             referenceId: processing.id,
           },
         });
-      }
 
-      for (const { item, volume } of outputsToCreate) {
-        let variant = await tx.woodVariant.findFirst({
-          where: {
-            woodId: item.woodId,
-            materialId: item.materialId,
-            width: item.width,
-            height: item.height,
-            diameterSmall: item.diameterSmall,
-            diamterLarge: item.diameterLarge,
-            length: item.length,
-          },
-        });
+        for (const output of outputs) {
+          const { item, volume } = output;
 
-        if (!variant) {
-          variant = await tx.woodVariant.create({
-            data: {
+          let variant = await tx.woodVariant.findFirst({
+            where: {
               woodId: item.woodId,
               materialId: item.materialId,
               width: item.width,
@@ -212,59 +212,77 @@ class ProcessingService {
               diameterSmall: item.diameterSmall,
               diamterLarge: item.diameterLarge,
               length: item.length,
-              volume,
             },
           });
-        }
 
-        await tx.processingItem.create({
-          data: {
-            processingId: processing.id,
-            woodVariantId: variant.id,
-            gradeId: null,
-            type: "OUTPUT",
-            quantity: item.quantity,
-          },
-        });
+          if (!variant) {
+            variant = await tx.woodVariant.create({
+              data: {
+                woodId: item.woodId,
+                materialId: item.materialId,
+                width: item.width,
+                height: item.height,
+                diameterSmall: item.diameterSmall,
+                diamterLarge: item.diameterLarge,
+                length: item.length,
+                volume,
+              },
+            });
+          }
 
-        const inventory = await tx.inventory.findFirst({
-          where: {
-            woodVariantId: variant.id,
-            locationId: data.locationId,
-            gradeId: null,
-          },
-        });
-
-        if (inventory) {
-          await tx.inventory.update({
-            where: { id: inventory.id },
+          await tx.processingItem.create({
             data: {
-              stock: inventory.stock + item.quantity,
+              processingId: processing.id,
+              woodVariantId: variant.id,
+              gradeId: null,
+              lotId: lotId,
+              type: "OUTPUT",
+              quantity: item.quantity,
             },
           });
-        } else {
-          await tx.inventory.create({
-            data: {
+
+          const inventory = await tx.inventory.findFirst({
+            where: {
               woodVariantId: variant.id,
               locationId: data.locationId,
               gradeId: null,
-              stock: item.quantity,
+              lotId: lotId,
+            },
+          });
+
+          if (inventory) {
+            await tx.inventory.update({
+              where: { id: inventory.id },
+              data: {
+                stock: inventory.stock + item.quantity,
+              },
+            });
+          } else {
+            await tx.inventory.create({
+              data: {
+                woodVariantId: variant.id,
+                locationId: data.locationId,
+                gradeId: null,
+                lotId: lotId,
+                stock: item.quantity,
+              },
+            });
+          }
+
+          await tx.stockMutation.create({
+            data: {
+              mutationDate: processingDate,
+              woodVariantId: variant.id,
+              locationId: data.locationId,
+              type: "IN",
+              gradeId: null,
+              lotId: lotId,
+              quantity: item.quantity,
+              referenceType: "PROCESSING",
+              referenceId: processing.id,
             },
           });
         }
-
-        await tx.stockMutation.create({
-          data: {
-            mutationDate: processingDate,
-            woodVariantId: variant.id,
-            locationId: data.locationId,
-            type: "IN",
-            gradeId: null,
-            quantity: item.quantity,
-            referenceType: "PROCESSING",
-            referenceId: processing.id,
-          },
-        });
       }
 
       return processing;
@@ -279,6 +297,7 @@ class ProcessingService {
         items: {
           include: {
             grade: true,
+            lot: true,
             variant: {
               include: {
                 wood: true,

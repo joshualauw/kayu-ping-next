@@ -58,6 +58,7 @@ export const ModelName = {
   Material: 'Material',
   WoodVariant: 'WoodVariant',
   Grade: 'Grade',
+  Lot: 'Lot',
   Inventory: 'Inventory',
   StockMutation: 'StockMutation',
   Purchase: 'Purchase',
@@ -180,10 +181,21 @@ export const GradeScalarFieldEnum = {
 export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
 
 
+export const LotScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LotScalarFieldEnum = (typeof LotScalarFieldEnum)[keyof typeof LotScalarFieldEnum]
+
+
 export const InventoryScalarFieldEnum = {
   id: 'id',
   woodVariantId: 'woodVariantId',
   gradeId: 'gradeId',
+  lotId: 'lotId',
   locationId: 'locationId',
   stock: 'stock',
   createdAt: 'createdAt',
@@ -198,6 +210,7 @@ export const StockMutationScalarFieldEnum = {
   mutationDate: 'mutationDate',
   woodVariantId: 'woodVariantId',
   gradeId: 'gradeId',
+  lotId: 'lotId',
   locationId: 'locationId',
   type: 'type',
   quantity: 'quantity',
@@ -232,6 +245,7 @@ export const PurchaseItemScalarFieldEnum = {
   purchaseId: 'purchaseId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -262,6 +276,7 @@ export const SaleItemScalarFieldEnum = {
   saleId: 'saleId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -291,6 +306,7 @@ export const ProcessingItemScalarFieldEnum = {
   processingId: 'processingId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   type: 'type',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -321,6 +337,7 @@ export const MovementItemScalarFieldEnum = {
   movementId: 'movementId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   quantity: 'quantity',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -347,6 +364,7 @@ export const GradingItemScalarFieldEnum = {
   gradingId: 'gradingId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   type: 'type',
   quantity: 'quantity',
   comment: 'comment',
@@ -375,6 +393,7 @@ export const AdjustmentItemScalarFieldEnum = {
   adjustmentId: 'adjustmentId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   quantity: 'quantity',
   type: 'type',
   reason: 'reason',

@@ -103,6 +103,9 @@ export default function StockMutationsDataTable() {
                   Grade
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
+                  Lot
+                </th>
+                <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
                   Location
                 </th>
                 <th scope="col" className="h-9 px-3 text-left font-medium text-muted-foreground">
@@ -136,6 +139,11 @@ export default function StockMutationsDataTable() {
                     ) : (
                       <span className="text-[10px] text-muted-foreground italic">Ungraded</span>
                     )}
+                  </td>
+                  <td className="h-9 px-3 align-middle">
+                    <Badge variant="outline" className="font-mono text-xs">
+                      {item.lot.code}
+                    </Badge>
                   </td>
                   <td className="h-9 px-3 align-middle">{item.location.name}</td>
                   <td className="h-9 px-3 align-middle">

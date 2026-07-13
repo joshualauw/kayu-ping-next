@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Grading, Location, GradingItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import { Grading, Location, GradingItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 import { GradingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateGradingSchema } from "@/lib/schemas/gradings/create-grading";
@@ -16,6 +16,7 @@ export type GradingItemWithDetails = GradingItem & {
     material: Material;
   };
   grade: Grade | null;
+  lot: Lot;
 };
 
 export type GradingDetail = Grading & {
@@ -79,10 +80,10 @@ class GradingService {
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(gradingDate, tx);
 
-      const inputsToProcess = [];
-      for (const item of data.beforeItems) {
+      const groupsToProcess = [];
+      for (const group of data.groups) {
         const inventory = await tx.inventory.findUnique({
-          where: { id: item.inventoryId },
+          where: { id: group.input.inventoryId },
           include: {
             variant: {
               include: { wood: true },
@@ -91,18 +92,22 @@ class GradingService {
         });
 
         if (!inventory) {
-          throw new Error(`Inventory item with ID ${item.inventoryId} not found.`);
+          throw new Error(`Inventory item with ID ${group.input.inventoryId} not found.`);
         }
 
-        if (inventory.stock < item.quantity) {
+        if (inventory.stock < group.input.quantity) {
           throw new Error(
-            `Insufficient stock for "${inventory.variant.wood.name}". Available: ${inventory.stock}, Requested: ${item.quantity}`,
+            `Insufficient stock for "${inventory.variant.wood.name}". Available: ${inventory.stock}, Requested: ${group.input.quantity}`,
           );
         }
 
-        inputsToProcess.push({
-          item,
-          inventory,
+        groupsToProcess.push({
+          input: {
+            item: group.input,
+            inventory,
+          },
+          outputs: group.outputs,
+          lotId: inventory.lotId,
         });
       }
 
@@ -115,88 +120,96 @@ class GradingService {
         },
       });
 
-      for (const { item, inventory } of inputsToProcess) {
+      for (const group of groupsToProcess) {
+        const { input, outputs, lotId } = group;
+
         await tx.inventory.update({
-          where: { id: inventory.id },
+          where: { id: input.inventory.id },
           data: {
-            stock: inventory.stock - item.quantity,
+            stock: input.inventory.stock - input.item.quantity,
           },
         });
 
         await tx.gradingItem.create({
           data: {
             gradingId: grading.id,
-            woodVariantId: item.woodVariantId,
-            gradeId: item.gradeId,
+            woodVariantId: input.item.woodVariantId,
+            gradeId: input.item.gradeId,
+            lotId: lotId,
             type: "BEFORE",
-            quantity: item.quantity,
+            quantity: input.item.quantity,
           },
         });
 
         await tx.stockMutation.create({
           data: {
             mutationDate: gradingDate,
-            woodVariantId: item.woodVariantId,
+            woodVariantId: input.item.woodVariantId,
             locationId: data.locationId,
             type: "OUT",
-            gradeId: item.gradeId,
-            quantity: item.quantity,
+            gradeId: input.item.gradeId,
+            lotId: lotId,
+            quantity: input.item.quantity,
             referenceType: "GRADING",
             referenceId: grading.id,
           },
         });
-      }
 
-      for (const item of data.afterItems) {
-        await tx.gradingItem.create({
-          data: {
-            gradingId: grading.id,
-            woodVariantId: item.woodVariantId,
-            gradeId: item.gradeId,
-            type: "AFTER",
-            quantity: item.quantity,
-            comment: item.comment,
-          },
-        });
-
-        const inventory = await tx.inventory.findFirst({
-          where: {
-            woodVariantId: item.woodVariantId,
-            locationId: data.locationId,
-            gradeId: item.gradeId,
-          },
-        });
-
-        if (inventory) {
-          await tx.inventory.update({
-            where: { id: inventory.id },
+        for (const output of outputs) {
+          await tx.gradingItem.create({
             data: {
-              stock: inventory.stock + item.quantity,
+              gradingId: grading.id,
+              woodVariantId: output.woodVariantId,
+              gradeId: output.gradeId,
+              lotId: lotId,
+              type: "AFTER",
+              quantity: output.quantity,
+              comment: output.comment,
             },
           });
-        } else {
-          await tx.inventory.create({
-            data: {
-              woodVariantId: item.woodVariantId,
+
+          const inventory = await tx.inventory.findFirst({
+            where: {
+              woodVariantId: output.woodVariantId,
               locationId: data.locationId,
-              gradeId: item.gradeId,
-              stock: item.quantity,
+              gradeId: output.gradeId,
+              lotId: lotId,
+            },
+          });
+
+          if (inventory) {
+            await tx.inventory.update({
+              where: { id: inventory.id },
+              data: {
+                stock: inventory.stock + output.quantity,
+              },
+            });
+          } else {
+            await tx.inventory.create({
+              data: {
+                woodVariantId: output.woodVariantId,
+                locationId: data.locationId,
+                gradeId: output.gradeId,
+                lotId: lotId,
+                stock: output.quantity,
+              },
+            });
+          }
+
+          await tx.stockMutation.create({
+            data: {
+              mutationDate: gradingDate,
+              woodVariantId: output.woodVariantId,
+              locationId: data.locationId,
+              type: "IN",
+              gradeId: output.gradeId,
+              lotId: lotId,
+              quantity: output.quantity,
+              referenceType: "GRADING",
+              referenceId: grading.id,
             },
           });
         }
-
-        await tx.stockMutation.create({
-          data: {
-            mutationDate: gradingDate,
-            woodVariantId: item.woodVariantId,
-            locationId: data.locationId,
-            type: "IN",
-            gradeId: item.gradeId,
-            quantity: item.quantity,
-            referenceType: "GRADING",
-            referenceId: grading.id,
-          },
-        });
       }
 
       return grading;
@@ -217,6 +230,7 @@ class GradingService {
               },
             },
             grade: true,
+            lot: true,
           },
           orderBy: {
             type: "asc",

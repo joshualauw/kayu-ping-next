@@ -77,6 +77,7 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                   <th className="p-3">Dimensions (cm)</th>
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Grade</th>
+                  <th className="p-3">Lot</th>
                   <th className="p-3">Qty</th>
                   <th className="p-3">Comment</th>
                   <th className="p-3">Type</th>
@@ -87,7 +88,6 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                   const variant = item.variant;
                   const wood = variant.wood;
                   const material = variant.material;
-                  const grade = item.grade;
 
                   return (
                     <tr key={item.id} className="hover:bg-muted/10">
@@ -111,11 +111,16 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                       </td>
                       <td className="p-3">{variant.length}</td>
                       <td className="p-3">
-                        {grade ? (
-                          <Badge variant="outline">{grade.code}</Badge>
+                        {item.grade ? (
+                          <Badge variant="outline">{item.grade.code}</Badge>
                         ) : (
                           <span className="text-muted-foreground italic">Ungraded</span>
                         )}
+                      </td>
+                      <td className="p-3">
+                        <Badge variant="outline" className="font-mono text-xs">
+                          {item.lot.code}
+                        </Badge>
                       </td>
                       <td className="p-3">{item.quantity}</td>
                       <td className="p-3 whitespace-pre-wrap">{item.comment || "-"}</td>
@@ -127,7 +132,7 @@ export default function GradingDetailCard({ grading }: GradingDetailCardProps) {
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="p-8 text-center text-sm text-muted-foreground italic">
+                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
                       No items found in this grading transaction.
                     </td>
                   </tr>

@@ -1,16 +1,7 @@
 import { prisma } from "@/lib/db/prisma";
-import { Inventory, WoodVariant, Wood, Material, Location, Grade } from "@/generated/prisma/client";
+import { WoodVariant, Wood, Material, Location, Grade, Lot } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { Prisma } from "@/generated/prisma/client";
-
-export type InventoryListItem = Inventory & {
-  variant: WoodVariant & {
-    wood: Wood;
-    material: Material;
-  };
-  location: Location;
-  grade: Grade | null;
-};
 
 export type InventoryGroupedByVariantItem = {
   id: number;
@@ -23,6 +14,7 @@ export type InventoryGroupedByVariantItem = {
   items: Array<{
     id: number;
     grade: Grade | null;
+    lot: Lot;
     location: Location;
     volume: number;
     stock: number;
@@ -41,6 +33,7 @@ export type InventoryGroupedByLocationItem = {
       material: Material;
     };
     grade: Grade | null;
+    lot: Lot;
     volume: number;
     stock: number;
   }>;
@@ -59,59 +52,44 @@ export type InventoryGroupedByGradeItem = {
     };
     location: Location;
     grade: Grade | null;
+    lot: Lot;
+    volume: number;
+    stock: number;
+  }>;
+};
+
+export type InventoryGroupedByLotItem = {
+  id: number;
+  lot: Lot;
+  totalVolume: number;
+  totalStock: number;
+  originPurchaseId: number;
+  items: Array<{
+    id: number;
+    variant: WoodVariant & {
+      wood: Wood;
+      material: Material;
+    };
+    location: Location;
+    grade: Grade | null;
+    lot: Lot;
     volume: number;
     stock: number;
   }>;
 };
 
 class InventoryService {
-  async getAllInventories(params: TableQuery): Promise<TableResponse<InventoryListItem>> {
+  async getAllInventoriesByWoodVariant(
+    params: TableQuery,
+    showEmptyInventory: boolean = false,
+  ): Promise<TableResponse<InventoryGroupedByVariantItem>> {
     const { page, size, search } = params;
 
-    const where: Prisma.InventoryWhereInput = {
-      stock: { gt: 0 },
-    };
+    const where: Prisma.InventoryWhereInput = {};
 
-    if (search) {
-      where.OR = [
-        { variant: { wood: { code: { contains: search, mode: "insensitive" } } } },
-        { variant: { wood: { name: { contains: search, mode: "insensitive" } } } },
-        { variant: { material: { name: { contains: search, mode: "insensitive" } } } },
-        { location: { name: { contains: search, mode: "insensitive" } } },
-      ];
+    if (!showEmptyInventory) {
+      where.stock = { gt: 0 };
     }
-
-    const [count, items] = await Promise.all([
-      prisma.inventory.count({ where }),
-      prisma.inventory.findMany({
-        where,
-        include: {
-          variant: {
-            include: {
-              wood: true,
-              material: true,
-            },
-          },
-          location: true,
-          grade: true,
-        },
-        skip: page * size,
-        take: size,
-        orderBy: {
-          updatedAt: "desc",
-        },
-      }),
-    ]);
-
-    return { items, count };
-  }
-
-  async getAllInventoriesByWoodVariant(params: TableQuery): Promise<TableResponse<InventoryGroupedByVariantItem>> {
-    const { page, size, search } = params;
-
-    const where: Prisma.InventoryWhereInput = {
-      stock: { gt: 0 },
-    };
 
     if (search) {
       where.OR = [
@@ -155,7 +133,7 @@ class InventoryService {
               in: groups.map((g) => g.woodVariantId),
             },
           },
-          { stock: { gt: 0 } },
+          ...(showEmptyInventory ? [] : [{ stock: { gt: 0 } }]),
         ],
       },
       include: {
@@ -167,6 +145,7 @@ class InventoryService {
         },
         location: true,
         grade: true,
+        lot: true,
       },
       orderBy: {
         updatedAt: "desc",
@@ -187,6 +166,7 @@ class InventoryService {
         items: groupItems.map((item) => ({
           id: item.id,
           grade: item.grade,
+          lot: item.lot,
           location: item.location,
           volume: variant.volume * item.stock,
           stock: item.stock,
@@ -197,12 +177,17 @@ class InventoryService {
     return { items: groupedItems, count };
   }
 
-  async getAllInventoriesByLocation(params: TableQuery): Promise<TableResponse<InventoryGroupedByLocationItem>> {
+  async getAllInventoriesByLocation(
+    params: TableQuery,
+    showEmptyInventory: boolean = false,
+  ): Promise<TableResponse<InventoryGroupedByLocationItem>> {
     const { page, size, search } = params;
 
-    const where: Prisma.InventoryWhereInput = {
-      stock: { gt: 0 },
-    };
+    const where: Prisma.InventoryWhereInput = {};
+
+    if (!showEmptyInventory) {
+      where.stock = { gt: 0 };
+    }
 
     if (search) {
       where.OR = [
@@ -246,7 +231,7 @@ class InventoryService {
               in: groups.map((g) => g.locationId),
             },
           },
-          { stock: { gt: 0 } },
+          ...(showEmptyInventory ? [] : [{ stock: { gt: 0 } }]),
         ],
       },
       include: {
@@ -258,6 +243,7 @@ class InventoryService {
         },
         location: true,
         grade: true,
+        lot: true,
       },
       orderBy: {
         updatedAt: "desc",
@@ -279,6 +265,7 @@ class InventoryService {
           id: item.id,
           variant: item.variant,
           grade: item.grade,
+          lot: item.lot,
           volume: item.variant.volume * item.stock,
           stock: item.stock,
         })),
@@ -288,12 +275,17 @@ class InventoryService {
     return { items: groupedItems, count };
   }
 
-  async getAllInventoriesByGrade(params: TableQuery): Promise<TableResponse<InventoryGroupedByGradeItem>> {
+  async getAllInventoriesByGrade(
+    params: TableQuery,
+    showEmptyInventory: boolean = false,
+  ): Promise<TableResponse<InventoryGroupedByGradeItem>> {
     const { page, size, search } = params;
 
-    const where: Prisma.InventoryWhereInput = {
-      stock: { gt: 0 },
-    };
+    const where: Prisma.InventoryWhereInput = {};
+
+    if (!showEmptyInventory) {
+      where.stock = { gt: 0 };
+    }
 
     if (search) {
       where.OR = [
@@ -337,7 +329,7 @@ class InventoryService {
               gradeId: g.gradeId,
             })),
           },
-          { stock: { gt: 0 } },
+          ...(showEmptyInventory ? [] : [{ stock: { gt: 0 } }]),
         ],
       },
       include: {
@@ -349,6 +341,7 @@ class InventoryService {
         },
         location: true,
         grade: true,
+        lot: true,
       },
       orderBy: {
         updatedAt: "desc",
@@ -371,6 +364,115 @@ class InventoryService {
           variant: item.variant,
           location: item.location,
           grade: item.grade,
+          lot: item.lot,
+          volume: item.variant.volume * item.stock,
+          stock: item.stock,
+        })),
+      };
+    });
+
+    return { items: groupedItems, count };
+  }
+
+  async getAllInventoriesByLot(params: TableQuery, showEmptyInventory: boolean = false): Promise<TableResponse<InventoryGroupedByLotItem>> {
+    const { page, size, search } = params;
+
+    const where: Prisma.InventoryWhereInput = {};
+
+    if (!showEmptyInventory) {
+      where.stock = { gt: 0 };
+    }
+
+    if (search) {
+      where.OR = [
+        { variant: { wood: { code: { contains: search, mode: "insensitive" } } } },
+        { variant: { wood: { name: { contains: search, mode: "insensitive" } } } },
+        { variant: { material: { name: { contains: search, mode: "insensitive" } } } },
+        { location: { name: { contains: search, mode: "insensitive" } } },
+        { lot: { code: { contains: search, mode: "insensitive" } } },
+      ];
+    }
+
+    const countResult = await prisma.inventory.groupBy({
+      by: ["lotId"],
+      where,
+    });
+    const count = countResult.length;
+
+    const groups = await prisma.inventory.groupBy({
+      by: ["lotId"],
+      where,
+      _max: {
+        updatedAt: true,
+      },
+      orderBy: {
+        _max: {
+          updatedAt: "desc",
+        },
+      },
+      skip: page * size,
+      take: size,
+    });
+
+    if (groups.length === 0) {
+      return { items: [], count };
+    }
+
+    const items = await prisma.inventory.findMany({
+      where: {
+        AND: [
+          {
+            lotId: {
+              in: groups.map((g) => g.lotId),
+            },
+          },
+          ...(showEmptyInventory ? [] : [{ stock: { gt: 0 } }]),
+        ],
+      },
+      include: {
+        variant: {
+          include: {
+            wood: true,
+            material: true,
+          },
+        },
+        location: true,
+        grade: true,
+        lot: {
+          include: {
+            purchaseItems: {
+              select: {
+                purchaseId: true,
+              },
+              take: 1,
+            },
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
+    const groupedItems: InventoryGroupedByLotItem[] = groups.map((g) => {
+      const groupItems = items.filter((item) => item.lotId === g.lotId);
+      const totalStock = groupItems.reduce((sum, item) => sum + item.stock, 0);
+      const totalVolume = groupItems.reduce((sum, item) => sum + item.variant.volume * item.stock, 0);
+      const lot = groupItems[0].lot;
+      const originPurchaseId = lot.purchaseItems[0].purchaseId;
+
+      return {
+        id: g.lotId,
+        lot,
+        totalVolume,
+        totalStock,
+        originPurchaseId,
+        items: groupItems.map((item) => ({
+          id: item.id,
+          variant: item.variant,
+          location: item.location,
+          grade: item.grade,
+          lot: item.lot,
           volume: item.variant.volume * item.stock,
           stock: item.stock,
         })),
@@ -399,6 +501,7 @@ class InventoryService {
           },
         },
         grade: true,
+        lot: true,
       },
     });
   }

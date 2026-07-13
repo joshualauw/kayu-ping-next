@@ -80,6 +80,7 @@ export default function SaleDetailCard({ sale }: SaleDetailCardProps) {
                   <th className="p-3">Wood</th>
                   <th className="p-3">Material</th>
                   <th className="p-3">Grade</th>
+                  <th className="p-3">Lot</th>
                   <th className="p-3">Dimensions (cm)</th>
                   <th className="p-3">Length (cm)</th>
                   <th className="p-3">Qty</th>
@@ -113,6 +114,11 @@ export default function SaleDetailCard({ sale }: SaleDetailCardProps) {
                         )}
                       </td>
                       <td className="p-3">
+                        <Badge variant="outline" className="font-mono text-xs">
+                          {item.lot.code}
+                        </Badge>
+                      </td>
+                      <td className="p-3">
                         {material.measurement === Measurement.CUBE && (
                           <div>
                             W: {variant.width ?? 0} / H: {variant.height ?? 0}
@@ -139,7 +145,7 @@ export default function SaleDetailCard({ sale }: SaleDetailCardProps) {
                 })}
                 {items.length === 0 && (
                   <tr>
-                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
+                    <td colSpan={11} className="p-8 text-center text-sm text-muted-foreground italic">
                       No items found in this sale.
                     </td>
                   </tr>

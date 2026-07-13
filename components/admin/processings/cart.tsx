@@ -86,6 +86,7 @@ export default function ProcessingCart({
           originalStock: selectedInv.stock,
           variant: selectedInv.variant,
           grade: selectedInv.grade,
+          lot: selectedInv.lot,
         },
         outputs: [
           {
@@ -350,7 +351,7 @@ function ProcessingCartGroup({
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/20 p-3 md:grid-cols-5">
+      <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/20 p-3 md:grid-cols-6">
         <div className="space-y-1">
           <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Input Log/Pack</span>
           <span className="block text-xs font-semibold">{woodLabel}</span>
@@ -362,6 +363,18 @@ function ProcessingCartGroup({
               <Badge variant="secondary">{inputItem.grade.code}</Badge>
             ) : (
               <span className="text-xs text-muted-foreground italic">Ungraded</span>
+            )}
+          </span>
+        </div>
+        <div className="space-y-1">
+          <span className="block text-[10px] font-semibold text-muted-foreground uppercase">Lot</span>
+          <span className="block text-xs font-semibold">
+            {inputItem.lot ? (
+              <Badge variant="outline" className="font-mono text-xs">
+                {inputItem.lot.code}
+              </Badge>
+            ) : (
+              <span className="text-xs text-muted-foreground italic">-</span>
             )}
           </span>
         </div>

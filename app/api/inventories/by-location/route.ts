@@ -1,11 +1,11 @@
 import { auth } from "@/lib/auth";
-import inventoryService, { InventoryListItem } from "@/lib/services/inventory-service";
+import inventoryService from "@/lib/services/inventory-service";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthenticatedUser } from "@/lib/helpers/user";
 import { AuthorizationError, handleError } from "@/lib/errors";
 import { ApiResponse } from "@/types/api-response";
 import { errorResponse, successResponse } from "@/lib/helpers/api";
-import type { Inventory, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import type { Inventory, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 
 export type LocationInventoryItem = Inventory & {
   variant: WoodVariant & {
@@ -13,6 +13,7 @@ export type LocationInventoryItem = Inventory & {
     material: Material;
   };
   grade: Grade | null;
+  lot: Lot;
 };
 
 export type GetLocationInventoryResponse = LocationInventoryItem[];

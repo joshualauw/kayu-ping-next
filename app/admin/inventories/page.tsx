@@ -1,6 +1,7 @@
 import WoodVariantInventoriesDataTable from "@/components/admin/inventories/wood-variant/data-table";
 import LocationInventoriesDataTable from "@/components/admin/inventories/location/data-table";
 import GradeInventoriesDataTable from "@/components/admin/inventories/grade/data-table";
+import LotInventoriesDataTable from "@/components/admin/inventories/lot/data-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function InventoriesPage() {
@@ -14,10 +15,11 @@ export default function InventoriesPage() {
       </div>
 
       <Tabs defaultValue="variant" className="w-full">
-        <TabsList className="grid w-full max-w-sm grid-cols-3">
+        <TabsList className="grid w-full max-w-md grid-cols-4">
           <TabsTrigger value="variant">Wood Variant</TabsTrigger>
           <TabsTrigger value="location">Location</TabsTrigger>
           <TabsTrigger value="grade">Grade</TabsTrigger>
+          <TabsTrigger value="lot">Lot</TabsTrigger>
         </TabsList>
         <TabsContent value="variant" className="mt-4">
           <WoodVariantInventoriesDataTable />
@@ -27,6 +29,9 @@ export default function InventoriesPage() {
         </TabsContent>
         <TabsContent value="grade" className="mt-4">
           <GradeInventoriesDataTable />
+        </TabsContent>
+        <TabsContent value="lot" className="mt-4">
+          <LotInventoriesDataTable />
         </TabsContent>
       </Tabs>
     </div>

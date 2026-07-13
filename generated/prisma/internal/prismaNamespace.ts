@@ -391,6 +391,7 @@ export const ModelName = {
   Material: 'Material',
   WoodVariant: 'WoodVariant',
   Grade: 'Grade',
+  Lot: 'Lot',
   Inventory: 'Inventory',
   StockMutation: 'StockMutation',
   Purchase: 'Purchase',
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "grade" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem" | "movement" | "movementItem" | "grading" | "gradingItem" | "adjustment" | "adjustmentItem" | "fee"
+    modelProps: "users" | "wood" | "contact" | "location" | "material" | "woodVariant" | "grade" | "lot" | "inventory" | "stockMutation" | "purchase" | "purchaseItem" | "sale" | "saleItem" | "processing" | "processingItem" | "movement" | "movementItem" | "grading" | "gradingItem" | "adjustment" | "adjustmentItem" | "fee"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -940,6 +941,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.GradeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.GradeCountAggregateOutputType> | number
+        }
+      }
+    }
+    Lot: {
+      payload: Prisma.$LotPayload<ExtArgs>
+      fields: Prisma.LotFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LotFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LotFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        findFirst: {
+          args: Prisma.LotFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LotFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        findMany: {
+          args: Prisma.LotFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>[]
+        }
+        create: {
+          args: Prisma.LotCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        createMany: {
+          args: Prisma.LotCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LotCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>[]
+        }
+        delete: {
+          args: Prisma.LotDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        update: {
+          args: Prisma.LotUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        deleteMany: {
+          args: Prisma.LotDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LotUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LotUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>[]
+        }
+        upsert: {
+          args: Prisma.LotUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LotPayload>
+        }
+        aggregate: {
+          args: Prisma.LotAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLot>
+        }
+        groupBy: {
+          args: Prisma.LotGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LotGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LotCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LotCountAggregateOutputType> | number
         }
       }
     }
@@ -2181,10 +2256,21 @@ export const GradeScalarFieldEnum = {
 export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
 
 
+export const LotScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LotScalarFieldEnum = (typeof LotScalarFieldEnum)[keyof typeof LotScalarFieldEnum]
+
+
 export const InventoryScalarFieldEnum = {
   id: 'id',
   woodVariantId: 'woodVariantId',
   gradeId: 'gradeId',
+  lotId: 'lotId',
   locationId: 'locationId',
   stock: 'stock',
   createdAt: 'createdAt',
@@ -2199,6 +2285,7 @@ export const StockMutationScalarFieldEnum = {
   mutationDate: 'mutationDate',
   woodVariantId: 'woodVariantId',
   gradeId: 'gradeId',
+  lotId: 'lotId',
   locationId: 'locationId',
   type: 'type',
   quantity: 'quantity',
@@ -2233,6 +2320,7 @@ export const PurchaseItemScalarFieldEnum = {
   purchaseId: 'purchaseId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -2263,6 +2351,7 @@ export const SaleItemScalarFieldEnum = {
   saleId: 'saleId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   pricePerCubic: 'pricePerCubic',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -2292,6 +2381,7 @@ export const ProcessingItemScalarFieldEnum = {
   processingId: 'processingId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   type: 'type',
   quantity: 'quantity',
   createdAt: 'createdAt',
@@ -2322,6 +2412,7 @@ export const MovementItemScalarFieldEnum = {
   movementId: 'movementId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   quantity: 'quantity',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2348,6 +2439,7 @@ export const GradingItemScalarFieldEnum = {
   gradingId: 'gradingId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   type: 'type',
   quantity: 'quantity',
   comment: 'comment',
@@ -2376,6 +2468,7 @@ export const AdjustmentItemScalarFieldEnum = {
   adjustmentId: 'adjustmentId',
   gradeId: 'gradeId',
   woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
   quantity: 'quantity',
   type: 'type',
   reason: 'reason',
@@ -2726,6 +2819,7 @@ export type GlobalOmitConfig = {
   material?: Prisma.MaterialOmit
   woodVariant?: Prisma.WoodVariantOmit
   grade?: Prisma.GradeOmit
+  lot?: Prisma.LotOmit
   inventory?: Prisma.InventoryOmit
   stockMutation?: Prisma.StockMutationOmit
   purchase?: Prisma.PurchaseOmit

@@ -31,6 +31,7 @@ export type AdjustmentItemAvgAggregateOutputType = {
   adjustmentId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
 }
 
@@ -39,6 +40,7 @@ export type AdjustmentItemSumAggregateOutputType = {
   adjustmentId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
 }
 
@@ -47,6 +49,7 @@ export type AdjustmentItemMinAggregateOutputType = {
   adjustmentId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
   type: $Enums.AdjustmentType | null
   reason: $Enums.AdjustmentReason | null
@@ -60,6 +63,7 @@ export type AdjustmentItemMaxAggregateOutputType = {
   adjustmentId: number | null
   gradeId: number | null
   woodVariantId: number | null
+  lotId: number | null
   quantity: number | null
   type: $Enums.AdjustmentType | null
   reason: $Enums.AdjustmentReason | null
@@ -73,6 +77,7 @@ export type AdjustmentItemCountAggregateOutputType = {
   adjustmentId: number
   gradeId: number
   woodVariantId: number
+  lotId: number
   quantity: number
   type: number
   reason: number
@@ -88,6 +93,7 @@ export type AdjustmentItemAvgAggregateInputType = {
   adjustmentId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
 }
 
@@ -96,6 +102,7 @@ export type AdjustmentItemSumAggregateInputType = {
   adjustmentId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
 }
 
@@ -104,6 +111,7 @@ export type AdjustmentItemMinAggregateInputType = {
   adjustmentId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
   type?: true
   reason?: true
@@ -117,6 +125,7 @@ export type AdjustmentItemMaxAggregateInputType = {
   adjustmentId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
   type?: true
   reason?: true
@@ -130,6 +139,7 @@ export type AdjustmentItemCountAggregateInputType = {
   adjustmentId?: true
   gradeId?: true
   woodVariantId?: true
+  lotId?: true
   quantity?: true
   type?: true
   reason?: true
@@ -230,6 +240,7 @@ export type AdjustmentItemGroupByOutputType = {
   adjustmentId: number
   gradeId: number | null
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -266,6 +277,7 @@ export type AdjustmentItemWhereInput = {
   adjustmentId?: Prisma.IntFilter<"AdjustmentItem"> | number
   gradeId?: Prisma.IntNullableFilter<"AdjustmentItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"AdjustmentItem"> | number
+  lotId?: Prisma.IntFilter<"AdjustmentItem"> | number
   quantity?: Prisma.IntFilter<"AdjustmentItem"> | number
   type?: Prisma.EnumAdjustmentTypeFilter<"AdjustmentItem"> | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFilter<"AdjustmentItem"> | $Enums.AdjustmentReason
@@ -275,6 +287,7 @@ export type AdjustmentItemWhereInput = {
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   adjustment?: Prisma.XOR<Prisma.AdjustmentScalarRelationFilter, Prisma.AdjustmentWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }
 
 export type AdjustmentItemOrderByWithRelationInput = {
@@ -282,6 +295,7 @@ export type AdjustmentItemOrderByWithRelationInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   reason?: Prisma.SortOrder
@@ -291,6 +305,7 @@ export type AdjustmentItemOrderByWithRelationInput = {
   grade?: Prisma.GradeOrderByWithRelationInput
   adjustment?: Prisma.AdjustmentOrderByWithRelationInput
   variant?: Prisma.WoodVariantOrderByWithRelationInput
+  lot?: Prisma.LotOrderByWithRelationInput
 }
 
 export type AdjustmentItemWhereUniqueInput = Prisma.AtLeast<{
@@ -301,6 +316,7 @@ export type AdjustmentItemWhereUniqueInput = Prisma.AtLeast<{
   adjustmentId?: Prisma.IntFilter<"AdjustmentItem"> | number
   gradeId?: Prisma.IntNullableFilter<"AdjustmentItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"AdjustmentItem"> | number
+  lotId?: Prisma.IntFilter<"AdjustmentItem"> | number
   quantity?: Prisma.IntFilter<"AdjustmentItem"> | number
   type?: Prisma.EnumAdjustmentTypeFilter<"AdjustmentItem"> | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFilter<"AdjustmentItem"> | $Enums.AdjustmentReason
@@ -310,6 +326,7 @@ export type AdjustmentItemWhereUniqueInput = Prisma.AtLeast<{
   grade?: Prisma.XOR<Prisma.GradeNullableScalarRelationFilter, Prisma.GradeWhereInput> | null
   adjustment?: Prisma.XOR<Prisma.AdjustmentScalarRelationFilter, Prisma.AdjustmentWhereInput>
   variant?: Prisma.XOR<Prisma.WoodVariantScalarRelationFilter, Prisma.WoodVariantWhereInput>
+  lot?: Prisma.XOR<Prisma.LotScalarRelationFilter, Prisma.LotWhereInput>
 }, "id">
 
 export type AdjustmentItemOrderByWithAggregationInput = {
@@ -317,6 +334,7 @@ export type AdjustmentItemOrderByWithAggregationInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrderInput | Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   reason?: Prisma.SortOrder
@@ -338,6 +356,7 @@ export type AdjustmentItemScalarWhereWithAggregatesInput = {
   adjustmentId?: Prisma.IntWithAggregatesFilter<"AdjustmentItem"> | number
   gradeId?: Prisma.IntNullableWithAggregatesFilter<"AdjustmentItem"> | number | null
   woodVariantId?: Prisma.IntWithAggregatesFilter<"AdjustmentItem"> | number
+  lotId?: Prisma.IntWithAggregatesFilter<"AdjustmentItem"> | number
   quantity?: Prisma.IntWithAggregatesFilter<"AdjustmentItem"> | number
   type?: Prisma.EnumAdjustmentTypeWithAggregatesFilter<"AdjustmentItem"> | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonWithAggregatesFilter<"AdjustmentItem"> | $Enums.AdjustmentReason
@@ -356,6 +375,7 @@ export type AdjustmentItemCreateInput = {
   grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
   adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
 export type AdjustmentItemUncheckedCreateInput = {
@@ -363,6 +383,7 @@ export type AdjustmentItemUncheckedCreateInput = {
   adjustmentId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -381,6 +402,7 @@ export type AdjustmentItemUpdateInput = {
   grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
   adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
 export type AdjustmentItemUncheckedUpdateInput = {
@@ -388,6 +410,7 @@ export type AdjustmentItemUncheckedUpdateInput = {
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -401,6 +424,7 @@ export type AdjustmentItemCreateManyInput = {
   adjustmentId: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -423,6 +447,7 @@ export type AdjustmentItemUncheckedUpdateManyInput = {
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -446,6 +471,7 @@ export type AdjustmentItemCountOrderByAggregateInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   reason?: Prisma.SortOrder
@@ -459,6 +485,7 @@ export type AdjustmentItemAvgOrderByAggregateInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
 
@@ -467,6 +494,7 @@ export type AdjustmentItemMaxOrderByAggregateInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   reason?: Prisma.SortOrder
@@ -480,6 +508,7 @@ export type AdjustmentItemMinOrderByAggregateInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   type?: Prisma.SortOrder
   reason?: Prisma.SortOrder
@@ -493,6 +522,7 @@ export type AdjustmentItemSumOrderByAggregateInput = {
   adjustmentId?: Prisma.SortOrder
   gradeId?: Prisma.SortOrder
   woodVariantId?: Prisma.SortOrder
+  lotId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
 }
 
@@ -580,6 +610,48 @@ export type AdjustmentItemUncheckedUpdateManyWithoutGradeNestedInput = {
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
 }
 
+export type AdjustmentItemCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput> | Prisma.AdjustmentItemCreateWithoutLotInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutLotInput | Prisma.AdjustmentItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyLotInputEnvelope
+  connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+}
+
+export type AdjustmentItemUncheckedCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput> | Prisma.AdjustmentItemCreateWithoutLotInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutLotInput | Prisma.AdjustmentItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyLotInputEnvelope
+  connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+}
+
+export type AdjustmentItemUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput> | Prisma.AdjustmentItemCreateWithoutLotInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutLotInput | Prisma.AdjustmentItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutLotInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyLotInputEnvelope
+  set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutLotInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutLotInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
+}
+
+export type AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput> | Prisma.AdjustmentItemCreateWithoutLotInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutLotInput | Prisma.AdjustmentItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutLotInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyLotInputEnvelope
+  set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutLotInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutLotInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
+}
+
 export type AdjustmentItemCreateNestedManyWithoutAdjustmentInput = {
   create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
   connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
@@ -639,12 +711,14 @@ export type AdjustmentItemCreateWithoutVariantInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
   adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
 export type AdjustmentItemUncheckedCreateWithoutVariantInput = {
   id?: number
   adjustmentId: number
   gradeId?: number | null
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -687,6 +761,7 @@ export type AdjustmentItemScalarWhereInput = {
   adjustmentId?: Prisma.IntFilter<"AdjustmentItem"> | number
   gradeId?: Prisma.IntNullableFilter<"AdjustmentItem"> | number | null
   woodVariantId?: Prisma.IntFilter<"AdjustmentItem"> | number
+  lotId?: Prisma.IntFilter<"AdjustmentItem"> | number
   quantity?: Prisma.IntFilter<"AdjustmentItem"> | number
   type?: Prisma.EnumAdjustmentTypeFilter<"AdjustmentItem"> | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFilter<"AdjustmentItem"> | $Enums.AdjustmentReason
@@ -704,12 +779,14 @@ export type AdjustmentItemCreateWithoutGradeInput = {
   updatedAt?: Date | string
   adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
 export type AdjustmentItemUncheckedCreateWithoutGradeInput = {
   id?: number
   adjustmentId: number
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -744,6 +821,57 @@ export type AdjustmentItemUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutGradeInput>
 }
 
+export type AdjustmentItemCreateWithoutLotInput = {
+  quantity: number
+  type: $Enums.AdjustmentType
+  reason: $Enums.AdjustmentReason
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
+  adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
+}
+
+export type AdjustmentItemUncheckedCreateWithoutLotInput = {
+  id?: number
+  adjustmentId: number
+  gradeId?: number | null
+  woodVariantId: number
+  quantity: number
+  type: $Enums.AdjustmentType
+  reason: $Enums.AdjustmentReason
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AdjustmentItemCreateOrConnectWithoutLotInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput>
+}
+
+export type AdjustmentItemCreateManyLotInputEnvelope = {
+  data: Prisma.AdjustmentItemCreateManyLotInput | Prisma.AdjustmentItemCreateManyLotInput[]
+  skipDuplicates?: boolean
+}
+
+export type AdjustmentItemUpsertWithWhereUniqueWithoutLotInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutLotInput, Prisma.AdjustmentItemUncheckedUpdateWithoutLotInput>
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutLotInput, Prisma.AdjustmentItemUncheckedCreateWithoutLotInput>
+}
+
+export type AdjustmentItemUpdateWithWhereUniqueWithoutLotInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutLotInput, Prisma.AdjustmentItemUncheckedUpdateWithoutLotInput>
+}
+
+export type AdjustmentItemUpdateManyWithWhereWithoutLotInput = {
+  where: Prisma.AdjustmentItemScalarWhereInput
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotInput>
+}
+
 export type AdjustmentItemCreateWithoutAdjustmentInput = {
   quantity: number
   type: $Enums.AdjustmentType
@@ -753,12 +881,14 @@ export type AdjustmentItemCreateWithoutAdjustmentInput = {
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
   variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
 export type AdjustmentItemUncheckedCreateWithoutAdjustmentInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -797,6 +927,7 @@ export type AdjustmentItemCreateManyVariantInput = {
   id?: number
   adjustmentId: number
   gradeId?: number | null
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -814,12 +945,14 @@ export type AdjustmentItemUpdateWithoutVariantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
   adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
 export type AdjustmentItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -832,6 +965,7 @@ export type AdjustmentItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -844,6 +978,7 @@ export type AdjustmentItemCreateManyGradeInput = {
   id?: number
   adjustmentId: number
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -861,12 +996,14 @@ export type AdjustmentItemUpdateWithoutGradeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
 export type AdjustmentItemUncheckedUpdateWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -878,6 +1015,58 @@ export type AdjustmentItemUncheckedUpdateWithoutGradeInput = {
 export type AdjustmentItemUncheckedUpdateManyWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
+  reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AdjustmentItemCreateManyLotInput = {
+  id?: number
+  adjustmentId: number
+  gradeId?: number | null
+  woodVariantId: number
+  quantity: number
+  type: $Enums.AdjustmentType
+  reason: $Enums.AdjustmentReason
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AdjustmentItemUpdateWithoutLotInput = {
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
+  reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
+  adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
+}
+
+export type AdjustmentItemUncheckedUpdateWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
+  reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AdjustmentItemUncheckedUpdateManyWithoutLotInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
@@ -891,6 +1080,7 @@ export type AdjustmentItemCreateManyAdjustmentInput = {
   id?: number
   gradeId?: number | null
   woodVariantId: number
+  lotId: number
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -908,12 +1098,14 @@ export type AdjustmentItemUpdateWithoutAdjustmentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
   variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
 export type AdjustmentItemUncheckedUpdateWithoutAdjustmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -926,6 +1118,7 @@ export type AdjustmentItemUncheckedUpdateManyWithoutAdjustmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -941,6 +1134,7 @@ export type AdjustmentItemSelect<ExtArgs extends runtime.Types.Extensions.Intern
   adjustmentId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   quantity?: boolean
   type?: boolean
   reason?: boolean
@@ -950,6 +1144,7 @@ export type AdjustmentItemSelect<ExtArgs extends runtime.Types.Extensions.Intern
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adjustmentItem"]>
 
 export type AdjustmentItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -957,6 +1152,7 @@ export type AdjustmentItemSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   adjustmentId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   quantity?: boolean
   type?: boolean
   reason?: boolean
@@ -966,6 +1162,7 @@ export type AdjustmentItemSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adjustmentItem"]>
 
 export type AdjustmentItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -973,6 +1170,7 @@ export type AdjustmentItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   adjustmentId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   quantity?: boolean
   type?: boolean
   reason?: boolean
@@ -982,6 +1180,7 @@ export type AdjustmentItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adjustmentItem"]>
 
 export type AdjustmentItemSelectScalar = {
@@ -989,6 +1188,7 @@ export type AdjustmentItemSelectScalar = {
   adjustmentId?: boolean
   gradeId?: boolean
   woodVariantId?: boolean
+  lotId?: boolean
   quantity?: boolean
   type?: boolean
   reason?: boolean
@@ -997,21 +1197,24 @@ export type AdjustmentItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AdjustmentItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adjustmentId" | "gradeId" | "woodVariantId" | "quantity" | "type" | "reason" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["adjustmentItem"]>
+export type AdjustmentItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "adjustmentId" | "gradeId" | "woodVariantId" | "lotId" | "quantity" | "type" | "reason" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["adjustmentItem"]>
 export type AdjustmentItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type AdjustmentItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 export type AdjustmentItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grade?: boolean | Prisma.AdjustmentItem$gradeArgs<ExtArgs>
   adjustment?: boolean | Prisma.AdjustmentDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.WoodVariantDefaultArgs<ExtArgs>
+  lot?: boolean | Prisma.LotDefaultArgs<ExtArgs>
 }
 
 export type $AdjustmentItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1020,12 +1223,14 @@ export type $AdjustmentItemPayload<ExtArgs extends runtime.Types.Extensions.Inte
     grade: Prisma.$GradePayload<ExtArgs> | null
     adjustment: Prisma.$AdjustmentPayload<ExtArgs>
     variant: Prisma.$WoodVariantPayload<ExtArgs>
+    lot: Prisma.$LotPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     adjustmentId: number
     gradeId: number | null
     woodVariantId: number
+    lotId: number
     quantity: number
     type: $Enums.AdjustmentType
     reason: $Enums.AdjustmentReason
@@ -1429,6 +1634,7 @@ export interface Prisma__AdjustmentItemClient<T, Null = never, ExtArgs extends r
   grade<T extends Prisma.AdjustmentItem$gradeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdjustmentItem$gradeArgs<ExtArgs>>): Prisma.Prisma__GradeClient<runtime.Types.Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   adjustment<T extends Prisma.AdjustmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdjustmentDefaultArgs<ExtArgs>>): Prisma.Prisma__AdjustmentClient<runtime.Types.Result.GetResult<Prisma.$AdjustmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   variant<T extends Prisma.WoodVariantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WoodVariantDefaultArgs<ExtArgs>>): Prisma.Prisma__WoodVariantClient<runtime.Types.Result.GetResult<Prisma.$WoodVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  lot<T extends Prisma.LotDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LotDefaultArgs<ExtArgs>>): Prisma.Prisma__LotClient<runtime.Types.Result.GetResult<Prisma.$LotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1462,6 +1668,7 @@ export interface AdjustmentItemFieldRefs {
   readonly adjustmentId: Prisma.FieldRef<"AdjustmentItem", 'Int'>
   readonly gradeId: Prisma.FieldRef<"AdjustmentItem", 'Int'>
   readonly woodVariantId: Prisma.FieldRef<"AdjustmentItem", 'Int'>
+  readonly lotId: Prisma.FieldRef<"AdjustmentItem", 'Int'>
   readonly quantity: Prisma.FieldRef<"AdjustmentItem", 'Int'>
   readonly type: Prisma.FieldRef<"AdjustmentItem", 'AdjustmentType'>
   readonly reason: Prisma.FieldRef<"AdjustmentItem", 'AdjustmentReason'>

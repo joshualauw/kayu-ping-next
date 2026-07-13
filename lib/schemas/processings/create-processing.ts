@@ -7,27 +7,29 @@ export const createProcessingSchema = z.object({
   processingDate: z.string().min(1),
   locationId: z.number().int().positive(),
   notes: z.string().nullish(),
-  inputItems: z
+  groups: z
     .array(
       z.object({
-        inventoryId: z.number().int().positive(),
-        woodVariantId: z.number().int().positive(),
-        quantity: z.number().int().positive(),
-      }),
-    )
-    .min(1),
-  outputItems: z
-    .array(
-      z.object({
-        woodId: z.number().int().positive(),
-        materialId: z.number().int().positive(),
-        measurement: z.enum(["CUBE", "CYLINDER"]),
-        width: z.number().positive().nullable().optional(),
-        height: z.number().positive().nullable().optional(),
-        diameterSmall: z.number().positive().nullable().optional(),
-        diameterLarge: z.number().positive().nullable().optional(),
-        length: z.number().positive(),
-        quantity: z.number().int().positive(),
+        input: z.object({
+          inventoryId: z.number().int().positive(),
+          woodVariantId: z.number().int().positive(),
+          quantity: z.number().int().positive(),
+        }),
+        outputs: z
+          .array(
+            z.object({
+              woodId: z.number().int().positive(),
+              materialId: z.number().int().positive(),
+              measurement: z.enum(["CUBE", "CYLINDER"]),
+              width: z.number().positive().nullable().optional(),
+              height: z.number().positive().nullable().optional(),
+              diameterSmall: z.number().positive().nullable().optional(),
+              diameterLarge: z.number().positive().nullable().optional(),
+              length: z.number().positive(),
+              quantity: z.number().int().positive(),
+            }),
+          )
+          .min(1),
       }),
     )
     .min(1),
@@ -60,6 +62,7 @@ export const getCreateProcessingFormSchema = (materials: { id: number; measureme
             originalStock: z.number().optional(),
             variant: z.custom<LocationInventoryItem["variant"]>().optional(),
             grade: z.custom<LocationInventoryItem["grade"]>().optional(),
+            lot: z.custom<LocationInventoryItem["lot"]>().optional(),
           }),
           outputs: z
             .array(

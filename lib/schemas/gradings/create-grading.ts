@@ -6,23 +6,25 @@ export const createGradingSchema = z.object({
   gradingDate: z.string().min(1),
   locationId: z.number().int().positive(),
   notes: z.string().nullish(),
-  beforeItems: z
+  groups: z
     .array(
       z.object({
-        inventoryId: z.number().int().positive(),
-        woodVariantId: z.number().int().positive(),
-        gradeId: z.number().int().positive().nullable(),
-        quantity: z.number().int().positive(),
-      }),
-    )
-    .min(1),
-  afterItems: z
-    .array(
-      z.object({
-        woodVariantId: z.number().int().positive(),
-        gradeId: z.number().int().positive().nullable(),
-        quantity: z.number().int().positive(),
-        comment: z.string().nullish(),
+        input: z.object({
+          inventoryId: z.number().int().positive(),
+          woodVariantId: z.number().int().positive(),
+          gradeId: z.number().int().positive().nullable(),
+          quantity: z.number().int().positive(),
+        }),
+        outputs: z
+          .array(
+            z.object({
+              woodVariantId: z.number().int().positive(),
+              gradeId: z.number().int().positive().nullable(),
+              quantity: z.number().int().positive(),
+              comment: z.string().nullish(),
+            }),
+          )
+          .min(1),
       }),
     )
     .min(1),
@@ -54,6 +56,7 @@ export const getCreateGradingFormSchema = () =>
               .transform((val) => (val === "ungraded" || val === "" || val === null || val === undefined ? null : Number(val))),
             variant: z.custom<LocationInventoryItem["variant"]>().optional(),
             grade: z.custom<LocationInventoryItem["grade"]>().optional(),
+            lot: z.custom<LocationInventoryItem["lot"]>().optional(),
           }),
           outputs: z
             .array(

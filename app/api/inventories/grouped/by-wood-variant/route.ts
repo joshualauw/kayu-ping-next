@@ -19,6 +19,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     if (!user) throw new AuthorizationError();
 
     const { searchParams } = new URL(request.url);
+    const showEmptyInventory = searchParams.get("showEmptyInventory") === "true";
 
     const parsed = tableQuerySchema.parse({
       page: searchParams.get("page"),
@@ -26,7 +27,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       search: searchParams.get("search"),
     });
 
-    const { items: inventories, count } = await inventoryService.getAllInventoriesByWoodVariant(parsed);
+    const { items: inventories, count } = await inventoryService.getAllInventoriesByWoodVariant(parsed, showEmptyInventory);
 
     return NextResponse.json(successResponse({ inventories, count }, "Inventories by wood variant fetched successfully"));
   } catch (error) {

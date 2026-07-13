@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, Grade } from "@/generated/prisma/client";
+import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
 import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
@@ -20,6 +20,7 @@ export type PurchaseDetail = Purchase & {
 
 export type PurchaseItemWithVariant = PurchaseItem & {
   grade: Grade | null;
+  lot: Lot;
   variant: WoodVariant & {
     wood: Wood;
     material: Material;
@@ -71,6 +72,7 @@ class PurchaseService {
         items: {
           include: {
             grade: true,
+            lot: true,
             variant: {
               include: {
                 wood: true,
@@ -111,8 +113,30 @@ class PurchaseService {
       let totalVolume = 0;
       let totalPrice = 0;
 
-      const itemsWithVolume = await Promise.all(
-        data.items.map(async (item) => {
+      const dateStr = dayjs(purchaseDate).format("DDMMYY");
+      const prefix = `LOT-${dateStr}-`;
+      const existingCount = await tx.lot.count({
+        where: {
+          code: {
+            startsWith: prefix,
+          },
+        },
+      });
+
+      const flattenedItems: any[] = [];
+      let lotCounter = existingCount;
+
+      for (const group of data.groups) {
+        lotCounter++;
+        const lotCode = `LOT-${dateStr}-${String(lotCounter).padStart(3, "0")}`;
+        const lot = await tx.lot.create({
+          data: {
+            code: lotCode,
+            createdAt: purchaseDate,
+          },
+        });
+
+        for (const item of group.items) {
           const volume = calculateWoodVolume({
             width: item.width ?? undefined,
             height: item.height ?? undefined,
@@ -128,9 +152,13 @@ class PurchaseService {
           totalVolume += itemTotalVolume;
           totalPrice += itemSubtotal;
 
-          return { ...item, volume };
-        }),
-      );
+          flattenedItems.push({
+            ...item,
+            volume,
+            lotId: lot.id,
+          });
+        }
+      }
 
       const purchase = await tx.purchase.create({
         data: {
@@ -144,7 +172,7 @@ class PurchaseService {
         },
       });
 
-      for (const item of itemsWithVolume) {
+      for (const item of flattenedItems) {
         let variant = await tx.woodVariant.findFirst({
           where: {
             woodId: item.woodId,
@@ -179,6 +207,7 @@ class PurchaseService {
             pricePerCubic: item.pricePerCubic,
             quantity: item.quantity,
             gradeId: null,
+            lotId: item.lotId,
           },
         });
 
@@ -187,6 +216,7 @@ class PurchaseService {
             woodVariantId: variant.id,
             locationId: data.locationId,
             gradeId: null,
+            lotId: item.lotId,
           },
         });
 
@@ -203,6 +233,7 @@ class PurchaseService {
               woodVariantId: variant.id,
               locationId: data.locationId,
               gradeId: null,
+              lotId: item.lotId,
               stock: item.quantity,
             },
           });
@@ -216,6 +247,7 @@ class PurchaseService {
             type: "IN",
             quantity: item.quantity,
             gradeId: null,
+            lotId: item.lotId,
             referenceType: "PURCHASE",
             referenceId: purchase.id,
           },

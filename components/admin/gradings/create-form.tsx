@@ -20,6 +20,7 @@ import {
   getCreateGradingFormSchema,
   type CreateGradingFormInput,
   type CreateGradingFormOutput,
+  CreateGradingSchema,
 } from "@/lib/schemas/gradings/create-grading";
 import { createGradingAction } from "@/lib/actions/gradings/create-grading";
 import dayjs from "@/lib/integrations/dayjs";
@@ -49,37 +50,32 @@ export default function GradingCreateForm({ locations, grades, woods, materials 
   });
 
   async function onSubmit(data: CreateGradingFormOutput) {
-    const beforeItems: any[] = [];
-    const afterItems: any[] = [];
+    const mappedGroups = (data.groups || []).map((group) => {
+      const totalQty = (group.outputs || []).reduce((sum, out) => sum + (Number(out.quantity) || 0), 0);
 
-    (data.groups || []).forEach((group) => {
-      if (group.input) {
-        const totalQty = (group.outputs || []).reduce((sum, out) => sum + (Number(out.quantity) || 0), 0);
+      const mappedOutputs = (group.outputs || []).map((out) => ({
+        woodVariantId: group.input.woodVariantId,
+        gradeId: out.gradeId ?? null,
+        quantity: out.quantity,
+        comment: out.comment || null,
+      }));
 
-        beforeItems.push({
+      return {
+        input: {
           inventoryId: group.input.inventoryId,
           woodVariantId: group.input.woodVariantId,
           gradeId: group.input.gradeId ?? null,
           quantity: totalQty,
-        });
-
-        (group.outputs || []).forEach((out) => {
-          afterItems.push({
-            woodVariantId: group.input.woodVariantId,
-            gradeId: out.gradeId ?? null,
-            quantity: out.quantity,
-            comment: out.comment || null,
-          });
-        });
-      }
+        },
+        outputs: mappedOutputs,
+      };
     });
 
-    const formattedData = {
+    const formattedData: CreateGradingSchema = {
       gradingDate: data.gradingDate,
       locationId: data.locationId,
       notes: data.notes || null,
-      beforeItems,
-      afterItems,
+      groups: mappedGroups,
     };
 
     setIsSubmitting(true);
