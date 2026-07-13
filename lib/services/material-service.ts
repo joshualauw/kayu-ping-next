@@ -6,7 +6,7 @@ import { CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
 import { UpdateMaterialSchema } from "@/lib/schemas/materials/update-material";
 
 export type MaterialListItem = Material;
-export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement">;
+export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement" | "code">;
 
 class MaterialService {
   async getAllMaterials(params: TableQuery): Promise<TableResponse<MaterialListItem>> {
@@ -14,7 +14,7 @@ class MaterialService {
     const where: MaterialWhereInput = {};
 
     if (search) {
-      where.OR = [{ name: { contains: search, mode: "insensitive" } }];
+      where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
     }
 
     const [count, items] = await Promise.all([
@@ -38,8 +38,26 @@ class MaterialService {
         id: true,
         name: true,
         measurement: true,
+        code: true,
       },
     });
+  }
+
+  async checkCodeExists(code: string, excludeId?: number): Promise<boolean> {
+    if (excludeId !== undefined) {
+      const existing = await prisma.material.findFirst({
+        where: {
+          code,
+          NOT: { id: excludeId },
+        },
+      });
+      return !!existing;
+    } else {
+      const existing = await prisma.material.findUnique({
+        where: { code },
+      });
+      return !!existing;
+    }
   }
 
   async getMaterialById(id: number): Promise<Material | null> {
@@ -49,19 +67,27 @@ class MaterialService {
   }
 
   async createMaterial(data: CreateMaterialSchema): Promise<Material> {
+    const codeExist = await this.checkCodeExists(data.code);
+    if (codeExist) throw new Error("material code already exist");
+
     return prisma.material.create({
       data: {
         name: data.name,
+        code: data.code,
         measurement: data.measurement,
       },
     });
   }
 
   async updateMaterial(id: number, data: UpdateMaterialSchema): Promise<Material> {
+    const codeExist = await this.checkCodeExists(data.code, id);
+    if (codeExist) throw new Error("material code already exist");
+
     return prisma.material.update({
       where: { id },
       data: {
         name: data.name,
+        code: data.code,
       },
     });
   }

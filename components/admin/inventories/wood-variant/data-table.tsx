@@ -52,7 +52,7 @@ export default function WoodVariantInventoriesDataTable() {
             <div className="font-medium">
               {generateWoodVariantLabel({
                 woodCode: variant.wood.code,
-                materialCode: variant.material.name,
+                materialCode: variant.material.code,
                 width: variant.width,
                 height: variant.height,
                 diameterSmall: variant.diameterSmall,

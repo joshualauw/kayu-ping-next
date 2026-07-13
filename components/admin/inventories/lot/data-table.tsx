@@ -133,7 +133,7 @@ export default function LotInventoriesDataTable() {
                   <td className="h-9 px-3 align-middle font-medium">
                     {generateWoodVariantLabel({
                       woodCode: item.variant.wood.code,
-                      materialCode: item.variant.material.name,
+                      materialCode: item.variant.material.code,
                       width: item.variant.width,
                       height: item.variant.height,
                       diameterSmall: item.variant.diameterSmall,

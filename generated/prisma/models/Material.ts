@@ -37,6 +37,7 @@ export type MaterialSumAggregateOutputType = {
 export type MaterialMinAggregateOutputType = {
   id: number | null
   name: string | null
+  code: string | null
   createdAt: Date | null
   updatedAt: Date | null
   measurement: $Enums.Measurement | null
@@ -45,6 +46,7 @@ export type MaterialMinAggregateOutputType = {
 export type MaterialMaxAggregateOutputType = {
   id: number | null
   name: string | null
+  code: string | null
   createdAt: Date | null
   updatedAt: Date | null
   measurement: $Enums.Measurement | null
@@ -53,6 +55,7 @@ export type MaterialMaxAggregateOutputType = {
 export type MaterialCountAggregateOutputType = {
   id: number
   name: number
+  code: number
   createdAt: number
   updatedAt: number
   measurement: number
@@ -71,6 +74,7 @@ export type MaterialSumAggregateInputType = {
 export type MaterialMinAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   createdAt?: true
   updatedAt?: true
   measurement?: true
@@ -79,6 +83,7 @@ export type MaterialMinAggregateInputType = {
 export type MaterialMaxAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   createdAt?: true
   updatedAt?: true
   measurement?: true
@@ -87,6 +92,7 @@ export type MaterialMaxAggregateInputType = {
 export type MaterialCountAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   createdAt?: true
   updatedAt?: true
   measurement?: true
@@ -182,6 +188,7 @@ export type MaterialGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type MaterialGroupByOutputType = {
   id: number
   name: string
+  code: string
   createdAt: Date
   updatedAt: Date
   measurement: $Enums.Measurement
@@ -213,6 +220,7 @@ export type MaterialWhereInput = {
   NOT?: Prisma.MaterialWhereInput | Prisma.MaterialWhereInput[]
   id?: Prisma.IntFilter<"Material"> | number
   name?: Prisma.StringFilter<"Material"> | string
+  code?: Prisma.StringFilter<"Material"> | string
   createdAt?: Prisma.DateTimeFilter<"Material"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Material"> | Date | string
   measurement?: Prisma.EnumMeasurementFilter<"Material"> | $Enums.Measurement
@@ -222,6 +230,7 @@ export type MaterialWhereInput = {
 export type MaterialOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   measurement?: Prisma.SortOrder
@@ -230,6 +239,7 @@ export type MaterialOrderByWithRelationInput = {
 
 export type MaterialWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  code?: string
   AND?: Prisma.MaterialWhereInput | Prisma.MaterialWhereInput[]
   OR?: Prisma.MaterialWhereInput[]
   NOT?: Prisma.MaterialWhereInput | Prisma.MaterialWhereInput[]
@@ -238,11 +248,12 @@ export type MaterialWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Material"> | Date | string
   measurement?: Prisma.EnumMeasurementFilter<"Material"> | $Enums.Measurement
   variants?: Prisma.WoodVariantListRelationFilter
-}, "id">
+}, "id" | "code">
 
 export type MaterialOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   measurement?: Prisma.SortOrder
@@ -259,6 +270,7 @@ export type MaterialScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MaterialScalarWhereWithAggregatesInput | Prisma.MaterialScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Material"> | number
   name?: Prisma.StringWithAggregatesFilter<"Material"> | string
+  code?: Prisma.StringWithAggregatesFilter<"Material"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Material"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Material"> | Date | string
   measurement?: Prisma.EnumMeasurementWithAggregatesFilter<"Material"> | $Enums.Measurement
@@ -266,6 +278,7 @@ export type MaterialScalarWhereWithAggregatesInput = {
 
 export type MaterialCreateInput = {
   name: string
+  code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   measurement: $Enums.Measurement
@@ -275,6 +288,7 @@ export type MaterialCreateInput = {
 export type MaterialUncheckedCreateInput = {
   id?: number
   name: string
+  code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   measurement: $Enums.Measurement
@@ -283,6 +297,7 @@ export type MaterialUncheckedCreateInput = {
 
 export type MaterialUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -292,6 +307,7 @@ export type MaterialUpdateInput = {
 export type MaterialUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -301,6 +317,7 @@ export type MaterialUncheckedUpdateInput = {
 export type MaterialCreateManyInput = {
   id?: number
   name: string
+  code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   measurement: $Enums.Measurement
@@ -308,6 +325,7 @@ export type MaterialCreateManyInput = {
 
 export type MaterialUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -316,6 +334,7 @@ export type MaterialUpdateManyMutationInput = {
 export type MaterialUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -324,6 +343,7 @@ export type MaterialUncheckedUpdateManyInput = {
 export type MaterialCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   measurement?: Prisma.SortOrder
@@ -336,6 +356,7 @@ export type MaterialAvgOrderByAggregateInput = {
 export type MaterialMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   measurement?: Prisma.SortOrder
@@ -344,6 +365,7 @@ export type MaterialMaxOrderByAggregateInput = {
 export type MaterialMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   measurement?: Prisma.SortOrder
@@ -378,6 +400,7 @@ export type MaterialUpdateOneRequiredWithoutVariantsNestedInput = {
 
 export type MaterialCreateWithoutVariantsInput = {
   name: string
+  code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   measurement: $Enums.Measurement
@@ -386,6 +409,7 @@ export type MaterialCreateWithoutVariantsInput = {
 export type MaterialUncheckedCreateWithoutVariantsInput = {
   id?: number
   name: string
+  code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   measurement: $Enums.Measurement
@@ -409,6 +433,7 @@ export type MaterialUpdateToOneWithWhereWithoutVariantsInput = {
 
 export type MaterialUpdateWithoutVariantsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -417,6 +442,7 @@ export type MaterialUpdateWithoutVariantsInput = {
 export type MaterialUncheckedUpdateWithoutVariantsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurement?: Prisma.EnumMeasurementFieldUpdateOperationsInput | $Enums.Measurement
@@ -456,6 +482,7 @@ export type MaterialCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Typ
 export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   measurement?: boolean
@@ -466,6 +493,7 @@ export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type MaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   measurement?: boolean
@@ -474,6 +502,7 @@ export type MaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type MaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   measurement?: boolean
@@ -482,12 +511,13 @@ export type MaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type MaterialSelectScalar = {
   id?: boolean
   name?: boolean
+  code?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   measurement?: boolean
 }
 
-export type MaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "measurement", ExtArgs["result"]["material"]>
+export type MaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "createdAt" | "updatedAt" | "measurement", ExtArgs["result"]["material"]>
 export type MaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variants?: boolean | Prisma.Material$variantsArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
@@ -503,6 +533,7 @@ export type $MaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
+    code: string
     createdAt: Date
     updatedAt: Date
     measurement: $Enums.Measurement
@@ -932,6 +963,7 @@ export interface Prisma__MaterialClient<T, Null = never, ExtArgs extends runtime
 export interface MaterialFieldRefs {
   readonly id: Prisma.FieldRef<"Material", 'Int'>
   readonly name: Prisma.FieldRef<"Material", 'String'>
+  readonly code: Prisma.FieldRef<"Material", 'String'>
   readonly createdAt: Prisma.FieldRef<"Material", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Material", 'DateTime'>
   readonly measurement: Prisma.FieldRef<"Material", 'Measurement'>

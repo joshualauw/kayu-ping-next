@@ -106,13 +106,13 @@ async function main() {
 
   // 5. Seed materials
   const materials = [
-    { name: "Round Log", measurement: Measurement.CYLINDER },
-    { name: "Sawn Timber", measurement: Measurement.CUBE },
+    { name: "Round Log", measurement: Measurement.CYLINDER, code: "LOG" },
+    { name: "Sawn Timber", measurement: Measurement.CUBE, code: "PCS" },
   ];
 
   for (const material of materials) {
     const existing = await prisma.material.findFirst({
-      where: { name: material.name },
+      where: { code: material.code },
     });
     if (!existing) {
       await prisma.material.create({

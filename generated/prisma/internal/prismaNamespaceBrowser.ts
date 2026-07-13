@@ -145,6 +145,7 @@ export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typ
 export const MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  code: 'code',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   measurement: 'measurement'

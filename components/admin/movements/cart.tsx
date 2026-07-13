@@ -133,7 +133,7 @@ export default function MovementsCart({ control, errors, woods, materials, grade
                     const woodLabel = itemData?.variant
                       ? generateWoodVariantLabel({
                           woodCode: itemData.variant.wood.code,
-                          materialCode: itemData.variant.material.name,
+                          materialCode: itemData.variant.material.code,
                           width: itemData.variant.width,
                           height: itemData.variant.height,
                           diameterSmall: itemData.variant.diameterSmall,

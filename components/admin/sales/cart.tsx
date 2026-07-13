@@ -145,7 +145,7 @@ export default function SalesCart({ control, errors, woods, materials, grades }:
                     const woodLabel = itemData?.variant
                       ? generateWoodVariantLabel({
                           woodCode: itemData.variant.wood.code,
-                          materialCode: itemData.variant.material.name,
+                          materialCode: itemData.variant.material.code,
                           width: itemData.variant.width,
                           height: itemData.variant.height,
                           diameterSmall: itemData.variant.diameterSmall,

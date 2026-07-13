@@ -43,10 +43,10 @@ export function generateWoodVariantLabel(params: WoodVariantLabelParams) {
   const { woodCode, materialCode, width, height, diameterSmall, diameterLarge, length, measurement } = params;
 
   if (measurement === Measurement.CUBE) {
-    return `${woodCode} - ${materialCode} (${width}/${height}x${length}cm)`;
+    return `${woodCode}-${materialCode}-${width}/${height}/${length}`;
   }
   if (measurement === Measurement.CYLINDER) {
-    return `${woodCode} - ${materialCode} (D${diameterSmall}/D${diameterLarge}x${length}cm)`;
+    return `${woodCode}-${materialCode}-${diameterSmall}/${diameterLarge}/${length}`;
   }
   return "-";
 }

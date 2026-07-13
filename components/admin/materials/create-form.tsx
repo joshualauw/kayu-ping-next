@@ -11,7 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Measurement } from "@/generated/prisma/enums";
 import { createMaterialAction } from "@/lib/actions/materials/create-material";
-import { createMaterialFormSchema, type CreateMaterialFormInput, type CreateMaterialFormOutput } from "@/lib/schemas/materials/create-material";
+import {
+  createMaterialFormSchema,
+  type CreateMaterialFormInput,
+  type CreateMaterialFormOutput,
+} from "@/lib/schemas/materials/create-material";
 import { ArrowLeft } from "lucide-react";
 
 export default function MaterialCreateForm() {
@@ -22,6 +26,7 @@ export default function MaterialCreateForm() {
     resolver: zodResolver(createMaterialFormSchema),
     defaultValues: {
       name: "",
+      code: "",
       measurement: undefined,
     },
   });
@@ -53,6 +58,18 @@ export default function MaterialCreateForm() {
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Name</FieldLabel>
                   <Input {...field} placeholder="Material Name" />
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                </Field>
+              )}
+            />
+
+            <Controller
+              name="code"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Code</FieldLabel>
+                  <Input {...field} placeholder="Material Code" />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}

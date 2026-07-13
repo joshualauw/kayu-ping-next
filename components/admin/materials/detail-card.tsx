@@ -12,6 +12,7 @@ interface MaterialDetailCardProps {
   material: {
     id: number;
     name: string;
+    code: string;
     measurement: Measurement;
     createdAt: Date;
     updatedAt: Date;
@@ -30,8 +31,13 @@ export default function MaterialDetailCard({ material }: MaterialDetailCardProps
       <CardContent className="space-y-4">
         <div className="space-y-4">
           <div className="space-y-1">
+            <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">Code</span>
+            <p className="text-sm font-medium">{material.code}</p>
+          </div>
+
+          <div className="space-y-1">
             <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">Measurement</span>
-            <p className="text-sm font-medium whitespace-pre-wrap">{material.measurement || "-"}</p>
+            <p className="text-sm font-medium whitespace-pre-wrap">{material.measurement}</p>
           </div>
 
           <div className="space-y-1">

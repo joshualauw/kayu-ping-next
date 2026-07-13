@@ -268,7 +268,7 @@ function GradingCartGroup({
   const woodLabel = inputItem.variant
     ? generateWoodVariantLabel({
         woodCode: inputItem.variant.wood.code,
-        materialCode: inputItem.variant.material.name,
+        materialCode: inputItem.variant.material.code,
         width: inputItem.variant.width,
         height: inputItem.variant.height,
         diameterSmall: inputItem.variant.diameterSmall,

@@ -11,13 +11,18 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Measurement } from "@/generated/prisma/enums";
 import { updateMaterialAction } from "@/lib/actions/materials/update-material";
-import { updateMaterialFormSchema, type UpdateMaterialFormInput, type UpdateMaterialFormOutput } from "@/lib/schemas/materials/update-material";
+import {
+  updateMaterialFormSchema,
+  type UpdateMaterialFormInput,
+  type UpdateMaterialFormOutput,
+} from "@/lib/schemas/materials/update-material";
 import { ArrowLeft } from "lucide-react";
 
 interface MaterialUpdateFormProps {
   material: {
     id: number;
     name: string;
+    code: string;
     measurement: Measurement;
   };
 }
@@ -30,6 +35,7 @@ export default function MaterialUpdateForm({ material }: MaterialUpdateFormProps
     resolver: zodResolver(updateMaterialFormSchema),
     defaultValues: {
       name: material.name,
+      code: material.code,
       measurement: material.measurement,
     },
   });
@@ -61,6 +67,18 @@ export default function MaterialUpdateForm({ material }: MaterialUpdateFormProps
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Name</FieldLabel>
                   <Input {...field} placeholder="Material Name" />
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                </Field>
+              )}
+            />
+
+            <Controller
+              name="code"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Code</FieldLabel>
+                  <Input {...field} placeholder="Material Code" />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                 </Field>
               )}

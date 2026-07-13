@@ -61,6 +61,11 @@ export default function MaterialsDataTable() {
         cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
       },
       {
+        accessorKey: "code",
+        header: "Code",
+        cell: ({ row }) => <span className="whitespace-nowrap">{row.original.code}</span>,
+      },
+      {
         accessorKey: "measurement",
         header: "Measurement",
         cell: ({ row }) => <span className="capitalize">{row.original.measurement.toLowerCase()}</span>,

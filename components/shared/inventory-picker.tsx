@@ -85,7 +85,7 @@ export default function InventoryPicker({
 
       const woodLabel = generateWoodVariantLabel({
         woodCode: item.variant.wood.code,
-        materialCode: item.variant.material.name,
+        materialCode: item.variant.material.code,
         width: item.variant.width,
         height: item.variant.height,
         diameterSmall: item.variant.diameterSmall,
@@ -293,7 +293,7 @@ export default function InventoryPicker({
               {paginatedItems.map((item) => {
                 const label = generateWoodVariantLabel({
                   woodCode: item.variant.wood.code,
-                  materialCode: item.variant.material.name,
+                  materialCode: item.variant.material.code,
                   width: item.variant.width,
                   height: item.variant.height,
                   diameterSmall: item.variant.diameterSmall,
@@ -332,24 +332,20 @@ export default function InventoryPicker({
                       )}
                       <div className="space-y-1.5 pr-6">
                         <div className="line-clamp-1 text-sm font-semibold tracking-tight">{label}</div>
-                        <div className="text-xs text-muted-foreground">
-                          Wood species: <span className="font-medium text-foreground">{item.variant.wood.name}</span>
-                        </div>
                         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                          <span>Lot:</span>
-                          <Badge variant="outline" className="font-mono text-[10px] py-0 px-1.5 bg-card">
+                          <Badge variant="outline" className="bg-card px-1.5 py-0 font-mono text-[10px]">
                             {item.lot.code}
                           </Badge>
                         </div>
                       </div>
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t pt-4">
                         <Badge variant="outline" className="bg-muted/30 text-[10px] font-semibold">
-                          {item.grade?.name || "No Grade"}
+                          {item.grade?.name || "Ungraded"}
                         </Badge>
                         <div className="text-xs">
                           Stock:{" "}
                           <span className={`font-bold ${item.stock > 0 ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
-                            {item.stock} logs
+                            {item.stock}
                           </span>
                         </div>
                       </div>
