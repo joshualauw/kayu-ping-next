@@ -1,0 +1,27 @@
+model WoodVariant {
+  id            Int    @id @default(autoincrement())
+  woodId        Int    @map("wood_id")
+  materialId    Int    @map("material_id")
+  width         Float?
+  height        Float?
+  diameterSmall Float? @map("diameter_small")
+  diamterLarge  Float? @map("diameter_large")
+  length        Float?
+  volume        Float
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  gradingItems    GradingItem[]
+  inventories     Inventory[]
+  movementItems   MovementItem[]
+  processingItems ProcessingItem[]
+  purchaseItems   PurchaseItem[]
+  saleItems       SaleItem[]
+  mutations       StockMutation[]
+  material        Material         @relation(fields: [materialId], references: [id])
+  wood            Wood             @relation(fields: [woodId], references: [id])
+  adjustmentItems AdjustmentItem[]
+
+  @@map("wood_variants")
+}

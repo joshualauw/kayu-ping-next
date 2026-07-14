@@ -1,0 +1,30 @@
+model Location {
+  id      Int          @id @default(autoincrement())
+  name    String       @db.VarChar(255)
+  address String?
+  type    LocationType
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  gradings       Grading[]
+  inventories    Inventory[]
+  movementsFrom  Movement[]      @relation("FromLocation")
+  movementsTo    Movement[]      @relation("ToLocation")
+  processings    Processing[]
+  purchases      Purchase[]
+  sales          Sale[]
+  stockMutations StockMutation[]
+  adjustments    Adjustment[]
+
+  @@map("locations")
+}
+
+enum LocationType {
+  WAREHOUSE
+  PORT
+  MILL
+  OTHERS
+
+  @@map("location_types")
+}

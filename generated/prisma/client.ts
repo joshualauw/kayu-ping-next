@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.users.findMany()
+ * // Fetch zero or more Adjustments
+ * const adjustments = await prisma.adjustment.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,55 +42,80 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Users
+ * Model Adjustment
  * 
  */
-export type Users = Prisma.UsersModel
+export type Adjustment = Prisma.AdjustmentModel
 /**
- * Model Wood
+ * Model AdjustmentItem
  * 
  */
-export type Wood = Prisma.WoodModel
+export type AdjustmentItem = Prisma.AdjustmentItemModel
 /**
  * Model Contact
  * 
  */
 export type Contact = Prisma.ContactModel
 /**
- * Model Location
+ * Model Fee
  * 
  */
-export type Location = Prisma.LocationModel
-/**
- * Model Material
- * 
- */
-export type Material = Prisma.MaterialModel
-/**
- * Model WoodVariant
- * 
- */
-export type WoodVariant = Prisma.WoodVariantModel
+export type Fee = Prisma.FeeModel
 /**
  * Model Grade
  * 
  */
 export type Grade = Prisma.GradeModel
 /**
- * Model Lot
+ * Model Grading
  * 
  */
-export type Lot = Prisma.LotModel
+export type Grading = Prisma.GradingModel
+/**
+ * Model GradingItem
+ * 
+ */
+export type GradingItem = Prisma.GradingItemModel
 /**
  * Model Inventory
  * 
  */
 export type Inventory = Prisma.InventoryModel
 /**
- * Model StockMutation
+ * Model Location
  * 
  */
-export type StockMutation = Prisma.StockMutationModel
+export type Location = Prisma.LocationModel
+/**
+ * Model Lot
+ * 
+ */
+export type Lot = Prisma.LotModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel
+/**
+ * Model Movement
+ * 
+ */
+export type Movement = Prisma.MovementModel
+/**
+ * Model MovementItem
+ * 
+ */
+export type MovementItem = Prisma.MovementItemModel
+/**
+ * Model Processing
+ * 
+ */
+export type Processing = Prisma.ProcessingModel
+/**
+ * Model ProcessingItem
+ * 
+ */
+export type ProcessingItem = Prisma.ProcessingItemModel
 /**
  * Model Purchase
  * 
@@ -112,47 +137,22 @@ export type Sale = Prisma.SaleModel
  */
 export type SaleItem = Prisma.SaleItemModel
 /**
- * Model Processing
+ * Model StockMutation
  * 
  */
-export type Processing = Prisma.ProcessingModel
+export type StockMutation = Prisma.StockMutationModel
 /**
- * Model ProcessingItem
+ * Model Users
  * 
  */
-export type ProcessingItem = Prisma.ProcessingItemModel
+export type Users = Prisma.UsersModel
 /**
- * Model Movement
+ * Model Wood
  * 
  */
-export type Movement = Prisma.MovementModel
+export type Wood = Prisma.WoodModel
 /**
- * Model MovementItem
+ * Model WoodVariant
  * 
  */
-export type MovementItem = Prisma.MovementItemModel
-/**
- * Model Grading
- * 
- */
-export type Grading = Prisma.GradingModel
-/**
- * Model GradingItem
- * 
- */
-export type GradingItem = Prisma.GradingItemModel
-/**
- * Model Adjustment
- * 
- */
-export type Adjustment = Prisma.AdjustmentModel
-/**
- * Model AdjustmentItem
- * 
- */
-export type AdjustmentItem = Prisma.AdjustmentItemModel
-/**
- * Model Fee
- * 
- */
-export type Fee = Prisma.FeeModel
+export type WoodVariant = Prisma.WoodVariantModel

@@ -460,90 +460,6 @@ export type InventorySumOrderByAggregateInput = {
   stock?: Prisma.SortOrder
 }
 
-export type InventoryCreateNestedManyWithoutLocationInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
-  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-}
-
-export type InventoryUncheckedCreateNestedManyWithoutLocationInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
-  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-}
-
-export type InventoryUpdateManyWithoutLocationNestedInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
-  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput[]
-  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
-  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput[]
-  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutLocationInput | Prisma.InventoryUpdateManyWithWhereWithoutLocationInput[]
-  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-}
-
-export type InventoryUncheckedUpdateManyWithoutLocationNestedInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
-  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput[]
-  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
-  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput[]
-  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutLocationInput | Prisma.InventoryUpdateManyWithWhereWithoutLocationInput[]
-  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-}
-
-export type InventoryCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-}
-
-export type InventoryUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-}
-
-export type InventoryUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
-  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutVariantInput | Prisma.InventoryUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-}
-
-export type InventoryUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
-  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
-  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutVariantInput | Prisma.InventoryUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-}
-
 export type InventoryCreateNestedManyWithoutGradeInput = {
   create?: Prisma.XOR<Prisma.InventoryCreateWithoutGradeInput, Prisma.InventoryUncheckedCreateWithoutGradeInput> | Prisma.InventoryCreateWithoutGradeInput[] | Prisma.InventoryUncheckedCreateWithoutGradeInput[]
   connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutGradeInput | Prisma.InventoryCreateOrConnectWithoutGradeInput[]
@@ -583,6 +499,48 @@ export type InventoryUncheckedUpdateManyWithoutGradeNestedInput = {
   connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
   update?: Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput | Prisma.InventoryUpdateWithWhereUniqueWithoutGradeInput[]
   updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutGradeInput | Prisma.InventoryUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+}
+
+export type InventoryCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+}
+
+export type InventoryUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+}
+
+export type InventoryUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutLocationInput | Prisma.InventoryUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+}
+
+export type InventoryUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput> | Prisma.InventoryCreateWithoutLocationInput[] | Prisma.InventoryUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutLocationInput | Prisma.InventoryCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.InventoryCreateManyLocationInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput | Prisma.InventoryUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutLocationInput | Prisma.InventoryUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
 }
 
@@ -628,116 +586,46 @@ export type InventoryUncheckedUpdateManyWithoutLotNestedInput = {
   deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type InventoryCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
 }
 
-export type InventoryCreateWithoutLocationInput = {
-  stock: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
-  lot: Prisma.LotCreateNestedOneWithoutInventoriesInput
-  variant: Prisma.WoodVariantCreateNestedOneWithoutInventoriesInput
+export type InventoryUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
 }
 
-export type InventoryUncheckedCreateWithoutLocationInput = {
-  id?: number
-  woodVariantId: number
-  gradeId?: number | null
-  lotId: number
-  stock: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
+export type InventoryUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutVariantInput | Prisma.InventoryUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
 }
 
-export type InventoryCreateOrConnectWithoutLocationInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput>
-}
-
-export type InventoryCreateManyLocationInputEnvelope = {
-  data: Prisma.InventoryCreateManyLocationInput | Prisma.InventoryCreateManyLocationInput[]
-  skipDuplicates?: boolean
-}
-
-export type InventoryUpsertWithWhereUniqueWithoutLocationInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  update: Prisma.XOR<Prisma.InventoryUpdateWithoutLocationInput, Prisma.InventoryUncheckedUpdateWithoutLocationInput>
-  create: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput>
-}
-
-export type InventoryUpdateWithWhereUniqueWithoutLocationInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  data: Prisma.XOR<Prisma.InventoryUpdateWithoutLocationInput, Prisma.InventoryUncheckedUpdateWithoutLocationInput>
-}
-
-export type InventoryUpdateManyWithWhereWithoutLocationInput = {
-  where: Prisma.InventoryScalarWhereInput
-  data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutLocationInput>
-}
-
-export type InventoryScalarWhereInput = {
-  AND?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-  OR?: Prisma.InventoryScalarWhereInput[]
-  NOT?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
-  id?: Prisma.IntFilter<"Inventory"> | number
-  woodVariantId?: Prisma.IntFilter<"Inventory"> | number
-  gradeId?: Prisma.IntNullableFilter<"Inventory"> | number | null
-  lotId?: Prisma.IntFilter<"Inventory"> | number
-  locationId?: Prisma.IntFilter<"Inventory"> | number
-  stock?: Prisma.IntFilter<"Inventory"> | number
-  createdAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
-}
-
-export type InventoryCreateWithoutVariantInput = {
-  stock: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
-  location: Prisma.LocationCreateNestedOneWithoutInventoriesInput
-  lot: Prisma.LotCreateNestedOneWithoutInventoriesInput
-}
-
-export type InventoryUncheckedCreateWithoutVariantInput = {
-  id?: number
-  gradeId?: number | null
-  lotId: number
-  locationId: number
-  stock: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type InventoryCreateOrConnectWithoutVariantInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput>
-}
-
-export type InventoryCreateManyVariantInputEnvelope = {
-  data: Prisma.InventoryCreateManyVariantInput | Prisma.InventoryCreateManyVariantInput[]
-  skipDuplicates?: boolean
-}
-
-export type InventoryUpsertWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  update: Prisma.XOR<Prisma.InventoryUpdateWithoutVariantInput, Prisma.InventoryUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput>
-}
-
-export type InventoryUpdateWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.InventoryWhereUniqueInput
-  data: Prisma.XOR<Prisma.InventoryUpdateWithoutVariantInput, Prisma.InventoryUncheckedUpdateWithoutVariantInput>
-}
-
-export type InventoryUpdateManyWithWhereWithoutVariantInput = {
-  where: Prisma.InventoryScalarWhereInput
-  data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutVariantInput>
+export type InventoryUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput> | Prisma.InventoryCreateWithoutVariantInput[] | Prisma.InventoryUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutVariantInput | Prisma.InventoryCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.InventoryCreateManyVariantInputEnvelope
+  set?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  disconnect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  delete?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  connect?: Prisma.InventoryWhereUniqueInput | Prisma.InventoryWhereUniqueInput[]
+  update?: Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput | Prisma.InventoryUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.InventoryUpdateManyWithWhereWithoutVariantInput | Prisma.InventoryUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
 }
 
 export type InventoryCreateWithoutGradeInput = {
@@ -785,6 +673,65 @@ export type InventoryUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutGradeInput>
 }
 
+export type InventoryScalarWhereInput = {
+  AND?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+  OR?: Prisma.InventoryScalarWhereInput[]
+  NOT?: Prisma.InventoryScalarWhereInput | Prisma.InventoryScalarWhereInput[]
+  id?: Prisma.IntFilter<"Inventory"> | number
+  woodVariantId?: Prisma.IntFilter<"Inventory"> | number
+  gradeId?: Prisma.IntNullableFilter<"Inventory"> | number | null
+  lotId?: Prisma.IntFilter<"Inventory"> | number
+  locationId?: Prisma.IntFilter<"Inventory"> | number
+  stock?: Prisma.IntFilter<"Inventory"> | number
+  createdAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Inventory"> | Date | string
+}
+
+export type InventoryCreateWithoutLocationInput = {
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
+  lot: Prisma.LotCreateNestedOneWithoutInventoriesInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutInventoriesInput
+}
+
+export type InventoryUncheckedCreateWithoutLocationInput = {
+  id?: number
+  woodVariantId: number
+  gradeId?: number | null
+  lotId: number
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InventoryCreateOrConnectWithoutLocationInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput>
+}
+
+export type InventoryCreateManyLocationInputEnvelope = {
+  data: Prisma.InventoryCreateManyLocationInput | Prisma.InventoryCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type InventoryUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutLocationInput, Prisma.InventoryUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutLocationInput, Prisma.InventoryUncheckedCreateWithoutLocationInput>
+}
+
+export type InventoryUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutLocationInput, Prisma.InventoryUncheckedUpdateWithoutLocationInput>
+}
+
+export type InventoryUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.InventoryScalarWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutLocationInput>
+}
+
 export type InventoryCreateWithoutLotInput = {
   stock: number
   createdAt?: Date | string
@@ -830,46 +777,16 @@ export type InventoryUpdateManyWithWhereWithoutLotInput = {
   data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutLotInput>
 }
 
-export type InventoryCreateManyLocationInput = {
-  id?: number
-  woodVariantId: number
-  gradeId?: number | null
-  lotId: number
+export type InventoryCreateWithoutVariantInput = {
   stock: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutInventoriesInput
+  location: Prisma.LocationCreateNestedOneWithoutInventoriesInput
+  lot: Prisma.LotCreateNestedOneWithoutInventoriesInput
 }
 
-export type InventoryUpdateWithoutLocationInput = {
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutInventoriesNestedInput
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput
-}
-
-export type InventoryUncheckedUpdateWithoutLocationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type InventoryUncheckedUpdateManyWithoutLocationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type InventoryCreateManyVariantInput = {
+export type InventoryUncheckedCreateWithoutVariantInput = {
   id?: number
   gradeId?: number | null
   lotId: number
@@ -879,33 +796,30 @@ export type InventoryCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type InventoryUpdateWithoutVariantInput = {
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
-  location?: Prisma.LocationUpdateOneRequiredWithoutInventoriesNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutInventoriesNestedInput
+export type InventoryCreateOrConnectWithoutVariantInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput>
 }
 
-export type InventoryUncheckedUpdateWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type InventoryCreateManyVariantInputEnvelope = {
+  data: Prisma.InventoryCreateManyVariantInput | Prisma.InventoryCreateManyVariantInput[]
+  skipDuplicates?: boolean
 }
 
-export type InventoryUncheckedUpdateManyWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type InventoryUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutVariantInput, Prisma.InventoryUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutVariantInput, Prisma.InventoryUncheckedCreateWithoutVariantInput>
+}
+
+export type InventoryUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutVariantInput, Prisma.InventoryUncheckedUpdateWithoutVariantInput>
+}
+
+export type InventoryUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.InventoryScalarWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateManyMutationInput, Prisma.InventoryUncheckedUpdateManyWithoutVariantInput>
 }
 
 export type InventoryCreateManyGradeInput = {
@@ -947,6 +861,45 @@ export type InventoryUncheckedUpdateManyWithoutGradeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type InventoryCreateManyLocationInput = {
+  id?: number
+  woodVariantId: number
+  gradeId?: number | null
+  lotId: number
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InventoryUpdateWithoutLocationInput = {
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutInventoriesNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventoryUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type InventoryCreateManyLotInput = {
   id?: number
   woodVariantId: number
@@ -980,6 +933,45 @@ export type InventoryUncheckedUpdateManyWithoutLotInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventoryCreateManyVariantInput = {
+  id?: number
+  gradeId?: number | null
+  lotId: number
+  locationId: number
+  stock: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InventoryUpdateWithoutVariantInput = {
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutInventoriesNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutInventoriesNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutInventoriesNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InventoryUncheckedUpdateManyWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string

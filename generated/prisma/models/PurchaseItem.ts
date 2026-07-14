@@ -488,48 +488,6 @@ export type PurchaseItemSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
 }
 
-export type PurchaseItemCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
-  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-}
-
-export type PurchaseItemUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
-  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-}
-
-export type PurchaseItemUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
-  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
-}
-
-export type PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
-  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
-  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
-}
-
 export type PurchaseItemCreateNestedManyWithoutGradeInput = {
   create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutGradeInput, Prisma.PurchaseItemUncheckedCreateWithoutGradeInput> | Prisma.PurchaseItemCreateWithoutGradeInput[] | Prisma.PurchaseItemUncheckedCreateWithoutGradeInput[]
   connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutGradeInput | Prisma.PurchaseItemCreateOrConnectWithoutGradeInput[]
@@ -656,66 +614,46 @@ export type PurchaseItemUncheckedUpdateManyWithoutPurchaseNestedInput = {
   deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
 }
 
-export type PurchaseItemCreateWithoutVariantInput = {
-  pricePerCubic: number
-  quantity: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutPurchaseItemsInput
-  purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
-  lot: Prisma.LotCreateNestedOneWithoutPurchaseItemsInput
+export type PurchaseItemCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
 }
 
-export type PurchaseItemUncheckedCreateWithoutVariantInput = {
-  id?: number
-  purchaseId: number
-  gradeId?: number | null
-  lotId: number
-  pricePerCubic: number
-  quantity: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
+export type PurchaseItemUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
 }
 
-export type PurchaseItemCreateOrConnectWithoutVariantInput = {
-  where: Prisma.PurchaseItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput>
+export type PurchaseItemUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
+  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
 }
 
-export type PurchaseItemCreateManyVariantInputEnvelope = {
-  data: Prisma.PurchaseItemCreateManyVariantInput | Prisma.PurchaseItemCreateManyVariantInput[]
-  skipDuplicates?: boolean
-}
-
-export type PurchaseItemUpsertWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.PurchaseItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutVariantInput, Prisma.PurchaseItemUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput>
-}
-
-export type PurchaseItemUpdateWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.PurchaseItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutVariantInput, Prisma.PurchaseItemUncheckedUpdateWithoutVariantInput>
-}
-
-export type PurchaseItemUpdateManyWithWhereWithoutVariantInput = {
-  where: Prisma.PurchaseItemScalarWhereInput
-  data: Prisma.XOR<Prisma.PurchaseItemUpdateManyMutationInput, Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantInput>
-}
-
-export type PurchaseItemScalarWhereInput = {
-  AND?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
-  OR?: Prisma.PurchaseItemScalarWhereInput[]
-  NOT?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
-  id?: Prisma.IntFilter<"PurchaseItem"> | number
-  purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
-  gradeId?: Prisma.IntNullableFilter<"PurchaseItem"> | number | null
-  woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
-  lotId?: Prisma.IntFilter<"PurchaseItem"> | number
-  pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
-  quantity?: Prisma.IntFilter<"PurchaseItem"> | number
-  createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
+export type PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput> | Prisma.PurchaseItemCreateWithoutVariantInput[] | Prisma.PurchaseItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.PurchaseItemCreateOrConnectWithoutVariantInput | Prisma.PurchaseItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.PurchaseItemCreateManyVariantInputEnvelope
+  set?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  disconnect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  delete?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  connect?: Prisma.PurchaseItemWhereUniqueInput | Prisma.PurchaseItemWhereUniqueInput[]
+  update?: Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.PurchaseItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput | Prisma.PurchaseItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
 }
 
 export type PurchaseItemCreateWithoutGradeInput = {
@@ -763,6 +701,21 @@ export type PurchaseItemUpdateWithWhereUniqueWithoutGradeInput = {
 export type PurchaseItemUpdateManyWithWhereWithoutGradeInput = {
   where: Prisma.PurchaseItemScalarWhereInput
   data: Prisma.XOR<Prisma.PurchaseItemUpdateManyMutationInput, Prisma.PurchaseItemUncheckedUpdateManyWithoutGradeInput>
+}
+
+export type PurchaseItemScalarWhereInput = {
+  AND?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
+  OR?: Prisma.PurchaseItemScalarWhereInput[]
+  NOT?: Prisma.PurchaseItemScalarWhereInput | Prisma.PurchaseItemScalarWhereInput[]
+  id?: Prisma.IntFilter<"PurchaseItem"> | number
+  purchaseId?: Prisma.IntFilter<"PurchaseItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"PurchaseItem"> | number | null
+  woodVariantId?: Prisma.IntFilter<"PurchaseItem"> | number
+  lotId?: Prisma.IntFilter<"PurchaseItem"> | number
+  pricePerCubic?: Prisma.FloatFilter<"PurchaseItem"> | number
+  quantity?: Prisma.IntFilter<"PurchaseItem"> | number
+  createdAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PurchaseItem"> | Date | string
 }
 
 export type PurchaseItemCreateWithoutLotInput = {
@@ -859,7 +812,17 @@ export type PurchaseItemUpdateManyWithWhereWithoutPurchaseInput = {
   data: Prisma.XOR<Prisma.PurchaseItemUpdateManyMutationInput, Prisma.PurchaseItemUncheckedUpdateManyWithoutPurchaseInput>
 }
 
-export type PurchaseItemCreateManyVariantInput = {
+export type PurchaseItemCreateWithoutVariantInput = {
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutPurchaseItemsInput
+  purchase: Prisma.PurchaseCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutPurchaseItemsInput
+}
+
+export type PurchaseItemUncheckedCreateWithoutVariantInput = {
   id?: number
   purchaseId: number
   gradeId?: number | null
@@ -870,36 +833,30 @@ export type PurchaseItemCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type PurchaseItemUpdateWithoutVariantInput = {
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutPurchaseItemsNestedInput
-  purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutPurchaseItemsNestedInput
+export type PurchaseItemCreateOrConnectWithoutVariantInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput>
 }
 
-export type PurchaseItemUncheckedUpdateWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type PurchaseItemCreateManyVariantInputEnvelope = {
+  data: Prisma.PurchaseItemCreateManyVariantInput | Prisma.PurchaseItemCreateManyVariantInput[]
+  skipDuplicates?: boolean
 }
 
-export type PurchaseItemUncheckedUpdateManyWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type PurchaseItemUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutVariantInput, Prisma.PurchaseItemUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.PurchaseItemCreateWithoutVariantInput, Prisma.PurchaseItemUncheckedCreateWithoutVariantInput>
+}
+
+export type PurchaseItemUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.PurchaseItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.PurchaseItemUpdateWithoutVariantInput, Prisma.PurchaseItemUncheckedUpdateWithoutVariantInput>
+}
+
+export type PurchaseItemUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.PurchaseItemScalarWhereInput
+  data: Prisma.XOR<Prisma.PurchaseItemUpdateManyMutationInput, Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantInput>
 }
 
 export type PurchaseItemCreateManyGradeInput = {
@@ -1024,6 +981,49 @@ export type PurchaseItemUncheckedUpdateManyWithoutPurchaseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PurchaseItemCreateManyVariantInput = {
+  id?: number
+  purchaseId: number
+  gradeId?: number | null
+  lotId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PurchaseItemUpdateWithoutVariantInput = {
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutPurchaseItemsNestedInput
+  purchase?: Prisma.PurchaseUpdateOneRequiredWithoutItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutPurchaseItemsNestedInput
+}
+
+export type PurchaseItemUncheckedUpdateWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PurchaseItemUncheckedUpdateManyWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  purchaseId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number

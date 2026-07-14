@@ -365,16 +365,6 @@ export type AdjustmentUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdjustmentListRelationFilter = {
-  every?: Prisma.AdjustmentWhereInput
-  some?: Prisma.AdjustmentWhereInput
-  none?: Prisma.AdjustmentWhereInput
-}
-
-export type AdjustmentOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type AdjustmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
@@ -420,6 +410,50 @@ export type AdjustmentScalarRelationFilter = {
   isNot?: Prisma.AdjustmentWhereInput
 }
 
+export type AdjustmentListRelationFilter = {
+  every?: Prisma.AdjustmentWhereInput
+  some?: Prisma.AdjustmentWhereInput
+  none?: Prisma.AdjustmentWhereInput
+}
+
+export type AdjustmentOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type AdjustmentCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.AdjustmentCreateOrConnectWithoutItemsInput
+  connect?: Prisma.AdjustmentWhereUniqueInput
+}
+
+export type AdjustmentUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.AdjustmentCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.AdjustmentUpsertWithoutItemsInput
+  connect?: Prisma.AdjustmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AdjustmentUpdateToOneWithWhereWithoutItemsInput, Prisma.AdjustmentUpdateWithoutItemsInput>, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
+}
+
 export type AdjustmentCreateNestedManyWithoutLocationInput = {
   create?: Prisma.XOR<Prisma.AdjustmentCreateWithoutLocationInput, Prisma.AdjustmentUncheckedCreateWithoutLocationInput> | Prisma.AdjustmentCreateWithoutLocationInput[] | Prisma.AdjustmentUncheckedCreateWithoutLocationInput[]
   connectOrCreate?: Prisma.AdjustmentCreateOrConnectWithoutLocationInput | Prisma.AdjustmentCreateOrConnectWithoutLocationInput[]
@@ -462,18 +496,58 @@ export type AdjustmentUncheckedUpdateManyWithoutLocationNestedInput = {
   deleteMany?: Prisma.AdjustmentScalarWhereInput | Prisma.AdjustmentScalarWhereInput[]
 }
 
-export type AdjustmentCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AdjustmentCreateOrConnectWithoutItemsInput
-  connect?: Prisma.AdjustmentWhereUniqueInput
+export type AdjustmentCreateWithoutItemsInput = {
+  tid: string
+  adjustmentDate: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  location: Prisma.LocationCreateNestedOneWithoutAdjustmentsInput
 }
 
-export type AdjustmentUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AdjustmentCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.AdjustmentUpsertWithoutItemsInput
-  connect?: Prisma.AdjustmentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AdjustmentUpdateToOneWithWhereWithoutItemsInput, Prisma.AdjustmentUpdateWithoutItemsInput>, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
+export type AdjustmentUncheckedCreateWithoutItemsInput = {
+  id?: number
+  tid: string
+  adjustmentDate: Date | string
+  locationId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AdjustmentCreateOrConnectWithoutItemsInput = {
+  where: Prisma.AdjustmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
+}
+
+export type AdjustmentUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.AdjustmentUpdateWithoutItemsInput, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
+  where?: Prisma.AdjustmentWhereInput
+}
+
+export type AdjustmentUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.AdjustmentWhereInput
+  data: Prisma.XOR<Prisma.AdjustmentUpdateWithoutItemsInput, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
+}
+
+export type AdjustmentUpdateWithoutItemsInput = {
+  tid?: Prisma.StringFieldUpdateOperationsInput | string
+  adjustmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  location?: Prisma.LocationUpdateOneRequiredWithoutAdjustmentsNestedInput
+}
+
+export type AdjustmentUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  tid?: Prisma.StringFieldUpdateOperationsInput | string
+  adjustmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AdjustmentCreateWithoutLocationInput = {
@@ -532,60 +606,6 @@ export type AdjustmentScalarWhereInput = {
   notes?: Prisma.StringNullableFilter<"Adjustment"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Adjustment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Adjustment"> | Date | string
-}
-
-export type AdjustmentCreateWithoutItemsInput = {
-  tid: string
-  adjustmentDate: Date | string
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutAdjustmentsInput
-}
-
-export type AdjustmentUncheckedCreateWithoutItemsInput = {
-  id?: number
-  tid: string
-  adjustmentDate: Date | string
-  locationId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AdjustmentCreateOrConnectWithoutItemsInput = {
-  where: Prisma.AdjustmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
-}
-
-export type AdjustmentUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.AdjustmentUpdateWithoutItemsInput, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.AdjustmentCreateWithoutItemsInput, Prisma.AdjustmentUncheckedCreateWithoutItemsInput>
-  where?: Prisma.AdjustmentWhereInput
-}
-
-export type AdjustmentUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.AdjustmentWhereInput
-  data: Prisma.XOR<Prisma.AdjustmentUpdateWithoutItemsInput, Prisma.AdjustmentUncheckedUpdateWithoutItemsInput>
-}
-
-export type AdjustmentUpdateWithoutItemsInput = {
-  tid?: Prisma.StringFieldUpdateOperationsInput | string
-  adjustmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutAdjustmentsNestedInput
-}
-
-export type AdjustmentUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  tid?: Prisma.StringFieldUpdateOperationsInput | string
-  adjustmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AdjustmentCreateManyLocationInput = {

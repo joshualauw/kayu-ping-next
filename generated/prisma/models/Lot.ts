@@ -351,6 +351,11 @@ export type LotUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type LotScalarRelationFilter = {
+  is?: Prisma.LotWhereInput
+  isNot?: Prisma.LotWhereInput
+}
+
 export type LotCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   code?: Prisma.SortOrder
@@ -380,9 +385,32 @@ export type LotSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type LotScalarRelationFilter = {
-  is?: Prisma.LotWhereInput
-  isNot?: Prisma.LotWhereInput
+export type LotCreateNestedOneWithoutAdjustmentItemsInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutAdjustmentItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+}
+
+export type LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutAdjustmentItemsInput
+  upsert?: Prisma.LotUpsertWithoutAdjustmentItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutAdjustmentItemsInput, Prisma.LotUpdateWithoutAdjustmentItemsInput>, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
+}
+
+export type LotCreateNestedOneWithoutGradingItemsInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutGradingItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+}
+
+export type LotUpdateOneRequiredWithoutGradingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutGradingItemsInput
+  upsert?: Prisma.LotUpsertWithoutGradingItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.LotUpdateWithoutGradingItemsInput>, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
 }
 
 export type LotCreateNestedOneWithoutInventoriesInput = {
@@ -399,18 +427,32 @@ export type LotUpdateOneRequiredWithoutInventoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutInventoriesInput, Prisma.LotUpdateWithoutInventoriesInput>, Prisma.LotUncheckedUpdateWithoutInventoriesInput>
 }
 
-export type LotCreateNestedOneWithoutStockMutationsInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutStockMutationsInput
+export type LotCreateNestedOneWithoutMovementItemsInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutMovementItemsInput
   connect?: Prisma.LotWhereUniqueInput
 }
 
-export type LotUpdateOneRequiredWithoutStockMutationsNestedInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutStockMutationsInput
-  upsert?: Prisma.LotUpsertWithoutStockMutationsInput
+export type LotUpdateOneRequiredWithoutMovementItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutMovementItemsInput
+  upsert?: Prisma.LotUpsertWithoutMovementItemsInput
   connect?: Prisma.LotWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutStockMutationsInput, Prisma.LotUpdateWithoutStockMutationsInput>, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutMovementItemsInput, Prisma.LotUpdateWithoutMovementItemsInput>, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
+}
+
+export type LotCreateNestedOneWithoutProcessingItemsInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutProcessingItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+}
+
+export type LotUpdateOneRequiredWithoutProcessingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutProcessingItemsInput
+  upsert?: Prisma.LotUpsertWithoutProcessingItemsInput
+  connect?: Prisma.LotWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutProcessingItemsInput, Prisma.LotUpdateWithoutProcessingItemsInput>, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
 }
 
 export type LotCreateNestedOneWithoutPurchaseItemsInput = {
@@ -441,60 +483,158 @@ export type LotUpdateOneRequiredWithoutSaleItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutSaleItemsInput, Prisma.LotUpdateWithoutSaleItemsInput>, Prisma.LotUncheckedUpdateWithoutSaleItemsInput>
 }
 
-export type LotCreateNestedOneWithoutProcessingItemsInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutProcessingItemsInput
+export type LotCreateNestedOneWithoutStockMutationsInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutStockMutationsInput
   connect?: Prisma.LotWhereUniqueInput
 }
 
-export type LotUpdateOneRequiredWithoutProcessingItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutProcessingItemsInput
-  upsert?: Prisma.LotUpsertWithoutProcessingItemsInput
+export type LotUpdateOneRequiredWithoutStockMutationsNestedInput = {
+  create?: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
+  connectOrCreate?: Prisma.LotCreateOrConnectWithoutStockMutationsInput
+  upsert?: Prisma.LotUpsertWithoutStockMutationsInput
   connect?: Prisma.LotWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutProcessingItemsInput, Prisma.LotUpdateWithoutProcessingItemsInput>, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutStockMutationsInput, Prisma.LotUpdateWithoutStockMutationsInput>, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
 }
 
-export type LotCreateNestedOneWithoutMovementItemsInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutMovementItemsInput
-  connect?: Prisma.LotWhereUniqueInput
+export type LotCreateWithoutAdjustmentItemsInput = {
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
 }
 
-export type LotUpdateOneRequiredWithoutMovementItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutMovementItemsInput
-  upsert?: Prisma.LotUpsertWithoutMovementItemsInput
-  connect?: Prisma.LotWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutMovementItemsInput, Prisma.LotUpdateWithoutMovementItemsInput>, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
+export type LotUncheckedCreateWithoutAdjustmentItemsInput = {
+  id?: number
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
 }
 
-export type LotCreateNestedOneWithoutGradingItemsInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutGradingItemsInput
-  connect?: Prisma.LotWhereUniqueInput
+export type LotCreateOrConnectWithoutAdjustmentItemsInput = {
+  where: Prisma.LotWhereUniqueInput
+  create: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
 }
 
-export type LotUpdateOneRequiredWithoutGradingItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutGradingItemsInput
-  upsert?: Prisma.LotUpsertWithoutGradingItemsInput
-  connect?: Prisma.LotWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.LotUpdateWithoutGradingItemsInput>, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
+export type LotUpsertWithoutAdjustmentItemsInput = {
+  update: Prisma.XOR<Prisma.LotUpdateWithoutAdjustmentItemsInput, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
+  where?: Prisma.LotWhereInput
 }
 
-export type LotCreateNestedOneWithoutAdjustmentItemsInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutAdjustmentItemsInput
-  connect?: Prisma.LotWhereUniqueInput
+export type LotUpdateToOneWithWhereWithoutAdjustmentItemsInput = {
+  where?: Prisma.LotWhereInput
+  data: Prisma.XOR<Prisma.LotUpdateWithoutAdjustmentItemsInput, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
 }
 
-export type LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
-  connectOrCreate?: Prisma.LotCreateOrConnectWithoutAdjustmentItemsInput
-  upsert?: Prisma.LotUpsertWithoutAdjustmentItemsInput
-  connect?: Prisma.LotWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LotUpdateToOneWithWhereWithoutAdjustmentItemsInput, Prisma.LotUpdateWithoutAdjustmentItemsInput>, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
+export type LotUpdateWithoutAdjustmentItemsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
+}
+
+export type LotUncheckedUpdateWithoutAdjustmentItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
+}
+
+export type LotCreateWithoutGradingItemsInput = {
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
+}
+
+export type LotUncheckedCreateWithoutGradingItemsInput = {
+  id?: number
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
+}
+
+export type LotCreateOrConnectWithoutGradingItemsInput = {
+  where: Prisma.LotWhereUniqueInput
+  create: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
+}
+
+export type LotUpsertWithoutGradingItemsInput = {
+  update: Prisma.XOR<Prisma.LotUpdateWithoutGradingItemsInput, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
+  where?: Prisma.LotWhereInput
+}
+
+export type LotUpdateToOneWithWhereWithoutGradingItemsInput = {
+  where?: Prisma.LotWhereInput
+  data: Prisma.XOR<Prisma.LotUpdateWithoutGradingItemsInput, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
+}
+
+export type LotUpdateWithoutGradingItemsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
+}
+
+export type LotUncheckedUpdateWithoutGradingItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
 }
 
 export type LotCreateWithoutInventoriesInput = {
@@ -567,71 +707,141 @@ export type LotUncheckedUpdateWithoutInventoriesInput = {
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
 }
 
-export type LotCreateWithoutStockMutationsInput = {
+export type LotCreateWithoutMovementItemsInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
   gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
   adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
 }
 
-export type LotUncheckedCreateWithoutStockMutationsInput = {
+export type LotUncheckedCreateWithoutMovementItemsInput = {
   id?: number
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
   gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
   adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
 }
 
-export type LotCreateOrConnectWithoutStockMutationsInput = {
+export type LotCreateOrConnectWithoutMovementItemsInput = {
   where: Prisma.LotWhereUniqueInput
-  create: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
 }
 
-export type LotUpsertWithoutStockMutationsInput = {
-  update: Prisma.XOR<Prisma.LotUpdateWithoutStockMutationsInput, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
-  create: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
+export type LotUpsertWithoutMovementItemsInput = {
+  update: Prisma.XOR<Prisma.LotUpdateWithoutMovementItemsInput, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
   where?: Prisma.LotWhereInput
 }
 
-export type LotUpdateToOneWithWhereWithoutStockMutationsInput = {
+export type LotUpdateToOneWithWhereWithoutMovementItemsInput = {
   where?: Prisma.LotWhereInput
-  data: Prisma.XOR<Prisma.LotUpdateWithoutStockMutationsInput, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
+  data: Prisma.XOR<Prisma.LotUpdateWithoutMovementItemsInput, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
 }
 
-export type LotUpdateWithoutStockMutationsInput = {
+export type LotUpdateWithoutMovementItemsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
   gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
   adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
 }
 
-export type LotUncheckedUpdateWithoutStockMutationsInput = {
+export type LotUncheckedUpdateWithoutMovementItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
+}
+
+export type LotCreateWithoutProcessingItemsInput = {
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
+}
+
+export type LotUncheckedCreateWithoutProcessingItemsInput = {
+  id?: number
+  code: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
+}
+
+export type LotCreateOrConnectWithoutProcessingItemsInput = {
+  where: Prisma.LotWhereUniqueInput
+  create: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
+}
+
+export type LotUpsertWithoutProcessingItemsInput = {
+  update: Prisma.XOR<Prisma.LotUpdateWithoutProcessingItemsInput, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
+  where?: Prisma.LotWhereInput
+}
+
+export type LotUpdateToOneWithWhereWithoutProcessingItemsInput = {
+  where?: Prisma.LotWhereInput
+  data: Prisma.XOR<Prisma.LotUpdateWithoutProcessingItemsInput, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
+}
+
+export type LotUpdateWithoutProcessingItemsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
+}
+
+export type LotUncheckedUpdateWithoutProcessingItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
   gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
@@ -777,284 +987,74 @@ export type LotUncheckedUpdateWithoutSaleItemsInput = {
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
 }
 
-export type LotCreateWithoutProcessingItemsInput = {
+export type LotCreateWithoutStockMutationsInput = {
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
-  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
-}
-
-export type LotUncheckedCreateWithoutProcessingItemsInput = {
-  id?: number
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
-  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
-}
-
-export type LotCreateOrConnectWithoutProcessingItemsInput = {
-  where: Prisma.LotWhereUniqueInput
-  create: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
-}
-
-export type LotUpsertWithoutProcessingItemsInput = {
-  update: Prisma.XOR<Prisma.LotUpdateWithoutProcessingItemsInput, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
-  create: Prisma.XOR<Prisma.LotCreateWithoutProcessingItemsInput, Prisma.LotUncheckedCreateWithoutProcessingItemsInput>
-  where?: Prisma.LotWhereInput
-}
-
-export type LotUpdateToOneWithWhereWithoutProcessingItemsInput = {
-  where?: Prisma.LotWhereInput
-  data: Prisma.XOR<Prisma.LotUpdateWithoutProcessingItemsInput, Prisma.LotUncheckedUpdateWithoutProcessingItemsInput>
-}
-
-export type LotUpdateWithoutProcessingItemsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
-  gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
-}
-
-export type LotUncheckedUpdateWithoutProcessingItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
-  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
-  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
-}
-
-export type LotCreateWithoutMovementItemsInput = {
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
-  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
-  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
-}
-
-export type LotUncheckedCreateWithoutMovementItemsInput = {
-  id?: number
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
-  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
-  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
-}
-
-export type LotCreateOrConnectWithoutMovementItemsInput = {
-  where: Prisma.LotWhereUniqueInput
-  create: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
-}
-
-export type LotUpsertWithoutMovementItemsInput = {
-  update: Prisma.XOR<Prisma.LotUpdateWithoutMovementItemsInput, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
-  create: Prisma.XOR<Prisma.LotCreateWithoutMovementItemsInput, Prisma.LotUncheckedCreateWithoutMovementItemsInput>
-  where?: Prisma.LotWhereInput
-}
-
-export type LotUpdateToOneWithWhereWithoutMovementItemsInput = {
-  where?: Prisma.LotWhereInput
-  data: Prisma.XOR<Prisma.LotUpdateWithoutMovementItemsInput, Prisma.LotUncheckedUpdateWithoutMovementItemsInput>
-}
-
-export type LotUpdateWithoutMovementItemsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
-  gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
-}
-
-export type LotUncheckedUpdateWithoutMovementItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
-  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
-}
-
-export type LotCreateWithoutGradingItemsInput = {
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
-  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
-}
-
-export type LotUncheckedCreateWithoutGradingItemsInput = {
-  id?: number
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
-  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
-  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
-}
-
-export type LotCreateOrConnectWithoutGradingItemsInput = {
-  where: Prisma.LotWhereUniqueInput
-  create: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
-}
-
-export type LotUpsertWithoutGradingItemsInput = {
-  update: Prisma.XOR<Prisma.LotUpdateWithoutGradingItemsInput, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
-  create: Prisma.XOR<Prisma.LotCreateWithoutGradingItemsInput, Prisma.LotUncheckedCreateWithoutGradingItemsInput>
-  where?: Prisma.LotWhereInput
-}
-
-export type LotUpdateToOneWithWhereWithoutGradingItemsInput = {
-  where?: Prisma.LotWhereInput
-  data: Prisma.XOR<Prisma.LotUpdateWithoutGradingItemsInput, Prisma.LotUncheckedUpdateWithoutGradingItemsInput>
-}
-
-export type LotUpdateWithoutGradingItemsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
-}
-
-export type LotUncheckedUpdateWithoutGradingItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
-  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
-}
-
-export type LotCreateWithoutAdjustmentItemsInput = {
-  code: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLotInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutLotInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutLotInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutLotInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutLotInput
   gradingItems?: Prisma.GradingItemCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutLotInput
 }
 
-export type LotUncheckedCreateWithoutAdjustmentItemsInput = {
+export type LotUncheckedCreateWithoutStockMutationsInput = {
   id?: number
   code: string
   createdAt?: Date | string
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLotInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLotInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutLotInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutLotInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutLotInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutLotInput
   gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutLotInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutLotInput
 }
 
-export type LotCreateOrConnectWithoutAdjustmentItemsInput = {
+export type LotCreateOrConnectWithoutStockMutationsInput = {
   where: Prisma.LotWhereUniqueInput
-  create: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
 }
 
-export type LotUpsertWithoutAdjustmentItemsInput = {
-  update: Prisma.XOR<Prisma.LotUpdateWithoutAdjustmentItemsInput, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
-  create: Prisma.XOR<Prisma.LotCreateWithoutAdjustmentItemsInput, Prisma.LotUncheckedCreateWithoutAdjustmentItemsInput>
+export type LotUpsertWithoutStockMutationsInput = {
+  update: Prisma.XOR<Prisma.LotUpdateWithoutStockMutationsInput, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
+  create: Prisma.XOR<Prisma.LotCreateWithoutStockMutationsInput, Prisma.LotUncheckedCreateWithoutStockMutationsInput>
   where?: Prisma.LotWhereInput
 }
 
-export type LotUpdateToOneWithWhereWithoutAdjustmentItemsInput = {
+export type LotUpdateToOneWithWhereWithoutStockMutationsInput = {
   where?: Prisma.LotWhereInput
-  data: Prisma.XOR<Prisma.LotUpdateWithoutAdjustmentItemsInput, Prisma.LotUncheckedUpdateWithoutAdjustmentItemsInput>
+  data: Prisma.XOR<Prisma.LotUpdateWithoutStockMutationsInput, Prisma.LotUncheckedUpdateWithoutStockMutationsInput>
 }
 
-export type LotUpdateWithoutAdjustmentItemsInput = {
+export type LotUpdateWithoutStockMutationsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLotNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutLotNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutLotNestedInput
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutLotNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutLotNestedInput
   gradingItems?: Prisma.GradingItemUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutLotNestedInput
 }
 
-export type LotUncheckedUpdateWithoutAdjustmentItemsInput = {
+export type LotUncheckedUpdateWithoutStockMutationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLotNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLotNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutLotNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutLotNestedInput
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutLotNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutLotNestedInput
   gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutLotNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput
 }
 
 

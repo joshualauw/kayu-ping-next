@@ -460,12 +460,22 @@ export type ContactScalarRelationFilter = {
   isNot?: Prisma.ContactWhereInput
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type EnumContactTypeFieldUpdateOperationsInput = {
   set?: $Enums.ContactType
+}
+
+export type ContactCreateNestedOneWithoutMovementsInput = {
+  create?: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
+  connectOrCreate?: Prisma.ContactCreateOrConnectWithoutMovementsInput
+  connect?: Prisma.ContactWhereUniqueInput
+}
+
+export type ContactUpdateOneRequiredWithoutMovementsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
+  connectOrCreate?: Prisma.ContactCreateOrConnectWithoutMovementsInput
+  upsert?: Prisma.ContactUpsertWithoutMovementsInput
+  connect?: Prisma.ContactWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContactUpdateToOneWithWhereWithoutMovementsInput, Prisma.ContactUpdateWithoutMovementsInput>, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
 }
 
 export type ContactCreateNestedOneWithoutPurchasesInput = {
@@ -496,18 +506,74 @@ export type ContactUpdateOneRequiredWithoutSalesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ContactUpdateToOneWithWhereWithoutSalesInput, Prisma.ContactUpdateWithoutSalesInput>, Prisma.ContactUncheckedUpdateWithoutSalesInput>
 }
 
-export type ContactCreateNestedOneWithoutMovementsInput = {
-  create?: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
-  connectOrCreate?: Prisma.ContactCreateOrConnectWithoutMovementsInput
-  connect?: Prisma.ContactWhereUniqueInput
+export type ContactCreateWithoutMovementsInput = {
+  name: string
+  phoneNumber?: string | null
+  email?: string | null
+  address?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  type: $Enums.ContactType
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
+  sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
 }
 
-export type ContactUpdateOneRequiredWithoutMovementsNestedInput = {
-  create?: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
-  connectOrCreate?: Prisma.ContactCreateOrConnectWithoutMovementsInput
-  upsert?: Prisma.ContactUpsertWithoutMovementsInput
-  connect?: Prisma.ContactWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ContactUpdateToOneWithWhereWithoutMovementsInput, Prisma.ContactUpdateWithoutMovementsInput>, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
+export type ContactUncheckedCreateWithoutMovementsInput = {
+  id?: number
+  name: string
+  phoneNumber?: string | null
+  email?: string | null
+  address?: string | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  type: $Enums.ContactType
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
+}
+
+export type ContactCreateOrConnectWithoutMovementsInput = {
+  where: Prisma.ContactWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
+}
+
+export type ContactUpsertWithoutMovementsInput = {
+  update: Prisma.XOR<Prisma.ContactUpdateWithoutMovementsInput, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
+  create: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
+  where?: Prisma.ContactWhereInput
+}
+
+export type ContactUpdateToOneWithWhereWithoutMovementsInput = {
+  where?: Prisma.ContactWhereInput
+  data: Prisma.XOR<Prisma.ContactUpdateWithoutMovementsInput, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
+}
+
+export type ContactUpdateWithoutMovementsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
+  purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
+}
+
+export type ContactUncheckedUpdateWithoutMovementsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type ContactCreateWithoutPurchasesInput = {
@@ -648,76 +714,6 @@ export type ContactUncheckedUpdateWithoutSalesInput = {
   type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
   movements?: Prisma.MovementUncheckedUpdateManyWithoutTruckerNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
-}
-
-export type ContactCreateWithoutMovementsInput = {
-  name: string
-  phoneNumber?: string | null
-  email?: string | null
-  address?: string | null
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  type: $Enums.ContactType
-  purchases?: Prisma.PurchaseCreateNestedManyWithoutSupplierInput
-  sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
-}
-
-export type ContactUncheckedCreateWithoutMovementsInput = {
-  id?: number
-  name: string
-  phoneNumber?: string | null
-  email?: string | null
-  address?: string | null
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  type: $Enums.ContactType
-  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutSupplierInput
-  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
-}
-
-export type ContactCreateOrConnectWithoutMovementsInput = {
-  where: Prisma.ContactWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
-}
-
-export type ContactUpsertWithoutMovementsInput = {
-  update: Prisma.XOR<Prisma.ContactUpdateWithoutMovementsInput, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
-  create: Prisma.XOR<Prisma.ContactCreateWithoutMovementsInput, Prisma.ContactUncheckedCreateWithoutMovementsInput>
-  where?: Prisma.ContactWhereInput
-}
-
-export type ContactUpdateToOneWithWhereWithoutMovementsInput = {
-  where?: Prisma.ContactWhereInput
-  data: Prisma.XOR<Prisma.ContactUpdateWithoutMovementsInput, Prisma.ContactUncheckedUpdateWithoutMovementsInput>
-}
-
-export type ContactUpdateWithoutMovementsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
-  purchases?: Prisma.PurchaseUpdateManyWithoutSupplierNestedInput
-  sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
-}
-
-export type ContactUncheckedUpdateWithoutMovementsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  type?: Prisma.EnumContactTypeFieldUpdateOperationsInput | $Enums.ContactType
-  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutSupplierNestedInput
-  sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 

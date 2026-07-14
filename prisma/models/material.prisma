@@ -1,0 +1,20 @@
+model Material {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  code String @unique @db.VarChar(255)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  measurement Measurement
+  variants    WoodVariant[]
+
+  @@map("materials")
+}
+
+enum Measurement {
+  CYLINDER
+  CUBE
+
+  @@map("measurements")
+}

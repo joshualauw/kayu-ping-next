@@ -488,48 +488,6 @@ export type SaleItemSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
 }
 
-export type SaleItemCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
-  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-}
-
-export type SaleItemUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
-  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-}
-
-export type SaleItemUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
-  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput | Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
-}
-
-export type SaleItemUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
-  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
-  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput | Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
-}
-
 export type SaleItemCreateNestedManyWithoutGradeInput = {
   create?: Prisma.XOR<Prisma.SaleItemCreateWithoutGradeInput, Prisma.SaleItemUncheckedCreateWithoutGradeInput> | Prisma.SaleItemCreateWithoutGradeInput[] | Prisma.SaleItemUncheckedCreateWithoutGradeInput[]
   connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutGradeInput | Prisma.SaleItemCreateOrConnectWithoutGradeInput[]
@@ -656,66 +614,46 @@ export type SaleItemUncheckedUpdateManyWithoutSaleNestedInput = {
   deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
 }
 
-export type SaleItemCreateWithoutVariantInput = {
-  pricePerCubic: number
-  quantity: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
-  sale: Prisma.SaleCreateNestedOneWithoutItemsInput
-  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
+export type SaleItemCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
 }
 
-export type SaleItemUncheckedCreateWithoutVariantInput = {
-  id?: number
-  saleId: number
-  gradeId?: number | null
-  lotId: number
-  pricePerCubic: number
-  quantity: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
+export type SaleItemUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
 }
 
-export type SaleItemCreateOrConnectWithoutVariantInput = {
-  where: Prisma.SaleItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput>
+export type SaleItemUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
+  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput | Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
 }
 
-export type SaleItemCreateManyVariantInputEnvelope = {
-  data: Prisma.SaleItemCreateManyVariantInput | Prisma.SaleItemCreateManyVariantInput[]
-  skipDuplicates?: boolean
-}
-
-export type SaleItemUpsertWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.SaleItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.SaleItemUpdateWithoutVariantInput, Prisma.SaleItemUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput>
-}
-
-export type SaleItemUpdateWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.SaleItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.SaleItemUpdateWithoutVariantInput, Prisma.SaleItemUncheckedUpdateWithoutVariantInput>
-}
-
-export type SaleItemUpdateManyWithWhereWithoutVariantInput = {
-  where: Prisma.SaleItemScalarWhereInput
-  data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutVariantInput>
-}
-
-export type SaleItemScalarWhereInput = {
-  AND?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
-  OR?: Prisma.SaleItemScalarWhereInput[]
-  NOT?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
-  id?: Prisma.IntFilter<"SaleItem"> | number
-  saleId?: Prisma.IntFilter<"SaleItem"> | number
-  gradeId?: Prisma.IntNullableFilter<"SaleItem"> | number | null
-  woodVariantId?: Prisma.IntFilter<"SaleItem"> | number
-  lotId?: Prisma.IntFilter<"SaleItem"> | number
-  pricePerCubic?: Prisma.FloatFilter<"SaleItem"> | number
-  quantity?: Prisma.IntFilter<"SaleItem"> | number
-  createdAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
+export type SaleItemUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput> | Prisma.SaleItemCreateWithoutVariantInput[] | Prisma.SaleItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.SaleItemCreateOrConnectWithoutVariantInput | Prisma.SaleItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.SaleItemCreateManyVariantInputEnvelope
+  set?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  disconnect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  delete?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  connect?: Prisma.SaleItemWhereUniqueInput | Prisma.SaleItemWhereUniqueInput[]
+  update?: Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.SaleItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput | Prisma.SaleItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
 }
 
 export type SaleItemCreateWithoutGradeInput = {
@@ -763,6 +701,21 @@ export type SaleItemUpdateWithWhereUniqueWithoutGradeInput = {
 export type SaleItemUpdateManyWithWhereWithoutGradeInput = {
   where: Prisma.SaleItemScalarWhereInput
   data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutGradeInput>
+}
+
+export type SaleItemScalarWhereInput = {
+  AND?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
+  OR?: Prisma.SaleItemScalarWhereInput[]
+  NOT?: Prisma.SaleItemScalarWhereInput | Prisma.SaleItemScalarWhereInput[]
+  id?: Prisma.IntFilter<"SaleItem"> | number
+  saleId?: Prisma.IntFilter<"SaleItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"SaleItem"> | number | null
+  woodVariantId?: Prisma.IntFilter<"SaleItem"> | number
+  lotId?: Prisma.IntFilter<"SaleItem"> | number
+  pricePerCubic?: Prisma.FloatFilter<"SaleItem"> | number
+  quantity?: Prisma.IntFilter<"SaleItem"> | number
+  createdAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"SaleItem"> | Date | string
 }
 
 export type SaleItemCreateWithoutLotInput = {
@@ -859,7 +812,17 @@ export type SaleItemUpdateManyWithWhereWithoutSaleInput = {
   data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutSaleInput>
 }
 
-export type SaleItemCreateManyVariantInput = {
+export type SaleItemCreateWithoutVariantInput = {
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutSaleItemsInput
+  sale: Prisma.SaleCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutSaleItemsInput
+}
+
+export type SaleItemUncheckedCreateWithoutVariantInput = {
   id?: number
   saleId: number
   gradeId?: number | null
@@ -870,36 +833,30 @@ export type SaleItemCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type SaleItemUpdateWithoutVariantInput = {
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
-  sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
+export type SaleItemCreateOrConnectWithoutVariantInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput>
 }
 
-export type SaleItemUncheckedUpdateWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  saleId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type SaleItemCreateManyVariantInputEnvelope = {
+  data: Prisma.SaleItemCreateManyVariantInput | Prisma.SaleItemCreateManyVariantInput[]
+  skipDuplicates?: boolean
 }
 
-export type SaleItemUncheckedUpdateManyWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  saleId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type SaleItemUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.SaleItemUpdateWithoutVariantInput, Prisma.SaleItemUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.SaleItemCreateWithoutVariantInput, Prisma.SaleItemUncheckedCreateWithoutVariantInput>
+}
+
+export type SaleItemUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.SaleItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.SaleItemUpdateWithoutVariantInput, Prisma.SaleItemUncheckedUpdateWithoutVariantInput>
+}
+
+export type SaleItemUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.SaleItemScalarWhereInput
+  data: Prisma.XOR<Prisma.SaleItemUpdateManyMutationInput, Prisma.SaleItemUncheckedUpdateManyWithoutVariantInput>
 }
 
 export type SaleItemCreateManyGradeInput = {
@@ -1024,6 +981,49 @@ export type SaleItemUncheckedUpdateManyWithoutSaleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SaleItemCreateManyVariantInput = {
+  id?: number
+  saleId: number
+  gradeId?: number | null
+  lotId: number
+  pricePerCubic: number
+  quantity: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SaleItemUpdateWithoutVariantInput = {
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutSaleItemsNestedInput
+  sale?: Prisma.SaleUpdateOneRequiredWithoutItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutSaleItemsNestedInput
+}
+
+export type SaleItemUncheckedUpdateWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  saleId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SaleItemUncheckedUpdateManyWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  saleId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   pricePerCubic?: Prisma.FloatFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number

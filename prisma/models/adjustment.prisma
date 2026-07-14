@@ -1,0 +1,53 @@
+model Adjustment {
+  id             Int      @id @default(autoincrement())
+  tid            String   @unique
+  adjustmentDate DateTime @map("adjustment_date") @db.Timestamptz(6)
+  locationId     Int      @map("location_id")
+  notes          String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  location Location         @relation(fields: [locationId], references: [id])
+  items    AdjustmentItem[]
+
+  @@map("adjustments")
+}
+
+model AdjustmentItem {
+  id            Int              @id @default(autoincrement())
+  adjustmentId  Int              @map("adjustment_id")
+  gradeId       Int?             @map("grade_id")
+  woodVariantId Int              @map("wood_variant_id")
+  lotId         Int              @map("lot_id")
+  quantity      Int
+  type          AdjustmentType
+  reason        AdjustmentReason
+  comment       String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade      Grade?      @relation(fields: [gradeId], references: [id])
+  adjustment Adjustment  @relation(fields: [adjustmentId], references: [id])
+  variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
+  lot        Lot         @relation(fields: [lotId], references: [id])
+
+  @@map("adjustment_items")
+}
+
+enum AdjustmentType {
+  ADD
+  SUBTRACT
+
+  @@map("adjustment_types")
+}
+
+enum AdjustmentReason {
+  LOST
+  FOUND
+  DAMAGE
+  OTHERS
+
+  @@map("adjustment_reasons")
+}

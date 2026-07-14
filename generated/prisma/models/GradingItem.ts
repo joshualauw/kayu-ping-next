@@ -504,48 +504,6 @@ export type GradingItemSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
 }
 
-export type GradingItemCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-}
-
-export type GradingItemUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-}
-
-export type GradingItemUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
-  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput | Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-}
-
-export type GradingItemUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
-  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput | Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-}
-
 export type GradingItemCreateNestedManyWithoutGradeInput = {
   create?: Prisma.XOR<Prisma.GradingItemCreateWithoutGradeInput, Prisma.GradingItemUncheckedCreateWithoutGradeInput> | Prisma.GradingItemCreateWithoutGradeInput[] | Prisma.GradingItemUncheckedCreateWithoutGradeInput[]
   connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutGradeInput | Prisma.GradingItemCreateOrConnectWithoutGradeInput[]
@@ -585,48 +543,6 @@ export type GradingItemUncheckedUpdateManyWithoutGradeNestedInput = {
   connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
   update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutGradeInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutGradeInput[]
   updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutGradeInput | Prisma.GradingItemUpdateManyWithWhereWithoutGradeInput[]
-  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-}
-
-export type GradingItemCreateNestedManyWithoutLotInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
-  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-}
-
-export type GradingItemUncheckedCreateNestedManyWithoutLotInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
-  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-}
-
-export type GradingItemUpdateManyWithoutLotNestedInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
-  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput[]
-  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
-  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput[]
-  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutLotInput | Prisma.GradingItemUpdateManyWithWhereWithoutLotInput[]
-  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-}
-
-export type GradingItemUncheckedUpdateManyWithoutLotNestedInput = {
-  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
-  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
-  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput[]
-  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
-  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
-  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput[]
-  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutLotInput | Prisma.GradingItemUpdateManyWithWhereWithoutLotInput[]
   deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
 }
 
@@ -676,69 +592,88 @@ export type EnumGradingTypeFieldUpdateOperationsInput = {
   set?: $Enums.GradingType
 }
 
-export type GradingItemCreateWithoutVariantInput = {
-  type: $Enums.GradingType
-  quantity: number
-  comment?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
-  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
-  lot: Prisma.LotCreateNestedOneWithoutGradingItemsInput
+export type GradingItemCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
 }
 
-export type GradingItemUncheckedCreateWithoutVariantInput = {
-  id?: number
-  gradingId: number
-  gradeId?: number | null
-  lotId: number
-  type: $Enums.GradingType
-  quantity: number
-  comment?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
+export type GradingItemUncheckedCreateNestedManyWithoutLotInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
+  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
 }
 
-export type GradingItemCreateOrConnectWithoutVariantInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput>
+export type GradingItemUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
+  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutLotInput | Prisma.GradingItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
 }
 
-export type GradingItemCreateManyVariantInputEnvelope = {
-  data: Prisma.GradingItemCreateManyVariantInput | Prisma.GradingItemCreateManyVariantInput[]
-  skipDuplicates?: boolean
+export type GradingItemUncheckedUpdateManyWithoutLotNestedInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput> | Prisma.GradingItemCreateWithoutLotInput[] | Prisma.GradingItemUncheckedCreateWithoutLotInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutLotInput | Prisma.GradingItemCreateOrConnectWithoutLotInput[]
+  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutLotInput[]
+  createMany?: Prisma.GradingItemCreateManyLotInputEnvelope
+  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutLotInput[]
+  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutLotInput | Prisma.GradingItemUpdateManyWithWhereWithoutLotInput[]
+  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
 }
 
-export type GradingItemUpsertWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.GradingItemUpdateWithoutVariantInput, Prisma.GradingItemUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput>
+export type GradingItemCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
 }
 
-export type GradingItemUpdateWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.GradingItemUpdateWithoutVariantInput, Prisma.GradingItemUncheckedUpdateWithoutVariantInput>
+export type GradingItemUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
 }
 
-export type GradingItemUpdateManyWithWhereWithoutVariantInput = {
-  where: Prisma.GradingItemScalarWhereInput
-  data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutVariantInput>
+export type GradingItemUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
+  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput | Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
 }
 
-export type GradingItemScalarWhereInput = {
-  AND?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-  OR?: Prisma.GradingItemScalarWhereInput[]
-  NOT?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
-  id?: Prisma.IntFilter<"GradingItem"> | number
-  gradingId?: Prisma.IntFilter<"GradingItem"> | number
-  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
-  woodVariantId?: Prisma.IntFilter<"GradingItem"> | number
-  lotId?: Prisma.IntFilter<"GradingItem"> | number
-  type?: Prisma.EnumGradingTypeFilter<"GradingItem"> | $Enums.GradingType
-  quantity?: Prisma.IntFilter<"GradingItem"> | number
-  comment?: Prisma.StringNullableFilter<"GradingItem"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
+export type GradingItemUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput> | Prisma.GradingItemCreateWithoutVariantInput[] | Prisma.GradingItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.GradingItemCreateOrConnectWithoutVariantInput | Prisma.GradingItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.GradingItemCreateManyVariantInputEnvelope
+  set?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  disconnect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  delete?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  connect?: Prisma.GradingItemWhereUniqueInput | Prisma.GradingItemWhereUniqueInput[]
+  update?: Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.GradingItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput | Prisma.GradingItemUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
 }
 
 export type GradingItemCreateWithoutGradeInput = {
@@ -790,53 +725,20 @@ export type GradingItemUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutGradeInput>
 }
 
-export type GradingItemCreateWithoutLotInput = {
-  type: $Enums.GradingType
-  quantity: number
-  comment?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
-  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
-  variant: Prisma.WoodVariantCreateNestedOneWithoutGradingItemsInput
-}
-
-export type GradingItemUncheckedCreateWithoutLotInput = {
-  id?: number
-  gradingId: number
-  gradeId?: number | null
-  woodVariantId: number
-  type: $Enums.GradingType
-  quantity: number
-  comment?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type GradingItemCreateOrConnectWithoutLotInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput>
-}
-
-export type GradingItemCreateManyLotInputEnvelope = {
-  data: Prisma.GradingItemCreateManyLotInput | Prisma.GradingItemCreateManyLotInput[]
-  skipDuplicates?: boolean
-}
-
-export type GradingItemUpsertWithWhereUniqueWithoutLotInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.GradingItemUpdateWithoutLotInput, Prisma.GradingItemUncheckedUpdateWithoutLotInput>
-  create: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput>
-}
-
-export type GradingItemUpdateWithWhereUniqueWithoutLotInput = {
-  where: Prisma.GradingItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.GradingItemUpdateWithoutLotInput, Prisma.GradingItemUncheckedUpdateWithoutLotInput>
-}
-
-export type GradingItemUpdateManyWithWhereWithoutLotInput = {
-  where: Prisma.GradingItemScalarWhereInput
-  data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutLotInput>
+export type GradingItemScalarWhereInput = {
+  AND?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
+  OR?: Prisma.GradingItemScalarWhereInput[]
+  NOT?: Prisma.GradingItemScalarWhereInput | Prisma.GradingItemScalarWhereInput[]
+  id?: Prisma.IntFilter<"GradingItem"> | number
+  gradingId?: Prisma.IntFilter<"GradingItem"> | number
+  gradeId?: Prisma.IntNullableFilter<"GradingItem"> | number | null
+  woodVariantId?: Prisma.IntFilter<"GradingItem"> | number
+  lotId?: Prisma.IntFilter<"GradingItem"> | number
+  type?: Prisma.EnumGradingTypeFilter<"GradingItem"> | $Enums.GradingType
+  quantity?: Prisma.IntFilter<"GradingItem"> | number
+  comment?: Prisma.StringNullableFilter<"GradingItem"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GradingItem"> | Date | string
 }
 
 export type GradingItemCreateWithoutGradingInput = {
@@ -888,7 +790,67 @@ export type GradingItemUpdateManyWithWhereWithoutGradingInput = {
   data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutGradingInput>
 }
 
-export type GradingItemCreateManyVariantInput = {
+export type GradingItemCreateWithoutLotInput = {
+  type: $Enums.GradingType
+  quantity: number
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
+  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutGradingItemsInput
+}
+
+export type GradingItemUncheckedCreateWithoutLotInput = {
+  id?: number
+  gradingId: number
+  gradeId?: number | null
+  woodVariantId: number
+  type: $Enums.GradingType
+  quantity: number
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type GradingItemCreateOrConnectWithoutLotInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput>
+}
+
+export type GradingItemCreateManyLotInputEnvelope = {
+  data: Prisma.GradingItemCreateManyLotInput | Prisma.GradingItemCreateManyLotInput[]
+  skipDuplicates?: boolean
+}
+
+export type GradingItemUpsertWithWhereUniqueWithoutLotInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.GradingItemUpdateWithoutLotInput, Prisma.GradingItemUncheckedUpdateWithoutLotInput>
+  create: Prisma.XOR<Prisma.GradingItemCreateWithoutLotInput, Prisma.GradingItemUncheckedCreateWithoutLotInput>
+}
+
+export type GradingItemUpdateWithWhereUniqueWithoutLotInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.GradingItemUpdateWithoutLotInput, Prisma.GradingItemUncheckedUpdateWithoutLotInput>
+}
+
+export type GradingItemUpdateManyWithWhereWithoutLotInput = {
+  where: Prisma.GradingItemScalarWhereInput
+  data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutLotInput>
+}
+
+export type GradingItemCreateWithoutVariantInput = {
+  type: $Enums.GradingType
+  quantity: number
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutGradingItemsInput
+  grading: Prisma.GradingCreateNestedOneWithoutItemsInput
+  lot: Prisma.LotCreateNestedOneWithoutGradingItemsInput
+}
+
+export type GradingItemUncheckedCreateWithoutVariantInput = {
   id?: number
   gradingId: number
   gradeId?: number | null
@@ -900,39 +862,30 @@ export type GradingItemCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type GradingItemUpdateWithoutVariantInput = {
-  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
-  grading?: Prisma.GradingUpdateOneRequiredWithoutItemsNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutGradingItemsNestedInput
+export type GradingItemCreateOrConnectWithoutVariantInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput>
 }
 
-export type GradingItemUncheckedUpdateWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradingId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type GradingItemCreateManyVariantInputEnvelope = {
+  data: Prisma.GradingItemCreateManyVariantInput | Prisma.GradingItemCreateManyVariantInput[]
+  skipDuplicates?: boolean
 }
 
-export type GradingItemUncheckedUpdateManyWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  gradingId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type GradingItemUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.GradingItemUpdateWithoutVariantInput, Prisma.GradingItemUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.GradingItemCreateWithoutVariantInput, Prisma.GradingItemUncheckedCreateWithoutVariantInput>
+}
+
+export type GradingItemUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.GradingItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.GradingItemUpdateWithoutVariantInput, Prisma.GradingItemUncheckedUpdateWithoutVariantInput>
+}
+
+export type GradingItemUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.GradingItemScalarWhereInput
+  data: Prisma.XOR<Prisma.GradingItemUpdateManyMutationInput, Prisma.GradingItemUncheckedUpdateManyWithoutVariantInput>
 }
 
 export type GradingItemCreateManyGradeInput = {
@@ -973,6 +926,53 @@ export type GradingItemUncheckedUpdateWithoutGradeInput = {
 export type GradingItemUncheckedUpdateManyWithoutGradeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   gradingId?: Prisma.IntFieldUpdateOperationsInput | number
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type GradingItemCreateManyGradingInput = {
+  id?: number
+  gradeId?: number | null
+  woodVariantId: number
+  lotId: number
+  type: $Enums.GradingType
+  quantity: number
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type GradingItemUpdateWithoutGradingInput = {
+  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutGradingItemsNestedInput
+}
+
+export type GradingItemUncheckedUpdateWithoutGradingInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type GradingItemUncheckedUpdateManyWithoutGradingInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
@@ -1029,10 +1029,10 @@ export type GradingItemUncheckedUpdateManyWithoutLotInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type GradingItemCreateManyGradingInput = {
+export type GradingItemCreateManyVariantInput = {
   id?: number
+  gradingId: number
   gradeId?: number | null
-  woodVariantId: number
   lotId: number
   type: $Enums.GradingType
   quantity: number
@@ -1041,21 +1041,21 @@ export type GradingItemCreateManyGradingInput = {
   updatedAt?: Date | string
 }
 
-export type GradingItemUpdateWithoutGradingInput = {
+export type GradingItemUpdateWithoutVariantInput = {
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutGradingItemsNestedInput
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput
+  grading?: Prisma.GradingUpdateOneRequiredWithoutItemsNestedInput
   lot?: Prisma.LotUpdateOneRequiredWithoutGradingItemsNestedInput
 }
 
-export type GradingItemUncheckedUpdateWithoutGradingInput = {
+export type GradingItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1064,10 +1064,10 @@ export type GradingItemUncheckedUpdateWithoutGradingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type GradingItemUncheckedUpdateManyWithoutGradingInput = {
+export type GradingItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  gradingId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumGradingTypeFieldUpdateOperationsInput | $Enums.GradingType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number

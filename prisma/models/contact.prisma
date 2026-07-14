@@ -1,0 +1,27 @@
+model Contact {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  phoneNumber String? @unique @db.VarChar(255)
+  email       String? @unique @db.VarChar(255)
+  address     String?
+  notes       String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  type      ContactType
+  movements Movement[]
+  purchases Purchase[]
+  sales     Sale[]
+
+  @@map("contacts")
+}
+
+enum ContactType {
+  CUSTOMER
+  SUPPLIER
+  TRUCKER
+  OTHERS
+
+  @@map("contact_types")
+}

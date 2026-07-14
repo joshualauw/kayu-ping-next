@@ -1,0 +1,43 @@
+model Grading {
+  id          Int      @id @default(autoincrement())
+  tid         String   @unique
+  gradingDate DateTime @map("grading_date") @db.Timestamptz(6)
+  locationId  Int      @map("location_id")
+  notes       String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  items    GradingItem[]
+  location Location      @relation(fields: [locationId], references: [id])
+
+  @@map("gradings")
+}
+
+model GradingItem {
+  id            Int         @id @default(autoincrement())
+  gradingId     Int         @map("grading_id")
+  gradeId       Int?        @map("grade_id")
+  woodVariantId Int         @map("wood_variant_id")
+  lotId         Int         @map("lot_id")
+  type          GradingType
+  quantity      Int
+  comment       String?
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade   Grade?      @relation(fields: [gradeId], references: [id])
+  grading Grading     @relation(fields: [gradingId], references: [id])
+  variant WoodVariant @relation(fields: [woodVariantId], references: [id])
+  lot     Lot         @relation(fields: [lotId], references: [id])
+
+  @@map("grading_items")
+}
+
+enum GradingType {
+  BEFORE
+  AFTER
+
+  @@map("grading_types")
+}

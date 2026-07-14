@@ -1,0 +1,9 @@
+model Fee {
+  id            Int           @id @default(autoincrement())
+  name          String        @db.VarChar(255)
+  price         Float
+  referenceId   Int           @map("reference_id")
+  referenceType ReferenceType @map("reference_type")
+
+  @@map("fees")
+}

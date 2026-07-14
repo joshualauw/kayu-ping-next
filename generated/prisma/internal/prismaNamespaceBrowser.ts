@@ -51,29 +51,29 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Users: 'Users',
-  Wood: 'Wood',
+  Adjustment: 'Adjustment',
+  AdjustmentItem: 'AdjustmentItem',
   Contact: 'Contact',
-  Location: 'Location',
-  Material: 'Material',
-  WoodVariant: 'WoodVariant',
+  Fee: 'Fee',
   Grade: 'Grade',
-  Lot: 'Lot',
+  Grading: 'Grading',
+  GradingItem: 'GradingItem',
   Inventory: 'Inventory',
-  StockMutation: 'StockMutation',
+  Location: 'Location',
+  Lot: 'Lot',
+  Material: 'Material',
+  Movement: 'Movement',
+  MovementItem: 'MovementItem',
+  Processing: 'Processing',
+  ProcessingItem: 'ProcessingItem',
   Purchase: 'Purchase',
   PurchaseItem: 'PurchaseItem',
   Sale: 'Sale',
   SaleItem: 'SaleItem',
-  Processing: 'Processing',
-  ProcessingItem: 'ProcessingItem',
-  Movement: 'Movement',
-  MovementItem: 'MovementItem',
-  Grading: 'Grading',
-  GradingItem: 'GradingItem',
-  Adjustment: 'Adjustment',
-  AdjustmentItem: 'AdjustmentItem',
-  Fee: 'Fee'
+  StockMutation: 'StockMutation',
+  Users: 'Users',
+  Wood: 'Wood',
+  WoodVariant: 'WoodVariant'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -92,27 +92,34 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UsersScalarFieldEnum = {
+export const AdjustmentScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password',
+  tid: 'tid',
+  adjustmentDate: 'adjustmentDate',
+  locationId: 'locationId',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+export type AdjustmentScalarFieldEnum = (typeof AdjustmentScalarFieldEnum)[keyof typeof AdjustmentScalarFieldEnum]
 
 
-export const WoodScalarFieldEnum = {
+export const AdjustmentItemScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  code: 'code',
+  adjustmentId: 'adjustmentId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
+  quantity: 'quantity',
+  type: 'type',
+  reason: 'reason',
+  comment: 'comment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type WoodScalarFieldEnum = (typeof WoodScalarFieldEnum)[keyof typeof WoodScalarFieldEnum]
+export type AdjustmentItemScalarFieldEnum = (typeof AdjustmentItemScalarFieldEnum)[keyof typeof AdjustmentItemScalarFieldEnum]
 
 
 export const ContactScalarFieldEnum = {
@@ -130,45 +137,15 @@ export const ContactScalarFieldEnum = {
 export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
 
 
-export const LocationScalarFieldEnum = {
+export const FeeScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address',
-  type: 'type',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  price: 'price',
+  referenceId: 'referenceId',
+  referenceType: 'referenceType'
 } as const
 
-export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
-
-
-export const MaterialScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  code: 'code',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  measurement: 'measurement'
-} as const
-
-export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
-
-
-export const WoodVariantScalarFieldEnum = {
-  id: 'id',
-  woodId: 'woodId',
-  materialId: 'materialId',
-  width: 'width',
-  height: 'height',
-  diameterSmall: 'diameterSmall',
-  diamterLarge: 'diamterLarge',
-  length: 'length',
-  volume: 'volume',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type WoodVariantScalarFieldEnum = (typeof WoodVariantScalarFieldEnum)[keyof typeof WoodVariantScalarFieldEnum]
+export type FeeScalarFieldEnum = (typeof FeeScalarFieldEnum)[keyof typeof FeeScalarFieldEnum]
 
 
 export const GradeScalarFieldEnum = {
@@ -182,14 +159,33 @@ export const GradeScalarFieldEnum = {
 export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
 
 
-export const LotScalarFieldEnum = {
+export const GradingScalarFieldEnum = {
   id: 'id',
-  code: 'code',
+  tid: 'tid',
+  gradingDate: 'gradingDate',
+  locationId: 'locationId',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type LotScalarFieldEnum = (typeof LotScalarFieldEnum)[keyof typeof LotScalarFieldEnum]
+export type GradingScalarFieldEnum = (typeof GradingScalarFieldEnum)[keyof typeof GradingScalarFieldEnum]
+
+
+export const GradingItemScalarFieldEnum = {
+  id: 'id',
+  gradingId: 'gradingId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
+  type: 'type',
+  quantity: 'quantity',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GradingItemScalarFieldEnum = (typeof GradingItemScalarFieldEnum)[keyof typeof GradingItemScalarFieldEnum]
 
 
 export const InventoryScalarFieldEnum = {
@@ -206,23 +202,98 @@ export const InventoryScalarFieldEnum = {
 export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
 
 
-export const StockMutationScalarFieldEnum = {
+export const LocationScalarFieldEnum = {
   id: 'id',
-  mutationDate: 'mutationDate',
-  woodVariantId: 'woodVariantId',
-  gradeId: 'gradeId',
-  lotId: 'lotId',
-  locationId: 'locationId',
+  name: 'name',
+  address: 'address',
   type: 'type',
-  quantity: 'quantity',
-  referenceType: 'referenceType',
-  referenceId: 'referenceId',
-  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type StockMutationScalarFieldEnum = (typeof StockMutationScalarFieldEnum)[keyof typeof StockMutationScalarFieldEnum]
+export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
+
+
+export const LotScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LotScalarFieldEnum = (typeof LotScalarFieldEnum)[keyof typeof LotScalarFieldEnum]
+
+
+export const MaterialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  measurement: 'measurement'
+} as const
+
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const MovementScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  truckerId: 'truckerId',
+  movementDate: 'movementDate',
+  fromLocationId: 'fromLocationId',
+  toLocationId: 'toLocationId',
+  notes: 'notes',
+  totalMovedVolume: 'totalMovedVolume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MovementScalarFieldEnum = (typeof MovementScalarFieldEnum)[keyof typeof MovementScalarFieldEnum]
+
+
+export const MovementItemScalarFieldEnum = {
+  id: 'id',
+  movementId: 'movementId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MovementItemScalarFieldEnum = (typeof MovementItemScalarFieldEnum)[keyof typeof MovementItemScalarFieldEnum]
+
+
+export const ProcessingScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  processingDate: 'processingDate',
+  locationId: 'locationId',
+  notes: 'notes',
+  totalInputVolume: 'totalInputVolume',
+  totalOutputVolume: 'totalOutputVolume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingScalarFieldEnum = (typeof ProcessingScalarFieldEnum)[keyof typeof ProcessingScalarFieldEnum]
+
+
+export const ProcessingItemScalarFieldEnum = {
+  id: 'id',
+  processingId: 'processingId',
+  gradeId: 'gradeId',
+  woodVariantId: 'woodVariantId',
+  lotId: 'lotId',
+  type: 'type',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProcessingItemScalarFieldEnum = (typeof ProcessingItemScalarFieldEnum)[keyof typeof ProcessingItemScalarFieldEnum]
 
 
 export const PurchaseScalarFieldEnum = {
@@ -287,134 +358,63 @@ export const SaleItemScalarFieldEnum = {
 export type SaleItemScalarFieldEnum = (typeof SaleItemScalarFieldEnum)[keyof typeof SaleItemScalarFieldEnum]
 
 
-export const ProcessingScalarFieldEnum = {
+export const StockMutationScalarFieldEnum = {
   id: 'id',
-  tid: 'tid',
-  processingDate: 'processingDate',
-  locationId: 'locationId',
-  notes: 'notes',
-  totalInputVolume: 'totalInputVolume',
-  totalOutputVolume: 'totalOutputVolume',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ProcessingScalarFieldEnum = (typeof ProcessingScalarFieldEnum)[keyof typeof ProcessingScalarFieldEnum]
-
-
-export const ProcessingItemScalarFieldEnum = {
-  id: 'id',
-  processingId: 'processingId',
-  gradeId: 'gradeId',
+  mutationDate: 'mutationDate',
   woodVariantId: 'woodVariantId',
+  gradeId: 'gradeId',
   lotId: 'lotId',
+  locationId: 'locationId',
   type: 'type',
   quantity: 'quantity',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ProcessingItemScalarFieldEnum = (typeof ProcessingItemScalarFieldEnum)[keyof typeof ProcessingItemScalarFieldEnum]
-
-
-export const MovementScalarFieldEnum = {
-  id: 'id',
-  tid: 'tid',
-  truckerId: 'truckerId',
-  movementDate: 'movementDate',
-  fromLocationId: 'fromLocationId',
-  toLocationId: 'toLocationId',
-  notes: 'notes',
-  totalMovedVolume: 'totalMovedVolume',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type MovementScalarFieldEnum = (typeof MovementScalarFieldEnum)[keyof typeof MovementScalarFieldEnum]
-
-
-export const MovementItemScalarFieldEnum = {
-  id: 'id',
-  movementId: 'movementId',
-  gradeId: 'gradeId',
-  woodVariantId: 'woodVariantId',
-  lotId: 'lotId',
-  quantity: 'quantity',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type MovementItemScalarFieldEnum = (typeof MovementItemScalarFieldEnum)[keyof typeof MovementItemScalarFieldEnum]
-
-
-export const GradingScalarFieldEnum = {
-  id: 'id',
-  tid: 'tid',
-  gradingDate: 'gradingDate',
-  locationId: 'locationId',
+  referenceType: 'referenceType',
+  referenceId: 'referenceId',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type GradingScalarFieldEnum = (typeof GradingScalarFieldEnum)[keyof typeof GradingScalarFieldEnum]
+export type StockMutationScalarFieldEnum = (typeof StockMutationScalarFieldEnum)[keyof typeof StockMutationScalarFieldEnum]
 
 
-export const GradingItemScalarFieldEnum = {
-  id: 'id',
-  gradingId: 'gradingId',
-  gradeId: 'gradeId',
-  woodVariantId: 'woodVariantId',
-  lotId: 'lotId',
-  type: 'type',
-  quantity: 'quantity',
-  comment: 'comment',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type GradingItemScalarFieldEnum = (typeof GradingItemScalarFieldEnum)[keyof typeof GradingItemScalarFieldEnum]
-
-
-export const AdjustmentScalarFieldEnum = {
-  id: 'id',
-  tid: 'tid',
-  adjustmentDate: 'adjustmentDate',
-  locationId: 'locationId',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AdjustmentScalarFieldEnum = (typeof AdjustmentScalarFieldEnum)[keyof typeof AdjustmentScalarFieldEnum]
-
-
-export const AdjustmentItemScalarFieldEnum = {
-  id: 'id',
-  adjustmentId: 'adjustmentId',
-  gradeId: 'gradeId',
-  woodVariantId: 'woodVariantId',
-  lotId: 'lotId',
-  quantity: 'quantity',
-  type: 'type',
-  reason: 'reason',
-  comment: 'comment',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AdjustmentItemScalarFieldEnum = (typeof AdjustmentItemScalarFieldEnum)[keyof typeof AdjustmentItemScalarFieldEnum]
-
-
-export const FeeScalarFieldEnum = {
+export const UsersScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  price: 'price',
-  referenceId: 'referenceId',
-  referenceType: 'referenceType'
+  email: 'email',
+  password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type FeeScalarFieldEnum = (typeof FeeScalarFieldEnum)[keyof typeof FeeScalarFieldEnum]
+export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const WoodScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WoodScalarFieldEnum = (typeof WoodScalarFieldEnum)[keyof typeof WoodScalarFieldEnum]
+
+
+export const WoodVariantScalarFieldEnum = {
+  id: 'id',
+  woodId: 'woodId',
+  materialId: 'materialId',
+  width: 'width',
+  height: 'height',
+  diameterSmall: 'diameterSmall',
+  diamterLarge: 'diamterLarge',
+  length: 'length',
+  volume: 'volume',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WoodVariantScalarFieldEnum = (typeof WoodVariantScalarFieldEnum)[keyof typeof WoodVariantScalarFieldEnum]
 
 
 export const SortOrder = {

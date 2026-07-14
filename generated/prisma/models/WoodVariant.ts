@@ -520,6 +520,11 @@ export type WoodVariantUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type WoodVariantScalarRelationFilter = {
+  is?: Prisma.WoodVariantWhereInput
+  isNot?: Prisma.WoodVariantWhereInput
+}
+
 export type WoodVariantListRelationFilter = {
   every?: Prisma.WoodVariantWhereInput
   some?: Prisma.WoodVariantWhereInput
@@ -596,51 +601,46 @@ export type WoodVariantSumOrderByAggregateInput = {
   volume?: Prisma.SortOrder
 }
 
-export type WoodVariantScalarRelationFilter = {
-  is?: Prisma.WoodVariantWhereInput
-  isNot?: Prisma.WoodVariantWhereInput
+export type WoodVariantCreateNestedOneWithoutAdjustmentItemsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutAdjustmentItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
 }
 
-export type WoodVariantCreateNestedManyWithoutWoodInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
-  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
-  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+export type WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutAdjustmentItemsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutAdjustmentItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutAdjustmentItemsInput, Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
 }
 
-export type WoodVariantUncheckedCreateNestedManyWithoutWoodInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
-  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
-  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+export type WoodVariantCreateNestedOneWithoutGradingItemsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
 }
 
-export type WoodVariantUpdateManyWithoutWoodNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
-  upsert?: Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput[]
-  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
-  set?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  disconnect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  delete?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  update?: Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput[]
-  updateMany?: Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput | Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput[]
-  deleteMany?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
+export type WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutGradingItemsInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.WoodVariantUpdateWithoutGradingItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
 }
 
-export type WoodVariantUncheckedUpdateManyWithoutWoodNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
-  upsert?: Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput[]
-  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
-  set?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  disconnect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  delete?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
-  update?: Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput[]
-  updateMany?: Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput | Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput[]
-  deleteMany?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
+export type WoodVariantCreateNestedOneWithoutInventoriesInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutInventoriesInput, Prisma.WoodVariantUncheckedCreateWithoutInventoriesInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutInventoriesInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+}
+
+export type WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutInventoriesInput, Prisma.WoodVariantUncheckedCreateWithoutInventoriesInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutInventoriesInput
+  upsert?: Prisma.WoodVariantUpsertWithoutInventoriesInput
+  connect?: Prisma.WoodVariantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutInventoriesInput, Prisma.WoodVariantUpdateWithoutInventoriesInput>, Prisma.WoodVariantUncheckedUpdateWithoutInventoriesInput>
 }
 
 export type WoodVariantCreateNestedManyWithoutMaterialInput = {
@@ -685,48 +685,32 @@ export type WoodVariantUncheckedUpdateManyWithoutMaterialNestedInput = {
   deleteMany?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
 }
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type WoodVariantCreateNestedOneWithoutInventoriesInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutInventoriesInput, Prisma.WoodVariantUncheckedCreateWithoutInventoriesInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutInventoriesInput
+export type WoodVariantCreateNestedOneWithoutMovementItemsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMovementItemsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
 }
 
-export type WoodVariantUpdateOneRequiredWithoutInventoriesNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutInventoriesInput, Prisma.WoodVariantUncheckedCreateWithoutInventoriesInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutInventoriesInput
-  upsert?: Prisma.WoodVariantUpsertWithoutInventoriesInput
+export type WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMovementItemsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutMovementItemsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutInventoriesInput, Prisma.WoodVariantUpdateWithoutInventoriesInput>, Prisma.WoodVariantUncheckedUpdateWithoutInventoriesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutMovementItemsInput, Prisma.WoodVariantUpdateWithoutMovementItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
 }
 
-export type WoodVariantCreateNestedOneWithoutMutationsInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMutationsInput
+export type WoodVariantCreateNestedOneWithoutProcessingItemsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutProcessingItemsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
 }
 
-export type WoodVariantUpdateOneRequiredWithoutMutationsNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMutationsInput
-  upsert?: Prisma.WoodVariantUpsertWithoutMutationsInput
+export type WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutProcessingItemsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutProcessingItemsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutMutationsInput, Prisma.WoodVariantUpdateWithoutMutationsInput>, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutProcessingItemsInput, Prisma.WoodVariantUpdateWithoutProcessingItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
 }
 
 export type WoodVariantCreateNestedOneWithoutPurchaseItemsInput = {
@@ -757,63 +741,71 @@ export type WoodVariantUpdateOneRequiredWithoutSaleItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutSaleItemsInput, Prisma.WoodVariantUpdateWithoutSaleItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutSaleItemsInput>
 }
 
-export type WoodVariantCreateNestedOneWithoutProcessingItemsInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutProcessingItemsInput
+export type WoodVariantCreateNestedOneWithoutMutationsInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMutationsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
 }
 
-export type WoodVariantUpdateOneRequiredWithoutProcessingItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutProcessingItemsInput
-  upsert?: Prisma.WoodVariantUpsertWithoutProcessingItemsInput
+export type WoodVariantUpdateOneRequiredWithoutMutationsNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMutationsInput
+  upsert?: Prisma.WoodVariantUpsertWithoutMutationsInput
   connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutProcessingItemsInput, Prisma.WoodVariantUpdateWithoutProcessingItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutMutationsInput, Prisma.WoodVariantUpdateWithoutMutationsInput>, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
 }
 
-export type WoodVariantCreateNestedOneWithoutMovementItemsInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMovementItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
+export type WoodVariantCreateNestedManyWithoutWoodInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
+  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
+  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
 }
 
-export type WoodVariantUpdateOneRequiredWithoutMovementItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutMovementItemsInput
-  upsert?: Prisma.WoodVariantUpsertWithoutMovementItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutMovementItemsInput, Prisma.WoodVariantUpdateWithoutMovementItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
+export type WoodVariantUncheckedCreateNestedManyWithoutWoodInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
+  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
+  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
 }
 
-export type WoodVariantCreateNestedOneWithoutGradingItemsInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
+export type WoodVariantUpdateManyWithoutWoodNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
+  upsert?: Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput[]
+  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
+  set?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  disconnect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  delete?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  update?: Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput[]
+  updateMany?: Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput | Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput[]
+  deleteMany?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
 }
 
-export type WoodVariantUpdateOneRequiredWithoutGradingItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutGradingItemsInput
-  upsert?: Prisma.WoodVariantUpsertWithoutGradingItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput, Prisma.WoodVariantUpdateWithoutGradingItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
+export type WoodVariantUncheckedUpdateManyWithoutWoodNestedInput = {
+  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput> | Prisma.WoodVariantCreateWithoutWoodInput[] | Prisma.WoodVariantUncheckedCreateWithoutWoodInput[]
+  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutWoodInput | Prisma.WoodVariantCreateOrConnectWithoutWoodInput[]
+  upsert?: Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpsertWithWhereUniqueWithoutWoodInput[]
+  createMany?: Prisma.WoodVariantCreateManyWoodInputEnvelope
+  set?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  disconnect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  delete?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  connect?: Prisma.WoodVariantWhereUniqueInput | Prisma.WoodVariantWhereUniqueInput[]
+  update?: Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput | Prisma.WoodVariantUpdateWithWhereUniqueWithoutWoodInput[]
+  updateMany?: Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput | Prisma.WoodVariantUpdateManyWithWhereWithoutWoodInput[]
+  deleteMany?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
 }
 
-export type WoodVariantCreateNestedOneWithoutAdjustmentItemsInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutAdjustmentItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
-export type WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
-  connectOrCreate?: Prisma.WoodVariantCreateOrConnectWithoutAdjustmentItemsInput
-  upsert?: Prisma.WoodVariantUpsertWithoutAdjustmentItemsInput
-  connect?: Prisma.WoodVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WoodVariantUpdateToOneWithWhereWithoutAdjustmentItemsInput, Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput>, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
-}
-
-export type WoodVariantCreateWithoutWoodInput = {
+export type WoodVariantCreateWithoutAdjustmentItemsInput = {
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -830,11 +822,12 @@ export type WoodVariantCreateWithoutWoodInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
   material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
+  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
 }
 
-export type WoodVariantUncheckedCreateWithoutWoodInput = {
+export type WoodVariantUncheckedCreateWithoutAdjustmentItemsInput = {
   id?: number
+  woodId: number
   materialId: number
   width?: number | null
   height?: number | null
@@ -851,53 +844,66 @@ export type WoodVariantUncheckedCreateWithoutWoodInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
   mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantCreateOrConnectWithoutWoodInput = {
+export type WoodVariantCreateOrConnectWithoutAdjustmentItemsInput = {
   where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
 }
 
-export type WoodVariantCreateManyWoodInputEnvelope = {
-  data: Prisma.WoodVariantCreateManyWoodInput | Prisma.WoodVariantCreateManyWoodInput[]
-  skipDuplicates?: boolean
+export type WoodVariantUpsertWithoutAdjustmentItemsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
+  where?: Prisma.WoodVariantWhereInput
 }
 
-export type WoodVariantUpsertWithWhereUniqueWithoutWoodInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutWoodInput, Prisma.WoodVariantUncheckedUpdateWithoutWoodInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput>
+export type WoodVariantUpdateToOneWithWhereWithoutAdjustmentItemsInput = {
+  where?: Prisma.WoodVariantWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
 }
 
-export type WoodVariantUpdateWithWhereUniqueWithoutWoodInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutWoodInput, Prisma.WoodVariantUncheckedUpdateWithoutWoodInput>
+export type WoodVariantUpdateWithoutAdjustmentItemsInput = {
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
+  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
 }
 
-export type WoodVariantUpdateManyWithWhereWithoutWoodInput = {
-  where: Prisma.WoodVariantScalarWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateManyMutationInput, Prisma.WoodVariantUncheckedUpdateManyWithoutWoodInput>
+export type WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodId?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantScalarWhereInput = {
-  AND?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
-  OR?: Prisma.WoodVariantScalarWhereInput[]
-  NOT?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
-  id?: Prisma.IntFilter<"WoodVariant"> | number
-  woodId?: Prisma.IntFilter<"WoodVariant"> | number
-  materialId?: Prisma.IntFilter<"WoodVariant"> | number
-  width?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
-  height?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
-  diameterSmall?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
-  diamterLarge?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
-  length?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
-  volume?: Prisma.FloatFilter<"WoodVariant"> | number
-  createdAt?: Prisma.DateTimeFilter<"WoodVariant"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"WoodVariant"> | Date | string
-}
-
-export type WoodVariantCreateWithoutMaterialInput = {
+export type WoodVariantCreateWithoutGradingItemsInput = {
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -906,20 +912,21 @@ export type WoodVariantCreateWithoutMaterialInput = {
   volume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
   inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
   mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
+  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
   wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
   adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantUncheckedCreateWithoutMaterialInput = {
+export type WoodVariantUncheckedCreateWithoutGradingItemsInput = {
   id?: number
   woodId: number
+  materialId: number
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -928,7 +935,6 @@ export type WoodVariantUncheckedCreateWithoutMaterialInput = {
   volume: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
   movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
@@ -938,30 +944,61 @@ export type WoodVariantUncheckedCreateWithoutMaterialInput = {
   adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantCreateOrConnectWithoutMaterialInput = {
+export type WoodVariantCreateOrConnectWithoutGradingItemsInput = {
   where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMaterialInput, Prisma.WoodVariantUncheckedCreateWithoutMaterialInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
 }
 
-export type WoodVariantCreateManyMaterialInputEnvelope = {
-  data: Prisma.WoodVariantCreateManyMaterialInput | Prisma.WoodVariantCreateManyMaterialInput[]
-  skipDuplicates?: boolean
+export type WoodVariantUpsertWithoutGradingItemsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
+  where?: Prisma.WoodVariantWhereInput
 }
 
-export type WoodVariantUpsertWithWhereUniqueWithoutMaterialInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMaterialInput, Prisma.WoodVariantUncheckedUpdateWithoutMaterialInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMaterialInput, Prisma.WoodVariantUncheckedCreateWithoutMaterialInput>
+export type WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput = {
+  where?: Prisma.WoodVariantWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
 }
 
-export type WoodVariantUpdateWithWhereUniqueWithoutMaterialInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMaterialInput, Prisma.WoodVariantUncheckedUpdateWithoutMaterialInput>
+export type WoodVariantUpdateWithoutGradingItemsInput = {
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
+  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantUpdateManyWithWhereWithoutMaterialInput = {
-  where: Prisma.WoodVariantScalarWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateManyMutationInput, Prisma.WoodVariantUncheckedUpdateManyWithoutMaterialInput>
+export type WoodVariantUncheckedUpdateWithoutGradingItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodId?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type WoodVariantCreateWithoutInventoriesInput = {
@@ -1062,7 +1099,7 @@ export type WoodVariantUncheckedUpdateWithoutInventoriesInput = {
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantCreateWithoutMutationsInput = {
+export type WoodVariantCreateWithoutMaterialInput = {
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -1077,15 +1114,14 @@ export type WoodVariantCreateWithoutMutationsInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
-  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
+  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
   wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
   adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantUncheckedCreateWithoutMutationsInput = {
+export type WoodVariantUncheckedCreateWithoutMaterialInput = {
   id?: number
   woodId: number
-  materialId: number
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -1100,26 +1136,209 @@ export type WoodVariantUncheckedCreateWithoutMutationsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
   adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantCreateOrConnectWithoutMutationsInput = {
+export type WoodVariantCreateOrConnectWithoutMaterialInput = {
   where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMaterialInput, Prisma.WoodVariantUncheckedCreateWithoutMaterialInput>
 }
 
-export type WoodVariantUpsertWithoutMutationsInput = {
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMutationsInput, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
+export type WoodVariantCreateManyMaterialInputEnvelope = {
+  data: Prisma.WoodVariantCreateManyMaterialInput | Prisma.WoodVariantCreateManyMaterialInput[]
+  skipDuplicates?: boolean
+}
+
+export type WoodVariantUpsertWithWhereUniqueWithoutMaterialInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMaterialInput, Prisma.WoodVariantUncheckedUpdateWithoutMaterialInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMaterialInput, Prisma.WoodVariantUncheckedCreateWithoutMaterialInput>
+}
+
+export type WoodVariantUpdateWithWhereUniqueWithoutMaterialInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMaterialInput, Prisma.WoodVariantUncheckedUpdateWithoutMaterialInput>
+}
+
+export type WoodVariantUpdateManyWithWhereWithoutMaterialInput = {
+  where: Prisma.WoodVariantScalarWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateManyMutationInput, Prisma.WoodVariantUncheckedUpdateManyWithoutMaterialInput>
+}
+
+export type WoodVariantScalarWhereInput = {
+  AND?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
+  OR?: Prisma.WoodVariantScalarWhereInput[]
+  NOT?: Prisma.WoodVariantScalarWhereInput | Prisma.WoodVariantScalarWhereInput[]
+  id?: Prisma.IntFilter<"WoodVariant"> | number
+  woodId?: Prisma.IntFilter<"WoodVariant"> | number
+  materialId?: Prisma.IntFilter<"WoodVariant"> | number
+  width?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
+  height?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
+  diameterSmall?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
+  diamterLarge?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
+  length?: Prisma.FloatNullableFilter<"WoodVariant"> | number | null
+  volume?: Prisma.FloatFilter<"WoodVariant"> | number
+  createdAt?: Prisma.DateTimeFilter<"WoodVariant"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"WoodVariant"> | Date | string
+}
+
+export type WoodVariantCreateWithoutMovementItemsInput = {
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
+  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
+  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantUncheckedCreateWithoutMovementItemsInput = {
+  id?: number
+  woodId: number
+  materialId: number
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantCreateOrConnectWithoutMovementItemsInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
+}
+
+export type WoodVariantUpsertWithoutMovementItemsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
   where?: Prisma.WoodVariantWhereInput
 }
 
-export type WoodVariantUpdateToOneWithWhereWithoutMutationsInput = {
+export type WoodVariantUpdateToOneWithWhereWithoutMovementItemsInput = {
   where?: Prisma.WoodVariantWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMutationsInput, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
 }
 
-export type WoodVariantUpdateWithoutMutationsInput = {
+export type WoodVariantUpdateWithoutMovementItemsInput = {
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
+  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantUncheckedUpdateWithoutMovementItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  woodId?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantCreateWithoutProcessingItemsInput = {
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
+  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
+  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantUncheckedCreateWithoutProcessingItemsInput = {
+  id?: number
+  woodId: number
+  materialId: number
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantCreateOrConnectWithoutProcessingItemsInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
+}
+
+export type WoodVariantUpsertWithoutProcessingItemsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
+  where?: Prisma.WoodVariantWhereInput
+}
+
+export type WoodVariantUpdateToOneWithWhereWithoutProcessingItemsInput = {
+  where?: Prisma.WoodVariantWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
+}
+
+export type WoodVariantUpdateWithoutProcessingItemsInput = {
   width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1131,15 +1350,15 @@ export type WoodVariantUpdateWithoutMutationsInput = {
   gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
   inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
   material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
   wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
   adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantUncheckedUpdateWithoutMutationsInput = {
+export type WoodVariantUncheckedUpdateWithoutProcessingItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodId?: Prisma.IntFieldUpdateOperationsInput | number
   materialId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1154,9 +1373,9 @@ export type WoodVariantUncheckedUpdateWithoutMutationsInput = {
   gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
   movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
@@ -1356,301 +1575,7 @@ export type WoodVariantUncheckedUpdateWithoutSaleItemsInput = {
   adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantCreateWithoutProcessingItemsInput = {
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
-  movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
-  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
-  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantUncheckedCreateWithoutProcessingItemsInput = {
-  id?: number
-  woodId: number
-  materialId: number
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
-  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantCreateOrConnectWithoutProcessingItemsInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
-}
-
-export type WoodVariantUpsertWithoutProcessingItemsInput = {
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutProcessingItemsInput>
-  where?: Prisma.WoodVariantWhereInput
-}
-
-export type WoodVariantUpdateToOneWithWhereWithoutProcessingItemsInput = {
-  where?: Prisma.WoodVariantWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutProcessingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutProcessingItemsInput>
-}
-
-export type WoodVariantUpdateWithoutProcessingItemsInput = {
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
-  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
-  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantUncheckedUpdateWithoutProcessingItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  woodId?: Prisma.IntFieldUpdateOperationsInput | number
-  materialId?: Prisma.IntFieldUpdateOperationsInput | number
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantCreateWithoutMovementItemsInput = {
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
-  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
-  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
-  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantUncheckedCreateWithoutMovementItemsInput = {
-  id?: number
-  woodId: number
-  materialId: number
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
-  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantCreateOrConnectWithoutMovementItemsInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
-}
-
-export type WoodVariantUpsertWithoutMovementItemsInput = {
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedCreateWithoutMovementItemsInput>
-  where?: Prisma.WoodVariantWhereInput
-}
-
-export type WoodVariantUpdateToOneWithWhereWithoutMovementItemsInput = {
-  where?: Prisma.WoodVariantWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMovementItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutMovementItemsInput>
-}
-
-export type WoodVariantUpdateWithoutMovementItemsInput = {
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
-  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
-  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantUncheckedUpdateWithoutMovementItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  woodId?: Prisma.IntFieldUpdateOperationsInput | number
-  materialId?: Prisma.IntFieldUpdateOperationsInput | number
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantCreateWithoutGradingItemsInput = {
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
-  movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
-  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
-  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
-  wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
-  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantUncheckedCreateWithoutGradingItemsInput = {
-  id?: number
-  woodId: number
-  materialId: number
-  width?: number | null
-  height?: number | null
-  diameterSmall?: number | null
-  diamterLarge?: number | null
-  length?: number | null
-  volume: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
-  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
-  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
-  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
-}
-
-export type WoodVariantCreateOrConnectWithoutGradingItemsInput = {
-  where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
-}
-
-export type WoodVariantUpsertWithoutGradingItemsInput = {
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedCreateWithoutGradingItemsInput>
-  where?: Prisma.WoodVariantWhereInput
-}
-
-export type WoodVariantUpdateToOneWithWhereWithoutGradingItemsInput = {
-  where?: Prisma.WoodVariantWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutGradingItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutGradingItemsInput>
-}
-
-export type WoodVariantUpdateWithoutGradingItemsInput = {
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
-  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
-  wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantUncheckedUpdateWithoutGradingItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  woodId?: Prisma.IntFieldUpdateOperationsInput | number
-  materialId?: Prisma.IntFieldUpdateOperationsInput | number
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
-}
-
-export type WoodVariantCreateWithoutAdjustmentItemsInput = {
+export type WoodVariantCreateWithoutMutationsInput = {
   width?: number | null
   height?: number | null
   diameterSmall?: number | null
@@ -1665,12 +1590,12 @@ export type WoodVariantCreateWithoutAdjustmentItemsInput = {
   processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
   material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
   wood: Prisma.WoodCreateNestedOneWithoutVariantsInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantUncheckedCreateWithoutAdjustmentItemsInput = {
+export type WoodVariantUncheckedCreateWithoutMutationsInput = {
   id?: number
   woodId: number
   materialId: number
@@ -1688,26 +1613,26 @@ export type WoodVariantUncheckedCreateWithoutAdjustmentItemsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
-  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantCreateOrConnectWithoutAdjustmentItemsInput = {
+export type WoodVariantCreateOrConnectWithoutMutationsInput = {
   where: Prisma.WoodVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
 }
 
-export type WoodVariantUpsertWithoutAdjustmentItemsInput = {
-  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
-  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedCreateWithoutAdjustmentItemsInput>
+export type WoodVariantUpsertWithoutMutationsInput = {
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMutationsInput, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutMutationsInput, Prisma.WoodVariantUncheckedCreateWithoutMutationsInput>
   where?: Prisma.WoodVariantWhereInput
 }
 
-export type WoodVariantUpdateToOneWithWhereWithoutAdjustmentItemsInput = {
+export type WoodVariantUpdateToOneWithWhereWithoutMutationsInput = {
   where?: Prisma.WoodVariantWhereInput
-  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutAdjustmentItemsInput, Prisma.WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput>
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutMutationsInput, Prisma.WoodVariantUncheckedUpdateWithoutMutationsInput>
 }
 
-export type WoodVariantUpdateWithoutAdjustmentItemsInput = {
+export type WoodVariantUpdateWithoutMutationsInput = {
   width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1722,12 +1647,12 @@ export type WoodVariantUpdateWithoutAdjustmentItemsInput = {
   processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
   material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
   wood?: Prisma.WoodUpdateOneRequiredWithoutVariantsNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput = {
+export type WoodVariantUncheckedUpdateWithoutMutationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodId?: Prisma.IntFieldUpdateOperationsInput | number
   materialId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1745,10 +1670,30 @@ export type WoodVariantUncheckedUpdateWithoutAdjustmentItemsInput = {
   processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
 }
 
-export type WoodVariantCreateManyWoodInput = {
+export type WoodVariantCreateWithoutWoodInput = {
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationCreateNestedManyWithoutVariantInput
+  material: Prisma.MaterialCreateNestedOneWithoutVariantsInput
+  adjustmentItems?: Prisma.AdjustmentItemCreateNestedManyWithoutVariantInput
+}
+
+export type WoodVariantUncheckedCreateWithoutWoodInput = {
   id?: number
   materialId: number
   width?: number | null
@@ -1759,60 +1704,40 @@ export type WoodVariantCreateManyWoodInput = {
   volume: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  gradingItems?: Prisma.GradingItemUncheckedCreateNestedManyWithoutVariantInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutVariantInput
+  movementItems?: Prisma.MovementItemUncheckedCreateNestedManyWithoutVariantInput
+  processingItems?: Prisma.ProcessingItemUncheckedCreateNestedManyWithoutVariantInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutVariantInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutVariantInput
+  mutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutVariantInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
-export type WoodVariantUpdateWithoutWoodInput = {
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
-  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
+export type WoodVariantCreateOrConnectWithoutWoodInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput>
 }
 
-export type WoodVariantUncheckedUpdateWithoutWoodInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  materialId?: Prisma.IntFieldUpdateOperationsInput | number
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
-  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
-  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
-  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
-  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
-  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
-  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
+export type WoodVariantCreateManyWoodInputEnvelope = {
+  data: Prisma.WoodVariantCreateManyWoodInput | Prisma.WoodVariantCreateManyWoodInput[]
+  skipDuplicates?: boolean
 }
 
-export type WoodVariantUncheckedUpdateManyWithoutWoodInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  materialId?: Prisma.IntFieldUpdateOperationsInput | number
-  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  volume?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type WoodVariantUpsertWithWhereUniqueWithoutWoodInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  update: Prisma.XOR<Prisma.WoodVariantUpdateWithoutWoodInput, Prisma.WoodVariantUncheckedUpdateWithoutWoodInput>
+  create: Prisma.XOR<Prisma.WoodVariantCreateWithoutWoodInput, Prisma.WoodVariantUncheckedCreateWithoutWoodInput>
+}
+
+export type WoodVariantUpdateWithWhereUniqueWithoutWoodInput = {
+  where: Prisma.WoodVariantWhereUniqueInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateWithoutWoodInput, Prisma.WoodVariantUncheckedUpdateWithoutWoodInput>
+}
+
+export type WoodVariantUpdateManyWithWhereWithoutWoodInput = {
+  where: Prisma.WoodVariantScalarWhereInput
+  data: Prisma.XOR<Prisma.WoodVariantUpdateManyMutationInput, Prisma.WoodVariantUncheckedUpdateManyWithoutWoodInput>
 }
 
 export type WoodVariantCreateManyMaterialInput = {
@@ -1872,6 +1797,73 @@ export type WoodVariantUncheckedUpdateWithoutMaterialInput = {
 export type WoodVariantUncheckedUpdateManyWithoutMaterialInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   woodId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type WoodVariantCreateManyWoodInput = {
+  id?: number
+  materialId: number
+  width?: number | null
+  height?: number | null
+  diameterSmall?: number | null
+  diamterLarge?: number | null
+  length?: number | null
+  volume: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type WoodVariantUpdateWithoutWoodInput = {
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUpdateManyWithoutVariantNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutVariantsNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantUncheckedUpdateWithoutWoodInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  diamterLarge?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  length?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  volume?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradingItems?: Prisma.GradingItemUncheckedUpdateManyWithoutVariantNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutVariantNestedInput
+  movementItems?: Prisma.MovementItemUncheckedUpdateManyWithoutVariantNestedInput
+  processingItems?: Prisma.ProcessingItemUncheckedUpdateManyWithoutVariantNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutVariantNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutVariantNestedInput
+  mutations?: Prisma.StockMutationUncheckedUpdateManyWithoutVariantNestedInput
+  adjustmentItems?: Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput
+}
+
+export type WoodVariantUncheckedUpdateManyWithoutWoodInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  materialId?: Prisma.IntFieldUpdateOperationsInput | number
   width?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   diameterSmall?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null

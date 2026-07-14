@@ -365,16 +365,6 @@ export type GradingUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type GradingListRelationFilter = {
-  every?: Prisma.GradingWhereInput
-  some?: Prisma.GradingWhereInput
-  none?: Prisma.GradingWhereInput
-}
-
-export type GradingOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type GradingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tid?: Prisma.SortOrder
@@ -420,6 +410,30 @@ export type GradingScalarRelationFilter = {
   isNot?: Prisma.GradingWhereInput
 }
 
+export type GradingListRelationFilter = {
+  every?: Prisma.GradingWhereInput
+  some?: Prisma.GradingWhereInput
+  none?: Prisma.GradingWhereInput
+}
+
+export type GradingOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type GradingCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.GradingCreateOrConnectWithoutItemsInput
+  connect?: Prisma.GradingWhereUniqueInput
+}
+
+export type GradingUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.GradingCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.GradingUpsertWithoutItemsInput
+  connect?: Prisma.GradingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GradingUpdateToOneWithWhereWithoutItemsInput, Prisma.GradingUpdateWithoutItemsInput>, Prisma.GradingUncheckedUpdateWithoutItemsInput>
+}
+
 export type GradingCreateNestedManyWithoutLocationInput = {
   create?: Prisma.XOR<Prisma.GradingCreateWithoutLocationInput, Prisma.GradingUncheckedCreateWithoutLocationInput> | Prisma.GradingCreateWithoutLocationInput[] | Prisma.GradingUncheckedCreateWithoutLocationInput[]
   connectOrCreate?: Prisma.GradingCreateOrConnectWithoutLocationInput | Prisma.GradingCreateOrConnectWithoutLocationInput[]
@@ -462,18 +476,58 @@ export type GradingUncheckedUpdateManyWithoutLocationNestedInput = {
   deleteMany?: Prisma.GradingScalarWhereInput | Prisma.GradingScalarWhereInput[]
 }
 
-export type GradingCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.GradingCreateOrConnectWithoutItemsInput
-  connect?: Prisma.GradingWhereUniqueInput
+export type GradingCreateWithoutItemsInput = {
+  tid: string
+  gradingDate: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  location: Prisma.LocationCreateNestedOneWithoutGradingsInput
 }
 
-export type GradingUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.GradingCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.GradingUpsertWithoutItemsInput
-  connect?: Prisma.GradingWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.GradingUpdateToOneWithWhereWithoutItemsInput, Prisma.GradingUpdateWithoutItemsInput>, Prisma.GradingUncheckedUpdateWithoutItemsInput>
+export type GradingUncheckedCreateWithoutItemsInput = {
+  id?: number
+  tid: string
+  gradingDate: Date | string
+  locationId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type GradingCreateOrConnectWithoutItemsInput = {
+  where: Prisma.GradingWhereUniqueInput
+  create: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
+}
+
+export type GradingUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.GradingUpdateWithoutItemsInput, Prisma.GradingUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
+  where?: Prisma.GradingWhereInput
+}
+
+export type GradingUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.GradingWhereInput
+  data: Prisma.XOR<Prisma.GradingUpdateWithoutItemsInput, Prisma.GradingUncheckedUpdateWithoutItemsInput>
+}
+
+export type GradingUpdateWithoutItemsInput = {
+  tid?: Prisma.StringFieldUpdateOperationsInput | string
+  gradingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  location?: Prisma.LocationUpdateOneRequiredWithoutGradingsNestedInput
+}
+
+export type GradingUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  tid?: Prisma.StringFieldUpdateOperationsInput | string
+  gradingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GradingCreateWithoutLocationInput = {
@@ -532,60 +586,6 @@ export type GradingScalarWhereInput = {
   notes?: Prisma.StringNullableFilter<"Grading"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Grading"> | Date | string
-}
-
-export type GradingCreateWithoutItemsInput = {
-  tid: string
-  gradingDate: Date | string
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutGradingsInput
-}
-
-export type GradingUncheckedCreateWithoutItemsInput = {
-  id?: number
-  tid: string
-  gradingDate: Date | string
-  locationId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type GradingCreateOrConnectWithoutItemsInput = {
-  where: Prisma.GradingWhereUniqueInput
-  create: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
-}
-
-export type GradingUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.GradingUpdateWithoutItemsInput, Prisma.GradingUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.GradingCreateWithoutItemsInput, Prisma.GradingUncheckedCreateWithoutItemsInput>
-  where?: Prisma.GradingWhereInput
-}
-
-export type GradingUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.GradingWhereInput
-  data: Prisma.XOR<Prisma.GradingUpdateWithoutItemsInput, Prisma.GradingUncheckedUpdateWithoutItemsInput>
-}
-
-export type GradingUpdateWithoutItemsInput = {
-  tid?: Prisma.StringFieldUpdateOperationsInput | string
-  gradingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutGradingsNestedInput
-}
-
-export type GradingUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  tid?: Prisma.StringFieldUpdateOperationsInput | string
-  gradingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GradingCreateManyLocationInput = {

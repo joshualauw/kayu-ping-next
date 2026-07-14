@@ -526,46 +526,62 @@ export type AdjustmentItemSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
 }
 
-export type AdjustmentItemCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
+export type AdjustmentItemCreateNestedManyWithoutAdjustmentInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
 }
 
-export type AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
+export type AdjustmentItemUncheckedCreateNestedManyWithoutAdjustmentInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
 }
 
-export type AdjustmentItemUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
+export type AdjustmentItemUpdateManyWithoutAdjustmentNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
   set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
-  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput[]
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
 }
 
-export type AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
+export type AdjustmentItemUncheckedUpdateManyWithoutAdjustmentNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
   set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
-  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput[]
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
+}
+
+export type EnumAdjustmentTypeFieldUpdateOperationsInput = {
+  set?: $Enums.AdjustmentType
+}
+
+export type EnumAdjustmentReasonFieldUpdateOperationsInput = {
+  set?: $Enums.AdjustmentReason
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type AdjustmentItemCreateNestedManyWithoutGradeInput = {
@@ -652,57 +668,49 @@ export type AdjustmentItemUncheckedUpdateManyWithoutLotNestedInput = {
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
 }
 
-export type AdjustmentItemCreateNestedManyWithoutAdjustmentInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
+export type AdjustmentItemCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
 }
 
-export type AdjustmentItemUncheckedCreateNestedManyWithoutAdjustmentInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
+export type AdjustmentItemUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
 }
 
-export type AdjustmentItemUpdateManyWithoutAdjustmentNestedInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
-  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
+export type AdjustmentItemUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
   set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
-  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput[]
-  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput[]
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
 }
 
-export type AdjustmentItemUncheckedUpdateManyWithoutAdjustmentNestedInput = {
-  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput> | Prisma.AdjustmentItemCreateWithoutAdjustmentInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput[]
-  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput | Prisma.AdjustmentItemCreateOrConnectWithoutAdjustmentInput[]
-  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput[]
-  createMany?: Prisma.AdjustmentItemCreateManyAdjustmentInputEnvelope
+export type AdjustmentItemUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput> | Prisma.AdjustmentItemCreateWithoutVariantInput[] | Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput | Prisma.AdjustmentItemCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.AdjustmentItemCreateManyVariantInputEnvelope
   set?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   disconnect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   delete?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
   connect?: Prisma.AdjustmentItemWhereUniqueInput | Prisma.AdjustmentItemWhereUniqueInput[]
-  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput[]
-  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput[]
+  update?: Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput | Prisma.AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput | Prisma.AdjustmentItemUpdateManyWithWhereWithoutVariantInput[]
   deleteMany?: Prisma.AdjustmentItemScalarWhereInput | Prisma.AdjustmentItemScalarWhereInput[]
 }
 
-export type EnumAdjustmentTypeFieldUpdateOperationsInput = {
-  set?: $Enums.AdjustmentType
-}
-
-export type EnumAdjustmentReasonFieldUpdateOperationsInput = {
-  set?: $Enums.AdjustmentReason
-}
-
-export type AdjustmentItemCreateWithoutVariantInput = {
+export type AdjustmentItemCreateWithoutAdjustmentInput = {
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -710,14 +718,14 @@ export type AdjustmentItemCreateWithoutVariantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
-  adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
   lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
-export type AdjustmentItemUncheckedCreateWithoutVariantInput = {
+export type AdjustmentItemUncheckedCreateWithoutAdjustmentInput = {
   id?: number
-  adjustmentId: number
   gradeId?: number | null
+  woodVariantId: number
   lotId: number
   quantity: number
   type: $Enums.AdjustmentType
@@ -727,30 +735,30 @@ export type AdjustmentItemUncheckedCreateWithoutVariantInput = {
   updatedAt?: Date | string
 }
 
-export type AdjustmentItemCreateOrConnectWithoutVariantInput = {
+export type AdjustmentItemCreateOrConnectWithoutAdjustmentInput = {
   where: Prisma.AdjustmentItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput>
 }
 
-export type AdjustmentItemCreateManyVariantInputEnvelope = {
-  data: Prisma.AdjustmentItemCreateManyVariantInput | Prisma.AdjustmentItemCreateManyVariantInput[]
+export type AdjustmentItemCreateManyAdjustmentInputEnvelope = {
+  data: Prisma.AdjustmentItemCreateManyAdjustmentInput | Prisma.AdjustmentItemCreateManyAdjustmentInput[]
   skipDuplicates?: boolean
 }
 
-export type AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput = {
+export type AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput = {
   where: Prisma.AdjustmentItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutVariantInput, Prisma.AdjustmentItemUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput>
+  update: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedUpdateWithoutAdjustmentInput>
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput>
 }
 
-export type AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput = {
+export type AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput = {
   where: Prisma.AdjustmentItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutVariantInput, Prisma.AdjustmentItemUncheckedUpdateWithoutVariantInput>
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedUpdateWithoutAdjustmentInput>
 }
 
-export type AdjustmentItemUpdateManyWithWhereWithoutVariantInput = {
+export type AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput = {
   where: Prisma.AdjustmentItemScalarWhereInput
-  data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantInput>
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutAdjustmentInput>
 }
 
 export type AdjustmentItemScalarWhereInput = {
@@ -872,7 +880,7 @@ export type AdjustmentItemUpdateManyWithWhereWithoutLotInput = {
   data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutLotInput>
 }
 
-export type AdjustmentItemCreateWithoutAdjustmentInput = {
+export type AdjustmentItemCreateWithoutVariantInput = {
   quantity: number
   type: $Enums.AdjustmentType
   reason: $Enums.AdjustmentReason
@@ -880,50 +888,11 @@ export type AdjustmentItemCreateWithoutAdjustmentInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   grade?: Prisma.GradeCreateNestedOneWithoutAdjustmentItemsInput
-  variant: Prisma.WoodVariantCreateNestedOneWithoutAdjustmentItemsInput
+  adjustment: Prisma.AdjustmentCreateNestedOneWithoutItemsInput
   lot: Prisma.LotCreateNestedOneWithoutAdjustmentItemsInput
 }
 
-export type AdjustmentItemUncheckedCreateWithoutAdjustmentInput = {
-  id?: number
-  gradeId?: number | null
-  woodVariantId: number
-  lotId: number
-  quantity: number
-  type: $Enums.AdjustmentType
-  reason: $Enums.AdjustmentReason
-  comment?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AdjustmentItemCreateOrConnectWithoutAdjustmentInput = {
-  where: Prisma.AdjustmentItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput>
-}
-
-export type AdjustmentItemCreateManyAdjustmentInputEnvelope = {
-  data: Prisma.AdjustmentItemCreateManyAdjustmentInput | Prisma.AdjustmentItemCreateManyAdjustmentInput[]
-  skipDuplicates?: boolean
-}
-
-export type AdjustmentItemUpsertWithWhereUniqueWithoutAdjustmentInput = {
-  where: Prisma.AdjustmentItemWhereUniqueInput
-  update: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedUpdateWithoutAdjustmentInput>
-  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedCreateWithoutAdjustmentInput>
-}
-
-export type AdjustmentItemUpdateWithWhereUniqueWithoutAdjustmentInput = {
-  where: Prisma.AdjustmentItemWhereUniqueInput
-  data: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutAdjustmentInput, Prisma.AdjustmentItemUncheckedUpdateWithoutAdjustmentInput>
-}
-
-export type AdjustmentItemUpdateManyWithWhereWithoutAdjustmentInput = {
-  where: Prisma.AdjustmentItemScalarWhereInput
-  data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutAdjustmentInput>
-}
-
-export type AdjustmentItemCreateManyVariantInput = {
+export type AdjustmentItemUncheckedCreateWithoutVariantInput = {
   id?: number
   adjustmentId: number
   gradeId?: number | null
@@ -936,7 +905,46 @@ export type AdjustmentItemCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type AdjustmentItemUpdateWithoutVariantInput = {
+export type AdjustmentItemCreateOrConnectWithoutVariantInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput>
+}
+
+export type AdjustmentItemCreateManyVariantInputEnvelope = {
+  data: Prisma.AdjustmentItemCreateManyVariantInput | Prisma.AdjustmentItemCreateManyVariantInput[]
+  skipDuplicates?: boolean
+}
+
+export type AdjustmentItemUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutVariantInput, Prisma.AdjustmentItemUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.AdjustmentItemCreateWithoutVariantInput, Prisma.AdjustmentItemUncheckedCreateWithoutVariantInput>
+}
+
+export type AdjustmentItemUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.AdjustmentItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateWithoutVariantInput, Prisma.AdjustmentItemUncheckedUpdateWithoutVariantInput>
+}
+
+export type AdjustmentItemUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.AdjustmentItemScalarWhereInput
+  data: Prisma.XOR<Prisma.AdjustmentItemUpdateManyMutationInput, Prisma.AdjustmentItemUncheckedUpdateManyWithoutVariantInput>
+}
+
+export type AdjustmentItemCreateManyAdjustmentInput = {
+  id?: number
+  gradeId?: number | null
+  woodVariantId: number
+  lotId: number
+  quantity: number
+  type: $Enums.AdjustmentType
+  reason: $Enums.AdjustmentReason
+  comment?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AdjustmentItemUpdateWithoutAdjustmentInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -944,14 +952,14 @@ export type AdjustmentItemUpdateWithoutVariantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
-  adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
   lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
-export type AdjustmentItemUncheckedUpdateWithoutVariantInput = {
+export type AdjustmentItemUncheckedUpdateWithoutAdjustmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
@@ -961,10 +969,10 @@ export type AdjustmentItemUncheckedUpdateWithoutVariantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdjustmentItemUncheckedUpdateManyWithoutVariantInput = {
+export type AdjustmentItemUncheckedUpdateManyWithoutAdjustmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
@@ -1076,10 +1084,10 @@ export type AdjustmentItemUncheckedUpdateManyWithoutLotInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdjustmentItemCreateManyAdjustmentInput = {
+export type AdjustmentItemCreateManyVariantInput = {
   id?: number
+  adjustmentId: number
   gradeId?: number | null
-  woodVariantId: number
   lotId: number
   quantity: number
   type: $Enums.AdjustmentType
@@ -1089,7 +1097,7 @@ export type AdjustmentItemCreateManyAdjustmentInput = {
   updatedAt?: Date | string
 }
 
-export type AdjustmentItemUpdateWithoutAdjustmentInput = {
+export type AdjustmentItemUpdateWithoutVariantInput = {
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
   reason?: Prisma.EnumAdjustmentReasonFieldUpdateOperationsInput | $Enums.AdjustmentReason
@@ -1097,14 +1105,14 @@ export type AdjustmentItemUpdateWithoutAdjustmentInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.GradeUpdateOneWithoutAdjustmentItemsNestedInput
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutAdjustmentItemsNestedInput
+  adjustment?: Prisma.AdjustmentUpdateOneRequiredWithoutItemsNestedInput
   lot?: Prisma.LotUpdateOneRequiredWithoutAdjustmentItemsNestedInput
 }
 
-export type AdjustmentItemUncheckedUpdateWithoutAdjustmentInput = {
+export type AdjustmentItemUncheckedUpdateWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
@@ -1114,10 +1122,10 @@ export type AdjustmentItemUncheckedUpdateWithoutAdjustmentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AdjustmentItemUncheckedUpdateManyWithoutAdjustmentInput = {
+export type AdjustmentItemUncheckedUpdateManyWithoutVariantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  adjustmentId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   lotId?: Prisma.IntFieldUpdateOperationsInput | number
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType

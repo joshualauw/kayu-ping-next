@@ -1,0 +1,44 @@
+model Processing {
+  id                Int      @id @default(autoincrement())
+  tid               String   @unique
+  processingDate    DateTime @map("processing_date") @db.Timestamptz(6)
+  locationId        Int      @map("location_id")
+  notes             String?
+  totalInputVolume  Float    @map("total_input_volume")
+  totalOutputVolume Float    @map("total_output_volume")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  location Location         @relation(fields: [locationId], references: [id])
+  items    ProcessingItem[]
+
+  @@map("processing")
+}
+
+model ProcessingItem {
+  id            Int            @id @default(autoincrement())
+  processingId  Int            @map("processing_id")
+  gradeId       Int?           @map("grade_id")
+  woodVariantId Int            @map("wood_variant_id")
+  lotId         Int            @map("lot_id")
+  type          ProcessingType
+  quantity      Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade      Grade?      @relation(fields: [gradeId], references: [id])
+  processing Processing  @relation(fields: [processingId], references: [id])
+  variant    WoodVariant @relation(fields: [woodVariantId], references: [id])
+  lot        Lot         @relation(fields: [lotId], references: [id])
+
+  @@map("processing_items")
+}
+
+enum ProcessingType {
+  INPUT
+  OUTPUT
+
+  @@map("processing_types")
+}

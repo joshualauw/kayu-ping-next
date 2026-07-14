@@ -576,90 +576,6 @@ export type StockMutationSumOrderByAggregateInput = {
   referenceId?: Prisma.SortOrder
 }
 
-export type StockMutationCreateNestedManyWithoutLocationInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
-  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-}
-
-export type StockMutationUncheckedCreateNestedManyWithoutLocationInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
-  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-}
-
-export type StockMutationUpdateManyWithoutLocationNestedInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
-  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput[]
-  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
-  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput[]
-  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput | Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput[]
-  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-}
-
-export type StockMutationUncheckedUpdateManyWithoutLocationNestedInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
-  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput[]
-  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
-  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput[]
-  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput | Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput[]
-  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-}
-
-export type StockMutationCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-}
-
-export type StockMutationUncheckedCreateNestedManyWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
-  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-}
-
-export type StockMutationUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
-  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput | Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-}
-
-export type StockMutationUncheckedUpdateManyWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
-  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
-  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput[]
-  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
-  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
-  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput[]
-  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput | Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput[]
-  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-}
-
 export type StockMutationCreateNestedManyWithoutGradeInput = {
   create?: Prisma.XOR<Prisma.StockMutationCreateWithoutGradeInput, Prisma.StockMutationUncheckedCreateWithoutGradeInput> | Prisma.StockMutationCreateWithoutGradeInput[] | Prisma.StockMutationUncheckedCreateWithoutGradeInput[]
   connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutGradeInput | Prisma.StockMutationCreateOrConnectWithoutGradeInput[]
@@ -699,6 +615,48 @@ export type StockMutationUncheckedUpdateManyWithoutGradeNestedInput = {
   connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
   update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutGradeInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutGradeInput[]
   updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutGradeInput | Prisma.StockMutationUpdateManyWithWhereWithoutGradeInput[]
+  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
+}
+
+export type StockMutationCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+}
+
+export type StockMutationUncheckedCreateNestedManyWithoutLocationInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
+  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+}
+
+export type StockMutationUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
+  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput | Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput[]
+  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
+}
+
+export type StockMutationUncheckedUpdateManyWithoutLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput> | Prisma.StockMutationCreateWithoutLocationInput[] | Prisma.StockMutationUncheckedCreateWithoutLocationInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutLocationInput | Prisma.StockMutationCreateOrConnectWithoutLocationInput[]
+  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutLocationInput[]
+  createMany?: Prisma.StockMutationCreateManyLocationInputEnvelope
+  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutLocationInput[]
+  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput | Prisma.StockMutationUpdateManyWithWhereWithoutLocationInput[]
   deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
 }
 
@@ -748,137 +706,46 @@ export type EnumMutationTypeFieldUpdateOperationsInput = {
   set?: $Enums.MutationType
 }
 
-export type EnumReferenceTypeFieldUpdateOperationsInput = {
-  set?: $Enums.ReferenceType
+export type StockMutationCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
 }
 
-export type StockMutationCreateWithoutLocationInput = {
-  mutationDate: Date | string
-  type: $Enums.MutationType
-  quantity: number
-  referenceType: $Enums.ReferenceType
-  referenceId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutStockMutationsInput
-  lot: Prisma.LotCreateNestedOneWithoutStockMutationsInput
-  variant: Prisma.WoodVariantCreateNestedOneWithoutMutationsInput
+export type StockMutationUncheckedCreateNestedManyWithoutVariantInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
+  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
 }
 
-export type StockMutationUncheckedCreateWithoutLocationInput = {
-  id?: number
-  mutationDate: Date | string
-  woodVariantId: number
-  gradeId?: number | null
-  lotId: number
-  type: $Enums.MutationType
-  quantity: number
-  referenceType: $Enums.ReferenceType
-  referenceId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
+export type StockMutationUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
+  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput | Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
 }
 
-export type StockMutationCreateOrConnectWithoutLocationInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  create: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput>
-}
-
-export type StockMutationCreateManyLocationInputEnvelope = {
-  data: Prisma.StockMutationCreateManyLocationInput | Prisma.StockMutationCreateManyLocationInput[]
-  skipDuplicates?: boolean
-}
-
-export type StockMutationUpsertWithWhereUniqueWithoutLocationInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  update: Prisma.XOR<Prisma.StockMutationUpdateWithoutLocationInput, Prisma.StockMutationUncheckedUpdateWithoutLocationInput>
-  create: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput>
-}
-
-export type StockMutationUpdateWithWhereUniqueWithoutLocationInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  data: Prisma.XOR<Prisma.StockMutationUpdateWithoutLocationInput, Prisma.StockMutationUncheckedUpdateWithoutLocationInput>
-}
-
-export type StockMutationUpdateManyWithWhereWithoutLocationInput = {
-  where: Prisma.StockMutationScalarWhereInput
-  data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutLocationInput>
-}
-
-export type StockMutationScalarWhereInput = {
-  AND?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-  OR?: Prisma.StockMutationScalarWhereInput[]
-  NOT?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
-  id?: Prisma.IntFilter<"StockMutation"> | number
-  mutationDate?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
-  woodVariantId?: Prisma.IntFilter<"StockMutation"> | number
-  gradeId?: Prisma.IntNullableFilter<"StockMutation"> | number | null
-  lotId?: Prisma.IntFilter<"StockMutation"> | number
-  locationId?: Prisma.IntFilter<"StockMutation"> | number
-  type?: Prisma.EnumMutationTypeFilter<"StockMutation"> | $Enums.MutationType
-  quantity?: Prisma.IntFilter<"StockMutation"> | number
-  referenceType?: Prisma.EnumReferenceTypeFilter<"StockMutation"> | $Enums.ReferenceType
-  referenceId?: Prisma.IntFilter<"StockMutation"> | number
-  notes?: Prisma.StringNullableFilter<"StockMutation"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
-}
-
-export type StockMutationCreateWithoutVariantInput = {
-  mutationDate: Date | string
-  type: $Enums.MutationType
-  quantity: number
-  referenceType: $Enums.ReferenceType
-  referenceId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  grade?: Prisma.GradeCreateNestedOneWithoutStockMutationsInput
-  location: Prisma.LocationCreateNestedOneWithoutStockMutationsInput
-  lot: Prisma.LotCreateNestedOneWithoutStockMutationsInput
-}
-
-export type StockMutationUncheckedCreateWithoutVariantInput = {
-  id?: number
-  mutationDate: Date | string
-  gradeId?: number | null
-  lotId: number
-  locationId: number
-  type: $Enums.MutationType
-  quantity: number
-  referenceType: $Enums.ReferenceType
-  referenceId: number
-  notes?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type StockMutationCreateOrConnectWithoutVariantInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  create: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput>
-}
-
-export type StockMutationCreateManyVariantInputEnvelope = {
-  data: Prisma.StockMutationCreateManyVariantInput | Prisma.StockMutationCreateManyVariantInput[]
-  skipDuplicates?: boolean
-}
-
-export type StockMutationUpsertWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  update: Prisma.XOR<Prisma.StockMutationUpdateWithoutVariantInput, Prisma.StockMutationUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput>
-}
-
-export type StockMutationUpdateWithWhereUniqueWithoutVariantInput = {
-  where: Prisma.StockMutationWhereUniqueInput
-  data: Prisma.XOR<Prisma.StockMutationUpdateWithoutVariantInput, Prisma.StockMutationUncheckedUpdateWithoutVariantInput>
-}
-
-export type StockMutationUpdateManyWithWhereWithoutVariantInput = {
-  where: Prisma.StockMutationScalarWhereInput
-  data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutVariantInput>
+export type StockMutationUncheckedUpdateManyWithoutVariantNestedInput = {
+  create?: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput> | Prisma.StockMutationCreateWithoutVariantInput[] | Prisma.StockMutationUncheckedCreateWithoutVariantInput[]
+  connectOrCreate?: Prisma.StockMutationCreateOrConnectWithoutVariantInput | Prisma.StockMutationCreateOrConnectWithoutVariantInput[]
+  upsert?: Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpsertWithWhereUniqueWithoutVariantInput[]
+  createMany?: Prisma.StockMutationCreateManyVariantInputEnvelope
+  set?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  disconnect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  delete?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  connect?: Prisma.StockMutationWhereUniqueInput | Prisma.StockMutationWhereUniqueInput[]
+  update?: Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput | Prisma.StockMutationUpdateWithWhereUniqueWithoutVariantInput[]
+  updateMany?: Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput | Prisma.StockMutationUpdateManyWithWhereWithoutVariantInput[]
+  deleteMany?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
 }
 
 export type StockMutationCreateWithoutGradeInput = {
@@ -936,6 +803,80 @@ export type StockMutationUpdateManyWithWhereWithoutGradeInput = {
   data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutGradeInput>
 }
 
+export type StockMutationScalarWhereInput = {
+  AND?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
+  OR?: Prisma.StockMutationScalarWhereInput[]
+  NOT?: Prisma.StockMutationScalarWhereInput | Prisma.StockMutationScalarWhereInput[]
+  id?: Prisma.IntFilter<"StockMutation"> | number
+  mutationDate?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
+  woodVariantId?: Prisma.IntFilter<"StockMutation"> | number
+  gradeId?: Prisma.IntNullableFilter<"StockMutation"> | number | null
+  lotId?: Prisma.IntFilter<"StockMutation"> | number
+  locationId?: Prisma.IntFilter<"StockMutation"> | number
+  type?: Prisma.EnumMutationTypeFilter<"StockMutation"> | $Enums.MutationType
+  quantity?: Prisma.IntFilter<"StockMutation"> | number
+  referenceType?: Prisma.EnumReferenceTypeFilter<"StockMutation"> | $Enums.ReferenceType
+  referenceId?: Prisma.IntFilter<"StockMutation"> | number
+  notes?: Prisma.StringNullableFilter<"StockMutation"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"StockMutation"> | Date | string
+}
+
+export type StockMutationCreateWithoutLocationInput = {
+  mutationDate: Date | string
+  type: $Enums.MutationType
+  quantity: number
+  referenceType: $Enums.ReferenceType
+  referenceId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutStockMutationsInput
+  lot: Prisma.LotCreateNestedOneWithoutStockMutationsInput
+  variant: Prisma.WoodVariantCreateNestedOneWithoutMutationsInput
+}
+
+export type StockMutationUncheckedCreateWithoutLocationInput = {
+  id?: number
+  mutationDate: Date | string
+  woodVariantId: number
+  gradeId?: number | null
+  lotId: number
+  type: $Enums.MutationType
+  quantity: number
+  referenceType: $Enums.ReferenceType
+  referenceId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type StockMutationCreateOrConnectWithoutLocationInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  create: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput>
+}
+
+export type StockMutationCreateManyLocationInputEnvelope = {
+  data: Prisma.StockMutationCreateManyLocationInput | Prisma.StockMutationCreateManyLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type StockMutationUpsertWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  update: Prisma.XOR<Prisma.StockMutationUpdateWithoutLocationInput, Prisma.StockMutationUncheckedUpdateWithoutLocationInput>
+  create: Prisma.XOR<Prisma.StockMutationCreateWithoutLocationInput, Prisma.StockMutationUncheckedCreateWithoutLocationInput>
+}
+
+export type StockMutationUpdateWithWhereUniqueWithoutLocationInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  data: Prisma.XOR<Prisma.StockMutationUpdateWithoutLocationInput, Prisma.StockMutationUncheckedUpdateWithoutLocationInput>
+}
+
+export type StockMutationUpdateManyWithWhereWithoutLocationInput = {
+  where: Prisma.StockMutationScalarWhereInput
+  data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutLocationInput>
+}
+
 export type StockMutationCreateWithoutLotInput = {
   mutationDate: Date | string
   type: $Enums.MutationType
@@ -991,12 +932,8 @@ export type StockMutationUpdateManyWithWhereWithoutLotInput = {
   data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutLotInput>
 }
 
-export type StockMutationCreateManyLocationInput = {
-  id?: number
+export type StockMutationCreateWithoutVariantInput = {
   mutationDate: Date | string
-  woodVariantId: number
-  gradeId?: number | null
-  lotId: number
   type: $Enums.MutationType
   quantity: number
   referenceType: $Enums.ReferenceType
@@ -1004,53 +941,12 @@ export type StockMutationCreateManyLocationInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  grade?: Prisma.GradeCreateNestedOneWithoutStockMutationsInput
+  location: Prisma.LocationCreateNestedOneWithoutStockMutationsInput
+  lot: Prisma.LotCreateNestedOneWithoutStockMutationsInput
 }
 
-export type StockMutationUpdateWithoutLocationInput = {
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutStockMutationsNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutStockMutationsNestedInput
-  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutMutationsNestedInput
-}
-
-export type StockMutationUncheckedUpdateWithoutLocationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StockMutationUncheckedUpdateManyWithoutLocationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type StockMutationCreateManyVariantInput = {
+export type StockMutationUncheckedCreateWithoutVariantInput = {
   id?: number
   mutationDate: Date | string
   gradeId?: number | null
@@ -1065,48 +961,30 @@ export type StockMutationCreateManyVariantInput = {
   updatedAt?: Date | string
 }
 
-export type StockMutationUpdateWithoutVariantInput = {
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.GradeUpdateOneWithoutStockMutationsNestedInput
-  location?: Prisma.LocationUpdateOneRequiredWithoutStockMutationsNestedInput
-  lot?: Prisma.LotUpdateOneRequiredWithoutStockMutationsNestedInput
+export type StockMutationCreateOrConnectWithoutVariantInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  create: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput>
 }
 
-export type StockMutationUncheckedUpdateWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type StockMutationCreateManyVariantInputEnvelope = {
+  data: Prisma.StockMutationCreateManyVariantInput | Prisma.StockMutationCreateManyVariantInput[]
+  skipDuplicates?: boolean
 }
 
-export type StockMutationUncheckedUpdateManyWithoutVariantInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  lotId?: Prisma.IntFieldUpdateOperationsInput | number
-  locationId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
-  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type StockMutationUpsertWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  update: Prisma.XOR<Prisma.StockMutationUpdateWithoutVariantInput, Prisma.StockMutationUncheckedUpdateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.StockMutationCreateWithoutVariantInput, Prisma.StockMutationUncheckedCreateWithoutVariantInput>
+}
+
+export type StockMutationUpdateWithWhereUniqueWithoutVariantInput = {
+  where: Prisma.StockMutationWhereUniqueInput
+  data: Prisma.XOR<Prisma.StockMutationUpdateWithoutVariantInput, Prisma.StockMutationUncheckedUpdateWithoutVariantInput>
+}
+
+export type StockMutationUpdateManyWithWhereWithoutVariantInput = {
+  where: Prisma.StockMutationScalarWhereInput
+  data: Prisma.XOR<Prisma.StockMutationUpdateManyMutationInput, Prisma.StockMutationUncheckedUpdateManyWithoutVariantInput>
 }
 
 export type StockMutationCreateManyGradeInput = {
@@ -1168,6 +1046,65 @@ export type StockMutationUncheckedUpdateManyWithoutGradeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type StockMutationCreateManyLocationInput = {
+  id?: number
+  mutationDate: Date | string
+  woodVariantId: number
+  gradeId?: number | null
+  lotId: number
+  type: $Enums.MutationType
+  quantity: number
+  referenceType: $Enums.ReferenceType
+  referenceId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type StockMutationUpdateWithoutLocationInput = {
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutStockMutationsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutStockMutationsNestedInput
+  variant?: Prisma.WoodVariantUpdateOneRequiredWithoutMutationsNestedInput
+}
+
+export type StockMutationUncheckedUpdateWithoutLocationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StockMutationUncheckedUpdateManyWithoutLocationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type StockMutationCreateManyLotInput = {
   id?: number
   mutationDate: Date | string
@@ -1217,6 +1154,65 @@ export type StockMutationUncheckedUpdateManyWithoutLotInput = {
   mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   woodVariantId?: Prisma.IntFieldUpdateOperationsInput | number
   gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StockMutationCreateManyVariantInput = {
+  id?: number
+  mutationDate: Date | string
+  gradeId?: number | null
+  lotId: number
+  locationId: number
+  type: $Enums.MutationType
+  quantity: number
+  referenceType: $Enums.ReferenceType
+  referenceId: number
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type StockMutationUpdateWithoutVariantInput = {
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.GradeUpdateOneWithoutStockMutationsNestedInput
+  location?: Prisma.LocationUpdateOneRequiredWithoutStockMutationsNestedInput
+  lot?: Prisma.LotUpdateOneRequiredWithoutStockMutationsNestedInput
+}
+
+export type StockMutationUncheckedUpdateWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
+  locationId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  referenceType?: Prisma.EnumReferenceTypeFieldUpdateOperationsInput | $Enums.ReferenceType
+  referenceId?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StockMutationUncheckedUpdateManyWithoutVariantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  mutationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lotId?: Prisma.IntFieldUpdateOperationsInput | number
   locationId?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumMutationTypeFieldUpdateOperationsInput | $Enums.MutationType
   quantity?: Prisma.IntFieldUpdateOperationsInput | number

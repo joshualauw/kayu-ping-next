@@ -1,0 +1,18 @@
+model Inventory {
+  id            Int  @id @default(autoincrement())
+  woodVariantId Int  @map("wood_variant_id")
+  gradeId       Int? @map("grade_id")
+  lotId         Int  @map("lot_id")
+  locationId    Int  @map("location_id")
+  stock         Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade    Grade?      @relation(fields: [gradeId], references: [id])
+  location Location    @relation(fields: [locationId], references: [id])
+  lot      Lot         @relation(fields: [lotId], references: [id])
+  variant  WoodVariant @relation(fields: [woodVariantId], references: [id])
+
+  @@map("inventories")
+}

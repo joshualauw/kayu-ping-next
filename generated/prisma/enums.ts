@@ -9,6 +9,24 @@
 * 🟢 You can import this file directly.
 */
 
+export const AdjustmentType = {
+  ADD: 'ADD',
+  SUBTRACT: 'SUBTRACT'
+} as const
+
+export type AdjustmentType = (typeof AdjustmentType)[keyof typeof AdjustmentType]
+
+
+export const AdjustmentReason = {
+  LOST: 'LOST',
+  FOUND: 'FOUND',
+  DAMAGE: 'DAMAGE',
+  OTHERS: 'OTHERS'
+} as const
+
+export type AdjustmentReason = (typeof AdjustmentReason)[keyof typeof AdjustmentReason]
+
+
 export const ContactType = {
   CUSTOMER: 'CUSTOMER',
   SUPPLIER: 'SUPPLIER',
@@ -17,6 +35,14 @@ export const ContactType = {
 } as const
 
 export type ContactType = (typeof ContactType)[keyof typeof ContactType]
+
+
+export const GradingType = {
+  BEFORE: 'BEFORE',
+  AFTER: 'AFTER'
+} as const
+
+export type GradingType = (typeof GradingType)[keyof typeof GradingType]
 
 
 export const LocationType = {
@@ -43,32 +69,6 @@ export const ProcessingType = {
 } as const
 
 export type ProcessingType = (typeof ProcessingType)[keyof typeof ProcessingType]
-
-
-export const GradingType = {
-  BEFORE: 'BEFORE',
-  AFTER: 'AFTER'
-} as const
-
-export type GradingType = (typeof GradingType)[keyof typeof GradingType]
-
-
-export const AdjustmentType = {
-  ADD: 'ADD',
-  SUBTRACT: 'SUBTRACT'
-} as const
-
-export type AdjustmentType = (typeof AdjustmentType)[keyof typeof AdjustmentType]
-
-
-export const AdjustmentReason = {
-  LOST: 'LOST',
-  FOUND: 'FOUND',
-  DAMAGE: 'DAMAGE',
-  OTHERS: 'OTHERS'
-} as const
-
-export type AdjustmentReason = (typeof AdjustmentReason)[keyof typeof AdjustmentReason]
 
 
 export const MutationType = {

@@ -396,6 +396,11 @@ export type LocationUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type LocationScalarRelationFilter = {
+  is?: Prisma.LocationWhereInput
+  isNot?: Prisma.LocationWhereInput
+}
+
 export type LocationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -431,13 +436,32 @@ export type LocationSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type LocationScalarRelationFilter = {
-  is?: Prisma.LocationWhereInput
-  isNot?: Prisma.LocationWhereInput
+export type LocationCreateNestedOneWithoutAdjustmentsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutAdjustmentsInput
+  connect?: Prisma.LocationWhereUniqueInput
 }
 
-export type EnumLocationTypeFieldUpdateOperationsInput = {
-  set?: $Enums.LocationType
+export type LocationUpdateOneRequiredWithoutAdjustmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutAdjustmentsInput
+  upsert?: Prisma.LocationUpsertWithoutAdjustmentsInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutAdjustmentsInput, Prisma.LocationUpdateWithoutAdjustmentsInput>, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
+}
+
+export type LocationCreateNestedOneWithoutGradingsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutGradingsInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneRequiredWithoutGradingsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutGradingsInput
+  upsert?: Prisma.LocationUpsertWithoutGradingsInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutGradingsInput, Prisma.LocationUpdateWithoutGradingsInput>, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
 }
 
 export type LocationCreateNestedOneWithoutInventoriesInput = {
@@ -454,60 +478,8 @@ export type LocationUpdateOneRequiredWithoutInventoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutInventoriesInput, Prisma.LocationUpdateWithoutInventoriesInput>, Prisma.LocationUncheckedUpdateWithoutInventoriesInput>
 }
 
-export type LocationCreateNestedOneWithoutStockMutationsInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutStockMutationsInput
-  connect?: Prisma.LocationWhereUniqueInput
-}
-
-export type LocationUpdateOneRequiredWithoutStockMutationsNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutStockMutationsInput
-  upsert?: Prisma.LocationUpsertWithoutStockMutationsInput
-  connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutStockMutationsInput, Prisma.LocationUpdateWithoutStockMutationsInput>, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
-}
-
-export type LocationCreateNestedOneWithoutPurchasesInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPurchasesInput
-  connect?: Prisma.LocationWhereUniqueInput
-}
-
-export type LocationUpdateOneRequiredWithoutPurchasesNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPurchasesInput
-  upsert?: Prisma.LocationUpsertWithoutPurchasesInput
-  connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutPurchasesInput, Prisma.LocationUpdateWithoutPurchasesInput>, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
-}
-
-export type LocationCreateNestedOneWithoutSalesInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
-  connect?: Prisma.LocationWhereUniqueInput
-}
-
-export type LocationUpdateOneRequiredWithoutSalesNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
-  upsert?: Prisma.LocationUpsertWithoutSalesInput
-  connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutSalesInput, Prisma.LocationUpdateWithoutSalesInput>, Prisma.LocationUncheckedUpdateWithoutSalesInput>
-}
-
-export type LocationCreateNestedOneWithoutProcessingsInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutProcessingsInput
-  connect?: Prisma.LocationWhereUniqueInput
-}
-
-export type LocationUpdateOneRequiredWithoutProcessingsNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutProcessingsInput
-  upsert?: Prisma.LocationUpsertWithoutProcessingsInput
-  connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutProcessingsInput, Prisma.LocationUpdateWithoutProcessingsInput>, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
+export type EnumLocationTypeFieldUpdateOperationsInput = {
+  set?: $Enums.LocationType
 }
 
 export type LocationCreateNestedOneWithoutMovementsFromInput = {
@@ -538,32 +510,224 @@ export type LocationUpdateOneRequiredWithoutMovementsToNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutMovementsToInput, Prisma.LocationUpdateWithoutMovementsToInput>, Prisma.LocationUncheckedUpdateWithoutMovementsToInput>
 }
 
-export type LocationCreateNestedOneWithoutGradingsInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutGradingsInput
+export type LocationCreateNestedOneWithoutProcessingsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutProcessingsInput
   connect?: Prisma.LocationWhereUniqueInput
 }
 
-export type LocationUpdateOneRequiredWithoutGradingsNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutGradingsInput
-  upsert?: Prisma.LocationUpsertWithoutGradingsInput
+export type LocationUpdateOneRequiredWithoutProcessingsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutProcessingsInput
+  upsert?: Prisma.LocationUpsertWithoutProcessingsInput
   connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutGradingsInput, Prisma.LocationUpdateWithoutGradingsInput>, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutProcessingsInput, Prisma.LocationUpdateWithoutProcessingsInput>, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
 }
 
-export type LocationCreateNestedOneWithoutAdjustmentsInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutAdjustmentsInput
+export type LocationCreateNestedOneWithoutPurchasesInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPurchasesInput
   connect?: Prisma.LocationWhereUniqueInput
 }
 
-export type LocationUpdateOneRequiredWithoutAdjustmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
-  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutAdjustmentsInput
-  upsert?: Prisma.LocationUpsertWithoutAdjustmentsInput
+export type LocationUpdateOneRequiredWithoutPurchasesNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutPurchasesInput
+  upsert?: Prisma.LocationUpsertWithoutPurchasesInput
   connect?: Prisma.LocationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutAdjustmentsInput, Prisma.LocationUpdateWithoutAdjustmentsInput>, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutPurchasesInput, Prisma.LocationUpdateWithoutPurchasesInput>, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
+}
+
+export type LocationCreateNestedOneWithoutSalesInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneRequiredWithoutSalesNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutSalesInput
+  upsert?: Prisma.LocationUpsertWithoutSalesInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutSalesInput, Prisma.LocationUpdateWithoutSalesInput>, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+}
+
+export type LocationCreateNestedOneWithoutStockMutationsInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutStockMutationsInput
+  connect?: Prisma.LocationWhereUniqueInput
+}
+
+export type LocationUpdateOneRequiredWithoutStockMutationsNestedInput = {
+  create?: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
+  connectOrCreate?: Prisma.LocationCreateOrConnectWithoutStockMutationsInput
+  upsert?: Prisma.LocationUpsertWithoutStockMutationsInput
+  connect?: Prisma.LocationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutStockMutationsInput, Prisma.LocationUpdateWithoutStockMutationsInput>, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
+}
+
+export type LocationCreateWithoutAdjustmentsInput = {
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutAdjustmentsInput = {
+  id?: number
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutAdjustmentsInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+}
+
+export type LocationUpsertWithoutAdjustmentsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutAdjustmentsInput, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutAdjustmentsInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutAdjustmentsInput, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
+}
+
+export type LocationUpdateWithoutAdjustmentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutAdjustmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutGradingsInput = {
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutGradingsInput = {
+  id?: number
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutGradingsInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+}
+
+export type LocationUpsertWithoutGradingsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutGradingsInput, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutGradingsInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutGradingsInput, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
+}
+
+export type LocationUpdateWithoutGradingsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutGradingsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 export type LocationCreateWithoutInventoriesInput = {
@@ -642,334 +806,6 @@ export type LocationUncheckedUpdateWithoutInventoriesInput = {
   movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
   movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
   processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
-  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationCreateWithoutStockMutationsInput = {
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
-  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
-}
-
-export type LocationUncheckedCreateWithoutStockMutationsInput = {
-  id?: number
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
-  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
-}
-
-export type LocationCreateOrConnectWithoutStockMutationsInput = {
-  where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
-}
-
-export type LocationUpsertWithoutStockMutationsInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutStockMutationsInput, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
-  where?: Prisma.LocationWhereInput
-}
-
-export type LocationUpdateToOneWithWhereWithoutStockMutationsInput = {
-  where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutStockMutationsInput, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
-}
-
-export type LocationUpdateWithoutStockMutationsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
-  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationUncheckedUpdateWithoutStockMutationsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
-  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationCreateWithoutPurchasesInput = {
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
-}
-
-export type LocationUncheckedCreateWithoutPurchasesInput = {
-  id?: number
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
-}
-
-export type LocationCreateOrConnectWithoutPurchasesInput = {
-  where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
-}
-
-export type LocationUpsertWithoutPurchasesInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutPurchasesInput, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
-  where?: Prisma.LocationWhereInput
-}
-
-export type LocationUpdateToOneWithWhereWithoutPurchasesInput = {
-  where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutPurchasesInput, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
-}
-
-export type LocationUpdateWithoutPurchasesInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationUncheckedUpdateWithoutPurchasesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationCreateWithoutSalesInput = {
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
-  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
-}
-
-export type LocationUncheckedCreateWithoutSalesInput = {
-  id?: number
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
-  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
-}
-
-export type LocationCreateOrConnectWithoutSalesInput = {
-  where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
-}
-
-export type LocationUpsertWithoutSalesInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
-  where?: Prisma.LocationWhereInput
-}
-
-export type LocationUpdateToOneWithWhereWithoutSalesInput = {
-  where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
-}
-
-export type LocationUpdateWithoutSalesInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
-  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationUncheckedUpdateWithoutSalesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
-  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationCreateWithoutProcessingsInput = {
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
-  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
-}
-
-export type LocationUncheckedCreateWithoutProcessingsInput = {
-  id?: number
-  name: string
-  address?: string | null
-  type: $Enums.LocationType
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
-  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
-  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
-  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
-  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
-  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
-  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
-}
-
-export type LocationCreateOrConnectWithoutProcessingsInput = {
-  where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
-}
-
-export type LocationUpsertWithoutProcessingsInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutProcessingsInput, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
-  where?: Prisma.LocationWhereInput
-}
-
-export type LocationUpdateToOneWithWhereWithoutProcessingsInput = {
-  where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutProcessingsInput, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
-}
-
-export type LocationUpdateWithoutProcessingsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
-  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
-  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
-  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
-}
-
-export type LocationUncheckedUpdateWithoutProcessingsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
-  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
-  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
-  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
   sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
@@ -1140,89 +976,253 @@ export type LocationUncheckedUpdateWithoutMovementsToInput = {
   adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
 }
 
-export type LocationCreateWithoutGradingsInput = {
+export type LocationCreateWithoutProcessingsInput = {
   name: string
   address?: string | null
   type: $Enums.LocationType
   createdAt?: Date | string
   updatedAt?: Date | string
+  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
   inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
   movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
   movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
   sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
   adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
 }
 
-export type LocationUncheckedCreateWithoutGradingsInput = {
+export type LocationUncheckedCreateWithoutProcessingsInput = {
   id?: number
   name: string
   address?: string | null
   type: $Enums.LocationType
   createdAt?: Date | string
   updatedAt?: Date | string
+  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
   movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
   movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
-  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
   stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
   adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
 }
 
-export type LocationCreateOrConnectWithoutGradingsInput = {
+export type LocationCreateOrConnectWithoutProcessingsInput = {
   where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
 }
 
-export type LocationUpsertWithoutGradingsInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutGradingsInput, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutGradingsInput, Prisma.LocationUncheckedCreateWithoutGradingsInput>
+export type LocationUpsertWithoutProcessingsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutProcessingsInput, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutProcessingsInput, Prisma.LocationUncheckedCreateWithoutProcessingsInput>
   where?: Prisma.LocationWhereInput
 }
 
-export type LocationUpdateToOneWithWhereWithoutGradingsInput = {
+export type LocationUpdateToOneWithWhereWithoutProcessingsInput = {
   where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutGradingsInput, Prisma.LocationUncheckedUpdateWithoutGradingsInput>
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutProcessingsInput, Prisma.LocationUncheckedUpdateWithoutProcessingsInput>
 }
 
-export type LocationUpdateWithoutGradingsInput = {
+export type LocationUpdateWithoutProcessingsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
   inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
   movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
   movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
   sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
   adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
 }
 
-export type LocationUncheckedUpdateWithoutGradingsInput = {
+export type LocationUncheckedUpdateWithoutProcessingsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
   movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
   movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
-  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
   sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
   stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
   adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
 }
 
-export type LocationCreateWithoutAdjustmentsInput = {
+export type LocationCreateWithoutPurchasesInput = {
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutPurchasesInput = {
+  id?: number
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutPurchasesInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
+}
+
+export type LocationUpsertWithoutPurchasesInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutPurchasesInput, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutPurchasesInput, Prisma.LocationUncheckedCreateWithoutPurchasesInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutPurchasesInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutPurchasesInput, Prisma.LocationUncheckedUpdateWithoutPurchasesInput>
+}
+
+export type LocationUpdateWithoutPurchasesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutPurchasesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutSalesInput = {
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
+}
+
+export type LocationUncheckedCreateWithoutSalesInput = {
+  id?: number
+  name: string
+  address?: string | null
+  type: $Enums.LocationType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  gradings?: Prisma.GradingUncheckedCreateNestedManyWithoutLocationInput
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutLocationInput
+  movementsFrom?: Prisma.MovementUncheckedCreateNestedManyWithoutFromLocationInput
+  movementsTo?: Prisma.MovementUncheckedCreateNestedManyWithoutToLocationInput
+  processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
+  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
+}
+
+export type LocationCreateOrConnectWithoutSalesInput = {
+  where: Prisma.LocationWhereUniqueInput
+  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+}
+
+export type LocationUpsertWithoutSalesInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutSalesInput, Prisma.LocationUncheckedCreateWithoutSalesInput>
+  where?: Prisma.LocationWhereInput
+}
+
+export type LocationUpdateToOneWithWhereWithoutSalesInput = {
+  where?: Prisma.LocationWhereInput
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutSalesInput, Prisma.LocationUncheckedUpdateWithoutSalesInput>
+}
+
+export type LocationUpdateWithoutSalesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationUncheckedUpdateWithoutSalesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  gradings?: Prisma.GradingUncheckedUpdateManyWithoutLocationNestedInput
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutLocationNestedInput
+  movementsFrom?: Prisma.MovementUncheckedUpdateManyWithoutFromLocationNestedInput
+  movementsTo?: Prisma.MovementUncheckedUpdateManyWithoutToLocationNestedInput
+  processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
+  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
+}
+
+export type LocationCreateWithoutStockMutationsInput = {
   name: string
   address?: string | null
   type: $Enums.LocationType
@@ -1235,10 +1235,10 @@ export type LocationCreateWithoutAdjustmentsInput = {
   processings?: Prisma.ProcessingCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutLocationInput
   sales?: Prisma.SaleCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentCreateNestedManyWithoutLocationInput
 }
 
-export type LocationUncheckedCreateWithoutAdjustmentsInput = {
+export type LocationUncheckedCreateWithoutStockMutationsInput = {
   id?: number
   name: string
   address?: string | null
@@ -1252,26 +1252,26 @@ export type LocationUncheckedCreateWithoutAdjustmentsInput = {
   processings?: Prisma.ProcessingUncheckedCreateNestedManyWithoutLocationInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutLocationInput
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutLocationInput
-  stockMutations?: Prisma.StockMutationUncheckedCreateNestedManyWithoutLocationInput
+  adjustments?: Prisma.AdjustmentUncheckedCreateNestedManyWithoutLocationInput
 }
 
-export type LocationCreateOrConnectWithoutAdjustmentsInput = {
+export type LocationCreateOrConnectWithoutStockMutationsInput = {
   where: Prisma.LocationWhereUniqueInput
-  create: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
 }
 
-export type LocationUpsertWithoutAdjustmentsInput = {
-  update: Prisma.XOR<Prisma.LocationUpdateWithoutAdjustmentsInput, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
-  create: Prisma.XOR<Prisma.LocationCreateWithoutAdjustmentsInput, Prisma.LocationUncheckedCreateWithoutAdjustmentsInput>
+export type LocationUpsertWithoutStockMutationsInput = {
+  update: Prisma.XOR<Prisma.LocationUpdateWithoutStockMutationsInput, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
+  create: Prisma.XOR<Prisma.LocationCreateWithoutStockMutationsInput, Prisma.LocationUncheckedCreateWithoutStockMutationsInput>
   where?: Prisma.LocationWhereInput
 }
 
-export type LocationUpdateToOneWithWhereWithoutAdjustmentsInput = {
+export type LocationUpdateToOneWithWhereWithoutStockMutationsInput = {
   where?: Prisma.LocationWhereInput
-  data: Prisma.XOR<Prisma.LocationUpdateWithoutAdjustmentsInput, Prisma.LocationUncheckedUpdateWithoutAdjustmentsInput>
+  data: Prisma.XOR<Prisma.LocationUpdateWithoutStockMutationsInput, Prisma.LocationUncheckedUpdateWithoutStockMutationsInput>
 }
 
-export type LocationUpdateWithoutAdjustmentsInput = {
+export type LocationUpdateWithoutStockMutationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
@@ -1284,10 +1284,10 @@ export type LocationUpdateWithoutAdjustmentsInput = {
   processings?: Prisma.ProcessingUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutLocationNestedInput
   sales?: Prisma.SaleUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUpdateManyWithoutLocationNestedInput
 }
 
-export type LocationUncheckedUpdateWithoutAdjustmentsInput = {
+export type LocationUncheckedUpdateWithoutStockMutationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1301,7 +1301,7 @@ export type LocationUncheckedUpdateWithoutAdjustmentsInput = {
   processings?: Prisma.ProcessingUncheckedUpdateManyWithoutLocationNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutLocationNestedInput
   sales?: Prisma.SaleUncheckedUpdateManyWithoutLocationNestedInput
-  stockMutations?: Prisma.StockMutationUncheckedUpdateManyWithoutLocationNestedInput
+  adjustments?: Prisma.AdjustmentUncheckedUpdateManyWithoutLocationNestedInput
 }
 
 

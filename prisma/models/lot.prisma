@@ -1,0 +1,18 @@
+model Lot {
+  id   Int    @id @default(autoincrement())
+  code String @unique @db.VarChar(255)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  inventories     Inventory[]
+  stockMutations  StockMutation[]
+  purchaseItems   PurchaseItem[]
+  saleItems       SaleItem[]
+  processingItems ProcessingItem[]
+  movementItems   MovementItem[]
+  gradingItems    GradingItem[]
+  adjustmentItems AdjustmentItem[]
+
+  @@map("lots")
+}

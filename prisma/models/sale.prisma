@@ -1,0 +1,39 @@
+model Sale {
+  id          Int      @id @default(autoincrement())
+  tid         String   @unique
+  saleDate    DateTime @map("sale_date") @db.Timestamptz(6)
+  customerId  Int      @map("customer_id")
+  locationId  Int      @map("location_id")
+  notes       String?
+  totalVolume Float    @map("total_volume")
+  totalPrice  Float    @map("total_price")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  items    SaleItem[]
+  customer Contact    @relation(fields: [customerId], references: [id])
+  location Location   @relation(fields: [locationId], references: [id])
+
+  @@map("sales")
+}
+
+model SaleItem {
+  id            Int   @id @default(autoincrement())
+  saleId        Int   @map("sale_id")
+  gradeId       Int?  @map("grade_id")
+  woodVariantId Int   @map("wood_variant_id")
+  lotId         Int   @map("lot_id")
+  pricePerCubic Float @map("price_per_cubic")
+  quantity      Int
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  grade   Grade?      @relation(fields: [gradeId], references: [id])
+  sale    Sale        @relation(fields: [saleId], references: [id])
+  variant WoodVariant @relation(fields: [woodVariantId], references: [id])
+  lot     Lot         @relation(fields: [lotId], references: [id])
+
+  @@map("sale_items")
+}
