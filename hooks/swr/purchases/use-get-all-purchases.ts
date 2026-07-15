@@ -8,6 +8,8 @@ export function useGetAllPurchases(query: TableQuery, options?: SWRConfiguration
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllPurchasesResponse>(`/api/purchases?${params.toString()}`, fetcher, {

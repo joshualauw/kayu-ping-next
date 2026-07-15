@@ -26,6 +26,8 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       page: searchParams.get("page"),
       size: searchParams.get("size"),
       search: searchParams.get("search"),
+      sortBy: searchParams.get("sortBy"),
+      sortOrder: searchParams.get("sortOrder"),
     });
 
     const { items: materials, count } = await materialService.getAllMaterials(parsed);

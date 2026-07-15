@@ -3,18 +3,22 @@ import { Grade } from "@/generated/prisma/client";
 import { GradeWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateGradeSchema } from "@/lib/schemas/grades/create-grade";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type GradeListItem = Grade;
 export type GradeForSelect = Pick<Grade, "id" | "name" | "code">;
 
 class GradeService {
   async getAllGrades(params: TableQuery): Promise<TableResponse<GradeListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: GradeWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
     }
+
+    const allowedSortFields = ["name", "code", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields);
 
     const [count, items] = await Promise.all([
       prisma.grade.count({ where }),
@@ -22,9 +26,7 @@ class GradeService {
         where,
         skip: page * size,
         take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy,
       }),
     ]);
 

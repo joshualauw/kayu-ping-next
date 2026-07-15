@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllLocations } from "@/hooks/swr/locations/use-get-all-locations";
 import type { LocationListItem } from "@/lib/services/location-service";
@@ -16,7 +16,7 @@ import { deleteLocationAction } from "@/lib/actions/locations/delete-location";
 
 export default function LocationsDataTable() {
   const router = useRouter();
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data, error, isLoading, isValidating, mutate } = useGetAllLocations(query);
@@ -54,25 +54,26 @@ export default function LocationsDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "name",
-        header: "Name",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
         cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
       },
       {
         accessorKey: "type",
-        header: "Type",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Type" />,
         cell: ({ row }) => <span className="capitalize">{row.original.type.toLowerCase()}</span>,
       },
       {
         accessorKey: "createdAt",
-        header: "Created At",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Created At" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.createdAt)}</span>,
       },
       {
         accessorKey: "updatedAt",
-        header: "Updated At",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Updated At" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.updatedAt)}</span>,
       },
       {
@@ -119,9 +120,12 @@ export default function LocationsDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

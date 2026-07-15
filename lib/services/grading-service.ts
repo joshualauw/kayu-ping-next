@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateGradingSchema } from "@/lib/schemas/gradings/create-grading";
 import { UpdateGradingSchema } from "@/lib/schemas/gradings/update-grading";
 import dayjs from "@/lib/integrations/dayjs";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type GradingListItem = Grading & {
   location: Pick<Location, "name">;
@@ -26,12 +27,15 @@ export type GradingDetail = Grading & {
 
 class GradingService {
   async getAllGradings(params: TableQuery): Promise<TableResponse<GradingListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: GradingWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
     }
+
+    const allowedSortFields = ["tid", "gradingDate", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "gradingDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.grading.count({ where }),
@@ -46,9 +50,7 @@ class GradingService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          gradingDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllAdjustments } from "@/hooks/swr/adjustments/use-get-all-adjustments";
 import type { AdjustmentListItem } from "@/app/api/adjustments/route";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function AdjustmentsDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("adjustmentDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllAdjustments(query);
   const adjustments = data?.adjustments ?? [];
@@ -25,21 +25,23 @@ export default function AdjustmentsDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
       },
       {
         accessorKey: "adjustmentDate",
-        header: "Adjustment Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Adjustment Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.adjustmentDate)}</span>,
       },
       {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
+        enableSorting: false,
       },
       {
         id: "actions",
@@ -71,9 +73,12 @@ export default function AdjustmentsDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

@@ -8,6 +8,8 @@ export function useGetAllContacts(query: TableQuery, options?: SWRConfiguration<
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllContactsResponse>(`/api/contacts?${params.toString()}`, fetcher, {

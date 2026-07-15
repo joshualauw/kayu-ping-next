@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllGradings } from "@/hooks/swr/gradings/use-get-all-gradings";
 import type { GradingListItem } from "@/app/api/gradings/route";
@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function GradingsDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("gradingDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllGradings(query);
   const gradings = data?.gradings ?? [];
@@ -26,21 +26,23 @@ export default function GradingsDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
       },
       {
         accessorKey: "gradingDate",
-        header: "Grading Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Grading Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.gradingDate)}</span>,
       },
       {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
+        enableSorting: false,
       },
       {
         id: "actions",
@@ -72,9 +74,12 @@ export default function GradingsDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

@@ -8,6 +8,8 @@ export function useGetAllAdjustments(query: TableQuery, options?: SWRConfigurati
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllAdjustmentsResponse>(`/api/adjustments?${params.toString()}`, fetcher, {

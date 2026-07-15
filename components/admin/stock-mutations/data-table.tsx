@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { ColumnDef, getCoreRowModel, getExpandedRowModel, useReactTable, type ExpandedState, type Row } from "@tanstack/react-table";
 import { ExternalLink, ChevronDown, ChevronRight } from "lucide-react";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllStockMutations } from "@/hooks/swr/stock-mutations/use-get-all-stock-mutations";
 import type { StockMutationGroupedItem } from "@/lib/services/stock-mutation-service";
@@ -14,7 +14,10 @@ import { getReferenceLink } from "@/lib/helpers/core";
 import { Button } from "@/components/ui/button";
 
 export default function StockMutationsDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState(
+    "mutationDate",
+    "desc",
+  );
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
   const { data, error, isLoading, isValidating } = useGetAllStockMutations(query);
@@ -37,20 +40,22 @@ export default function StockMutationsDataTable() {
             {row.getIsExpanded() ? <ChevronDown className="size-4" /> : <ChevronRight className="size-4" />}
           </Button>
         ),
+        enableSorting: false,
       },
       {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "mutationDate",
-        header: "Mutation Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Mutation Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.mutationDate)}</span>,
       },
       {
         accessorKey: "referenceType",
-        header: "Source",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Source" />,
         cell: ({ row }) => row.original.referenceType,
       },
       {
@@ -67,6 +72,7 @@ export default function StockMutationsDataTable() {
             </Button>
           );
         },
+        enableSorting: false,
       },
     ],
     [],
@@ -79,9 +85,12 @@ export default function StockMutationsDataTable() {
     state: {
       pagination,
       expanded,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     onExpandedChange: setExpanded,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),

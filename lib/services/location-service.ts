@@ -3,18 +3,22 @@ import { Location } from "@/generated/prisma/client";
 import { LocationWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateLocationSchema } from "@/lib/schemas/locations/create-location";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type LocationListItem = Omit<Location, "address">;
 export type LocationForSelect = Pick<Location, "id" | "name">;
 
 class LocationService {
   async getAllLocations(params: TableQuery): Promise<TableResponse<LocationListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: LocationWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }];
     }
+
+    const allowedSortFields = ["name", "type", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields);
 
     const [count, items] = await Promise.all([
       prisma.location.count({ where }),
@@ -29,9 +33,7 @@ class LocationService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy,
       }),
     ]);
 

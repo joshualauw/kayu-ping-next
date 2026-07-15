@@ -4,18 +4,22 @@ import { MaterialWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
 import { UpdateMaterialSchema } from "@/lib/schemas/materials/update-material";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type MaterialListItem = Material;
 export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement" | "code">;
 
 class MaterialService {
   async getAllMaterials(params: TableQuery): Promise<TableResponse<MaterialListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: MaterialWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
     }
+
+    const allowedSortFields = ["name", "code", "measurement", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields);
 
     const [count, items] = await Promise.all([
       prisma.material.count({ where }),
@@ -23,9 +27,7 @@ class MaterialService {
         where,
         skip: page * size,
         take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy,
       }),
     ]);
 

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllProcessings } from "@/hooks/swr/processings/use-get-all-processings";
 import type { ProcessingListItem } from "@/app/api/processings/route";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function ProcessingsDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("processingDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllProcessings(query);
   const processings = data?.processings ?? [];
@@ -25,21 +25,23 @@ export default function ProcessingsDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
       },
       {
         accessorKey: "processingDate",
-        header: "Processing Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Processing Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.processingDate)}</span>,
       },
       {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
+        enableSorting: false,
       },
       {
         id: "actions",
@@ -71,9 +73,12 @@ export default function ProcessingsDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

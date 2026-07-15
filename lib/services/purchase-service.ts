@@ -4,6 +4,7 @@ import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
 import { UpdatePurchaseSchema } from "@/lib/schemas/purchases/update-purchase";
+import { getOrderBySort } from "@/lib/helpers/api";
 import { calculateWoodVolume } from "@/lib/helpers/core";
 import dayjs from "@/lib/integrations/dayjs";
 
@@ -29,12 +30,15 @@ export type PurchaseItemWithVariant = PurchaseItem & {
 
 class PurchaseService {
   async getAllPurchases(params: TableQuery): Promise<TableResponse<PurchaseListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: PurchaseWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
     }
+
+    const allowedSortFields = ["tid", "purchaseDate", "totalPrice", "totalVolume", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "purchaseDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.purchase.count({ where }),
@@ -54,9 +58,7 @@ class PurchaseService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          purchaseDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

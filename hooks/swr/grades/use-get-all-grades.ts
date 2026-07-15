@@ -8,6 +8,8 @@ export function useGetAllGrades(query: TableQuery, options?: SWRConfiguration<Ge
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllGradesResponse>(`/api/grades?${params.toString()}`, fetcher, {

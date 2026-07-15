@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateSaleSchema } from "@/lib/schemas/sales/create-sale";
 import { UpdateSaleSchema } from "@/lib/schemas/sales/update-sale";
 import dayjs from "@/lib/integrations/dayjs";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type SaleListItem = Sale & {
   location: Pick<Location, "name">;
@@ -28,12 +29,15 @@ export type SaleDetail = Sale & {
 
 class SaleService {
   async getAllSales(params: TableQuery): Promise<TableResponse<SaleListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: SaleWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
     }
+
+    const allowedSortFields = ["tid", "saleDate", "totalVolume", "totalPrice", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "saleDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.sale.count({ where }),
@@ -53,9 +57,7 @@ class SaleService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          saleDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

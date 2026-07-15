@@ -4,6 +4,7 @@ import { ProcessingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateProcessingSchema } from "@/lib/schemas/processings/create-processing";
 import { UpdateProcessingSchema } from "@/lib/schemas/processings/update-processing";
+import { getOrderBySort } from "@/lib/helpers/api";
 import { calculateWoodVolume } from "@/lib/helpers/core";
 import dayjs from "@/lib/integrations/dayjs";
 
@@ -27,12 +28,15 @@ export type ProcessingDetail = Processing & {
 
 class ProcessingService {
   async getAllProcessings(params: TableQuery): Promise<TableResponse<ProcessingListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: ProcessingWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
     }
+
+    const allowedSortFields = ["tid", "processingDate", "totalInputVolume", "totalOutputVolume", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "processingDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.processing.count({ where }),
@@ -47,9 +51,7 @@ class ProcessingService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          processingDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

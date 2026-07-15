@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllMovements } from "@/hooks/swr/movements/use-get-all-movements";
 import type { MovementListItem } from "@/app/api/movements/route";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function MovementsDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("movementDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllMovements(query);
   const movements = data?.movements ?? [];
@@ -25,31 +25,35 @@ export default function MovementsDataTable() {
         id: "row",
         header: "No.",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
+      },
+      {
+        accessorKey: "movementDate",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Movement Date" />,
+        cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.movementDate)}</span>,
       },
       {
         id: "trucker",
         header: "Trucker Name",
         cell: ({ row }) => <span>{row.original.trucker.name}</span>,
-      },
-      {
-        accessorKey: "movementDate",
-        header: "Date",
-        cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.movementDate)}</span>,
+        enableSorting: false,
       },
       {
         id: "fromLocation",
         header: "From Location Name",
         cell: ({ row }) => <span>{row.original.fromLocation.name}</span>,
+        enableSorting: false,
       },
       {
         id: "toLocation",
         header: "To Location Name",
         cell: ({ row }) => <span>{row.original.toLocation.name}</span>,
+        enableSorting: false,
       },
       {
         id: "actions",
@@ -81,9 +85,12 @@ export default function MovementsDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

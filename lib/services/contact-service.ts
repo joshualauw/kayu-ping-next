@@ -3,13 +3,14 @@ import { Contact } from "@/generated/prisma/client";
 import { ContactWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateContactSchema } from "@/lib/schemas/contacts/create-contact";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type ContactListItem = Omit<Contact, "address" | "notes">;
 export type ContactForSelect = Pick<Contact, "id" | "name" | "type">;
 
 class ContactService {
   async getAllContacts(params: TableQuery): Promise<TableResponse<ContactListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: ContactWhereInput = {};
 
     if (search) {
@@ -19,6 +20,9 @@ class ContactService {
         { email: { contains: search, mode: "insensitive" } },
       ];
     }
+
+    const allowedSortFields = ["name", "type", "phoneNumber", "email", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields);
 
     const [count, items] = await Promise.all([
       prisma.contact.count({ where }),
@@ -35,9 +39,7 @@ class ContactService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy,
       }),
     ]);
 

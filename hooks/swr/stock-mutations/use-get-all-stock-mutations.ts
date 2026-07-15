@@ -8,6 +8,8 @@ export function useGetAllStockMutations(query: TableQuery, options?: SWRConfigur
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllStockMutationsResponse>(`/api/stock-mutations?${params.toString()}`, fetcher, {

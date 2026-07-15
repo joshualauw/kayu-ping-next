@@ -8,6 +8,8 @@ export function useGetAllMaterials(query: TableQuery, options?: SWRConfiguration
     page: String(query.page),
     size: String(query.size),
     search: query.search,
+    sortBy: query.sortBy,
+    sortOrder: query.sortOrder,
   });
 
   return useSWR<GetAllMaterialsResponse>(`/api/materials?${params.toString()}`, fetcher, {

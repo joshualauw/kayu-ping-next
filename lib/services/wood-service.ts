@@ -2,17 +2,21 @@ import { prisma } from "@/lib/db/prisma";
 import { Wood, WoodVariant, Material } from "@/generated/prisma/client";
 import { WoodWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type WoodForSelect = Pick<Wood, "id" | "name" | "code">;
 
 class WoodService {
   async getAllWoods(params: TableQuery): Promise<TableResponse<Wood>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: WoodWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
     }
+
+    const allowedSortFields = ["name", "code", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields);
 
     const [count, items] = await Promise.all([
       prisma.wood.count({ where }),
@@ -20,9 +24,7 @@ class WoodService {
         where,
         skip: page * size,
         take: size,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy,
       }),
     ]);
 

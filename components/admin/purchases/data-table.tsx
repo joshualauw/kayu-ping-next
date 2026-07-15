@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllPurchases } from "@/hooks/swr/purchases/use-get-all-purchases";
 import type { PurchaseListItem } from "@/app/api/purchases/route";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function PurchasesDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("purchaseDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllPurchases(query);
   const purchases = data?.purchases ?? [];
@@ -25,30 +25,33 @@ export default function PurchasesDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
       },
       {
         accessorKey: "purchaseDate",
-        header: "Purchase Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Purchase Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.purchaseDate)}</span>,
       },
       {
         id: "supplier",
         header: "Supplier",
         cell: ({ row }) => <span>{row.original.supplier.name}</span>,
+        enableSorting: false,
       },
       {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
+        enableSorting: false,
       },
       {
         accessorKey: "totalPrice",
-        header: "Total Price",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Total Price" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatCurrency(row.original.totalPrice)}</span>,
       },
       {
@@ -81,9 +84,12 @@ export default function PurchasesDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

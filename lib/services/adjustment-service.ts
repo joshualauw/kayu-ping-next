@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateAdjustmentSchema } from "@/lib/schemas/adjustments/create-adjustment";
 import { UpdateAdjustmentSchema } from "@/lib/schemas/adjustments/update-adjustment";
 import dayjs from "@/lib/integrations/dayjs";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type AdjustmentListItem = Adjustment & {
   location: Pick<Location, "name">;
@@ -26,7 +27,7 @@ export type AdjustmentDetail = Adjustment & {
 
 class AdjustmentService {
   async getAllAdjustments(params: TableQuery): Promise<TableResponse<AdjustmentListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: AdjustmentWhereInput = {};
 
     if (search) {
@@ -36,6 +37,9 @@ class AdjustmentService {
         { notes: { contains: search, mode: "insensitive" } },
       ];
     }
+
+    const allowedSortFields = ["tid", "adjustmentDate", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "adjustmentDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.adjustment.count({ where }),
@@ -50,9 +54,7 @@ class AdjustmentService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          adjustmentDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

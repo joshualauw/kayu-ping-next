@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "@/components/shared/data-table";
+import DataTable, { DataTableColumnHeader } from "@/components/shared/data-table";
 import { useDataTableState } from "@/components/shared/use-data-table-state";
 import { useGetAllSales } from "@/hooks/swr/sales/use-get-all-sales";
 import type { SaleListItem } from "@/app/api/sales/route";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function SalesDataTable() {
-  const { search, setSearch, pagination, setPagination, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("saleDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllSales(query);
   const sales = data?.sales ?? [];
@@ -25,30 +25,33 @@ export default function SalesDataTable() {
         id: "row",
         header: "Row",
         cell: ({ row }) => row.index + 1,
+        enableSorting: false,
       },
       {
         accessorKey: "tid",
-        header: "TID",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="TID" />,
         cell: ({ row }) => <span className="font-medium">{row.original.tid}</span>,
       },
       {
         accessorKey: "saleDate",
-        header: "Sale Date",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Sale Date" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatDate(row.original.saleDate)}</span>,
       },
       {
         id: "customer",
         header: "Customer",
         cell: ({ row }) => <span>{row.original.customer.name}</span>,
+        enableSorting: false,
       },
       {
         id: "location",
         header: "Location",
         cell: ({ row }) => <span>{row.original.location.name}</span>,
+        enableSorting: false,
       },
       {
         accessorKey: "totalPrice",
-        header: "Total Price",
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Total Price" />,
         cell: ({ row }) => <span className="whitespace-nowrap">{formatCurrency(row.original.totalPrice)}</span>,
       },
       {
@@ -81,9 +84,12 @@ export default function SalesDataTable() {
     pageCount,
     state: {
       pagination,
+      sorting,
     },
     manualPagination: true,
+    manualSorting: true,
     onPaginationChange: setPagination,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
 

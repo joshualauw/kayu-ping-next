@@ -5,6 +5,7 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMovementSchema } from "@/lib/schemas/movements/create-movement";
 import { UpdateMovementSchema } from "@/lib/schemas/movements/update-movement";
 import dayjs from "@/lib/integrations/dayjs";
+import { getOrderBySort } from "@/lib/helpers/api";
 
 export type MovementListItem = Movement & {
   trucker: Pick<Contact, "name">;
@@ -30,7 +31,7 @@ export type MovementDetail = Movement & {
 
 class MovementService {
   async getAllMovements(params: TableQuery): Promise<TableResponse<MovementListItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
     const where: MovementWhereInput = {};
 
     if (search) {
@@ -41,6 +42,9 @@ class MovementService {
         { toLocation: { name: { contains: search, mode: "insensitive" } } },
       ];
     }
+
+    const allowedSortFields = ["tid", "movementDate", "totalMovedVolume", "createdAt", "updatedAt"];
+    const orderBy = getOrderBySort(sortBy, sortOrder, allowedSortFields, "movementDate", "desc");
 
     const [count, items] = await Promise.all([
       prisma.movement.count({ where }),
@@ -65,9 +69,7 @@ class MovementService {
         },
         skip: page * size,
         take: size,
-        orderBy: {
-          movementDate: "desc",
-        },
+        orderBy,
       }),
     ]);
 

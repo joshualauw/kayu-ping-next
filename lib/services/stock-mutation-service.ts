@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db/prisma";
-import { StockMutation, WoodVariant, Wood, Material, Location, Grade, MutationType, ReferenceType, Lot } from "@/generated/prisma/client";
+import { WoodVariant, Wood, Material, Location, Grade, MutationType, ReferenceType, Lot } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
-import { Prisma } from "@/generated/prisma/client";
+import { StockMutationOrderByWithAggregationInput, StockMutationWhereInput } from "@/generated/prisma/models";
 
 export type StockMutationGroupedItem = {
   id: string;
@@ -24,9 +24,9 @@ export type StockMutationGroupedItem = {
 
 class StockMutationService {
   async getAllStockMutations(params: TableQuery): Promise<TableResponse<StockMutationGroupedItem>> {
-    const { page, size, search } = params;
+    const { page, size, search, sortBy, sortOrder } = params;
 
-    const where: Prisma.StockMutationWhereInput = {};
+    const where: StockMutationWhereInput = {};
 
     if (search) {
       where.OR = [
@@ -44,20 +44,34 @@ class StockMutationService {
     });
     const count = countResult.length;
 
-    const groups = await prisma.stockMutation.groupBy({
+    let orderBy: StockMutationOrderByWithAggregationInput | StockMutationOrderByWithAggregationInput[] = {
+      _max: {
+        mutationDate: "desc",
+      },
+    };
+
+    if (sortBy === "mutationDate") {
+      orderBy = {
+        _max: {
+          mutationDate: sortOrder,
+        },
+      };
+    } else if (sortBy === "referenceType") {
+      orderBy = {
+        referenceType: sortOrder,
+      };
+    }
+
+    const groups = (await prisma.stockMutation.groupBy({
       by: ["referenceType", "referenceId"],
       where,
       _max: {
         mutationDate: true,
       },
-      orderBy: {
-        _max: {
-          mutationDate: "desc",
-        },
-      },
+      orderBy: orderBy,
       skip: page * size,
       take: size,
-    });
+    } as any)) as unknown as any[];
 
     if (groups.length === 0) {
       return { items: [], count };
