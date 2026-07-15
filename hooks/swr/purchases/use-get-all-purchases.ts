@@ -11,6 +11,8 @@ export function useGetAllPurchases(query: TableQuery, options?: SWRConfiguration
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllPurchasesResponse>(`/api/purchases?${params.toString()}`, fetcher, {
     keepPreviousData: true,

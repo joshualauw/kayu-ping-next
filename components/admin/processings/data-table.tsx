@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function ProcessingsDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("processingDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("processingDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllProcessings(query);
   const processings = data?.processings ?? [];
@@ -96,6 +97,10 @@ export default function ProcessingsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

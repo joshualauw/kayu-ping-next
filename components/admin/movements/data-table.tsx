@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function MovementsDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("movementDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("movementDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllMovements(query);
   const movements = data?.movements ?? [];
@@ -108,6 +109,10 @@ export default function MovementsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

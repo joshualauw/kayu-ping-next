@@ -28,11 +28,21 @@ export type ProcessingDetail = Processing & {
 
 class ProcessingService {
   async getAllProcessings(params: TableQuery): Promise<TableResponse<ProcessingListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: ProcessingWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
+    }
+
+    if (startDate || endDate) {
+      where.processingDate = {};
+      if (startDate) {
+        where.processingDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.processingDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "processingDate", "totalInputVolume", "totalOutputVolume", "createdAt", "updatedAt"];
@@ -78,7 +88,7 @@ class ProcessingService {
   }
 
   async createProcessing(data: CreateProcessingSchema): Promise<Processing> {
-    const processingDate = new Date(data.processingDate);
+    const processingDate = dayjs(data.processingDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(processingDate, tx);

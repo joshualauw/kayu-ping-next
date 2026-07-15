@@ -31,7 +31,7 @@ export type MovementDetail = Movement & {
 
 class MovementService {
   async getAllMovements(params: TableQuery): Promise<TableResponse<MovementListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: MovementWhereInput = {};
 
     if (search) {
@@ -41,6 +41,16 @@ class MovementService {
         { fromLocation: { name: { contains: search, mode: "insensitive" } } },
         { toLocation: { name: { contains: search, mode: "insensitive" } } },
       ];
+    }
+
+    if (startDate || endDate) {
+      where.movementDate = {};
+      if (startDate) {
+        where.movementDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.movementDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "movementDate", "totalMovedVolume", "createdAt", "updatedAt"];
@@ -96,7 +106,7 @@ class MovementService {
   }
 
   async createMovement(data: CreateMovementSchema): Promise<Movement> {
-    const movementDate = new Date(data.movementDate);
+    const movementDate = dayjs(data.movementDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(movementDate, tx);

@@ -4,13 +4,14 @@ import { ContactWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateContactSchema } from "@/lib/schemas/contacts/create-contact";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type ContactListItem = Omit<Contact, "address" | "notes">;
 export type ContactForSelect = Pick<Contact, "id" | "name" | "type">;
 
 class ContactService {
   async getAllContacts(params: TableQuery): Promise<TableResponse<ContactListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: ContactWhereInput = {};
 
     if (search) {
@@ -19,6 +20,16 @@ class ContactService {
         { phoneNumber: { contains: search, mode: "insensitive" } },
         { email: { contains: search, mode: "insensitive" } },
       ];
+    }
+
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.createdAt.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["name", "type", "phoneNumber", "email", "createdAt", "updatedAt"];

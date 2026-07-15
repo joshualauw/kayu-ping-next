@@ -11,6 +11,8 @@ export function useGetAllAdjustments(query: TableQuery, options?: SWRConfigurati
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllAdjustmentsResponse>(`/api/adjustments?${params.toString()}`, fetcher, {
     keepPreviousData: true,

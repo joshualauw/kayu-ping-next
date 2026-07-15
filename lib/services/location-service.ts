@@ -4,17 +4,28 @@ import { LocationWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateLocationSchema } from "@/lib/schemas/locations/create-location";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type LocationListItem = Omit<Location, "address">;
 export type LocationForSelect = Pick<Location, "id" | "name">;
 
 class LocationService {
   async getAllLocations(params: TableQuery): Promise<TableResponse<LocationListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: LocationWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }];
+    }
+
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.createdAt.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["name", "type", "createdAt", "updatedAt"];

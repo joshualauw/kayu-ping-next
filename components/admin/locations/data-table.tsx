@@ -16,7 +16,8 @@ import { deleteLocationAction } from "@/lib/actions/locations/delete-location";
 
 export default function LocationsDataTable() {
   const router = useRouter();
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data, error, isLoading, isValidating, mutate } = useGetAllLocations(query);
@@ -143,6 +144,10 @@ export default function LocationsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

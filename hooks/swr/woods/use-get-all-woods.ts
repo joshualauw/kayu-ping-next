@@ -11,6 +11,8 @@ export function useGetAllWoods(query: TableQuery, options?: SWRConfiguration<Get
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllWoodsResponse>(`/api/woods?${params.toString()}`, fetcher, {
     keepPreviousData: true,

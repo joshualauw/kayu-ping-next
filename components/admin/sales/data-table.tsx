@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function SalesDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("saleDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("saleDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllSales(query);
   const sales = data?.sales ?? [];
@@ -107,6 +108,10 @@ export default function SalesDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

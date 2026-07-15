@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db/prisma";
 import { WoodVariant, Wood, Material, Location, Grade, MutationType, ReferenceType, Lot } from "@/generated/prisma/client";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { StockMutationOrderByWithAggregationInput, StockMutationWhereInput } from "@/generated/prisma/models";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type StockMutationGroupedItem = {
   id: string;
@@ -24,9 +25,19 @@ export type StockMutationGroupedItem = {
 
 class StockMutationService {
   async getAllStockMutations(params: TableQuery): Promise<TableResponse<StockMutationGroupedItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
 
     const where: StockMutationWhereInput = {};
+
+    if (startDate || endDate) {
+      where.mutationDate = {};
+      if (startDate) {
+        where.mutationDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.mutationDate.lte = dayjs(endDate).toDate();
+      }
+    }
 
     if (search) {
       where.OR = [
@@ -105,7 +116,7 @@ class StockMutationService {
 
       return {
         id: `${g.referenceType}-${g.referenceId}`,
-        mutationDate: g._max.mutationDate ?? groupItems[0]?.mutationDate ?? new Date(),
+        mutationDate: g._max.mutationDate ?? groupItems[0]?.mutationDate ?? dayjs().toDate(),
         referenceType: g.referenceType,
         referenceId: g.referenceId,
         items: groupItems.map((item) => ({

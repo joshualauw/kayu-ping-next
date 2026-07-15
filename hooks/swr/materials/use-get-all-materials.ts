@@ -11,6 +11,8 @@ export function useGetAllMaterials(query: TableQuery, options?: SWRConfiguration
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllMaterialsResponse>(`/api/materials?${params.toString()}`, fetcher, {
     keepPreviousData: true,

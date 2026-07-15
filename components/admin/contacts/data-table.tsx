@@ -16,7 +16,8 @@ import { deleteContactAction } from "@/lib/actions/contacts/delete-contact";
 
 export default function ContactsDataTable() {
   const router = useRouter();
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data, error, isLoading, isValidating, mutate } = useGetAllContacts(query);
@@ -153,6 +154,10 @@ export default function ContactsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

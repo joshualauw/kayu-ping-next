@@ -26,6 +26,8 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       search: searchParams.get("search"),
       sortBy: searchParams.get("sortBy"),
       sortOrder: searchParams.get("sortOrder"),
+      startDate: searchParams.get("startDate"),
+      endDate: searchParams.get("endDate"),
     });
 
     const { items: stockMutations, count } = await stockMutationService.getAllStockMutations(parsed);

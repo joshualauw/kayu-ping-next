@@ -16,7 +16,8 @@ import { deleteMaterialAction } from "@/lib/actions/materials/delete-material";
 
 export default function MaterialsDataTable() {
   const router = useRouter();
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data, error, isLoading, isValidating, mutate } = useGetAllMaterials(query);
@@ -148,6 +149,10 @@ export default function MaterialsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

@@ -6,6 +6,8 @@ export const tableQuerySchema = z.object({
   search: z.string().trim(),
   sortBy: z.string().default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
+  startDate: z.string().nullish(),
+  endDate: z.string().nullish(),
 });
 
 export type TableQuery = z.infer<typeof tableQuerySchema>;

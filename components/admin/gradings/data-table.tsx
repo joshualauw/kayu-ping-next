@@ -13,7 +13,8 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function GradingsDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("gradingDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("gradingDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllGradings(query);
   const gradings = data?.gradings ?? [];
@@ -97,6 +98,10 @@ export default function GradingsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function PurchasesDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("purchaseDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("purchaseDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllPurchases(query);
   const purchases = data?.purchases ?? [];
@@ -107,6 +108,10 @@ export default function PurchasesDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

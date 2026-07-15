@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Info, Pencil } from "lucide-react";
 
 export default function AdjustmentsDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState("adjustmentDate", "desc");
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("adjustmentDate", "desc");
 
   const { data, error, isLoading, isValidating } = useGetAllAdjustments(query);
   const adjustments = data?.adjustments ?? [];
@@ -96,6 +97,10 @@ export default function AdjustmentsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

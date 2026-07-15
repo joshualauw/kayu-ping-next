@@ -8,6 +8,9 @@ import { Input } from "@/components/ui/input";
 import { config } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { CalendarDatePicker } from "@/components/shared/calendar-date-picker";
+import { DateRange } from "react-day-picker";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface DataTableProps<TData> {
   table: Table<TData>;
@@ -22,6 +25,10 @@ interface DataTableProps<TData> {
   error: any;
   renderRowDetails?: (row: Row<TData>) => React.ReactNode;
   filterElement?: React.ReactNode;
+  enableDateRangeFilter?: boolean;
+  dateRange?: DateRange;
+  onDateRangeChange?: (range: DateRange | undefined) => void;
+  onClearFilters?: () => void;
 }
 
 export default function DataTable<TData>({
@@ -37,6 +44,10 @@ export default function DataTable<TData>({
   error,
   renderRowDetails,
   filterElement,
+  enableDateRangeFilter = false,
+  dateRange,
+  onDateRangeChange,
+  onClearFilters,
 }: DataTableProps<TData>) {
   const pagination = table.getState().pagination;
   const pageCount = table.getPageCount();
@@ -44,6 +55,7 @@ export default function DataTable<TData>({
   const lastRow = Math.min((pagination.pageIndex + 1) * pagination.pageSize, count);
   const hasRows = table.getRowModel().rows.length > 0;
   const columns = table.getVisibleFlatColumns();
+  const hasActiveFilters = !!(search || dateRange?.from || dateRange?.to);
 
   return (
     <div className="flex flex-col gap-4">
@@ -59,6 +71,26 @@ export default function DataTable<TData>({
               aria-label={searchAriaLabel}
             />
           </div>
+          {enableDateRangeFilter && onDateRangeChange && (
+            <div className="flex items-center gap-2">
+              <CalendarDatePicker
+                date={dateRange || { from: undefined, to: undefined }}
+                onDateSelect={(range) => onDateRangeChange(range)}
+                className="w-full sm:w-auto"
+              />
+            </div>
+          )}
+          {hasActiveFilters && onClearFilters && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onClearFilters}
+              className="h-9 px-2 text-muted-foreground hover:text-foreground"
+            >
+              Clear
+            </Button>
+          )}
           {filterElement}
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -129,21 +161,21 @@ export default function DataTable<TData>({
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <label className="flex items-center gap-2 text-sm text-muted-foreground">
-            Rows per page
-            <select
-              value={pagination.pageSize}
-              onChange={(event) => table.setPageSize(Number(event.target.value))}
-              className="h-9 rounded-md border border-input bg-background px-2 text-sm text-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
-              aria-label="Rows per page"
-            >
-              {config.DATA_TABLE.size_options.map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  {pageSize}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>Rows per page</span>
+            <Select value={String(pagination.pageSize)} onValueChange={(value) => table.setPageSize(Number(value))}>
+              <SelectTrigger className="h-9 w-18" aria-label="Rows per page">
+                <SelectValue placeholder={pagination.pageSize} />
+              </SelectTrigger>
+              <SelectContent position="popper">
+                {config.DATA_TABLE.size_options.map((pageSize) => (
+                  <SelectItem key={pageSize} value={String(pageSize)}>
+                    {pageSize}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
           <div className="flex items-center gap-2">
             <span className="min-w-24 text-center text-sm text-muted-foreground">

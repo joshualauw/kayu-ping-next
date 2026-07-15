@@ -11,6 +11,8 @@ export function useGetAllStockMutations(query: TableQuery, options?: SWRConfigur
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllStockMutationsResponse>(`/api/stock-mutations?${params.toString()}`, fetcher, {
     keepPreviousData: true,

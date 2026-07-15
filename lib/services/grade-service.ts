@@ -4,17 +4,28 @@ import { GradeWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateGradeSchema } from "@/lib/schemas/grades/create-grade";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type GradeListItem = Grade;
 export type GradeForSelect = Pick<Grade, "id" | "name" | "code">;
 
 class GradeService {
   async getAllGrades(params: TableQuery): Promise<TableResponse<GradeListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: GradeWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
+    }
+
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.createdAt.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["name", "code", "createdAt", "updatedAt"];

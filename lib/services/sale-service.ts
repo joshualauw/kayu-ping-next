@@ -29,11 +29,21 @@ export type SaleDetail = Sale & {
 
 class SaleService {
   async getAllSales(params: TableQuery): Promise<TableResponse<SaleListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: SaleWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
+    }
+
+    if (startDate || endDate) {
+      where.saleDate = {};
+      if (startDate) {
+        where.saleDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.saleDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "saleDate", "totalVolume", "totalPrice", "createdAt", "updatedAt"];
@@ -106,7 +116,7 @@ class SaleService {
   }
 
   async createSale(data: CreateSaleSchema): Promise<Sale> {
-    const saleDate = new Date(data.saleDate);
+    const saleDate = dayjs(data.saleDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(saleDate, tx);

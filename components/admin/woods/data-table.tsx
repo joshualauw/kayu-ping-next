@@ -16,7 +16,8 @@ import { deleteWoodAction } from "@/lib/actions/woods/delete-wood";
 
 export default function WoodsDataTable() {
   const router = useRouter();
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState();
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data, error, isLoading, isValidating, mutate } = useGetAllWoods(query);
@@ -143,6 +144,10 @@ export default function WoodsDataTable() {
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

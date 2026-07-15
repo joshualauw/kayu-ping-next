@@ -27,11 +27,21 @@ export type GradingDetail = Grading & {
 
 class GradingService {
   async getAllGradings(params: TableQuery): Promise<TableResponse<GradingListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: GradingWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
+    }
+
+    if (startDate || endDate) {
+      where.gradingDate = {};
+      if (startDate) {
+        where.gradingDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.gradingDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "gradingDate", "createdAt", "updatedAt"];
@@ -77,7 +87,7 @@ class GradingService {
   }
 
   async createGrading(data: CreateGradingSchema): Promise<Grading> {
-    const gradingDate = new Date(data.gradingDate);
+    const gradingDate = dayjs(data.gradingDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(gradingDate, tx);

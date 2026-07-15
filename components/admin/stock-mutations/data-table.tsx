@@ -14,10 +14,8 @@ import { getReferenceLink } from "@/lib/helpers/core";
 import { Button } from "@/components/ui/button";
 
 export default function StockMutationsDataTable() {
-  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount } = useDataTableState(
-    "mutationDate",
-    "desc",
-  );
+  const { search, setSearch, pagination, setPagination, sorting, setSorting, query, getPageCount, dateRange, setDateRange, resetAll } =
+    useDataTableState("mutationDate", "desc");
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
   const { data, error, isLoading, isValidating } = useGetAllStockMutations(query);
@@ -187,6 +185,10 @@ export default function StockMutationsDataTable() {
       isLoading={isLoading}
       error={error}
       renderRowDetails={renderRowDetails}
+      enableDateRangeFilter={true}
+      dateRange={dateRange}
+      onDateRangeChange={setDateRange}
+      onClearFilters={resetAll}
     />
   );
 }

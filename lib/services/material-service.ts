@@ -5,17 +5,28 @@ import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMaterialSchema } from "@/lib/schemas/materials/create-material";
 import { UpdateMaterialSchema } from "@/lib/schemas/materials/update-material";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type MaterialListItem = Material;
 export type MaterialForSelect = Pick<Material, "id" | "name" | "measurement" | "code">;
 
 class MaterialService {
   async getAllMaterials(params: TableQuery): Promise<TableResponse<MaterialListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: MaterialWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
+    }
+
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.createdAt.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["name", "code", "measurement", "createdAt", "updatedAt"];

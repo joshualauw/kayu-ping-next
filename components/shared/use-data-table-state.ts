@@ -13,6 +13,8 @@ export function useDataTableState(defaultSortBy = "createdAt", defaultSortOrder:
   const urlSearch = searchParams.get("search") ?? "";
   const urlSortBy = searchParams.get("sortBy") || defaultSortBy;
   const urlSortOrder = (searchParams.get("sortOrder") as "asc" | "desc" | null) || defaultSortOrder;
+  const urlStartDate = searchParams.get("startDate") ?? "";
+  const urlEndDate = searchParams.get("endDate") ?? "";
 
   const pageIndex = urlPage ? parseInt(urlPage, 10) : config.DATA_TABLE.default_page_index;
   const pageSize = urlSize ? parseInt(urlSize, 10) : config.DATA_TABLE.default_page_size;
@@ -56,6 +58,29 @@ export function useDataTableState(defaultSortBy = "createdAt", defaultSortOrder:
     [urlSortBy, urlSortOrder],
   );
 
+  const dateRange = useMemo(() => {
+    return {
+      from: urlStartDate ? new Date(urlStartDate) : undefined,
+      to: urlEndDate ? new Date(urlEndDate) : undefined,
+    };
+  }, [urlStartDate, urlEndDate]);
+
+  const setDateRange = (range: { from?: Date; to?: Date } | undefined) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (range?.from) {
+      params.set("startDate", range.from.toISOString());
+    } else {
+      params.delete("startDate");
+    }
+    if (range?.to) {
+      params.set("endDate", range.to.toISOString());
+    } else {
+      params.delete("endDate");
+    }
+    params.set("page", "0");
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   const setSorting = (updater: SortingState | ((current: SortingState) => SortingState)) => {
     const nextSorting = typeof updater === "function" ? updater(sorting) : updater;
     const firstSort = nextSorting[0];
@@ -68,6 +93,16 @@ export function useDataTableState(defaultSortBy = "createdAt", defaultSortOrder:
       params.delete("sortBy");
       params.delete("sortOrder");
     }
+    params.set("page", "0");
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  const resetAll = () => {
+    setSearch("");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("search");
+    params.delete("startDate");
+    params.delete("endDate");
     params.set("page", "0");
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
@@ -87,8 +122,10 @@ export function useDataTableState(defaultSortBy = "createdAt", defaultSortOrder:
       search: urlSearch,
       sortBy: urlSortBy,
       sortOrder: urlSortOrder,
+      startDate: urlStartDate || undefined,
+      endDate: urlEndDate || undefined,
     }),
-    [pageIndex, pageSize, urlSearch, urlSortBy, urlSortOrder],
+    [pageIndex, pageSize, urlSearch, urlSortBy, urlSortOrder, urlStartDate, urlEndDate],
   );
 
   const getPageCount = (count: number) => {
@@ -102,6 +139,9 @@ export function useDataTableState(defaultSortBy = "createdAt", defaultSortOrder:
     setPagination,
     sorting,
     setSorting,
+    dateRange,
+    setDateRange,
+    resetAll,
     query,
     getPageCount,
   };

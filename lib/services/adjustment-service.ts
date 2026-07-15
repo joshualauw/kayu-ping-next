@@ -4,8 +4,8 @@ import { AdjustmentWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateAdjustmentSchema } from "@/lib/schemas/adjustments/create-adjustment";
 import { UpdateAdjustmentSchema } from "@/lib/schemas/adjustments/update-adjustment";
-import dayjs from "@/lib/integrations/dayjs";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type AdjustmentListItem = Adjustment & {
   location: Pick<Location, "name">;
@@ -27,7 +27,7 @@ export type AdjustmentDetail = Adjustment & {
 
 class AdjustmentService {
   async getAllAdjustments(params: TableQuery): Promise<TableResponse<AdjustmentListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: AdjustmentWhereInput = {};
 
     if (search) {
@@ -36,6 +36,16 @@ class AdjustmentService {
         { location: { name: { contains: search, mode: "insensitive" } } },
         { notes: { contains: search, mode: "insensitive" } },
       ];
+    }
+
+    if (startDate || endDate) {
+      where.adjustmentDate = {};
+      if (startDate) {
+        where.adjustmentDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.adjustmentDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "adjustmentDate", "createdAt", "updatedAt"];
@@ -81,7 +91,7 @@ class AdjustmentService {
   }
 
   async createAdjustment(data: CreateAdjustmentSchema): Promise<Adjustment> {
-    const adjustmentDate = new Date(data.adjustmentDate);
+    const adjustmentDate = dayjs(data.adjustmentDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(adjustmentDate, tx);

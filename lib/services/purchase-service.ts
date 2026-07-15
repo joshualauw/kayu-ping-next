@@ -30,11 +30,21 @@ export type PurchaseItemWithVariant = PurchaseItem & {
 
 class PurchaseService {
   async getAllPurchases(params: TableQuery): Promise<TableResponse<PurchaseListItem>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: PurchaseWhereInput = {};
 
     if (search) {
       where.OR = [{ tid: { contains: search, mode: "insensitive" } }, { location: { name: { contains: search, mode: "insensitive" } } }];
+    }
+
+    if (startDate || endDate) {
+      where.purchaseDate = {};
+      if (startDate) {
+        where.purchaseDate.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.purchaseDate.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["tid", "purchaseDate", "totalPrice", "totalVolume", "createdAt", "updatedAt"];
@@ -107,7 +117,7 @@ class PurchaseService {
   }
 
   async createPurchase(data: CreatePurchaseSchema): Promise<Purchase> {
-    const purchaseDate = new Date(data.purchaseDate);
+    const purchaseDate = dayjs(data.purchaseDate).toDate();
 
     return prisma.$transaction(async (tx) => {
       const tid = await this.generateTid(purchaseDate, tx);

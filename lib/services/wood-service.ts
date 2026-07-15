@@ -3,16 +3,27 @@ import { Wood, WoodVariant, Material } from "@/generated/prisma/client";
 import { WoodWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { getOrderBySort } from "@/lib/helpers/api";
+import dayjs from "@/lib/integrations/dayjs";
 
 export type WoodForSelect = Pick<Wood, "id" | "name" | "code">;
 
 class WoodService {
   async getAllWoods(params: TableQuery): Promise<TableResponse<Wood>> {
-    const { page, size, search, sortBy, sortOrder } = params;
+    const { page, size, search, sortBy, sortOrder, startDate, endDate } = params;
     const where: WoodWhereInput = {};
 
     if (search) {
       where.OR = [{ name: { contains: search, mode: "insensitive" } }, { code: { contains: search, mode: "insensitive" } }];
+    }
+
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = dayjs(startDate).toDate();
+      }
+      if (endDate) {
+        where.createdAt.lte = dayjs(endDate).toDate();
+      }
     }
 
     const allowedSortFields = ["name", "code", "createdAt", "updatedAt"];

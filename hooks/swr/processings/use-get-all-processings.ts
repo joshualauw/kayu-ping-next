@@ -11,6 +11,8 @@ export function useGetAllProcessings(query: TableQuery, options?: SWRConfigurati
     sortBy: query.sortBy,
     sortOrder: query.sortOrder,
   });
+  if (query.startDate) params.set("startDate", query.startDate);
+  if (query.endDate) params.set("endDate", query.endDate);
 
   return useSWR<GetAllProcessingsResponse>(`/api/processings?${params.toString()}`, fetcher, {
     keepPreviousData: true,
