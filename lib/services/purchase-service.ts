@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db/prisma";
-import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
+import { Purchase, Location, Contact, PurchaseItem, WoodVariant, Wood, Material, Grade, Lot, Fee } from "@/generated/prisma/client";
 import { PurchaseWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreatePurchaseSchema } from "@/lib/schemas/purchases/create-purchase";
@@ -17,6 +17,8 @@ export type PurchaseDetail = Purchase & {
   location: Location;
   supplier: Contact;
   items: PurchaseItemWithVariant[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 export type PurchaseItemWithVariant = PurchaseItem & {
@@ -76,7 +78,7 @@ class PurchaseService {
   }
 
   async getPurchaseById(id: number): Promise<PurchaseDetail | null> {
-    return prisma.purchase.findUnique({
+    const purchase = await prisma.purchase.findUnique({
       where: { id },
       include: {
         location: true,
@@ -95,6 +97,24 @@ class PurchaseService {
         },
       },
     });
+
+    if (!purchase) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "PURCHASE",
+      },
+    });
+
+    const totalFees = fees.reduce((sum, fee) => sum + fee.price, 0);
+    const totalPriceAfterFee = purchase.totalPrice + totalFees;
+
+    return {
+      ...purchase,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async generateTid(purchaseDate: string | Date, tx: any = prisma): Promise<string> {

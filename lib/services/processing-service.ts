@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { Processing, Location, ProcessingItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
+import type { Fee } from "@/generated/prisma/client";
 import { ProcessingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateProcessingSchema } from "@/lib/schemas/processings/create-processing";
@@ -24,6 +25,8 @@ export type ProcessingItemWithVariant = ProcessingItem & {
 export type ProcessingDetail = Processing & {
   location: Location;
   items: ProcessingItemWithVariant[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 class ProcessingService {
@@ -302,7 +305,7 @@ class ProcessingService {
   }
 
   async getProcessingById(id: number): Promise<ProcessingDetail | null> {
-    return prisma.processing.findUnique({
+    const processing = await prisma.processing.findUnique({
       where: { id },
       include: {
         location: true,
@@ -323,6 +326,23 @@ class ProcessingService {
         },
       },
     });
+
+    if (!processing) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "PROCESSING",
+      },
+    });
+
+    const totalPriceAfterFee = fees.reduce((sum, fee) => sum + fee.price, 0);
+
+    return {
+      ...processing,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async updateProcessing(id: number, data: UpdateProcessingSchema): Promise<Processing> {

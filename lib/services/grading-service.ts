@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { Grading, Location, GradingItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
+import type { Fee } from "@/generated/prisma/client";
 import { GradingWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateGradingSchema } from "@/lib/schemas/gradings/create-grading";
@@ -23,6 +24,8 @@ export type GradingItemWithDetails = GradingItem & {
 export type GradingDetail = Grading & {
   location: Location;
   items: GradingItemWithDetails[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 class GradingService {
@@ -229,7 +232,7 @@ class GradingService {
   }
 
   async getGradingById(id: number): Promise<GradingDetail | null> {
-    return prisma.grading.findUnique({
+    const grading = await prisma.grading.findUnique({
       where: { id },
       include: {
         location: true,
@@ -250,6 +253,23 @@ class GradingService {
         },
       },
     });
+
+    if (!grading) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "GRADING",
+      },
+    });
+
+    const totalPriceAfterFee = fees.reduce((sum, fee) => sum + fee.price, 0);
+
+    return {
+      ...grading,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async updateGrading(id: number, data: UpdateGradingSchema): Promise<Grading> {

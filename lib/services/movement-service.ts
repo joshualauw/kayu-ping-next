@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { Movement, Location, Contact, MovementItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
+import type { Fee } from "@/generated/prisma/client";
 import { MovementWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateMovementSchema } from "@/lib/schemas/movements/create-movement";
@@ -27,6 +28,8 @@ export type MovementDetail = Movement & {
   fromLocation: Location;
   toLocation: Location;
   items: MovementItemWithVariant[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 class MovementService {
@@ -238,7 +241,7 @@ class MovementService {
   }
 
   async getMovementById(id: number): Promise<MovementDetail | null> {
-    return prisma.movement.findUnique({
+    const movement = await prisma.movement.findUnique({
       where: { id },
       include: {
         trucker: true,
@@ -258,6 +261,23 @@ class MovementService {
         },
       },
     });
+
+    if (!movement) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "MOVEMENT",
+      },
+    });
+
+    const totalPriceAfterFee = fees.reduce((sum, fee) => sum + fee.price, 0);
+
+    return {
+      ...movement,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async updateMovement(id: number, data: UpdateMovementSchema): Promise<Movement> {

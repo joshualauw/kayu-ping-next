@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { Sale, Location, Contact, WoodVariant, Wood, Material, SaleItem, Grade, Lot } from "@/generated/prisma/client";
+import type { Fee } from "@/generated/prisma/client";
 import { SaleWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateSaleSchema } from "@/lib/schemas/sales/create-sale";
@@ -25,6 +26,8 @@ export type SaleDetail = Sale & {
   location: Location;
   customer: Contact;
   items: SaleItemWithVariant[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 class SaleService {
@@ -75,7 +78,7 @@ class SaleService {
   }
 
   async getSaleById(id: number): Promise<SaleDetail | null> {
-    return prisma.sale.findUnique({
+    const sale = await prisma.sale.findUnique({
       where: { id },
       include: {
         location: true,
@@ -94,6 +97,24 @@ class SaleService {
         },
       },
     });
+
+    if (!sale) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "SALES",
+      },
+    });
+
+    const totalFees = fees.reduce((sum, fee) => sum + fee.price, 0);
+    const totalPriceAfterFee = sale.totalPrice - totalFees;
+
+    return {
+      ...sale,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async generateTid(saleDate: string | Date, tx: any = prisma): Promise<string> {

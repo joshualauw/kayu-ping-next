@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { Adjustment, Location, AdjustmentItem, WoodVariant, Wood, Material, Grade, Lot } from "@/generated/prisma/client";
+import type { Fee } from "@/generated/prisma/client";
 import { AdjustmentWhereInput } from "@/generated/prisma/models";
 import { TableQuery, TableResponse } from "@/lib/schemas/table-query";
 import { CreateAdjustmentSchema } from "@/lib/schemas/adjustments/create-adjustment";
@@ -23,6 +24,8 @@ export type AdjustmentItemWithDetails = AdjustmentItem & {
 export type AdjustmentDetail = Adjustment & {
   location: Location;
   items: AdjustmentItemWithDetails[];
+  fees: Fee[];
+  totalPriceAfterFee: number;
 };
 
 class AdjustmentService {
@@ -178,7 +181,7 @@ class AdjustmentService {
   }
 
   async getAdjustmentById(id: number): Promise<AdjustmentDetail | null> {
-    return prisma.adjustment.findUnique({
+    const adjustment = await prisma.adjustment.findUnique({
       where: { id },
       include: {
         location: true,
@@ -196,6 +199,23 @@ class AdjustmentService {
         },
       },
     });
+
+    if (!adjustment) return null;
+
+    const fees = await prisma.fee.findMany({
+      where: {
+        referenceId: id,
+        referenceType: "ADJUSTMENT",
+      },
+    });
+
+    const totalPriceAfterFee = fees.reduce((sum, fee) => sum + fee.price, 0);
+
+    return {
+      ...adjustment,
+      fees,
+      totalPriceAfterFee,
+    };
   }
 
   async updateAdjustment(id: number, data: UpdateAdjustmentSchema): Promise<Adjustment> {

@@ -5,7 +5,7 @@ description: Module Maker
 # Module Generator Workflow
 
 This workflow guide provides step-by-step instructions for implementing a complete module in the codebase.
-Assume that the new model has already been defined in [prisma/schema.prisma](file:///c:/Projects/kayu-ping-next/prisma/schema.prisma) and database migrations have been run.
+Assume that the new model has already been defined in [prisma/schema.prisma](file:///c:/Projects/kayu-ping-next/prisma/schema.prisma), models folder, and database migrations have been run.
 
 ## Naming Conventions
 

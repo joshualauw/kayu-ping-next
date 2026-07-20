@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/utils";
 import { ProcessingDetail } from "@/lib/services/processing-service";
 import { Measurement } from "@/generated/prisma/enums";
 import { Badge } from "@/components/ui/badge";
+import FeeTable from "@/components/shared/fee-table";
 
 interface ProcessingDetailCardProps {
   processing: ProcessingDetail;
@@ -24,12 +25,10 @@ export default function ProcessingDetailCard({ processing }: ProcessingDetailCar
     <div className="space-y-6">
       <Card className="w-full">
         <CardHeader>
-          <div>
-            <CardTitle>{processing.tid}</CardTitle>
-            <CardDescription>Detail of the wood processing transaction</CardDescription>
-          </div>
+          <CardTitle>{processing.tid}</CardTitle>
+          <CardDescription>Detail of the wood processing transaction</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4">
               <div className="space-y-1">
@@ -41,122 +40,130 @@ export default function ProcessingDetailCard({ processing }: ProcessingDetailCar
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Location</span>
                 <p className="text-sm font-medium">{processing.location.name}</p>
               </div>
+            </div>
 
+            <div className="space-y-4">
               <div className="space-y-1">
                 <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Notes</span>
                 <p className="text-sm font-medium whitespace-pre-wrap">{processing.notes || "-"}</p>
               </div>
             </div>
-
-            <div className="space-y-4">
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Input Volume</span>
-                <p className="text-sm font-bold text-primary">{processing.totalInputVolume.toFixed(4)} m³</p>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Output Volume</span>
-                <p className="text-sm font-bold text-primary">{processing.totalOutputVolume.toFixed(4)} m³</p>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Processing Yield</span>
-                <p className="text-sm font-bold text-primary">{yieldPercentage.toFixed(1)}%</p>
-              </div>
-            </div>
           </div>
-        </CardContent>
-      </Card>
 
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Items Processed</CardTitle>
-          <CardDescription>Detailed lists of input and output wood variants in this transaction</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto rounded-md border">
-            <table className="w-full border-collapse text-left text-xs">
-              <thead>
-                <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
-                  <th className="p-3">No.</th>
-                  <th className="p-3">Wood</th>
-                  <th className="p-3">Material</th>
-                  <th className="p-3">Grade</th>
-                  <th className="p-3">Lot</th>
-                  <th className="p-3">Dimensions (cm)</th>
-                  <th className="p-3">Length (cm)</th>
-                  <th className="p-3">Qty</th>
-                  <th className="p-3">Volume (m³)</th>
-                  <th className="p-3">Type</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {items.map((item, index) => {
-                  const variant = item.variant;
-                  const wood = variant.wood;
-                  const material = variant.material;
-                  const singleVolume = variant.volume;
-                  const totalVol = singleVolume * item.quantity;
-
-                  return (
-                    <tr key={item.id} className="hover:bg-muted/10">
-                      <td className="p-3 font-medium">{index + 1}</td>
-                      <td className="p-3">
-                        <div className="font-semibold">{wood.name}</div>
-                        <div className="text-[10px] text-muted-foreground">{wood.code}</div>
-                      </td>
-                      <td className="p-3 font-medium">{material.name}</td>
-                      <td className="p-3">
-                        {item.grade ? (
-                          <Badge variant="secondary">{item.grade.code}</Badge>
-                        ) : (
-                          <span className="text-xs text-muted-foreground italic">Ungraded</span>
-                        )}
-                      </td>
-                      <td className="p-3">
-                        <Badge variant="outline" className="font-mono text-xs">
-                          {item.lot.code}
-                        </Badge>
-                      </td>
-                      <td className="p-3">
-                        {material.measurement === Measurement.CUBE && (
-                          <div>
-                            W: {variant.width ?? 0} / H: {variant.height ?? 0}
-                          </div>
-                        )}
-                        {material.measurement === Measurement.CYLINDER && (
-                          <div>
-                            D.0: {variant.diameterSmall ?? 0} / D.1: {variant.diamterLarge ?? 0}
-                          </div>
-                        )}
-                      </td>
-                      <td className="p-3">{variant.length}</td>
-                      <td className="p-3">{item.quantity}</td>
-                      <td className="p-3 font-mono">
-                        <div className="space-y-0.5">
-                          <div>Single: {singleVolume.toFixed(4)}</div>
-                          <div className="font-semibold text-muted-foreground">Total: {totalVol.toFixed(4)}</div>
-                        </div>
-                      </td>
-                      <td className="p-3 font-medium">
-                        {item.type === "INPUT" ? <Badge variant="destructive">INPUT</Badge> : <Badge variant="success">OUTPUT</Badge>}
-                      </td>
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Items Processed</CardTitle>
+              <CardDescription>Detailed lists of input and output wood variants in this transaction</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="overflow-x-auto rounded-md border">
+                <table className="w-full border-collapse text-left text-xs">
+                  <thead>
+                    <tr className="border-b bg-muted/30 font-medium text-muted-foreground">
+                      <th className="p-3">No.</th>
+                      <th className="p-3">Wood</th>
+                      <th className="p-3">Material</th>
+                      <th className="p-3">Grade</th>
+                      <th className="p-3">Lot</th>
+                      <th className="p-3">Dimensions (cm)</th>
+                      <th className="p-3">Length (cm)</th>
+                      <th className="p-3">Qty</th>
+                      <th className="p-3">Volume (m³)</th>
+                      <th className="p-3">Type</th>
                     </tr>
-                  );
-                })}
-                {items.length === 0 && (
-                  <tr>
-                    <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
-                      No items found in this processing transaction.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                  </thead>
+                  <tbody className="divide-y">
+                    {items.map((item, index) => {
+                      const variant = item.variant;
+                      const wood = variant.wood;
+                      const material = variant.material;
+                      const singleVolume = variant.volume;
+                      const totalVol = singleVolume * item.quantity;
 
-          <div className="mt-6 flex items-center justify-end gap-3">
-            <Button type="button" variant="secondary" onClick={() => router.push("/admin/processings")} className="flex items-center gap-2">
+                      return (
+                        <tr key={item.id} className="hover:bg-muted/10">
+                          <td className="p-3 font-medium">{index + 1}</td>
+                          <td className="p-3">
+                            <div className="font-semibold">{wood.name}</div>
+                            <div className="text-[10px] text-muted-foreground">{wood.code}</div>
+                          </td>
+                          <td className="p-3 font-medium">{material.name}</td>
+                          <td className="p-3">
+                            {item.grade ? (
+                              <Badge variant="secondary">{item.grade.code}</Badge>
+                            ) : (
+                              <span className="text-xs text-muted-foreground italic">Ungraded</span>
+                            )}
+                          </td>
+                          <td className="p-3">
+                            <Badge variant="outline" className="font-mono text-xs">
+                              {item.lot.code}
+                            </Badge>
+                          </td>
+                          <td className="p-3">
+                            {material.measurement === Measurement.CUBE && (
+                              <div>
+                                W: {variant.width ?? 0} / H: {variant.height ?? 0}
+                              </div>
+                            )}
+                            {material.measurement === Measurement.CYLINDER && (
+                              <div>
+                                D.0: {variant.diameterSmall ?? 0} / D.1: {variant.diamterLarge ?? 0}
+                              </div>
+                            )}
+                          </td>
+                          <td className="p-3">{variant.length}</td>
+                          <td className="p-3">{item.quantity}</td>
+                          <td className="p-3 font-mono">
+                            <div className="space-y-0.5">
+                              <div>Single: {singleVolume.toFixed(4)}</div>
+                              <div className="font-semibold text-muted-foreground">Total: {totalVol.toFixed(4)}</div>
+                            </div>
+                          </td>
+                          <td className="p-3 font-medium">
+                            {item.type === "INPUT" ? <Badge variant="destructive">INPUT</Badge> : <Badge variant="success">OUTPUT</Badge>}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {items.length === 0 && (
+                      <tr>
+                        <td colSpan={10} className="p-8 text-center text-sm text-muted-foreground italic">
+                          No items found in this processing transaction.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex justify-end border-t pt-4">
+                <div className="flex gap-8 text-right">
+                  <div>
+                    <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Input Volume</span>
+                    <span className="text-sm font-bold text-primary">{processing.totalInputVolume.toFixed(4)} m³</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Total Output Volume</span>
+                    <span className="text-sm font-bold text-primary">{processing.totalOutputVolume.toFixed(4)} m³</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">Processing Yield</span>
+                    <span className="text-sm font-bold text-primary">{yieldPercentage.toFixed(1)}%</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <FeeTable
+            referenceId={processing.id}
+            referenceType="PROCESSING"
+            fees={processing.fees}
+            totalPriceAfterFee={processing.totalPriceAfterFee}
+          />
+
+          <div className="mt-6 flex items-center justify-end gap-3 border-t pt-4">
+            <Button type="button" variant="secondary" size="sm" onClick={() => router.push("/admin/processings")} className="flex items-center gap-2">
               <ArrowLeft className="size-4" />
               Back to List
             </Button>
